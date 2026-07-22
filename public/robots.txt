@@ -1,0 +1,45 @@
+# GPTBot
+User-agent: GPTBot
+Allow: /
+
+# PerplexityBot
+User-agent: PerplexityBot
+Allow: /
+
+# ClaudeBot
+User-agent: ClaudeBot
+Allow: /
+
+# anthropic-ai
+User-agent: anthropic-ai
+Allow: /
+
+# cohere-ai
+User-agent: cohere-ai
+Allow: /
+
+# Googlebot-Extended
+User-agent: Googlebot-Extended
+Allow: /
+
+# Applebot-Extended
+User-agent: Applebot-Extended
+Allow: /
+
+# Bytespider
+User-agent: Bytespider
+Allow: /
+
+# *
+User-agent: *
+Allow: /
+Disallow: /_next/static/
+Disallow: /_next/image/
+Disallow: /api/
+Disallow: /thank-you-consultation/
+
+# Host
+Host: https://salrayofficial.com
+
+# Sitemaps
+Sitemap: https://salrayofficial.com/sitemap.xml

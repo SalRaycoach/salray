@@ -1,0 +1,32 @@
+# dependencies
+/node_modules
+
+# next.js
+/.next/
+/out/
+
+# production
+/build
+
+# sitemap gerado (next-sitemap regenera no postbuild)
+/public/sitemap*.xml
+
+# env
+.env
+.env*.local
+
+# logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# os
+.DS_Store
+Thumbs.db
+
+# local Claude Code settings (machine-specific, not shared)
+.claude/settings.local.json
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
