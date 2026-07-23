@@ -61,6 +61,9 @@ module.exports = {
     } else if (['/privacy-policy', '/terms', '/disclaimer', '/cancellation-policy'].includes(p)) {
       priority = 0.3
       changefreq = 'yearly'
+    } else if (p === '/sitemap') {
+      priority = 0.2
+      changefreq = 'weekly'
     }
 
     return {

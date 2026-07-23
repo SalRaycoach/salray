@@ -164,4 +164,24 @@ export function getArticleSchema(article: Article, clusterName: string) {
   }
 }
 
+/** /sitemap: ItemList do mapa semântico do site (páginas + clusters + artigos) */
+export function getSitemapPageSchema(items: BreadcrumbItem[]) {
+  return {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'ItemList',
+        '@id': `${SITE_URL}/sitemap/#itemlist`,
+        itemListElement: items.map((item, index) => ({
+          '@type': 'ListItem',
+          position: index + 1,
+          name: item.name,
+          url: `${SITE_URL}${withTrailingSlash(item.url)}`,
+        })),
+      },
+      buildBreadcrumbList([{ name: 'Home', url: '/' }, { name: 'Sitemap', url: '/sitemap/' }]),
+    ],
+  }
+}
+
 export { DOMINIO, SITE_URL }

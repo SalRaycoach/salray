@@ -91,7 +91,10 @@ export default function Footer() {
         <div className="max-w-content mx-auto px-6 py-6">
           <p className="font-body text-xs text-offwhite/50 leading-relaxed max-w-3xl mb-3">{clinicalDisclaimer}</p>
           <p className="font-body text-xs text-offwhite/40">
-            © {new Date().getFullYear()} {business.nome}. All rights reserved.
+            © {new Date().getFullYear()} {business.nome}. All rights reserved.{' '}
+            <Link href="/sitemap/" className="hover:text-orange underline underline-offset-2">
+              Sitemap
+            </Link>
           </p>
         </div>
       </div>
