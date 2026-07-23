@@ -30,7 +30,7 @@ export default function PrivacyPolicyPage() {
 
       <section className="max-w-2xl space-y-6 font-body text-charcoal/85 leading-relaxed">
         <p>
-          This policy describes how salrayofficial.com ("the site") collects, uses, and protects information you
+          This policy describes how salraycoach.com ("the site") collects, uses, and protects information you
           provide when you contact us, join the community, or book a consultation.
         </p>
 

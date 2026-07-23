@@ -1,5 +1,5 @@
 /** @type {import('next').NextConfig} */
-const DOMINIO = 'salrayofficial.com'
+const DOMINIO = 'salraycoach.com'
 
 const nextConfig = {
   trailingSlash: true,

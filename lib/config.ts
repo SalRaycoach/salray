@@ -3,13 +3,12 @@
  * ---------------------------------------------------------------------------
  * Campos marcados "PENDENTE" vêm da seção 15 do brief e NÃO devem ser
  * inventados — foram deixados como placeholder visível até aprovação.
- * DOMINIO e EMAIL foram inferidos do próprio título do brief e do contexto
- * de e-mail da sessão (salrayofficial.com / hello@salrayofficial.com) —
- * confirme antes de publicar caso estejam incorretos.
+ * DOMINIO confirmado pelo usuário: salraycoach.com (o site real em produção).
+ * EMAIL segue como inferência a partir do domínio — confirme antes de publicar.
  * ---------------------------------------------------------------------------
  */
 
-export const DOMINIO = 'salrayofficial.com'
+export const DOMINIO = 'salraycoach.com'
 export const SITE_URL = `https://${DOMINIO}`
 
 export const business = {
@@ -23,7 +22,7 @@ export const business = {
 } as const
 
 export const contato = {
-  email: 'hello@salrayofficial.com', // inferido — confirmar
+  email: 'hello@salraycoach.com', // inferido a partir do domínio — confirmar
   whatsapp: '18635137521', // +1 (863) 513-7521
   whatsappDisplay: '+1 (863) 513-7521',
   bookingUrl: 'PENDENTE_LINK_DE_AGENDAMENTO', // NÃO INVENTAR — aguardando plataforma/Stripe

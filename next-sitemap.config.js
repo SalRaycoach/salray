@@ -1,5 +1,5 @@
 /** @type {import('next-sitemap').IConfig} */
-const DOMINIO = 'salrayofficial.com'
+const DOMINIO = 'salraycoach.com'
 
 module.exports = {
   siteUrl: `https://${DOMINIO}`,

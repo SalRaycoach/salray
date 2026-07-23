@@ -39,7 +39,7 @@ Disallow: /api/
 Disallow: /thank-you-consultation/
 
 # Host
-Host: https://salrayofficial.com
+Host: https://salraycoach.com
 
 # Sitemaps
-Sitemap: https://salrayofficial.com/sitemap.xml
+Sitemap: https://salraycoach.com/sitemap.xml

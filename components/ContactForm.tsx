@@ -14,7 +14,7 @@ export default function ContactForm() {
   function handleSend() {
     if (!canSubmit) return
     trackEvent('contact_form_submit')
-    const subject = `Message from ${name} via salrayofficial.com`
+    const subject = `Message from ${name} via salraycoach.com`
     const body = `${message}\n\nReply to: ${email}`
     window.location.href = `mailto:${contato.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
   }

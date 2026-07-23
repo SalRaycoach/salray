@@ -6,7 +6,7 @@
  * e o arquivo /public/[chave].txt.
  */
 
-const DOMINIO = 'salrayofficial.com' // SUBSTITUIR se o domínio mudar
+const DOMINIO = 'salraycoach.com' // SUBSTITUIR se o domínio mudar
 const INDEXNOW_KEY = '30d298efbced4ea0b8fad98ab088275a' // SUBSTITUIR se gerar nova chave
 const BATCH_SIZE = 100
 const DELAY_MS = 2000

@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import { business, SITE_URL } from '@/lib/config'
 
 const title = 'Terms of Use | Sal Ray'
-const description = 'Terms of use for salrayofficial.com and coaching services provided by Sal Ray.'
+const description = 'Terms of use for salraycoach.com and coaching services provided by Sal Ray.'
 
 export const metadata: Metadata = {
   title,
@@ -30,7 +30,7 @@ export default function TermsPage() {
 
       <section className="max-w-2xl space-y-6 font-body text-charcoal/85 leading-relaxed">
         <p>
-          By using salrayofficial.com and booking services with {business.nome} ("we", "us"), you agree to these
+          By using salraycoach.com and booking services with {business.nome} ("we", "us"), you agree to these
           terms.
         </p>
 
