@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import SchemaOrg from '@/components/SchemaOrg'
-import { articles, clusters } from '@/lib/resources'
+import { articles, clusters, getChildArticles } from '@/lib/resources'
 import { getArticleSchema } from '@/lib/schema'
 import { markdownToHtml } from '@/lib/mdx'
 import { ctas, crisisResource, SITE_URL } from '@/lib/config'
@@ -41,6 +41,8 @@ export default function ArticlePage({ params }: { params: { cluster: string; slu
     article.content.replaceAll('(#consultation)', '(/consultation/)').replaceAll('(#community)', '(/community/)')
   )
   const related = articles.filter((a) => article.relatedArticles.includes(a.slug))
+  const seriesArticles = article.tipo === 'pilar' ? getChildArticles(article.slug) : []
+  const parentPillar = article.pillarSlug ? articles.find((a) => a.slug === article.pillarSlug) : undefined
 
   return (
     <>
@@ -64,7 +66,19 @@ export default function ArticlePage({ params }: { params: { cluster: string; slu
         <span className="font-body text-xs uppercase tracking-widest text-aqua">
           Published {new Date(article.datePublished).toLocaleDateString('en-US')}
         </span>
-        <h1 className="font-display text-4xl text-charcoal mt-2 mb-8 max-w-3xl">{article.title}</h1>
+        <h1 className="font-display text-4xl text-charcoal mt-2 mb-4 max-w-3xl">{article.title}</h1>
+
+        {parentPillar && (
+          <p className="font-body text-sm text-charcoal/60 mb-8">
+            Part of the complete guide:{' '}
+            <Link
+              href={`/resources/${parentPillar.cluster}/${parentPillar.slug}/`}
+              className="text-aqua underline underline-offset-2"
+            >
+              {parentPillar.title}
+            </Link>
+          </p>
+        )}
 
         <article className="max-w-2xl" dangerouslySetInnerHTML={{ __html: html }} />
 
@@ -86,6 +100,26 @@ export default function ArticlePage({ params }: { params: { cluster: string; slu
             </Link>
           </div>
         </div>
+
+        {seriesArticles.length > 0 && (
+          <div className="max-w-2xl mt-12">
+            <h2 className="font-body text-xs uppercase tracking-widest text-aqua mb-4">
+              Articles in This Series
+            </h2>
+            <ul className="grid sm:grid-cols-2 gap-x-6 gap-y-2">
+              {seriesArticles.map((child) => (
+                <li key={child.slug}>
+                  <Link
+                    href={`/resources/${child.cluster}/${child.slug}/`}
+                    className="font-body text-sm text-charcoal hover:text-orange"
+                  >
+                    {child.title}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
 
         {related.length > 0 && (
           <div className="max-w-2xl mt-12">

@@ -5,7 +5,7 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        charcoal: '#0D0D0D',
+        charcoal: '#111111',
         orange: '#FF8A00',
         aqua: '#009FAF',
         offwhite: '#F7F7F5',

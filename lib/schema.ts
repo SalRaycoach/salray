@@ -39,6 +39,12 @@ function buildFaqPage(items: Faq[]) {
   }
 }
 
+/** Alias nomeado — mesma FAQPage schema usada internamente por getArticleSchema/getHomeSchema. */
+export const getFAQSchema = buildFaqPage
+
+/** Alias nomeado — mesma BreadcrumbList schema já exportada como buildBreadcrumbList. */
+export const getBreadcrumbSchema = buildBreadcrumbList
+
 function buildPerson() {
   const sameAs = [contato.instagramUrl, contato.facebookGroupUrl].filter((url) => !isPending(url))
 
