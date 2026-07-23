@@ -23,15 +23,11 @@ export const business = {
 
 export const contato = {
   email: 'hello@salraycoach.com', // inferido a partir do domínio — confirmar
-  whatsapp: '18635137521', // +1 (863) 513-7521
-  whatsappDisplay: '+1 (863) 513-7521',
   bookingUrl: 'PENDENTE_LINK_DE_AGENDAMENTO', // NÃO INVENTAR — aguardando plataforma/Stripe
-  facebookGroupUrl: 'PENDENTE_URL_GRUPO_FACEBOOK', // NÃO INVENTAR
+  facebookGroupUrl: 'https://www.facebook.com/groups/backontrackcommunity',
+  // Canal principal de contato direto — substitui o WhatsApp (removido do site).
+  facebookProfileUrl: 'https://www.facebook.com/profile.php?id=61562494663397',
   instagramUrl: 'PENDENTE_URL_INSTAGRAM',
-} as const
-
-export const social = {
-  whatsappLink: `https://wa.me/${contato.whatsapp}`,
 } as const
 
 export const ctas = {

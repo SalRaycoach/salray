@@ -83,8 +83,17 @@ export default function ConsultationPage() {
           <h2 className="font-display text-2xl text-charcoal mb-4">Book Your Consultation</h2>
           {isBookingPending ? (
             <p className="font-body text-charcoal/70 leading-relaxed">
-              Online booking is being finalized. In the meantime, message Sal Ray directly via WhatsApp or email to
-              schedule your consultation.
+              Online booking is being finalized. In the meantime, message Sal Ray directly via{' '}
+              <a
+                href={contato.facebookProfileUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                data-event="facebook_cta_click"
+                className="text-aqua underline underline-offset-2"
+              >
+                Facebook
+              </a>{' '}
+              or email to schedule your consultation.
             </p>
           ) : (
             <a

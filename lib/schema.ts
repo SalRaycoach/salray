@@ -46,7 +46,9 @@ export const getFAQSchema = buildFaqPage
 export const getBreadcrumbSchema = buildBreadcrumbList
 
 function buildPerson() {
-  const sameAs = [contato.instagramUrl, contato.facebookGroupUrl].filter((url) => !isPending(url))
+  const sameAs = [contato.instagramUrl, contato.facebookProfileUrl, contato.facebookGroupUrl].filter(
+    (url) => !isPending(url)
+  )
 
   return {
     '@type': 'Person',

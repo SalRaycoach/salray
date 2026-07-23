@@ -3,7 +3,7 @@ import { Fraunces, Inter } from 'next/font/google'
 import './globals.css'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
-import WhatsAppFloat from '@/components/WhatsAppFloat'
+import FacebookFloat from '@/components/FacebookFloat'
 import AnalyticsListener from '@/components/AnalyticsListener'
 import { business, SITE_URL } from '@/lib/config'
 
@@ -37,7 +37,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Navbar />
         {children}
         <Footer />
-        <WhatsAppFloat />
+        <FacebookFloat />
         <AnalyticsListener />
       </body>
     </html>

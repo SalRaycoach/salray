@@ -75,7 +75,7 @@ export default function CommunityPage() {
       <div className="flex flex-wrap gap-4 items-center">
         {isPending ? (
           <p className="font-body text-charcoal/60 text-sm">
-            Facebook group link pending — check back soon or ask via WhatsApp/email.
+            Facebook group link pending — check back soon or ask via Facebook/email.
           </p>
         ) : (
           <a

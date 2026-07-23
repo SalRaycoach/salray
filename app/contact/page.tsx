@@ -39,9 +39,9 @@ export default function ContactPage() {
             </a>
           </p>
           <p className="font-body text-sm text-charcoal/70 mb-8">
-            WhatsApp:{' '}
-            <a href={`https://wa.me/${contato.whatsapp}`} target="_blank" rel="noopener noreferrer" className="text-aqua">
-              {contato.whatsappDisplay}
+            Facebook:{' '}
+            <a href={contato.facebookProfileUrl} target="_blank" rel="noopener noreferrer" className="text-aqua">
+              Message Sal directly
             </a>
           </p>
 
