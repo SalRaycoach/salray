@@ -1,7 +1,10 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
-import { business, ctas, clinicalDisclaimer, SITE_URL } from '@/lib/config'
+import Testimonials from '@/components/Testimonials'
+import CaseStudies from '@/components/CaseStudies'
+import Credentials from '@/components/Credentials'
+import { business, ctas, clinicalDisclaimer, testimonials, caseStudies, credentials, SITE_URL } from '@/lib/config'
 
 const title = 'About Sal Ray | Emotional & Life Rebuilding Specialist'
 const description =
@@ -51,6 +54,8 @@ export default function AboutPage() {
         </p>
       </section>
 
+      <Credentials items={credentials} />
+
       <section className="max-w-2xl mb-12">
         <h2 className="font-display text-2xl text-charcoal mb-4">Why Pattern Recognition Matters</h2>
         <p className="font-body text-charcoal/85 leading-relaxed">
@@ -83,6 +88,14 @@ export default function AboutPage() {
           <li>Honesty about what coaching can and cannot do</li>
         </ul>
       </section>
+
+      <CaseStudies items={caseStudies} />
+
+      {testimonials.length > 0 && (
+        <section className="max-w-2xl mb-12">
+          <Testimonials items={testimonials} />
+        </section>
+      )}
 
       <section className="max-w-2xl mb-16">
         <h2 className="font-display text-2xl text-charcoal mb-4">The S.T.A.B.L.E. Method</h2>

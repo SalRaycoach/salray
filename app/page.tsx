@@ -9,11 +9,12 @@ import ProcessTimeline from '@/components/ProcessTimeline'
 import HelpAreas from '@/components/HelpAreas'
 import ResourcesPreview from '@/components/ResourcesPreview'
 import CommunityCTA from '@/components/CommunityCTA'
+import Testimonials from '@/components/Testimonials'
 import FAQAccordion from '@/components/FAQAccordion'
 import FinalCTA from '@/components/FinalCTA'
 import SchemaOrg from '@/components/SchemaOrg'
 import { getHomeSchema } from '@/lib/schema'
-import { faqs, SITE_URL } from '@/lib/config'
+import { faqs, testimonials, SITE_URL } from '@/lib/config'
 
 export const metadata: Metadata = {
   title: 'Emotional & Life Rebuilding Specialist | Sal Ray',
@@ -51,6 +52,15 @@ export default function HomePage() {
         <ProcessTimeline />
         <HelpAreas />
         <ResourcesPreview />
+
+        {testimonials.length > 0 && (
+          <section className="border-b border-charcoal/10">
+            <div className="max-w-content mx-auto px-6 py-16 md:py-24">
+              <Testimonials items={testimonials} />
+            </div>
+          </section>
+        )}
+
         <CommunityCTA />
 
         <section className="border-b border-charcoal/10">

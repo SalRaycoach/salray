@@ -113,6 +113,21 @@ export const clinicalDisclaimer =
 export const crisisResource =
   'If you are in crisis or in immediate danger, please contact local emergency services or the 988 Suicide & Crisis Lifeline (call or text 988 in the U.S.). This service is not emergency or crisis care.'
 
+/**
+ * Prova social — seção 2 da análise externa. NÃO INVENTAR nenhum destes itens.
+ * Ficam vazios (seções ocultas automaticamente) até Sal Ray fornecer conteúdo
+ * real: depoimentos com permissão por escrito, estudos de caso reais
+ * (anonimizados se necessário) e credenciais/formação verificáveis.
+ */
+export type Testimonial = { quote: string; name: string; photo?: string }
+export const testimonials: Testimonial[] = []
+
+export type CaseStudy = { title: string; summary: string; outcome: string }
+export const caseStudies: CaseStudy[] = []
+
+export type Credential = { title: string; issuer?: string; year?: string }
+export const credentials: Credential[] = []
+
 export type Faq = { question: string; answer: string }
 
 export const faqs: Faq[] = [
