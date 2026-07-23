@@ -5,12 +5,18 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        charcoal: '#111111',
+        // #111111 = fundo principal do site (token `offwhite`, nome mantido
+        // para não precisar tocar em nenhum componente). `charcoal` passa a
+        // ser o tom claro (texto/realce sobre o fundo escuro). Laranja e aqua
+        // seguem como cores secundárias/contraste, sem alteração de valor.
+        // pale-aqua/pale-orange escurecem para não virar texto-claro-sobre-claro
+        // nas seções que usam esses fundos (ProblemRecognition, AboutPreview, etc.).
+        charcoal: '#EDEBE6',
         orange: '#FF8A00',
         aqua: '#009FAF',
-        offwhite: '#F7F7F5',
-        'pale-aqua': '#E3F5F7',
-        'pale-orange': '#FFEDD9',
+        offwhite: '#111111',
+        'pale-aqua': '#0E2226',
+        'pale-orange': '#231708',
       },
       fontFamily: {
         display: ['var(--font-display)'],
