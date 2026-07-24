@@ -39,9 +39,15 @@ export default function ContactPage() {
             </a>
           </p>
           <p className="font-body text-sm text-charcoal/70 mb-8">
-            Facebook:{' '}
-            <a href={contato.facebookProfileUrl} target="_blank" rel="noopener noreferrer" className="text-aqua">
-              Message Sal directly
+            Messenger:{' '}
+            <a
+              href={contato.messengerUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              data-event="messenger_cta_click"
+              className="text-aqua"
+            >
+              Message Sal Ray
             </a>
           </p>
 

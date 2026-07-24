@@ -82,19 +82,21 @@ export default function ConsultationPage() {
         <section className="bg-pale-aqua rounded-lg p-8 mb-12">
           <h2 className="font-display text-2xl text-charcoal mb-4">Book Your Consultation</h2>
           {isBookingPending ? (
-            <p className="font-body text-charcoal/70 leading-relaxed">
-              Online booking is being finalized. In the meantime, message Sal Ray directly via{' '}
+            <>
+              <p className="font-body text-charcoal/70 leading-relaxed mb-6">
+                Online booking is being finalized. In the meantime, message Sal Ray directly to schedule your
+                consultation.
+              </p>
               <a
-                href={contato.facebookProfileUrl}
+                href={contato.messengerUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                data-event="facebook_cta_click"
-                className="text-aqua underline underline-offset-2"
+                data-event="messenger_cta_click"
+                className="inline-block font-body text-sm font-medium bg-orange text-charcoal px-6 py-3.5 rounded-md hover:bg-charcoal hover:text-offwhite transition-colors"
               >
-                Facebook
-              </a>{' '}
-              or email to schedule your consultation.
-            </p>
+                Message Sal Ray
+              </a>
+            </>
           ) : (
             <a
               href={contato.bookingUrl}

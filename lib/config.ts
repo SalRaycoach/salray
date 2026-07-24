@@ -25,8 +25,11 @@ export const contato = {
   email: 'hello@salraycoach.com', // inferido a partir do domínio — confirmar
   bookingUrl: 'PENDENTE_LINK_DE_AGENDAMENTO', // NÃO INVENTAR — aguardando plataforma/Stripe
   facebookGroupUrl: 'https://www.facebook.com/groups/backontrackcommunity',
-  // Canal principal de contato direto — substitui o WhatsApp (removido do site).
+  // Perfil do Facebook — usado apenas como identidade (schema.org sameAs), não como CTA clicável.
   facebookProfileUrl: 'https://www.facebook.com/profile.php?id=61562494663397',
+  // Canal principal de contato direto — todos os CTAs de "mensagem" apontam para o Messenger.
+  messengerUrl:
+    "https://m.me/salraycoach?text=Have%20a%20question%3F%20Send%20me%20a%20message.%20I%27ll%20personally%20respond%20as%20soon%20as%20I%20can.",
   instagramUrl: 'PENDENTE_URL_INSTAGRAM',
 } as const
 

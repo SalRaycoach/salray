@@ -16,7 +16,7 @@ export type AnalyticsEvent =
   | 'consultation_booking_started'
   | 'consultation_booking_completed'
   | 'community_cta_click'
-  | 'facebook_cta_click'
+  | 'messenger_cta_click'
   | 'resource_article_view'
   | 'resource_category_view'
   | 'contact_form_submit'

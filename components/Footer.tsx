@@ -52,8 +52,8 @@ export default function Footer() {
               </a>
             </li>
             <li>
-              <a href={contato.facebookProfileUrl} target="_blank" rel="noopener noreferrer" className="hover:text-orange">
-                Message Sal on Facebook
+              <a href={contato.messengerUrl} target="_blank" rel="noopener noreferrer" className="hover:text-orange">
+                Message Sal Ray
               </a>
             </li>
             {!isInstagramPending && (

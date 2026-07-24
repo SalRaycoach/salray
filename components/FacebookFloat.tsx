@@ -3,11 +3,11 @@ import { contato } from '@/lib/config'
 export default function FacebookFloat() {
   return (
     <a
-      href={contato.facebookProfileUrl}
+      href={contato.messengerUrl}
       target="_blank"
       rel="noopener noreferrer"
-      aria-label="Message Sal Ray on Facebook"
-      data-event="facebook_cta_click"
+      aria-label="Message Sal Ray"
+      data-event="messenger_cta_click"
       className="fixed bottom-6 right-6 z-50 bg-charcoal text-offwhite w-12 h-12 rounded-full flex items-center justify-center shadow-md hover:bg-aqua transition-colors"
     >
       <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
