@@ -15,9 +15,39 @@ function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms))
 }
 
-function extractUrlsFromSitemap(xml) {
+function extractLocsFromSitemap(xml) {
   const matches = [...xml.matchAll(/<loc>(.*?)<\/loc>/g)]
   return matches.map((m) => m[1])
+}
+
+function isSitemapIndex(xml) {
+  return /<sitemapindex[\s>]/.test(xml)
+}
+
+/**
+ * next-sitemap gera um sitemap índice (sitemap.xml) que aponta para um ou
+ * mais sub-sitemaps (sitemap-0.xml, ...) contendo as URLs de fato. Este
+ * helper segue essa cadeia até coletar as URLs reais das páginas.
+ */
+async function extractUrlsFromSitemap(xml) {
+  if (!isSitemapIndex(xml)) {
+    return extractLocsFromSitemap(xml)
+  }
+
+  const childSitemapUrls = extractLocsFromSitemap(xml)
+  const allUrls = []
+
+  for (const childUrl of childSitemapUrls) {
+    const response = await fetch(childUrl)
+    if (!response.ok) {
+      console.warn(`  ⚠ failed to fetch child sitemap ${childUrl}: ${response.status}`)
+      continue
+    }
+    const childXml = await response.text()
+    allUrls.push(...(isSitemapIndex(childXml) ? await extractUrlsFromSitemap(childXml) : extractLocsFromSitemap(childXml)))
+  }
+
+  return allUrls
 }
 
 function chunk(array, size) {
@@ -56,7 +86,7 @@ async function main() {
   }
 
   const xml = await sitemapResponse.text()
-  const urls = extractUrlsFromSitemap(xml)
+  const urls = await extractUrlsFromSitemap(xml)
 
   if (urls.length === 0) {
     console.log('No URLs found in sitemap.')
