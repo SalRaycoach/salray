@@ -49,18 +49,66 @@ export const pricing = {
 } as const
 
 /**
- * S.T.A.B.L.E. — NÃO INVENTAR o significado de cada letra. Mostrar as 6
- * letras em sequência; o campo "meaning" fica como placeholder até a
- * expansão aprovada ser fornecida.
+ * S.T.A.B.L.E. — significados aprovados por Sal Ray (ver brief completo em
+ * "Metodo STABLE.docx"). Fase 1 = Emotional Pattern Identification (S, T, A).
+ * Fase 2 = Emotional & Life Rebuilding (B, L, E).
  */
 export const stableMethod = {
   letters: [
-    { letter: 'S', meaning: '[Pending approved meaning]' },
-    { letter: 'T', meaning: '[Pending approved meaning]' },
-    { letter: 'A', meaning: '[Pending approved meaning]' },
-    { letter: 'B', meaning: '[Pending approved meaning]' },
-    { letter: 'L', meaning: '[Pending approved meaning]' },
-    { letter: 'E', meaning: '[Pending approved meaning]' },
+    {
+      letter: 'S',
+      name: 'See the Pattern',
+      shortDescription: 'Recognize the emotional patterns influencing your thoughts, reactions, behaviors, and decisions.',
+      expandedExplanation:
+        'Meaningful change begins with seeing what is actually happening. This element focuses on identifying recurring emotional responses, triggers, internal conflicts, and behavioral cycles that may be affecting different areas of life.\n\nThe purpose is to move from confusion to recognition. Instead of viewing every difficult situation as an isolated event, the individual begins to see the pattern connecting those experiences.',
+      coreQuestion: 'What pattern continues to repeat in my life?',
+      phase: 1,
+    },
+    {
+      letter: 'T',
+      name: 'Trace the Source',
+      shortDescription: 'Explore where the pattern may have developed and what continues to reinforce it.',
+      expandedExplanation:
+        'Once a pattern has been recognized, the next step is to understand its emotional structure. This may include exploring formative experiences, learned responses, internal beliefs, protective behaviors, or unresolved emotional associations.\n\nThe objective is not to remain trapped in the past. It is to understand why the present response makes sense within the person’s emotional history.',
+      coreQuestion: 'Where did this response begin, and why does it continue?',
+      phase: 1,
+    },
+    {
+      letter: 'A',
+      name: 'Awaken Awareness',
+      shortDescription: 'Develop a clearer, more conscious relationship with thoughts, emotions, triggers, and choices.',
+      expandedExplanation:
+        'Awareness creates space between an emotional trigger and an automatic reaction. During this element, the individual learns to observe internal experiences with greater clarity rather than immediately being controlled by them.\n\nThis awareness supports more intentional choices and reduces the likelihood of repeating the same response without understanding it.',
+      coreQuestion: 'What is happening inside me before I react?',
+      phase: 1,
+    },
+    {
+      letter: 'B',
+      name: 'Build Internal Stability',
+      shortDescription: 'Strengthen the internal foundation needed for emotional regulation, confidence, and resilience.',
+      expandedExplanation:
+        'Recognition alone is not enough. The person must also develop greater internal stability. This element focuses on strengthening emotional responses, personal boundaries, self-trust, clarity, and the capacity to remain grounded during challenging situations.\n\nThis is where understanding begins to become rebuilding.',
+      coreQuestion: 'What internal structure do I need to respond differently?',
+      phase: 2,
+    },
+    {
+      letter: 'L',
+      name: 'Live in Alignment',
+      shortDescription: 'Translate internal changes into healthier actions, relationships, decisions, and daily routines.',
+      expandedExplanation:
+        'Emotional work becomes meaningful when it begins to affect everyday life. This element focuses on applying new awareness and greater stability to communication, relationships, personal decisions, boundaries, habits, and future direction.\n\nThe objective is to reduce the distance between what the person understands internally and how they actually live.',
+      coreQuestion: 'How can my daily choices reflect the person I am becoming?',
+      phase: 2,
+    },
+    {
+      letter: 'E',
+      name: 'Evolve Sustainably',
+      shortDescription: 'Reinforce progress and develop the ability to maintain growth beyond the initial process.',
+      expandedExplanation:
+        'Sustainable development requires more than a temporary breakthrough. This element focuses on reinforcing new responses, recognizing future warning signs, maintaining emotional practices, and continuing to develop with greater independence.\n\nThe goal is not perfection. It is the ability to recover, recalibrate, and continue moving forward without automatically returning to old patterns.',
+      coreQuestion: 'How can I maintain progress as life continues to change?',
+      phase: 2,
+    },
   ],
 } as const
 
@@ -168,7 +216,7 @@ export const faqs: Faq[] = [
   {
     question: 'What is the S.T.A.B.L.E. Method?',
     answer:
-      'A proprietary non-clinical framework created by Sal Ray. The full description of each of the six components will be published once approved — see The S.T.A.B.L.E. Method page for the current outline.',
+      'A structured, non-clinical framework created by Sal Ray for identifying emotional patterns, rebuilding internal stability, and applying meaningful change in daily life — applied through two phases: Emotional Pattern Identification and Emotional & Life Rebuilding. See The S.T.A.B.L.E. Method page for the full explanation of each element.',
   },
   {
     question: 'What is your cancellation policy?',

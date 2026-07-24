@@ -23,6 +23,7 @@ export type AnalyticsEvent =
   | 'faq_expand'
   | 'scroll_50'
   | 'scroll_90'
+  | 'stable_method_scroll_75'
 
 export function trackEvent(event: AnalyticsEvent, payload: Record<string, unknown> = {}) {
   if (typeof window === 'undefined') return

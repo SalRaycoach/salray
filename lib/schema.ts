@@ -228,4 +228,17 @@ export function getClusterPageSchema(clusterName: string, clusterSlug: string, c
   }
 }
 
+/** /stable-method: BreadcrumbList */
+export function getStableMethodSchema() {
+  const breadcrumb = buildBreadcrumbList([
+    { name: 'Home', url: '/' },
+    { name: 'The S.T.A.B.L.E. Method', url: '/stable-method/' },
+  ])
+
+  return {
+    '@context': 'https://schema.org',
+    '@graph': [breadcrumb],
+  }
+}
+
 export { DOMINIO, SITE_URL }
