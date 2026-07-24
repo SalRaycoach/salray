@@ -184,4 +184,48 @@ export function getSitemapPageSchema(items: BreadcrumbItem[]) {
   }
 }
 
+/** /resources: BreadcrumbList + ItemList dos clusters */
+export function getResourcesIndexSchema(clusterList: { slug: string; name: string }[]) {
+  const breadcrumb = buildBreadcrumbList([{ name: 'Home', url: '/' }, { name: 'Resources', url: '/resources/' }])
+
+  const itemList = {
+    '@type': 'ItemList',
+    itemListElement: clusterList.map((c, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      name: c.name,
+      url: `${SITE_URL}/resources/${c.slug}/`,
+    })),
+  }
+
+  return {
+    '@context': 'https://schema.org',
+    '@graph': [breadcrumb, itemList],
+  }
+}
+
+/** /resources/[cluster]: BreadcrumbList + ItemList dos artigos do cluster */
+export function getClusterPageSchema(clusterName: string, clusterSlug: string, clusterArticles: Article[]) {
+  const breadcrumb = buildBreadcrumbList([
+    { name: 'Home', url: '/' },
+    { name: 'Resources', url: '/resources/' },
+    { name: clusterName, url: `/resources/${clusterSlug}/` },
+  ])
+
+  const itemList = {
+    '@type': 'ItemList',
+    itemListElement: clusterArticles.map((a, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      name: a.title,
+      url: `${SITE_URL}/resources/${a.cluster}/${a.slug}/`,
+    })),
+  }
+
+  return {
+    '@context': 'https://schema.org',
+    '@graph': [breadcrumb, itemList],
+  }
+}
+
 export { DOMINIO, SITE_URL }

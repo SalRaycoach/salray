@@ -1,6 +1,8 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import ResourceSearch from '@/components/ResourceSearch'
+import SchemaOrg from '@/components/SchemaOrg'
+import { getResourcesIndexSchema } from '@/lib/schema'
 import { articles, clusters } from '@/lib/resources'
 import { SITE_URL } from '@/lib/config'
 
@@ -22,9 +24,12 @@ export const metadata: Metadata = {
 
 export default function ResourcesPage() {
   const recent = [...articles].sort((a, b) => (a.datePublished < b.datePublished ? 1 : -1)).slice(0, 3)
+  const schema = getResourcesIndexSchema(clusters)
 
   return (
-    <main className="max-w-content mx-auto px-6 py-16 md:py-24">
+    <>
+      <SchemaOrg data={schema} />
+      <main className="max-w-content mx-auto px-6 py-16 md:py-24">
       <h1 className="font-display text-4xl text-charcoal mb-4">Resource Library</h1>
       <p className="font-body text-lg text-charcoal/80 leading-relaxed max-w-2xl mb-12">
         Practical, non-clinical articles on the patterns that keep people stuck — and what rebuilding can look like.
@@ -63,6 +68,7 @@ export default function ResourcesPage() {
         <h2 className="font-body text-xs uppercase tracking-widest text-aqua mb-6">All Resources</h2>
         <ResourceSearch articles={articles} clusters={clusters} />
       </section>
-    </main>
+      </main>
+    </>
   )
 }

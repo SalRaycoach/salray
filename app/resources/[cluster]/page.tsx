@@ -1,6 +1,8 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
+import SchemaOrg from '@/components/SchemaOrg'
+import { getClusterPageSchema } from '@/lib/schema'
 import { clusters, getArticlesByCluster } from '@/lib/resources'
 import { SITE_URL } from '@/lib/config'
 
@@ -35,9 +37,12 @@ export default function ClusterPage({ params }: { params: { cluster: string } })
   const clusterArticles = getArticlesByCluster(cluster.slug)
   const pillars = clusterArticles.filter((a) => a.tipo === 'pilar')
   const complementary = clusterArticles.filter((a) => a.tipo === 'complementar')
+  const schema = getClusterPageSchema(cluster.name, cluster.slug, clusterArticles)
 
   return (
-    <main className="max-w-content mx-auto px-6 py-16 md:py-24">
+    <>
+      <SchemaOrg data={schema} />
+      <main className="max-w-content mx-auto px-6 py-16 md:py-24">
       <nav className="font-body text-xs text-charcoal/50 mb-8">
         <Link href="/" className="hover:text-aqua">
           Home
@@ -93,6 +98,7 @@ export default function ClusterPage({ params }: { params: { cluster: string } })
       {clusterArticles.length === 0 && (
         <p className="font-body text-charcoal/60">Articles for this category are coming soon.</p>
       )}
-    </main>
+      </main>
+    </>
   )
 }
