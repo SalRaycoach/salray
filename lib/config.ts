@@ -10,6 +10,7 @@
 
 export const DOMINIO = 'salraycoach.com'
 export const SITE_URL = `https://${DOMINIO}`
+export const GA_MEASUREMENT_ID = 'G-YFEG8JC9BF'
 
 export const business = {
   nome: 'Sal Ray',

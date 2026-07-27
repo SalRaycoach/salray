@@ -5,7 +5,8 @@ import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import FacebookFloat from '@/components/FacebookFloat'
 import AnalyticsListener from '@/components/AnalyticsListener'
-import { business, SITE_URL } from '@/lib/config'
+import GoogleAnalytics from '@/components/GoogleAnalytics'
+import { business, SITE_URL, GA_MEASUREMENT_ID } from '@/lib/config'
 
 const fraunces = Fraunces({
   subsets: ['latin'],
@@ -34,6 +35,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en-US" className={`${fraunces.variable} ${inter.variable}`}>
       <body className="font-body">
+        <GoogleAnalytics measurementId={GA_MEASUREMENT_ID} />
         <Navbar />
         {children}
         <Footer />
