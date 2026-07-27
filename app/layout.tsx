@@ -6,7 +6,8 @@ import Footer from '@/components/Footer'
 import FacebookFloat from '@/components/FacebookFloat'
 import AnalyticsListener from '@/components/AnalyticsListener'
 import GoogleAnalytics from '@/components/GoogleAnalytics'
-import { business, SITE_URL, GA_MEASUREMENT_ID } from '@/lib/config'
+import MetaPixel from '@/components/MetaPixel'
+import { business, SITE_URL, GA_MEASUREMENT_ID, META_PIXEL_ID } from '@/lib/config'
 
 const fraunces = Fraunces({
   subsets: ['latin'],
@@ -36,6 +37,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en-US" className={`${fraunces.variable} ${inter.variable}`}>
       <body className="font-body">
         <GoogleAnalytics measurementId={GA_MEASUREMENT_ID} />
+        <MetaPixel pixelId={META_PIXEL_ID} />
         <Navbar />
         {children}
         <Footer />

@@ -9,6 +9,7 @@ declare global {
   interface Window {
     dataLayer?: Record<string, unknown>[]
     gtag?: (...args: unknown[]) => void
+    fbq?: (...args: unknown[]) => void
   }
 }
 
@@ -31,4 +32,5 @@ export function trackEvent(event: AnalyticsEvent, payload: Record<string, unknow
   window.dataLayer = window.dataLayer || []
   window.dataLayer.push({ event, ...payload })
   window.gtag?.('event', event, payload)
+  window.fbq?.('trackCustom', event, payload)
 }
