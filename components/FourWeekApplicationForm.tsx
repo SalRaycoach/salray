@@ -99,30 +99,45 @@ export default function FourWeekApplicationForm() {
     setForm((prev) => ({ ...prev, [key]: value }))
   }
 
-  const canSubmit =
-    form.firstName.trim() !== '' &&
-    form.lastName.trim() !== '' &&
-    form.email.includes('@') &&
-    form.location.trim() !== '' &&
-    form.currentSituation.trim() !== '' &&
-    form.currentSituation.length <= 1500 &&
-    form.desiredChange.trim() !== '' &&
-    form.desiredChange.length <= 1000 &&
-    HOW_LONG_OPTIONS.includes(form.howLong) &&
-    form.whyNow.trim() !== '' &&
-    form.whyNow.length <= 750 &&
-    ['Yes', 'No', 'I am not sure'].includes(form.commitFourWeeks) &&
-    ['Yes', 'No'].includes(form.activeParticipation) &&
-    ['Yes', 'No'].includes(form.readyIn14Days) &&
-    form.ackAge18 &&
-    form.ackNonClinical &&
-    form.ackNoGuarantee &&
-    form.ackAttendance &&
-    form.ackPrivacy
+  function getMissingFields(): string[] {
+    const missing: string[] = []
+    if (form.firstName.trim() === '') missing.push('First Name')
+    if (form.lastName.trim() === '') missing.push('Last Name')
+    if (!form.email.includes('@')) missing.push('Email Address')
+    if (form.location.trim() === '') missing.push('Where you are located')
+    if (form.currentSituation.trim() === '' || form.currentSituation.length > 1500) {
+      missing.push('What you are currently experiencing')
+    }
+    if (form.desiredChange.trim() === '' || form.desiredChange.length > 1000) {
+      missing.push('What you would like to understand or change')
+    }
+    if (!HOW_LONG_OPTIONS.includes(form.howLong)) missing.push('How long this has been affecting you')
+    if (form.whyNow.trim() === '' || form.whyNow.length > 750) missing.push('Why now feels like the right time')
+    if (!['Yes', 'No', 'I am not sure'].includes(form.commitFourWeeks)) {
+      missing.push('The four-week commitment question')
+    }
+    if (!['Yes', 'No'].includes(form.activeParticipation)) missing.push('The active-participation question')
+    if (!['Yes', 'No'].includes(form.readyIn14Days)) missing.push('The 14-day readiness question')
+    if (!form.ackAge18 || !form.ackNonClinical || !form.ackNoGuarantee || !form.ackAttendance || !form.ackPrivacy) {
+      missing.push('All 5 required acknowledgement checkboxes')
+    }
+    return missing
+  }
 
-  async function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
-    if (!canSubmit || status === 'submitting') return
+    if (status === 'submitting') return
+
+    const missing = getMissingFields()
+    if (missing.length > 0) {
+      setStatus('error')
+      setErrorMessage(`Please complete before submitting: ${missing.join(', ')}.`)
+      // Native browser validation pinpoints and scrolls to the first invalid
+      // field with its own accessible tooltip — a second, more specific layer
+      // on top of the summary message above.
+      e.currentTarget.reportValidity()
+      return
+    }
 
     setStatus('submitting')
     setErrorMessage('')
@@ -511,7 +526,7 @@ export default function FourWeekApplicationForm() {
       <div>
         <button
           type="submit"
-          disabled={!canSubmit || status === 'submitting'}
+          disabled={status === 'submitting'}
           className="font-body text-sm font-medium bg-orange text-offwhite px-8 py-3.5 rounded-md hover:bg-charcoal transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
         >
           {status === 'submitting' ? 'Submitting...' : 'Submit My Application'}
