@@ -16,7 +16,6 @@ export type ClusterSlug =
   | 'relationships-boundaries'
   | 'self-trust-identity'
   | 'life-direction-rebuilding'
-  | 'emotional-stability'
 
 export type Cluster = {
   slug: ClusterSlug
@@ -54,12 +53,6 @@ export const clusters: Cluster[] = [
     name: 'Life Direction & Rebuilding',
     description:
       'Articles on starting over, finding direction after a major life transition, and rebuilding a life that feels like your own again.',
-  },
-  {
-    slug: 'emotional-stability',
-    name: 'Emotional Stability',
-    description:
-      'Articles on building a steadier internal foundation — responding instead of reacting, and feeling grounded again.',
   },
 ]
 
@@ -393,7 +386,7 @@ Ready to work on this directly? [Schedule an initial consultation](#consultation
     datePublished: '2026-03-15T09:00:00-05:00',
     dateModified: '2026-03-15T09:00:00-05:00',
     needsProfessionalCareNote: false,
-    relatedArticles: ['why-dont-i-trust-myself-anymore', 'why-do-i-feel-emotionally-numb'],
+    relatedArticles: ['why-dont-i-trust-myself-anymore', 'feeling-lost-in-life-what-it-usually-means'],
     ogImage: '/images/og/og-default.jpg',
     content: `When a major part of your life falls apart — a relationship, a career, an identity you had built your life around — the instinct is often to look for a complete answer immediately. **Rebuilding rarely works that way. It tends to happen in a structured sequence, not all at once.**
 
@@ -446,78 +439,6 @@ If you are in the middle of a major life transition and want a clearer structure
         question: 'Can I rebuild my life without knowing my long-term purpose?',
         answer:
           'Yes. Meaningful rebuilding can begin with clarity about the next season, not necessarily a complete long-term purpose. Purpose often becomes clearer as stability and direction are rebuilt, rather than being a prerequisite for starting.',
-      },
-    ],
-  },
-  {
-    slug: 'why-do-i-feel-emotionally-numb',
-    cluster: 'emotional-stability',
-    tipo: 'complementar',
-    pillarSlug: 'depression-numbness-burnout',
-    title: 'Why Do I Feel Emotionally Numb?',
-    keyword: 'why am I emotionally numb',
-    excerpt:
-      'Emotional numbness is often the mind protecting itself after prolonged overload. Here is what that can look like, and when to seek clinical support.',
-    datePublished: '2026-03-19T09:00:00-05:00',
-    dateModified: '2026-03-19T09:00:00-05:00',
-    needsProfessionalCareNote: true,
-    relatedArticles: ['how-to-rebuild-your-life-after-it-falls-apart', 'why-cant-i-stop-overthinking'],
-    ogImage: '/images/og/og-default.jpg',
-    content: `Feeling emotionally numb — like you are going through the motions without really feeling anything — is often the mind's way of protecting itself after a prolonged period of emotional overload. **It is a signal worth paying attention to, not a personal failing.**
-
-## Why numbness can develop
-
-When emotional demands go on for too long without relief, the mind may reduce its emotional responses as a form of self-protection. This can feel like flatness, disconnection, or an inability to enjoy things that used to matter — a kind of internal shutdown after sustained overload.
-
-## Signs of emotional numbness
-
-Common signs include feeling disconnected from people you care about, going through routines without any real sense of engagement, or noticing that things that used to bring you joy no longer register. These are signals the nervous system needs a different kind of support, not evidence that something is permanently wrong.
-
-## A non-clinical approach to rebuilding emotional responsiveness
-
-Rebuilding emotional responsiveness usually starts with reducing ongoing overload where possible, and reintroducing small, low-pressure experiences that reconnect you with feeling — without forcing intensity. This tends to work better than trying to "feel more" through willpower alone.
-
-## What rebuilding can involve
-
-This work can involve identifying what led to the overload in the first place, creating more sustainable emotional rhythms day to day, and gradually rebuilding a stable, responsive relationship with your own emotions.
-
-## When professional clinical care may be appropriate
-
-If emotional numbness is accompanied by **persistent hopelessness, sadness that will not lift, loss of motivation for an extended period, or any thoughts of self-harm**, this goes beyond the scope of non-clinical coaching and requires professional support. If you are in crisis or immediate danger, please contact local emergency services or the 988 Suicide & Crisis Lifeline (call or text 988 in the U.S.).
-
-If this describes a period you are currently in, [an initial consultation](#consultation) can help clarify next steps. [The private community](#community) is also available for ongoing, non-clinical support.
-
-## Perguntas frequentes`,
-    faq: [
-      {
-        question: 'Is emotional numbness a sign of depression?',
-        answer:
-          'Emotional numbness can be one feature of depression, but it can also occur on its own after prolonged stress or overload without meeting the criteria for a depressive disorder. If numbness is persistent or accompanied by hopelessness, a licensed clinician can help determine what is happening.',
-      },
-      {
-        question: 'Why don\'t I enjoy things I used to love?',
-        answer:
-          'Losing enjoyment in previously meaningful activities is often a sign of emotional overload or numbness rather than the activities themselves changing. It typically improves as overload is reduced and emotional responsiveness is rebuilt gradually.',
-      },
-      {
-        question: 'Can coaching help with emotional numbness?',
-        answer:
-          'Non-clinical coaching can help address overload and support rebuilding a more responsive relationship with your emotions. However, if numbness is connected to a diagnosable condition or persistent hopelessness, clinical care is the appropriate primary support.',
-      },
-      {
-        question: 'Is it normal to feel nothing after a hard period in life?',
-        answer:
-          'Yes, a period of emotional flatness after intense stress or loss is a common protective response. It becomes a concern when it persists for an extended period, deepens, or is accompanied by hopelessness — at that point, professional support is recommended.',
-      },
-      {
-        question: 'How do I start feeling again?',
-        answer:
-          'Rather than forcing intensity, it usually helps to reduce ongoing sources of overload and reintroduce small, low-pressure experiences that allow feeling to return gradually, alongside consistent rest and support.',
-      },
-      {
-        question: 'When should I seek help instead of trying to manage this alone?',
-        answer:
-          'If numbness is accompanied by persistent hopelessness, loss of motivation over an extended period, or any thoughts of self-harm, seek support from a licensed mental health professional immediately, or contact the 988 Suicide & Crisis Lifeline if you are in crisis.',
       },
     ],
   },
@@ -642,7 +563,7 @@ If this pattern sounds familiar, [an initial consultation](#consultation) is a s
     datePublished: '2026-04-03T09:00:00-05:00',
     dateModified: '2026-04-03T09:00:00-05:00',
     needsProfessionalCareNote: true,
-    relatedArticles: ['overthinking-racing-thoughts', 'depression-numbness-burnout'],
+    relatedArticles: ['overthinking-racing-thoughts', 'why-cant-i-stop-overthinking'],
     ogImage: '/images/og/og-default.jpg',
     content: `Feeling anxious occasionally is part of being human. **Feeling anxious as a near-constant background state is a different pattern**, and it is worth understanding clearly rather than normalizing indefinitely. This guide is educational and non-clinical — it is designed to help you recognize the pattern, not to diagnose or treat it.
 
@@ -682,7 +603,7 @@ A panic attack is a discrete episode — a sudden surge of intense fear with phy
 
 ## What anxiety therapy and coaching can (and can't) offer
 
-Licensed therapy can diagnose anxiety disorders and provide clinical treatment, including approaches like CBT or, where appropriate, medication managed by a prescriber. **Non-clinical coaching cannot diagnose or treat an anxiety disorder** — what it can offer is support in recognizing patterns, building structure around decision-making, and developing practical tools for daily stability, often alongside clinical care rather than instead of it.
+Licensed therapy can diagnose anxiety disorders and provide clinical treatment, drawing on the full range of evidence-based approaches available to a licensed provider. **Non-clinical coaching cannot diagnose or treat an anxiety disorder** — what it can offer is support in recognizing patterns, building structure around decision-making, and developing practical tools for daily stability, often alongside clinical care rather than instead of it.
 
 ## Generalized anxiety: when worry becomes a daily pattern
 
@@ -739,107 +660,6 @@ If you recognize this pattern and want structured, non-clinical support alongsid
     ],
   },
   {
-    slug: 'childhood-trauma-inner-child',
-    cluster: 'emotional-patterns-self-sabotage',
-    tipo: 'pilar',
-    title: 'Childhood Trauma & Inner Child Healing: A Complete Guide',
-    keyword: 'childhood trauma inner child healing',
-    excerpt:
-      'Childhood experiences can shape adult patterns in ways that are easy to miss. Here is what inner child healing involves, and what it does not promise.',
-    datePublished: '2026-04-06T09:00:00-05:00',
-    dateModified: '2026-04-06T09:00:00-05:00',
-    needsProfessionalCareNote: false,
-    relatedArticles: ['unresolved-trauma-recovery', 'why-do-i-keep-reacting-the-same-way'],
-    ogImage: '/images/og/og-default.jpg',
-    content: `Many adults carry patterns they cannot fully explain — a reaction that feels bigger than the situation calls for, a fear that does not match present circumstances, a persistent sense of not being enough. Often, **these patterns trace back to experiences from childhood that were never fully processed**, not because something is wrong with you now, but because the pattern formed when you had far fewer resources to make sense of it.
-
-## Can childhood trauma really affect you as an adult?
-
-Yes. Childhood is when the nervous system and core beliefs about safety, trust, and self-worth are still forming. Experiences during that window — instability, criticism, neglect, inconsistent caregiving, or more overt harm — can shape how a person interprets and reacts to situations decades later, often without a conscious memory of the original event driving the reaction.
-
-## What are the signs of unresolved emotional trauma?
-
-Common signs include disproportionate emotional reactions to relatively small triggers, a persistent sense of unease that does not match the present situation, difficulty trusting people even when they have given no reason for doubt, and patterns of avoidance around specific topics, relationships, or types of conflict.
-
-## What is inner child healing, really?
-
-"Inner child" is a way of talking about the emotional patterns, needs, and beliefs that formed in childhood and continue operating in adulthood, often outside conscious awareness. **Inner child healing is not a literal return to childhood** — it is the practical work of recognizing which current reactions are actually old patterns being replayed, and responding to them with the understanding an adult has that a child did not.
-
-## How childhood wounds show up in adult relationships
-
-Childhood patterns often surface most clearly in close relationships, where old dynamics — around trust, conflict, or being seen — get activated again. This can look like difficulty asking for needs to be met, assuming the worst in a partner's silence, or feeling unsafe with closeness even when a relationship is genuinely stable.
-
-## Emotional pain that doesn't have a clear cause
-
-Sometimes emotional pain surfaces without an obvious present-day trigger. This is common when a current situation echoes an old pattern closely enough to activate it, even if the connection is not immediately conscious. The absence of a clear cause does not mean the pain is not real or not worth addressing.
-
-## Why some childhood patterns feel impossible to break
-
-Patterns that formed early and were reinforced repeatedly become deeply automatic — they run faster than conscious thought in the moment. This is why insight alone ("I know this is a pattern") often is not enough to change the pattern; it usually requires practicing a different response deliberately, over time, until the new response becomes as automatic as the old one.
-
-## The difference between remembering and reliving childhood pain
-
-Remembering an experience means recalling it with some emotional distance — you know it happened, and you can think about it without being fully overtaken by it. Reliving means the emotional intensity of the original moment resurfaces as if it were happening now. If reliving is frequent or intense, this often points toward unresolved trauma that may benefit from trauma-informed clinical support.
-
-## How to begin healing childhood wounds as an adult
-
-A practical starting point is identifying one recurring reaction, tracing it back to when it might have first made sense, and separating the old context from your current one — asking directly, "is this reaction about what is happening now, or about something older?" This single distinction, practiced consistently, is often where meaningful change begins.
-
-## Signs you were parentified as a child
-
-Parentification happens when a child takes on adult responsibilities — emotional caretaking of a parent, managing household logistics, or suppressing their own needs to keep the peace — before they are developmentally ready. Adults who were parentified often struggle to ask for help, feel responsible for other people's emotions, and have difficulty resting without guilt.
-
-## Why healing childhood trauma isn't about blaming your parents
-
-This work is about understanding patterns, not assigning blame. Most parents were operating with their own limitations, history, and resources. Healing is focused on what you do with the pattern now — not on relitigating the past or requiring anyone else to acknowledge it before you can move forward.
-
-If these patterns sound familiar, [an initial consultation](#consultation) is a space to talk through what may be underneath them. For ongoing, non-clinical support, [the private community](#community) is also available.
-
-## Frequently Asked Questions`,
-    faq: [
-      {
-        question: 'Do I need to remember my childhood trauma clearly for it to matter?',
-        answer:
-          'No. Many people carry the effects of early experiences without clear or complete memories of the specific events. The pattern in your present-day reactions is often more useful to work with than trying to reconstruct exact memories, especially outside a clinical setting.',
-      },
-      {
-        question: 'Is inner child work a clinical treatment?',
-        answer:
-          'Inner child work as discussed here is a non-clinical, educational framework for understanding recurring emotional patterns. It is not a diagnosis or treatment for trauma-related conditions. If you suspect you have significant unresolved trauma, a licensed trauma-informed therapist is the appropriate resource.',
-      },
-      {
-        question: 'Can adults really change patterns formed in childhood?',
-        answer:
-          'Yes, though it typically requires more than insight alone. Change usually comes from consistently practicing a new response in situations that would normally trigger the old pattern, until the new response becomes as automatic as the original one.',
-      },
-      {
-        question: 'Why do I react strongly to things that seem minor to other people?',
-        answer:
-          'A strong reaction to a seemingly small trigger often means the situation is echoing something from earlier in life, not that you are overreacting to the present moment alone. The intensity belongs partly to the old pattern, not only to what just happened.',
-      },
-      {
-        question: 'What is the difference between childhood trauma and a difficult childhood?',
-        answer:
-          'All childhoods have some difficulty; trauma specifically refers to experiences that overwhelmed your ability to cope at the time, leaving a lasting imprint on how you respond to stress, trust, or safety. Not every difficult experience results in trauma, and the same experience can affect two people differently.',
-      },
-      {
-        question: 'Should I confront my parents about my childhood?',
-        answer:
-          'This is a personal decision with no universal right answer. Some people find a direct conversation helpful; others find that healing is possible without it. This work does not require a confrontation or an apology from anyone else to move forward.',
-      },
-      {
-        question: 'How long does it take to notice a difference in inner child work?',
-        answer:
-          'Many people notice a shift in how they relate to a specific pattern within a few weeks of consistently naming and interrupting it. Deeper, more entrenched patterns tied to core identity or trust often take longer, sometimes months, of sustained practice.',
-      },
-      {
-        question: 'When should I see a therapist instead of doing this work alone?',
-        answer:
-          'If you experience intense emotional flooding, flashbacks, dissociation, or a sense of being unsafe when childhood memories surface, a licensed trauma-informed therapist is the appropriate resource rather than self-guided or coaching support alone.',
-      },
-    ],
-  },
-  {
     slug: 'unresolved-trauma-recovery',
     cluster: 'emotional-patterns-self-sabotage',
     tipo: 'pilar',
@@ -850,7 +670,7 @@ If these patterns sound familiar, [an initial consultation](#consultation) is a 
     datePublished: '2026-04-08T09:00:00-05:00',
     dateModified: '2026-04-08T09:00:00-05:00',
     needsProfessionalCareNote: true,
-    relatedArticles: ['why-do-i-keep-reacting-the-same-way', 'childhood-trauma-inner-child'],
+    relatedArticles: ['why-do-i-keep-reacting-the-same-way', 'people-pleasing-perfectionism'],
     ogImage: '/images/og/og-default.jpg',
     content: `Trauma does not always look like a single dramatic event. More often, **it looks like a pattern of reactions that outlived the situation that created them** — a nervous system still bracing for something that already ended. This guide is educational and non-clinical; it is meant to help you recognize the pattern and understand your options, not to diagnose or treat trauma.
 
@@ -1145,113 +965,6 @@ If any of these patterns sound familiar, [an initial consultation](#consultation
     ],
   },
   {
-    slug: 'depression-numbness-burnout',
-    cluster: 'emotional-stability',
-    tipo: 'pilar',
-    title: 'Depression, Emotional Numbness & Burnout: A Complete Guide',
-    keyword: 'depression emotional numbness burnout',
-    excerpt:
-      'Feeling empty, numb, or burned out are related but distinct patterns. Here is how to tell them apart, and when to seek clinical support.',
-    datePublished: '2026-04-15T09:00:00-05:00',
-    dateModified: '2026-04-15T09:00:00-05:00',
-    needsProfessionalCareNote: true,
-    relatedArticles: ['why-do-i-feel-emotionally-numb', 'life-direction-identity-starting-over'],
-    ogImage: '/images/og/og-default.jpg',
-    content: `Feeling empty, numb, or completely depleted are related experiences, but they are not identical, and understanding the differences matters for knowing what kind of support actually helps. **This guide is educational and non-clinical** — it is meant to help you recognize these patterns clearly, not to diagnose or treat them.
-
-## Why do I feel empty, even when life looks fine?
-
-Emptiness that persists despite outwardly stable circumstances often reflects a disconnect between what your life looks like and what it actually feels like to live it — sometimes because of prolonged overload, unresolved grief, or a loss of meaningful direction rather than any single visible problem.
-
-## Why don't I enjoy anything anymore?
-
-Losing enjoyment in previously meaningful activities, known clinically as anhedonia, is a common sign of emotional depletion. It often develops gradually after a sustained period of stress or emotional overload, and can also be a feature of depression — it is worth taking seriously rather than dismissing as a phase.
-
-## Why am I emotionally numb?
-
-Numbness frequently develops as a protective response after prolonged emotional demand — the mind essentially reduces its emotional responsiveness to prevent further overload. It can feel like going through the motions, disconnection from people you care about, or an inability to access feelings that used to come easily.
-
-## How do I get motivated again when nothing feels worth it?
-
-Motivation tends to return gradually, not all at once, and rarely through willpower alone. Small, low-pressure actions — not major overhauls — tend to rebuild momentum more reliably, alongside addressing whatever is driving the underlying depletion, whether that is overload, grief, or an unaddressed need for change.
-
-## Common signs associated with depression (non-diagnostic overview)
-
-Signs commonly associated with depression include persistent low mood, loss of interest in previously enjoyed activities, changes in sleep or appetite, fatigue, difficulty concentrating, and feelings of worthlessness. This is general educational information, not a diagnostic tool — only a licensed clinician can diagnose depression.
-
-## Sadness that won't go away: when to pay closer attention
-
-Situational sadness typically eases as circumstances change or time passes. Sadness that persists most days for two weeks or longer, especially alongside changes in sleep, appetite, or energy, is worth discussing with a licensed mental health professional rather than waiting to see if it resolves on its own.
-
-## Hopelessness: understanding the pattern without minimizing it
-
-Hopelessness is a significant signal, not something to brush aside. It often develops when a person feels that no action they take will change their situation. If hopelessness is present, especially alongside thoughts of self-harm, it is essential to reach out to a licensed professional or a crisis resource immediately — this pattern deserves direct, serious attention.
-
-## Burnout recovery: why rest alone doesn't always fix it
-
-Burnout is often mistaken for simple tiredness, but it typically involves a deeper depletion tied to chronic overload without adequate recovery or meaning. Rest helps, but sustainable recovery usually also requires addressing what caused the burnout in the first place — workload, boundaries, or a mismatch between effort and reward.
-
-If burnout or depletion is part of what you are navigating, [the private community](#community) offers ongoing, non-clinical support between any clinical appointments.
-
-## What coaching can support vs. what requires clinical treatment for depression
-
-Non-clinical coaching can support building structure, addressing overload, and rebuilding a sense of direction and motivation. **It cannot diagnose or treat depression.** If you are experiencing persistent low mood, hopelessness, or thoughts of self-harm, a licensed mental health professional is the appropriate and necessary resource.
-
-## Emotional numbness as a protection mechanism, not a flaw
-
-Numbness is best understood as the nervous system's way of managing more than it can process at once — a form of protection, not a personal failing or a sign of not caring. Reconnecting with feeling tends to happen gradually, as the underlying overload eases and safety is restored.
-
-## When professional clinical care may be appropriate
-
-If you are experiencing persistent hopelessness, sadness that will not lift, significant loss of motivation over an extended period, or any thoughts of self-harm, **please seek support from a licensed mental health professional immediately**. If you are in crisis or in immediate danger, contact local emergency services or the 988 Suicide & Crisis Lifeline (call or text 988 in the U.S.). This service is not emergency or crisis care.
-
-If this describes a period you are currently navigating and you want structured, non-clinical support alongside any clinical care, [an initial consultation](#consultation) can help clarify next steps.
-
-## Frequently Asked Questions`,
-    faq: [
-      {
-        question: 'Is this a substitute for therapy or treatment for depression?',
-        answer:
-          'No. This content is educational and any related coaching is non-clinical. It does not diagnose, treat, or cure depression and is not a substitute for psychotherapy, psychiatry, or emergency care. If you are experiencing symptoms of depression, please consult a licensed mental health professional.',
-      },
-      {
-        question: 'How is burnout different from depression?',
-        answer:
-          'Burnout is typically tied to chronic overload in a specific context, often work, and tends to improve when that context changes along with rest and recovery. Depression can occur independent of external circumstances and often requires clinical treatment. The two can overlap, which is one reason professional evaluation is valuable when either is persistent.',
-      },
-      {
-        question: 'Is emotional numbness a sign that something is wrong with me?',
-        answer:
-          'No. Numbness is a common protective response to prolonged emotional overload, not evidence of a character flaw. It signals that your capacity was exceeded, not that you are broken or uncaring.',
-      },
-      {
-        question: 'How long can burnout recovery take?',
-        answer:
-          'This varies significantly depending on severity and whether the underlying causes are addressed. Some people notice improvement within a few weeks of reduced load and rest; deeper burnout, especially without addressing root causes, can take several months or longer to fully recover from.',
-      },
-      {
-        question: 'When should I be concerned about sadness that isn\'t going away?',
-        answer:
-          'If sadness persists most days for two weeks or more, especially alongside changes in sleep, appetite, energy, or interest in activities, it is worth discussing with a licensed mental health professional rather than assuming it will resolve on its own.',
-      },
-      {
-        question: 'Can you feel depressed without feeling sad?',
-        answer:
-          'Yes. Depression can present as numbness, irritability, fatigue, or loss of interest rather than overt sadness. This is one reason self-assessment based on mood alone can be misleading, and professional evaluation is valuable when something feels persistently off.',
-      },
-      {
-        question: 'What should I do if I have thoughts of self-harm?',
-        answer:
-          'Please seek help immediately. Contact a licensed mental health professional, go to an emergency room, or contact the 988 Suicide & Crisis Lifeline (call or text 988 in the U.S.). This is a situation that requires immediate, professional attention, not self-guided coping alone.',
-      },
-      {
-        question: 'Does rest alone cure burnout?',
-        answer:
-          'Rest is necessary but often not sufficient on its own. Lasting burnout recovery typically also requires addressing the underlying causes — workload, boundaries, lack of control, or misalignment between effort and reward — that led to the depletion in the first place.',
-      },
-    ],
-  },
-  {
     slug: 'self-worth-self-esteem-failure',
     cluster: 'self-trust-identity',
     tipo: 'pilar',
@@ -1464,7 +1177,7 @@ If this pattern sounds familiar, [an initial consultation](#consultation) is a p
     datePublished: '2026-04-22T09:00:00-05:00',
     dateModified: '2026-04-22T09:00:00-05:00',
     needsProfessionalCareNote: false,
-    relatedArticles: ['how-to-rebuild-your-life-after-it-falls-apart', 'depression-numbness-burnout'],
+    relatedArticles: ['how-to-rebuild-your-life-after-it-falls-apart', 'starting-over-emotionally-what-it-involves'],
     ogImage: '/images/og/og-default.jpg',
     content: `Losing your sense of direction rarely happens all at once — it tends to build gradually, often after a major life change removes the reference points you had been using to navigate. **Feeling lost is a common, recognizable pattern, not evidence that something has gone wrong with you.**
 

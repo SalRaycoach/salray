@@ -15,12 +15,11 @@ export const META_PIXEL_ID = '892828299770545'
 
 export const business = {
   nome: 'Sal Ray',
-  posicionamento: 'Emotional & Life Rebuilding Specialist',
-  credencial: 'Emotional & Life Rebuilding Coach', // só aparece ligada ao nome
+  posicionamento: 'Emotional & Life Rebuilding Coach',
   autoridadeMetodologica: 'Creator of the S.T.A.B.L.E. Method',
   publico: 'Women in the U.S., 40–60, emotionally overloaded',
   entrega: '100% online',
-  jobTitle: 'Emotional & Life Rebuilding Specialist',
+  jobTitle: 'Emotional & Life Rebuilding Coach',
 } as const
 
 export const contato = {

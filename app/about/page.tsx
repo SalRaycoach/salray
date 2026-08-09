@@ -6,9 +6,9 @@ import CaseStudies from '@/components/CaseStudies'
 import Credentials from '@/components/Credentials'
 import { business, ctas, clinicalDisclaimer, testimonials, caseStudies, credentials, SITE_URL } from '@/lib/config'
 
-const title = 'About Sal Ray | Emotional & Life Rebuilding Specialist'
+const title = 'About Sal Ray | Emotional & Life Rebuilding Coach'
 const description =
-  "Meet Sal Ray, Emotional & Life Rebuilding Specialist and creator of the S.T.A.B.L.E. Method, helping adults recognize patterns keeping them stuck."
+  "Meet Sal Ray, Emotional & Life Rebuilding Coach and creator of the S.T.A.B.L.E. Method, helping adults recognize patterns keeping them stuck."
 
 export const metadata: Metadata = {
   title,

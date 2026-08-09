@@ -37,12 +37,22 @@ export default function ArticlePage({ params }: { params: { cluster: string; slu
 
   const cluster = clusters.find((c) => c.slug === article.cluster)
   const schema = getArticleSchema(article, cluster?.name ?? article.cluster)
-  const html = markdownToHtml(
-    article.content.replaceAll('(#consultation)', '(/consultation/)').replaceAll('(#community)', '(/community/)')
-  )
   const related = articles.filter((a) => article.relatedArticles.includes(a.slug))
   const seriesArticles = article.tipo === 'pilar' ? getChildArticles(article.slug) : []
   const parentPillar = article.pillarSlug ? articles.find((a) => a.slug === article.pillarSlug) : undefined
+  const pillarUrl = parentPillar
+    ? `/resources/${parentPillar.cluster}/${parentPillar.slug}/`
+    : `/resources/${article.cluster}/`
+  const relatedUrl = related[0]
+    ? `/resources/${related[0].cluster}/${related[0].slug}/`
+    : `/resources/${article.cluster}/`
+  const html = markdownToHtml(
+    article.content
+      .replaceAll('(#consultation)', '(/consultation/)')
+      .replaceAll('(#community)', '(/community/)')
+      .replaceAll('(#pillar)', `(${pillarUrl})`)
+      .replaceAll('(#related)', `(${relatedUrl})`)
+  )
 
   return (
     <>
@@ -141,7 +151,7 @@ export default function ArticlePage({ params }: { params: { cluster: string; slu
 
         <div className="max-w-2xl mt-12 pt-8 border-t border-charcoal/10">
           <p className="font-body text-sm text-charcoal/60 leading-relaxed">
-            Written by Sal Ray, Emotional & Life Rebuilding Specialist. This article is educational and does not
+            Written by Sal Ray, Emotional & Life Rebuilding Coach. This article is educational and does not
             diagnose or treat mental health conditions — see the{' '}
             <Link href="/disclaimer/" className="text-aqua underline underline-offset-2">
               Professional Disclaimer
