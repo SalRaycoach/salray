@@ -3,6 +3,7 @@
 import { useRef, useState } from 'react'
 import Link from 'next/link'
 import { trackEvent, trackMetaEvent } from '@/lib/analytics'
+import { contato } from '@/lib/config'
 
 type FormState = {
   firstName: string
@@ -168,8 +169,8 @@ export default function FourWeekApplicationForm() {
         <p className="font-body text-charcoal/85 leading-relaxed mb-4">
           Thank you for applying for the Private 4-Week Emotional &amp; Life Rebuilding Experience. SAL Ray reviews
           each application individually. If your application appears to be a strong fit, you will receive an email
-          from hello@salraycoach.com within three business days with the next step. Please check your spam or
-          promotions folder if you do not see it.
+          from {contato.email} within three business days with the next step. Please check your spam or promotions
+          folder if you do not see it.
         </p>
         <p className="font-body text-sm text-charcoal/60">
           Only three participants will be selected, and submitting an application does not guarantee participation.

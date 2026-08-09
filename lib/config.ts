@@ -23,7 +23,9 @@ export const business = {
 } as const
 
 export const contato = {
-  email: 'hello@salraycoach.com', // inferido a partir do domínio — confirmar
+  // salraycoach.com ainda não tem e-mail configurado — hello@salrayofficial.com
+  // é a caixa real em uso, confirmado por SAL Ray em 2026-08-09.
+  email: 'hello@salrayofficial.com',
   bookingUrl: 'PENDENTE_LINK_DE_AGENDAMENTO', // NÃO INVENTAR — aguardando plataforma/Stripe
   facebookGroupUrl: 'https://www.facebook.com/groups/backontrackcommunity',
   // Perfil do Facebook — usado apenas como identidade (schema.org sameAs), não como CTA clicável.

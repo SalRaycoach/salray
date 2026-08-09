@@ -2,8 +2,8 @@ import nodemailer from 'nodemailer'
 
 /**
  * Single seam for outbound transactional email. Callers only see sendEmail()
- * — if delivery ever needs to move off Hostinger SMTP (e.g. to Resend for
- * better deliverability), only this file changes, not the routes that call it.
+ * — if delivery ever needs to move to a different SMTP account or a
+ * provider like Resend, only this file changes, not the routes that call it.
  */
 
 export type SendEmailInput = {
