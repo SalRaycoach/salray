@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { Resend } from 'resend'
+import { sendEmail } from '@/lib/email'
 import { business, contato, SITE_URL } from '@/lib/config'
 
 /**
@@ -111,15 +111,13 @@ export async function POST(request: NextRequest) {
   const utmContent = str(body, 'utm_content')
   const fbclid = str(body, 'fbclid')
 
-  const apiKey = process.env.RESEND_API_KEY
-  if (!apiKey) {
-    console.error('RESEND_API_KEY is not set — cannot send 4-Week Experience application emails.')
+  if (!process.env.SMTP_HOST || !process.env.SMTP_USER || !process.env.SMTP_PASSWORD) {
+    console.error('SMTP_HOST/SMTP_USER/SMTP_PASSWORD are not set — cannot send 4-Week Experience application emails.')
     return NextResponse.json(
       { ok: false, error: 'We could not submit your application right now. Please try again shortly.' },
       { status: 500 }
     )
   }
-  const resend = new Resend(apiKey)
 
   const row = (label: string, value: string) =>
     value ? `<tr><td style="padding:6px 12px 6px 0;color:#555;white-space:nowrap;vertical-align:top;"><strong>${escapeHtml(label)}</strong></td><td style="padding:6px 0;">${nl2br(value)}</td></tr>` : ''
@@ -163,22 +161,22 @@ export async function POST(request: NextRequest) {
   `
 
   try {
-    await resend.emails.send({
-      from: 'SAL Ray 4-Week Experience <applications@salraycoach.com>',
+    await sendEmail({
+      from: `SAL Ray — 4-Week Experience <${contato.email}>`,
       to: contato.email,
       replyTo: email,
       subject: `New 4-Week Experience application — ${firstName} ${lastName}`,
       html: notificationHtml,
     })
 
-    await resend.emails.send({
+    await sendEmail({
       from: `${business.nome} <${contato.email}>`,
       to: email,
       subject: 'We received your 4-Week Experience application',
       html: confirmationHtml,
     })
   } catch (err) {
-    console.error('Resend send failed for 4-Week Experience application:', err)
+    console.error('SMTP send failed for 4-Week Experience application:', err)
     return NextResponse.json(
       { ok: false, error: 'We could not submit your application right now. Please try again shortly.' },
       { status: 502 }
