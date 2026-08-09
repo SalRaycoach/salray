@@ -89,7 +89,7 @@ const notFitFor = [
   'You are seeking diagnosis, psychotherapy, psychiatric care, or medical treatment.',
   'You are looking for a quick fix or a guaranteed result.',
   'You want one isolated session but cannot commit to the full four weeks.',
-  'You cannot protect the same weekly time for four consecutive weeks.',
+  'You cannot keep the same weekly time for four consecutive weeks.',
   'You are applying mainly because someone else wants you to participate.',
 ]
 
