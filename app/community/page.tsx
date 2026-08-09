@@ -47,7 +47,7 @@ export default function CommunityPage() {
 
           <h2 className="font-display text-2xl text-charcoal mb-4">Who It Is For</h2>
           <p className="font-body text-charcoal/85 leading-relaxed">
-            Anyone working on emotional and life rebuilding, whether or not you are currently working with Sal
+            Anyone working on emotional and life rebuilding, whether or not you are currently working with SAL Ray
             directly.
           </p>
         </div>

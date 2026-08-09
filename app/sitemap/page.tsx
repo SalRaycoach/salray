@@ -23,7 +23,7 @@ export const metadata: Metadata = {
 
 const mainPages = [
   { href: '/', label: 'Home' },
-  { href: '/about/', label: 'About Sal' },
+  { href: '/about/', label: 'About SAL Ray' },
   { href: '/how-i-help/', label: 'How I Help' },
   { href: '/stable-method/', label: 'The S.T.A.B.L.E. Method' },
   { href: '/consultation/', label: 'Initial Consultation' },

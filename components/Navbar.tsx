@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react'
 import { business, ctas, fourWeekExperience } from '@/lib/config'
 
 const links = [
-  { href: '/about/', label: 'About Sal' },
+  { href: '/about/', label: 'About SAL Ray' },
   { href: '/how-i-help/', label: 'How I Help' },
   { href: '/stable-method/', label: 'The S.T.A.B.L.E. Method' },
   { href: '/resources/', label: 'Resources' },

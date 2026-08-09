@@ -251,7 +251,7 @@ export const faqs: Faq[] = [
   {
     question: 'Do you use hypnosis?',
     answer:
-      'When appropriate and agreed upon, Sal may use non-clinical hypnosis as one supportive tool within a broader process. It is not the brand’s central promise and is never presented as medical treatment.',
+      'When appropriate and agreed upon, SAL Ray may use non-clinical hypnosis as one supportive tool within a broader process. It is not the brand’s central promise and is never presented as medical treatment.',
   },
   {
     question: 'What happens in the initial consultation?',

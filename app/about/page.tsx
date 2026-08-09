@@ -49,7 +49,7 @@ export default function AboutPage() {
         <h2 className="font-display text-2xl text-charcoal mb-4">Philosophy</h2>
         <p className="font-body text-charcoal/85 leading-relaxed">
           Most people who feel stuck are not lacking willpower — they are carrying an unresolved pattern that keeps
-          repeating until it is understood. Sal's work starts from that premise: clarity about the pattern comes
+          repeating until it is understood. SAL Ray's work starts from that premise: clarity about the pattern comes
           before lasting change, not after it.
         </p>
       </section>
@@ -100,7 +100,7 @@ export default function AboutPage() {
       <section className="max-w-2xl mb-16">
         <h2 className="font-display text-2xl text-charcoal mb-4">The S.T.A.B.L.E. Method</h2>
         <p className="font-body text-charcoal/85 leading-relaxed">
-          {business.autoridadeMetodologica}. It is the structured framework behind Sal's work with clients — see{' '}
+          {business.autoridadeMetodologica}. It is the structured framework behind SAL Ray's work with clients — see{' '}
           <Link href="/stable-method/" className="text-aqua underline underline-offset-2">
             The S.T.A.B.L.E. Method
           </Link>{' '}
