@@ -5,9 +5,9 @@ import ScrollDepthTrigger from '@/components/ScrollDepthTrigger'
 import { getStableMethodSchema } from '@/lib/schema'
 import { ctas, stableMethod, business, clinicalDisclaimer, crisisResource, SITE_URL } from '@/lib/config'
 
-const title = 'The S.T.A.B.L.E. Method | Emotional & Life Rebuilding | Sal Ray'
+const title = 'The S.T.A.B.L.E. Method | Emotional & Life Rebuilding | SAL Ray'
 const description =
-  "Discover the S.T.A.B.L.E. Method, Sal Ray's structured two-phase framework for identifying emotional patterns, rebuilding internal stability, and supporting sustainable personal change."
+  "Discover the S.T.A.B.L.E. Method, SAL Ray's structured two-phase framework for identifying emotional patterns, rebuilding internal stability, and supporting sustainable personal change."
 
 export const metadata: Metadata = {
   title,

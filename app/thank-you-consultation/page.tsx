@@ -3,11 +3,11 @@ import Link from 'next/link'
 import TrackOnMount from '@/components/TrackOnMount'
 import { crisisResource, SITE_URL } from '@/lib/config'
 
-const title = 'Consultation Confirmed | Sal Ray'
+const title = 'Consultation Confirmed | SAL Ray'
 
 export const metadata: Metadata = {
   title,
-  description: 'Your initial consultation with Sal Ray has been scheduled.',
+  description: 'Your initial consultation with SAL Ray has been scheduled.',
   openGraph: {
     title,
     url: `${SITE_URL}/thank-you-consultation/`,

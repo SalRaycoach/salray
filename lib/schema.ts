@@ -103,7 +103,7 @@ export function getServiceSchema() {
     '@type': ['Service', 'ProfessionalService'],
     name: 'Initial Consultation',
     description:
-      'A structured, non-clinical initial consultation with Sal Ray to understand your situation, identify relevant patterns, and determine fit for ongoing work.',
+      'A structured, non-clinical initial consultation with SAL Ray to understand your situation, identify relevant patterns, and determine fit for ongoing work.',
     provider: { '@id': `${SITE_URL}/#person` },
     areaServed: 'United States',
     availableChannel: {
@@ -238,6 +238,44 @@ export function getStableMethodSchema() {
   return {
     '@context': 'https://schema.org',
     '@graph': [breadcrumb],
+  }
+}
+
+/** /4-week-experience: Service + limited Offer (3 places) + FAQPage + BreadcrumbList */
+export function getFourWeekExperienceSchema(faqItems: Faq[]) {
+  const service = {
+    '@type': ['Service', 'ProfessionalService'],
+    name: 'Private 4-Week Emotional & Life Rebuilding Experience',
+    description:
+      'Four private online coaching sessions delivered over four consecutive weeks for three selected participants, guided by the S.T.A.B.L.E. Method.',
+    provider: { '@id': `${SITE_URL}/#person` },
+    areaServed: 'United States',
+    availableChannel: {
+      '@type': 'ServiceChannel',
+      serviceUrl: `${SITE_URL}/4-week-experience/`,
+      availableLanguage: 'en-US',
+    },
+    offers: {
+      '@type': 'Offer',
+      price: '0',
+      priceCurrency: 'USD',
+      availability: 'https://schema.org/LimitedAvailability',
+      eligibleQuantity: {
+        '@type': 'QuantitativeValue',
+        value: 3,
+        unitText: 'participant places',
+      },
+    },
+  }
+
+  const breadcrumb = buildBreadcrumbList([
+    { name: 'Home', url: '/' },
+    { name: '4-Week Experience', url: '/4-week-experience/' },
+  ])
+
+  return {
+    '@context': 'https://schema.org',
+    '@graph': [service, buildFaqPage(faqItems), breadcrumb],
   }
 }
 

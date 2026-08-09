@@ -1,8 +1,8 @@
 import type { Metadata } from 'next'
 import { SITE_URL } from '@/lib/config'
 
-const title = 'Cancellation & Rescheduling Policy | Sal Ray'
-const description = 'Cancellation and rescheduling policy for consultations and sessions with Sal Ray.'
+const title = 'Cancellation & Rescheduling Policy | SAL Ray'
+const description = 'Cancellation and rescheduling policy for consultations and sessions with SAL Ray.'
 
 export const metadata: Metadata = {
   title,
@@ -36,7 +36,7 @@ export default function CancellationPolicyPage() {
         </p>
 
         <h2 className="font-display text-2xl text-charcoal">How to Reschedule</h2>
-        <p>[Insert the approved process — e.g., via the booking platform or by contacting Sal Ray directly.]</p>
+        <p>[Insert the approved process — e.g., via the booking platform or by contacting SAL Ray directly.]</p>
 
         <h2 className="font-display text-2xl text-charcoal">Refunds</h2>
         <p>[Insert the approved refund policy for cancellations made within/outside the notice period.]</p>

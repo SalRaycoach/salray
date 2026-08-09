@@ -53,7 +53,7 @@ export default function Footer() {
             </li>
             <li>
               <a href={contato.messengerUrl} target="_blank" rel="noopener noreferrer" className="hover:text-orange">
-                Message Sal Ray
+                Message SAL Ray
               </a>
             </li>
             {!isInstagramPending && (

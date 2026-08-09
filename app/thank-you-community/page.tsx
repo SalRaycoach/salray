@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { SITE_URL } from '@/lib/config'
 
-const title = 'Welcome to the Community | Sal Ray'
+const title = 'Welcome to the Community | SAL Ray'
 
 export const metadata: Metadata = {
   title,

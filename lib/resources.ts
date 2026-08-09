@@ -268,7 +268,7 @@ Over time, this work can support recognizing red flags earlier, communicating bo
 
 ## When professional clinical care may be appropriate
 
-If a relationship involves **narcissistic abuse, emotional abuse, or safety concerns**, this content is educational only and is not a substitute for professional support. Sal Ray's coaching does not provide legal advice or safety planning. If you are in an abusive relationship or unsafe situation, please contact a licensed professional, a domestic violence resource, or, in an emergency, local emergency services. If you are in crisis, the 988 Suicide & Crisis Lifeline (call or text 988 in the U.S.) is also available.
+If a relationship involves **narcissistic abuse, emotional abuse, or safety concerns**, this content is educational only and is not a substitute for professional support. SAL Ray's coaching does not provide legal advice or safety planning. If you are in an abusive relationship or unsafe situation, please contact a licensed professional, a domestic violence resource, or, in an emergency, local emergency services. If you are in crisis, the 988 Suicide & Crisis Lifeline (call or text 988 in the U.S.) is also available.
 
 If this pattern feels familiar, [an initial consultation](#consultation) can help you understand it more clearly. [The private community](#community) is also available for ongoing support.
 

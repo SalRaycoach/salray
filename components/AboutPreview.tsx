@@ -27,7 +27,7 @@ export default function AboutPreview() {
           </p>
 
           <Link href="/about/" className="font-body text-sm font-medium text-aqua hover:text-charcoal">
-            Meet Sal Ray →
+            Meet SAL Ray →
           </Link>
         </div>
       </div>

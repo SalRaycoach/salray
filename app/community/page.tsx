@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { contato, ctas, SITE_URL } from '@/lib/config'
 
-const title = 'Private Facebook Community | Sal Ray'
+const title = 'Private Facebook Community | SAL Ray'
 const description =
   'Join a private Facebook community focused on emotional strength, clear thinking, and rebuilding life with greater stability.'
 

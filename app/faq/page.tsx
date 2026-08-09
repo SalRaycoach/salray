@@ -5,7 +5,7 @@ import FAQAccordion from '@/components/FAQAccordion'
 import { getFaqPageSchema } from '@/lib/schema'
 import { faqs, ctas, crisisResource, SITE_URL } from '@/lib/config'
 
-const title = 'FAQ | Sal Ray'
+const title = 'FAQ | SAL Ray'
 const description =
   'Answers about Emotional & Life Rebuilding coaching, the S.T.A.B.L.E. Method, pricing, cancellation, and the difference between coaching and therapy.'
 

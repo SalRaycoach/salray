@@ -1,8 +1,8 @@
 import type { Metadata } from 'next'
 import { clinicalDisclaimer, crisisResource, SITE_URL } from '@/lib/config'
 
-const title = 'Professional Disclaimer | Sal Ray'
-const description = 'Sal Ray provides non-clinical coaching and personal development services. Read the full professional disclaimer.'
+const title = 'Professional Disclaimer | SAL Ray'
+const description = 'SAL Ray provides non-clinical coaching and personal development services. Read the full professional disclaimer.'
 
 export const metadata: Metadata = {
   title,
@@ -34,13 +34,13 @@ export default function DisclaimerPage() {
         <h2 className="font-display text-2xl text-charcoal">No Clinical Claims</h2>
         <p>
           Nothing on this website, in coaching sessions, in testimonials, or in any advertising should be
-          interpreted as a clinical or medical claim. Sal Ray is not a licensed therapist, psychologist,
+          interpreted as a clinical or medical claim. SAL Ray is not a licensed therapist, psychologist,
           psychiatrist, or medical provider.
         </p>
 
         <h2 className="font-display text-2xl text-charcoal">Non-Clinical Hypnosis</h2>
         <p>
-          When appropriate and mutually agreed upon, Sal Ray may use non-clinical hypnosis techniques as one
+          When appropriate and mutually agreed upon, SAL Ray may use non-clinical hypnosis techniques as one
           supportive tool within a broader coaching process. This is never presented as medical treatment, and
           informed consent is obtained before any such tool is used.
         </p>
@@ -50,7 +50,7 @@ export default function DisclaimerPage() {
 
         <h2 className="font-display text-2xl text-charcoal">No Guarantee of Outcome</h2>
         <p>
-          Coaching outcomes depend on individual engagement and circumstances. Sal Ray does not guarantee specific
+          Coaching outcomes depend on individual engagement and circumstances. SAL Ray does not guarantee specific
           results, a cure, or a particular outcome from any consultation, session, or program.
         </p>
       </section>

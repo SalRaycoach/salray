@@ -17,11 +17,11 @@ import { getHomeSchema } from '@/lib/schema'
 import { faqs, testimonials, SITE_URL } from '@/lib/config'
 
 export const metadata: Metadata = {
-  title: 'Emotional & Life Rebuilding Coach | Sal Ray',
+  title: 'Emotional & Life Rebuilding Coach | SAL Ray',
   description:
     'Non-clinical coaching for women 40–60 who feel emotionally overloaded or stuck in repeating patterns. Schedule your initial consultation.',
   openGraph: {
-    title: 'Emotional & Life Rebuilding Coach | Sal Ray',
+    title: 'Emotional & Life Rebuilding Coach | SAL Ray',
     description:
       'Non-clinical coaching for women 40–60 who feel emotionally overloaded or stuck in repeating patterns. Schedule your initial consultation.',
     url: SITE_URL,
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
         url: `${SITE_URL}/images/og/og-default.jpg`,
         width: 1200,
         height: 630,
-        alt: 'Sal Ray — Emotional & Life Rebuilding Coach',
+        alt: 'SAL Ray — Emotional & Life Rebuilding Coach',
       },
     ],
   },

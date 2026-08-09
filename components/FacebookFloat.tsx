@@ -6,7 +6,7 @@ export default function FacebookFloat() {
       href={contato.messengerUrl}
       target="_blank"
       rel="noopener noreferrer"
-      aria-label="Message Sal Ray"
+      aria-label="Message SAL Ray"
       data-event="messenger_cta_click"
       className="fixed bottom-6 right-6 z-50 bg-charcoal text-offwhite w-12 h-12 rounded-full flex items-center justify-center shadow-md hover:bg-aqua transition-colors"
     >

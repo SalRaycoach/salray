@@ -151,7 +151,7 @@ export default function ArticlePage({ params }: { params: { cluster: string; slu
 
         <div className="max-w-2xl mt-12 pt-8 border-t border-charcoal/10">
           <p className="font-body text-sm text-charcoal/60 leading-relaxed">
-            Written by Sal Ray, Emotional & Life Rebuilding Coach. This article is educational and does not
+            Written by SAL Ray, Emotional & Life Rebuilding Coach. This article is educational and does not
             diagnose or treat mental health conditions — see the{' '}
             <Link href="/disclaimer/" className="text-aqua underline underline-offset-2">
               Professional Disclaimer

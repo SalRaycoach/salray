@@ -14,7 +14,7 @@ export function generateMetadata({ params }: { params: { cluster: string } }): M
   const cluster = clusters.find((c) => c.slug === params.cluster)
   if (!cluster) return {}
 
-  const title = `${cluster.name} | Resources | Sal Ray`
+  const title = `${cluster.name} | Resources | SAL Ray`
   const description = cluster.description.slice(0, 155)
 
   return {

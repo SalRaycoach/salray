@@ -6,9 +6,9 @@ import CaseStudies from '@/components/CaseStudies'
 import Credentials from '@/components/Credentials'
 import { business, ctas, clinicalDisclaimer, testimonials, caseStudies, credentials, SITE_URL } from '@/lib/config'
 
-const title = 'About Sal Ray | Emotional & Life Rebuilding Coach'
+const title = 'About SAL Ray | Emotional & Life Rebuilding Coach'
 const description =
-  "Meet Sal Ray, Emotional & Life Rebuilding Coach and creator of the S.T.A.B.L.E. Method, helping adults recognize patterns keeping them stuck."
+  "Meet SAL Ray, Emotional & Life Rebuilding Coach and creator of the S.T.A.B.L.E. Method, helping adults recognize patterns keeping them stuck."
 
 export const metadata: Metadata = {
   title,
@@ -35,7 +35,7 @@ export default function AboutPage() {
         />
 
         <div>
-          <h1 className="font-display text-4xl text-charcoal mb-6">About Sal Ray</h1>
+          <h1 className="font-display text-4xl text-charcoal mb-6">About SAL Ray</h1>
           <p className="font-body text-lg text-charcoal/80 leading-relaxed">
             {business.nome} is an {business.posicionamento.toLowerCase()} and coach who helps adults recognize the
             deeper patterns keeping them stuck. His work combines precise pattern recognition, structured personal

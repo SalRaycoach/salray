@@ -1,8 +1,8 @@
 import type { Metadata } from 'next'
 import { contato, SITE_URL } from '@/lib/config'
 
-const title = 'Privacy Policy | Sal Ray'
-const description = 'How Sal Ray collects, uses, and protects your personal information.'
+const title = 'Privacy Policy | SAL Ray'
+const description = 'How SAL Ray collects, uses, and protects your personal information.'
 
 export const metadata: Metadata = {
   title,

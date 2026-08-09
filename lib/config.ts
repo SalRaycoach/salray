@@ -1,5 +1,5 @@
 /**
- * FONTE ÚNICA DE DADOS DO NEGÓCIO — Sal Ray
+ * FONTE ÚNICA DE DADOS DO NEGÓCIO — SAL Ray
  * ---------------------------------------------------------------------------
  * Campos marcados "PENDENTE" vêm da seção 15 do brief e NÃO devem ser
  * inventados — foram deixados como placeholder visível até aprovação.
@@ -14,7 +14,7 @@ export const GA_MEASUREMENT_ID = 'G-YFEG8JC9BF'
 export const META_PIXEL_ID = '892828299770545'
 
 export const business = {
-  nome: 'Sal Ray',
+  nome: 'SAL Ray',
   posicionamento: 'Emotional & Life Rebuilding Coach',
   autoridadeMetodologica: 'Creator of the S.T.A.B.L.E. Method',
   publico: 'Women in the U.S., 40–60, emotionally overloaded',
@@ -53,7 +53,7 @@ export const pricing = {
 } as const
 
 /**
- * S.T.A.B.L.E. — significados aprovados por Sal Ray (ver brief completo em
+ * S.T.A.B.L.E. — significados aprovados por SAL Ray (ver brief completo em
  * "Metodo STABLE.docx"). Fase 1 = Emotional Pattern Identification (S, T, A).
  * Fase 2 = Emotional & Life Rebuilding (B, L, E).
  */
@@ -159,7 +159,7 @@ export const problemCards = [
 
 /** Aviso base — seção 11. Revisão jurídica obrigatória antes de publicar. */
 export const clinicalDisclaimer =
-  'Sal Ray provides non-clinical coaching and personal development services. These services are educational and supportive in nature and do not diagnose, treat, cure, or prevent mental-health or medical conditions. They are not a substitute for psychotherapy, psychiatry, medical care, or emergency services.'
+  'SAL Ray provides non-clinical coaching and personal development services. These services are educational and supportive in nature and do not diagnose, treat, cure, or prevent mental-health or medical conditions. They are not a substitute for psychotherapy, psychiatry, medical care, or emergency services.'
 
 /** Recurso de crise — obrigatório em /faq, /contact, /disclaimer e artigos sensíveis. */
 export const crisisResource =
@@ -167,7 +167,7 @@ export const crisisResource =
 
 /**
  * Prova social — seção 2 da análise externa. NÃO INVENTAR nenhum destes itens.
- * Ficam vazios (seções ocultas automaticamente) até Sal Ray fornecer conteúdo
+ * Ficam vazios (seções ocultas automaticamente) até SAL Ray fornecer conteúdo
  * real: depoimentos com permissão por escrito, estudos de caso reais
  * (anonimizados se necessário) e credenciais/formação verificáveis.
  */
@@ -180,13 +180,61 @@ export const caseStudies: CaseStudy[] = []
 export type Credential = { title: string; issuer?: string; year?: string }
 export const credentials: Credential[] = []
 
+/**
+ * 4-Week Experience — campanha de capacidade limitada (3 vagas). Ver brief
+ * completo em "SAL_Ray_4-Week_Experience_Website_Brief.docx", seção 14.
+ * status: 'open' mostra a página completa com formulário de aplicação;
+ * 'closed' mostra o estado de vagas preenchidas (seção 14) e remove o item
+ * do menu principal — alternar aqui não exige tocar em app/4-week-experience/page.tsx.
+ */
+export const fourWeekExperience = {
+  status: 'open' as 'open' | 'closed',
+} as const
+
 export type Faq = { question: string; answer: string }
+
+export const fourWeekFaqs: Faq[] = [
+  {
+    question: 'Is there a cost to participate?',
+    answer:
+      'No. Selected participants receive all four private sessions at no cost. Participation requires consistent attendance, active engagement, and honest feedback at the conclusion. A testimonial is not required.',
+  },
+  {
+    question: 'Is this therapy?',
+    answer:
+      'No. This is non-clinical coaching and personal development. It does not diagnose or treat mental-health or medical conditions and is not a substitute for psychotherapy, psychiatry, medical care, or emergency services.',
+  },
+  {
+    question: 'Are the sessions online?',
+    answer: 'Yes. All four private sessions take place online by video and are approximately 60 minutes each.',
+  },
+  {
+    question: 'Does applying guarantee a place?',
+    answer:
+      'No. Applications are reviewed individually, and only three participants will be selected. Submitting the form does not guarantee participation.',
+  },
+  {
+    question: 'What if I need to reschedule?',
+    answer:
+      'The four sessions are scheduled before the experience begins. At least 24 hours’ notice is required for any change. Rescheduling is not guaranteed, and missed sessions or late cancellations are not automatically replaced.',
+  },
+  {
+    question: 'What happens after the fourth session?',
+    answer:
+      'The experience ends after the fourth session, and there is no obligation to purchase anything. If you and SAL Ray both believe continued work could be useful, ongoing options may be discussed separately after completion.',
+  },
+  {
+    question: 'Is this appropriate during a crisis?',
+    answer:
+      'No. This experience is not crisis or emergency care. If you are in immediate danger, contact local emergency services. In the United States, call or text 988 for the Suicide & Crisis Lifeline.',
+  },
+]
 
 export const faqs: Faq[] = [
   {
     question: 'Is this therapy?',
     answer:
-      'No. Sal Ray provides non-clinical coaching and personal development support. The work does not diagnose or treat mental health conditions and is not a substitute for licensed healthcare.',
+      'No. SAL Ray provides non-clinical coaching and personal development support. The work does not diagnose or treat mental health conditions and is not a substitute for licensed healthcare.',
   },
   {
     question: 'What is Emotional & Life Rebuilding?',
@@ -220,7 +268,7 @@ export const faqs: Faq[] = [
   {
     question: 'What is the S.T.A.B.L.E. Method?',
     answer:
-      'A structured, non-clinical framework created by Sal Ray for identifying emotional patterns, rebuilding internal stability, and applying meaningful change in daily life — applied through two phases: Emotional Pattern Identification and Emotional & Life Rebuilding. See The S.T.A.B.L.E. Method page for the full explanation of each element.',
+      'A structured, non-clinical framework created by SAL Ray for identifying emotional patterns, rebuilding internal stability, and applying meaningful change in daily life — applied through two phases: Emotional Pattern Identification and Emotional & Life Rebuilding. See The S.T.A.B.L.E. Method page for the full explanation of each element.',
   },
   {
     question: 'What is your cancellation policy?',

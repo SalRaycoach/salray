@@ -3,8 +3,8 @@ import Link from 'next/link'
 import ContactForm from '@/components/ContactForm'
 import { contato, crisisResource, SITE_URL } from '@/lib/config'
 
-const title = 'Contact | Sal Ray'
-const description = 'Send a message to Sal Ray. Non-emergency inquiries only — typical response time is 1–2 business days.'
+const title = 'Contact | SAL Ray'
+const description = 'Send a message to SAL Ray. Non-emergency inquiries only — typical response time is 1–2 business days.'
 
 export const metadata: Metadata = {
   title,
@@ -47,7 +47,7 @@ export default function ContactPage() {
               data-event="messenger_cta_click"
               className="text-aqua"
             >
-              Message Sal Ray
+              Message SAL Ray
             </a>
           </p>
 

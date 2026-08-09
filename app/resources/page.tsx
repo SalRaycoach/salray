@@ -6,7 +6,7 @@ import { getResourcesIndexSchema } from '@/lib/schema'
 import { articles, clusters } from '@/lib/resources'
 import { SITE_URL } from '@/lib/config'
 
-const title = 'Resource Library | Sal Ray'
+const title = 'Resource Library | SAL Ray'
 const description =
   'Articles on overthinking, emotional patterns, relationships, self-trust, life direction, and emotional stability.'
 

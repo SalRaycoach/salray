@@ -5,8 +5,8 @@ import { getSitemapPageSchema } from '@/lib/schema'
 import { SITE_URL } from '@/lib/config'
 import { clusters, getArticlesByCluster } from '@/lib/resources'
 
-const title = 'Sitemap | Sal Ray'
-const description = 'A complete, human-readable map of every page and article on the Sal Ray website.'
+const title = 'Sitemap | SAL Ray'
+const description = 'A complete, human-readable map of every page and article on the SAL Ray website.'
 
 export const metadata: Metadata = {
   title,

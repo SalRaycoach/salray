@@ -12,6 +12,9 @@ module.exports = {
     '/sitemap.xml',
     '/thank-you-consultation',
     '/thank-you-community',
+    // Temporary, capacity-limited campaign page (noindex while active) — see
+    // brief section 11. Remove this line if the page is ever taken off noindex.
+    '/4-week-experience',
   ],
   robotsTxtOptions: {
     policies: [

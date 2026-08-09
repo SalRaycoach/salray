@@ -1,8 +1,9 @@
 'use client'
 
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import { useEffect, useState } from 'react'
-import { business, ctas } from '@/lib/config'
+import { business, ctas, fourWeekExperience } from '@/lib/config'
 
 const links = [
   { href: '/about/', label: 'About Sal' },
@@ -13,9 +14,14 @@ const links = [
   { href: '/faq/', label: 'FAQ' },
 ]
 
+const FOUR_WEEK_HREF = '/4-week-experience/'
+
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
+  const pathname = usePathname()
+  const isFourWeekPage = pathname === FOUR_WEEK_HREF
+  const showFourWeekLink = fourWeekExperience.status === 'open'
 
   useEffect(() => {
     const handler = () => setScrolled(window.scrollY > 60)
@@ -42,15 +48,38 @@ export default function Navbar() {
               </Link>
             </li>
           ))}
+          {showFourWeekLink && (
+            <li>
+              <Link
+                href={FOUR_WEEK_HREF}
+                aria-current={isFourWeekPage ? 'page' : undefined}
+                className={`font-semibold hover:text-orange transition-colors ${
+                  isFourWeekPage ? 'text-orange' : 'text-aqua'
+                }`}
+              >
+                4-Week Experience
+              </Link>
+            </li>
+          )}
         </ul>
 
-        <Link
-          href="/consultation/"
-          data-event="consultation_cta_click"
-          className="hidden lg:inline-block font-body text-sm font-medium bg-orange text-charcoal px-5 py-2.5 rounded-md hover:bg-charcoal hover:text-offwhite transition-colors"
-        >
-          {ctas.primary}
-        </Link>
+        {isFourWeekPage ? (
+          <a
+            href="#application"
+            data-event="four_week_apply_click"
+            className="hidden lg:inline-block font-body text-sm font-medium bg-orange text-offwhite px-5 py-2.5 rounded-md hover:bg-charcoal transition-colors"
+          >
+            Apply Now
+          </a>
+        ) : (
+          <Link
+            href="/consultation/"
+            data-event="consultation_cta_click"
+            className="hidden lg:inline-block font-body text-sm font-medium bg-orange text-charcoal px-5 py-2.5 rounded-md hover:bg-charcoal hover:text-offwhite transition-colors"
+          >
+            {ctas.primary}
+          </Link>
+        )}
 
         <button
           type="button"
@@ -74,14 +103,36 @@ export default function Navbar() {
               </Link>
             </li>
           ))}
+          {showFourWeekLink && (
+            <li>
+              <Link
+                href={FOUR_WEEK_HREF}
+                aria-current={isFourWeekPage ? 'page' : undefined}
+                className={`block py-2 font-semibold ${isFourWeekPage ? 'text-orange' : 'text-aqua'}`}
+                onClick={() => setMenuOpen(false)}
+              >
+                4-Week Experience
+              </Link>
+            </li>
+          )}
           <li>
-            <Link
-              href="/consultation/"
-              className="block mt-2 text-center bg-orange text-charcoal px-5 py-3 rounded-md font-medium"
-              onClick={() => setMenuOpen(false)}
-            >
-              {ctas.primary}
-            </Link>
+            {isFourWeekPage ? (
+              <a
+                href="#application"
+                className="block mt-2 text-center bg-orange text-offwhite px-5 py-3 rounded-md font-medium"
+                onClick={() => setMenuOpen(false)}
+              >
+                Apply Now
+              </a>
+            ) : (
+              <Link
+                href="/consultation/"
+                className="block mt-2 text-center bg-orange text-charcoal px-5 py-3 rounded-md font-medium"
+                onClick={() => setMenuOpen(false)}
+              >
+                {ctas.primary}
+              </Link>
+            )}
           </li>
         </ul>
       )}

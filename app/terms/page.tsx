@@ -1,8 +1,8 @@
 import type { Metadata } from 'next'
 import { business, SITE_URL } from '@/lib/config'
 
-const title = 'Terms of Use | Sal Ray'
-const description = 'Terms of use for salraycoach.com and coaching services provided by Sal Ray.'
+const title = 'Terms of Use | SAL Ray'
+const description = 'Terms of use for salraycoach.com and coaching services provided by SAL Ray.'
 
 export const metadata: Metadata = {
   title,
