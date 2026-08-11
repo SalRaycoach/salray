@@ -33,8 +33,9 @@ function validateArticle(a, slugSet) {
     }
   }
 
-  if (a.ctaTotal < 2) {
-    errors.push(`only ${a.ctaTotal} CTA link(s) (#consultation/#community), expected at least 2 (mid + end)`)
+  const minCta = a.tipo === 'complementar' && a.hasFourWeekCta ? 1 : 2
+  if (a.ctaTotal < minCta) {
+    errors.push(`only ${a.ctaTotal} CTA link(s), expected at least ${minCta}`)
   }
 
   if (a.pillarSlug && !slugSet.has(a.pillarSlug)) {
@@ -59,7 +60,11 @@ function deriveFieldsFromContent(content) {
   return {
     hasClinicalHeading: /## When professional clinical care may be appropriate/.test(content),
     has988: /988/.test(content),
-    ctaTotal: (content.match(/#consultation/g) || []).length + (content.match(/#community/g) || []).length,
+    ctaTotal:
+      (content.match(/#consultation/g) || []).length +
+      (content.match(/#community/g) || []).length +
+      (content.match(/\/4-week-experience\//g) || []).length,
+    hasFourWeekCta: /\/4-week-experience\//.test(content),
     isSensitive: SENSITIVE_PATTERN.test(content),
     wordCount: content.split(/\s+/).filter(Boolean).length,
   }
