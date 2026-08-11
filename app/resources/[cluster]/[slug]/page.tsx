@@ -102,11 +102,11 @@ export default function ArticlePage({ params }: { params: { cluster: string; slu
           <p className="font-body text-charcoal/80">Ready to work on this directly?</p>
           <div className="flex gap-3">
             <Link
-              href="/consultation/"
-              data-event="consultation_cta_click"
+              href={article.ctaOverride?.href ?? '/consultation/'}
+              data-event={article.ctaOverride?.event ?? 'consultation_cta_click'}
               className="font-body text-xs font-medium bg-orange text-charcoal px-5 py-3 rounded-md hover:bg-charcoal hover:text-offwhite transition-colors shrink-0"
             >
-              {ctas.primary}
+              {article.ctaOverride?.label ?? ctas.primary}
             </Link>
           </div>
         </div>

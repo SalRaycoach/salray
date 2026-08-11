@@ -33,9 +33,13 @@ function validateArticle(a, slugSet) {
     }
   }
 
-  const minCta = a.tipo === 'complementar' && a.hasFourWeekCta ? 1 : 2
-  if (a.ctaTotal < minCta) {
-    errors.push(`only ${a.ctaTotal} CTA link(s), expected at least ${minCta}`)
+  // +1: o bloco de CTA no rodapé do artigo (padrão ou ctaOverride) é sempre renderizado
+  // pelo page.tsx, independente do conteúdo — ver app/resources/[cluster]/[slug]/page.tsx.
+  const hasFourWeekCta = a.hasFourWeekCta || a.ctaOverride?.href === '/4-week-experience/'
+  const minCta = a.tipo === 'complementar' && hasFourWeekCta ? 1 : 2
+  const effectiveCtaTotal = a.ctaTotal + 1
+  if (effectiveCtaTotal < minCta) {
+    errors.push(`only ${effectiveCtaTotal} CTA link(s) (content + footer block), expected at least ${minCta}`)
   }
 
   if (a.pillarSlug && !slugSet.has(a.pillarSlug)) {

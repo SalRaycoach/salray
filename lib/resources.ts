@@ -78,6 +78,7 @@ export type Article = {
   needsProfessionalCareNote: boolean
   relatedArticles: string[]
   ogImage: string
+  ctaOverride?: { label: string; href: string; event: string } // substitui o botão padrão "Schedule an Initial Consultation" no rodapé do artigo
 }
 
 export function getPillars(): Article[] {
@@ -594,7 +595,9 @@ Yes. Anxiety activates the body's stress response, which can produce nausea, mus
 
 Mild, situational anxiety often resolves on its own once the triggering situation passes. **Chronic anxiety usually needs active support to shift** — whether that is non-clinical coaching to address underlying patterns, lifestyle changes, or clinical treatment, depending on severity. Waiting for it to disappear on its own is rarely an effective strategy once it has become a persistent pattern.
 
-If this pattern has been part of your life for a while, [the private community](#community) can be a supportive, non-clinical space to stay connected while you also consider clinical options.
+If this pattern has been part of your life for a while, the private community can be a supportive, non-clinical space to stay connected while you also consider clinical options.
+
+[Join the Private Facebook Community](#community)
 
 ## Chronic vs. severe anxiety: recognizing the signs
 
@@ -619,8 +622,6 @@ Generalized, diffuse worry that spans many areas of life — health, relationshi
 ## When professional clinical care may be appropriate
 
 If anxiety is frequent, physically intense, tied to panic attacks, or significantly interfering with your ability to work, sleep, or maintain relationships, **this is outside the scope of non-clinical coaching**. A licensed therapist, counselor, or physician can properly evaluate and treat anxiety disorders. If you are ever in crisis or feel unsafe, contact local emergency services or the 988 Suicide & Crisis Lifeline (call or text 988 in the U.S.).
-
-If you recognize this pattern and want structured, non-clinical support alongside any clinical care you may already have, [an initial consultation](#consultation) can help clarify next steps.
 
 ## Frequently Asked Questions`,
     faq: [
@@ -697,7 +698,9 @@ Repeating reactions across different situations usually means the reaction is ti
 
 Recovery is rarely linear. Day to day, it tends to look like noticing a trigger earlier than before, having more tools to regulate in the moment, and gradually reducing how much a reminder of the past can derail your present. Good days and setback days both remain part of the process for a long time — this is normal, not a sign of failure.
 
-If you want ongoing, non-clinical support alongside any clinical care you may have, [the private community](#community) is available while you work through this.
+If you want ongoing, non-clinical support alongside any clinical care you may have, the private community is available while you work through this.
+
+[Join the Private Facebook Community](#community)
 
 ## Common (non-clinical) signs associated with PTSD
 
@@ -723,7 +726,7 @@ Unresolved trauma can influence decisions in ways that are easy to miss: avoidin
 
 If you experience flashbacks, dissociation, intrusive memories, intense physiological reactions, or a persistent sense of danger disconnected from your actual present circumstances, **a licensed trauma-informed therapist is the appropriate primary resource**. Non-clinical coaching can complement that work by supporting daily structure and stability, but it is not a substitute for trauma-focused clinical treatment.
 
-If you recognize these patterns, [an initial consultation](#consultation) can help clarify what kind of support fits your situation. If you are in crisis or feel unsafe, contact local emergency services or the 988 Suicide & Crisis Lifeline (call or text 988 in the U.S.).
+If you are in crisis or feel unsafe, contact local emergency services or the 988 Suicide & Crisis Lifeline (call or text 988 in the U.S.).
 
 ## Frequently Asked Questions`,
     faq: [
@@ -1291,6 +1294,7 @@ If you are in the middle of a significant transition and want a clearer structur
       'can-anxiety-hide-my-real-abilities-from-myself',
     ],
     ogImage: '/images/og/og-default.jpg',
+    ctaOverride: { label: 'Start the 4-Week Experience', href: '/4-week-experience/', event: 'four_week_apply_click' },
     content: `From the outside, you look like someone who has it together. You hit deadlines, show up prepared, keep your commitments, and probably get told you're doing great. **What that picture leaves out is what it costs you to produce it.** High-functioning anxiety is not a clinical diagnosis, but it describes something real: a pattern of carrying constant internal tension while your outward performance stays intact, sometimes for years.
 
 If you've ever sat in a meeting nodding along, projecting complete calm, while your heart is pounding and your mind is running through every way the conversation could go wrong, you already know what this feels like from the inside. You've probably also noticed how little that internal experience matches what other people see when they look at you. This guide is educational and non-clinical. It is meant to help you recognize the pattern, not to diagnose or treat it.
@@ -1321,7 +1325,9 @@ Slowing down can feel riskier than pushing through, especially if your sense of 
 
 Part of what makes this so hard to interrupt is that slowing down doesn't feel like relief at first. It often feels like exposure. Without the constant activity to occupy your attention, whatever the busyness has been drowning out, the underlying worry, a sense of not being enough, an old fear of falling behind, tends to surface almost immediately. Pushing through avoids that confrontation. It just postpones it, usually at a growing cost.
 
-If this pattern of pushing through instead of pausing feels familiar, [the 4-Week Experience](/4-week-experience/) is built specifically to help you interrupt it with structure, rather than trying to white-knuckle your way out of it alone.
+If this pattern of pushing through instead of pausing feels familiar, the 4-Week Experience is built specifically to help you interrupt it with structure, rather than trying to white-knuckle your way out of it alone.
+
+[Start the 4-Week Experience](/4-week-experience/)
 
 ## Why does anxiety hit harder in some jobs or environments than others?
 
@@ -1381,7 +1387,7 @@ What tends to change first isn't the results. It's the experience of producing t
 
 High-functioning anxiety is not a formal clinical diagnosis, but the anxiety underneath it can still meet the criteria for a diagnosable condition, such as generalized anxiety disorder. If you're experiencing panic attacks, persistent physical symptoms, sleep that has become significantly disrupted, or anxiety that is starting to affect your health or relationships despite your outward performance, **this is outside the scope of non-clinical coaching.** A licensed therapist, counselor, or physician can properly evaluate and treat an underlying anxiety disorder. If you are ever in crisis or feel unsafe, contact local emergency services or the 988 Suicide & Crisis Lifeline (call or text 988 in the U.S.).
 
-If you recognize this pattern and want structured, non-clinical support to build a different relationship with the pressure you carry, alongside any clinical care you may already have, [the 4-Week Experience](/4-week-experience/) is designed to help you build that structure directly.
+If you recognize this pattern and want structured, non-clinical support to build a different relationship with the pressure you carry, alongside any clinical care you may already have, the 4-Week Experience is designed to help you build that structure directly.
 
 ## Frequently Asked Questions`,
     faq: [

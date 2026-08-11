@@ -9,6 +9,11 @@ function inline(text: string): string {
     .replace(/\[(.+?)\]\((.+?)\)/g, '<a href="$2" class="text-aqua underline underline-offset-2">$1</a>')
 }
 
+/** Um parágrafo cujo conteúdo inteiro é um único link vira botão sólido em vez de link sublinhado — ver CTA_BUTTON_CLASSES. */
+const CTA_BUTTON_LINE = /^\[([^\]]+)\]\(([^)]+)\)$/
+const CTA_BUTTON_CLASSES =
+  'inline-block font-body text-sm font-medium bg-orange text-charcoal px-5 py-3 rounded-md hover:bg-charcoal hover:text-offwhite transition-colors'
+
 function isTableRow(line: string): boolean {
   return line.trim().startsWith('|') && line.trim().endsWith('|')
 }
@@ -74,6 +79,13 @@ export function markdownToHtml(markdown: string): string {
         )
       }
       html.push('</tbody></table></div>')
+      continue
+    }
+
+    const ctaMatch = trimmed.match(CTA_BUTTON_LINE)
+    if (ctaMatch) {
+      html.push(`<p class="mb-5"><a href="${ctaMatch[2]}" class="${CTA_BUTTON_CLASSES}">${ctaMatch[1]}</a></p>`)
+      i++
       continue
     }
 

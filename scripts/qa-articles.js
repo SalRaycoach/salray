@@ -44,10 +44,12 @@ function extractSeedArticles() {
     const relatedMatch = block.match(/relatedArticles: \[([^\]]*)\]/)
     const relatedArticles = relatedMatch ? [...relatedMatch[1].matchAll(/'([^']+)'/g)].map((m) => m[1]) : []
     const faqCount = (block.match(/question:/g) || []).length
+    const ctaOverrideHref = (block.match(/ctaOverride:\s*\{[^}]*href:\s*'([^']+)'/) || [])[1]
+    const ctaOverride = ctaOverrideHref ? { href: ctaOverrideHref } : undefined
 
     articles.push({
       slug, cluster, tipo, pillarSlug, title, excerpt,
-      needsProfessionalCareNote, relatedArticles, faqCount,
+      needsProfessionalCareNote, relatedArticles, faqCount, ctaOverride,
       ...deriveFieldsFromContent(block),
       source: 'seed (lib/resources.ts)',
     })
@@ -74,6 +76,7 @@ function extractGeneratedArticles() {
         needsProfessionalCareNote: !!data.needsProfessionalCareNote,
         relatedArticles: data.relatedArticles || [],
         faqCount: (data.faq || []).length,
+        ctaOverride: data.ctaOverride,
         ...deriveFieldsFromContent(content),
         source: `generated (${file})`,
       }
