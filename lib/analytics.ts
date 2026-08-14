@@ -27,6 +27,16 @@ export type AnalyticsEvent =
   | 'scroll_90'
   | 'stable_method_scroll_75'
   | 'ApplicationStart' // 4-Week Experience — PascalCase kept to match Meta Events Manager naming (brief section 12)
+  // Página PT "Reconstrução Emocional" — ver briefing seção 17. purchase não é
+  // disparado por este helper: deve vir da própria Payhip após conclusão real
+  // do checkout, nunca no clique nem em uma página de agradecimento própria.
+  | 'view_offers_pt'
+  | 'select_offer'
+  | 'begin_checkout'
+  | 'whatsapp_click'
+  | 'video_start'
+  | 'video_progress'
+  | 'video_complete'
 
 export function trackEvent(event: AnalyticsEvent, payload: Record<string, unknown> = {}) {
   if (typeof window === 'undefined') return
