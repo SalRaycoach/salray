@@ -14,7 +14,7 @@ import path from 'node:path'
  *      longo e aleatório), só sinaliza que algo falhou e onde recuperar.
  */
 
-const FAILED_APPLICATIONS_LOG = path.join(process.cwd(), 'data', 'failed-4week-applications.jsonl')
+export const FAILED_APPLICATIONS_LOG = path.join(process.cwd(), 'data', 'failed-4week-applications.jsonl')
 
 // Tópico ntfy.sh dedicado — o nome longo/aleatório funciona como o "segredo"
 // do canal, já que o serviço em si não tem autenticação. Pra receber os
