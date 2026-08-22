@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { sendEmail } from '@/lib/email'
 import { business, contato, SITE_URL } from '@/lib/config'
+import { persistFailedApplication, sendFailureAlert } from '@/lib/application-failsafe'
 
 /**
  * Rate limiting is in-memory because this app runs as a single long-lived
@@ -117,8 +118,17 @@ export async function POST(request: NextRequest) {
   const utmContent = str(body, 'utm_content')
   const fbclid = str(body, 'fbclid')
 
+  const applicationRecord = {
+    firstName, lastName, email, mobile, location, currentSituation, desiredChange,
+    howLong, whyNow, commitFourWeeks, activeParticipation, readyIn14Days, phoneConsent,
+    submittedAt, pageUrl, utmSource, utmMedium, utmCampaign, utmContent, fbclid,
+  }
+
   if (!process.env.SMTP_HOST || !process.env.SMTP_USER || !process.env.SMTP_PASSWORD) {
-    console.error('SMTP_HOST/SMTP_USER/SMTP_PASSWORD are not set — cannot send 4-Week Experience application emails.')
+    const reason = 'SMTP_HOST/SMTP_USER/SMTP_PASSWORD not set'
+    console.error(`${reason} — cannot send 4-Week Experience application emails.`)
+    await persistFailedApplication(applicationRecord, reason)
+    await sendFailureAlert(firstName, reason)
     return NextResponse.json(
       { ok: false, error: 'We could not submit your application right now. Please try again shortly.' },
       { status: 500 }
@@ -182,7 +192,10 @@ export async function POST(request: NextRequest) {
       html: confirmationHtml,
     })
   } catch (err) {
+    const reason = err instanceof Error ? err.message : String(err)
     console.error('SMTP send failed for 4-Week Experience application:', err)
+    await persistFailedApplication(applicationRecord, reason)
+    await sendFailureAlert(firstName, reason)
     return NextResponse.json(
       { ok: false, error: 'We could not submit your application right now. Please try again shortly.' },
       { status: 502 }
