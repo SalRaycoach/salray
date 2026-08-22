@@ -9,8 +9,8 @@ import { business, contato, SITE_URL } from '@/lib/config'
  * enough to deter basic abuse without adding an external store.
  */
 const rateLimitMap = new Map<string, number[]>()
-const RATE_LIMIT_WINDOW_MS = 10 * 60 * 1000
-const RATE_LIMIT_MAX = 3
+const RATE_LIMIT_WINDOW_MS = 15 * 60 * 1000
+const RATE_LIMIT_MAX = 5
 
 function isRateLimited(ip: string): boolean {
   const now = Date.now()
@@ -44,7 +44,13 @@ function nl2br(value: string): string {
 export async function POST(request: NextRequest) {
   const ip = request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || 'unknown'
   if (isRateLimited(ip)) {
-    return NextResponse.json({ ok: false, error: 'Too many submissions. Please try again later.' }, { status: 429 })
+    return NextResponse.json(
+      {
+        ok: false,
+        error: "You've submitted this form too many times in a row. This is temporary — please wait about 15 minutes and try again.",
+      },
+      { status: 429 }
+    )
   }
 
   let body: Record<string, unknown>
