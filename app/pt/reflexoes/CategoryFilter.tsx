@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import type { Audio, AudioCategoria } from '@/lib/audios'
-import { formatDuration } from '@/lib/audios'
+import { formatDuration, CATEGORIA_LABEL } from '@/lib/audios'
 import { trackEvent } from '@/lib/analytics'
 
 /**
@@ -43,7 +43,7 @@ export default function CategoryFilter({ audios, categorias }: { audios: Audio[]
                 : 'border-charcoal/20 text-charcoal/70 hover:border-orange hover:text-orange'
             }`}
           >
-            {cat}
+            {CATEGORIA_LABEL[cat]}
           </button>
         ))}
       </div>
@@ -59,7 +59,7 @@ export default function CategoryFilter({ audios, categorias }: { audios: Audio[]
               onClick={() => trackEvent('related_audio_click', { audio_slug: audio.slug, source: 'hub' })}
               className="block border border-charcoal/10 rounded-lg p-6 hover:border-orange transition-colors"
             >
-              <p className="font-body text-xs uppercase tracking-widest text-aqua mb-3">{audio.categoria}</p>
+              <p className="font-body text-xs uppercase tracking-widest text-aqua mb-3">{CATEGORIA_LABEL[audio.categoria]}</p>
               <h3 className="font-display text-xl text-charcoal mb-2">{audio.titulo}</h3>
               <p className="font-body text-sm text-charcoal/70 leading-relaxed mb-4">{audio.descricao}</p>
               <p className="font-body text-xs text-charcoal/50">{formatDuration(audio.duracaoSegundos)}</p>

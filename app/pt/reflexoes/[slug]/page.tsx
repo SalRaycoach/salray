@@ -3,7 +3,7 @@ import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import SchemaOrg from '@/components/SchemaOrg'
 import { getAudioSchema } from '@/lib/schema'
-import { getPublishedAudioBySlug, getPublishedAudios, getRelatedAudios, formatDuration, PRODUTO_INFO } from '@/lib/audios'
+import { getPublishedAudioBySlug, getPublishedAudios, getRelatedAudios, formatDuration, PRODUTO_INFO, CATEGORIA_LABEL } from '@/lib/audios'
 import { SITE_URL } from '@/lib/config'
 import AudioPlayer from './AudioPlayer'
 import ShareButton from './ShareButton'
@@ -61,7 +61,7 @@ export default function AudioPage({ params }: { params: { slug: string } }) {
           / {audio.titulo}
         </nav>
 
-        <p className="font-body text-xs uppercase tracking-widest text-aqua mb-3">{audio.categoria}</p>
+        <p className="font-body text-xs uppercase tracking-widest text-aqua mb-3">{CATEGORIA_LABEL[audio.categoria]}</p>
         <h1 className="font-display text-4xl text-charcoal mb-2 max-w-2xl">{audio.titulo}</h1>
         <p className="font-body text-sm text-charcoal/50 mb-8">{formatDuration(audio.duracaoSegundos)}</p>
 

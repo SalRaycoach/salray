@@ -32,8 +32,11 @@ Não existe painel visual nesta primeira versão — cada áudio é uma entrada 
 - **slug** — parte final da URL do áudio (`salraycoach.com/pt/reflexoes/SLUG/`). Use só letras minúsculas, números e hífen, sem espaço nem acento. Precisa ser único — não pode repetir o de outro áudio já cadastrado.
 - **titulo** — aparece como título da página e nos cards da lista.
 - **descricao** — 2-3 linhas, aparece no card da lista e no topo da página do áudio.
-- **categoria** — precisa ser exatamente uma destas cinco (respeitando maiúsculas):
-  `Patterns`, `Relationships`, `Clarity`, `Emotional Stability`, `Morning Reflections`.
+- **categoria** — precisa ser exatamente uma destas quatro (respeitando maiúsculas, sempre em inglês no arquivo — é só o valor interno; no site aparece traduzida automaticamente):
+  - `Patterns` → aparece como "Padrões"
+  - `Relationships` → aparece como "Relacionamentos"
+  - `Clarity` → aparece como "Clareza"
+  - `Emotional Stability` → aparece como "Estabilidade Emocional"
 - **duracaoSegundos** — duração real do arquivo de áudio, em segundos (ex.: um áudio de 5min30s = `330`).
 - **urlAudio** — a URL pública do R2 (ver `README.md`).
 - **transcricao** — texto completo ou resumo fiel do áudio. Pode ter quebras de linha (Enter) pra separar parágrafos.

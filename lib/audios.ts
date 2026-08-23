@@ -12,15 +12,20 @@
  * ---------------------------------------------------------------------------
  */
 
-export type AudioCategoria = 'Patterns' | 'Relationships' | 'Clarity' | 'Emotional Stability' | 'Morning Reflections'
+// Valor interno em inglês (mais simples de manter no código) — o texto
+// mostrado pro usuário vem sempre de CATEGORIA_LABEL, nunca deste valor cru.
+// "Morning Reflections" foi removida da lista de filtros a pedido do
+// usuário (22 ago 2026) — não é mais uma categoria válida.
+export type AudioCategoria = 'Patterns' | 'Relationships' | 'Clarity' | 'Emotional Stability'
 
-export const AUDIO_CATEGORIAS: AudioCategoria[] = [
-  'Patterns',
-  'Relationships',
-  'Clarity',
-  'Emotional Stability',
-  'Morning Reflections',
-]
+export const AUDIO_CATEGORIAS: AudioCategoria[] = ['Patterns', 'Relationships', 'Clarity', 'Emotional Stability']
+
+export const CATEGORIA_LABEL: Record<AudioCategoria, string> = {
+  Patterns: 'Padrões',
+  Relationships: 'Relacionamentos',
+  Clarity: 'Clareza',
+  'Emotional Stability': 'Estabilidade Emocional',
+}
 
 /**
  * Referencia uma das 4 ofertas já existentes em /pt/reconstrucao-emocional/
@@ -83,7 +88,7 @@ export const audios: Audio[] = [
     titulo: 'Clareza Antes da Cafeína',
     descricao:
       'Um ponto de partida simples para começar o dia com direção, antes que as primeiras exigências do dia tomem conta da sua atenção.',
-    categoria: 'Morning Reflections',
+    categoria: 'Clarity', // era 'Morning Reflections', removida da lista de categorias válidas (22 ago 2026)
     duracaoSegundos: 254,
     urlAudio: 'https://pub-example.r2.dev/reflexoes/clareza-antes-da-cafeina.mp3',
     transcricao:
