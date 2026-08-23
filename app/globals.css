@@ -10,6 +10,34 @@
   body {
     @apply bg-offwhite text-charcoal;
   }
+
+  /*
+   * Chrome/Safari force their own light autofill background (a white/yellow
+   * flash) on <input>/<textarea>/<select>, ignoring our dark theme — the
+   * documented fix is an inset box-shadow the size of the field, which paints
+   * over the UA's autofill background without touching background-color
+   * itself (which :-webkit-autofill overrides can't reliably beat). Colors
+   * mirror the offwhite/charcoal tokens in tailwind.config.ts — update both
+   * places together if either token value changes.
+   */
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  input:-webkit-autofill:active,
+  textarea:-webkit-autofill,
+  textarea:-webkit-autofill:hover,
+  textarea:-webkit-autofill:focus,
+  textarea:-webkit-autofill:active,
+  select:-webkit-autofill,
+  select:-webkit-autofill:hover,
+  select:-webkit-autofill:focus,
+  select:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0px 1000px #111111 inset;
+    box-shadow: 0 0 0px 1000px #111111 inset;
+    -webkit-text-fill-color: #EDEBE6;
+    caret-color: #EDEBE6;
+    transition: background-color 9999s ease-in-out 0s;
+  }
 }
 
 @keyframes fadeUp {

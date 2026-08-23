@@ -1,8 +1,7 @@
 /**
- * Rodapé mínimo, só em português — briefing seção 15. Não repete o menu em
+ * Rodapé mínimo compartilhado por toda a árvore /pt/ — não repete o menu em
  * inglês. Os links legais apontam para as páginas legais existentes do site
- * (ainda não há versão em português dessas páginas — decisão pragmática:
- * o rótulo do link é em português, o destino é o documento legal vigente).
+ * (ainda não há versão em português delas).
  */
 export default function PtFooter() {
   const legalLinks = [
@@ -26,7 +25,12 @@ export default function PtFooter() {
             </li>
           ))}
         </ul>
-        <p className="font-body text-xs text-offwhite/50">© {new Date().getFullYear()} SAL Ray. Todos os direitos reservados.</p>
+        <p className="font-body text-xs text-offwhite/50">
+          © {new Date().getFullYear()} SAL Ray. Todos os direitos reservados. ·{' '}
+          <a href="https://salraycoach.com" className="underline underline-offset-2 hover:text-orange">
+            Explore o site completo (em inglês)
+          </a>
+        </p>
       </div>
     </footer>
   )

@@ -3,8 +3,8 @@ import { Fraunces, Inter } from 'next/font/google'
 import '../globals.css'
 import GoogleAnalytics from '@/components/GoogleAnalytics'
 import MetaPixel from '@/components/MetaPixel'
-import { GA_MEASUREMENT_ID, META_PIXEL_ID } from '@/lib/config'
-import { PT_CANONICAL_URL, ptPageMeta } from '@/lib/pt-reconstrucao'
+import AnalyticsListener from '@/components/AnalyticsListener'
+import { GA_MEASUREMENT_ID, META_PIXEL_ID, SITE_URL } from '@/lib/config'
 import PtHeader from './PtHeader'
 import PtFooter from './PtFooter'
 
@@ -21,24 +21,16 @@ const inter = Inter({
 })
 
 /**
- * Rota isolada, própria (briefing seção 18): noindex/nofollow tanto na tag
- * meta quanto — via middleware.ts, matcher '/pt/:path*' — no cabeçalho
- * X-Robots-Tag. Não incluir esta rota em app/(marketing)/sitemap,
- * next-sitemap.config.js (exclude já cobre isso) nem em public/llms.txt.
+ * Raiz compartilhada por toda a árvore /pt/ — precisa existir fora de
+ * app/(marketing)/ pra poder declarar seu próprio <html lang="pt-BR">
+ * (regra do Next.js pra "multiple root layouts", ver commit da
+ * reestruturação de rotas). Deliberadamente sem metadata.robots aqui: cada
+ * seção sob /pt/ decide isso na sua própria camada (ex.:
+ * app/pt/reflexoes/layout.tsx define index,follow; app/pt/reconstrucao-
+ * emocional/page.tsx define noindex,nofollow) — não force um default aqui
+ * que uma seção com necessidade diferente da outra precisaria sobrescrever.
  */
-export const metadata: Metadata = {
-  title: ptPageMeta.title,
-  description: ptPageMeta.description,
-  alternates: { canonical: PT_CANONICAL_URL },
-  robots: { index: false, follow: false },
-  openGraph: {
-    title: ptPageMeta.title,
-    description: ptPageMeta.description,
-    url: PT_CANONICAL_URL,
-    locale: 'pt_BR',
-    type: 'website',
-  },
-}
+export const metadata: Metadata = { metadataBase: new URL(SITE_URL) }
 
 export default function PtRootLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -49,6 +41,7 @@ export default function PtRootLayout({ children }: { children: React.ReactNode }
         <PtHeader />
         {children}
         <PtFooter />
+        <AnalyticsListener />
       </body>
     </html>
   )

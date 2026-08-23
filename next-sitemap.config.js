@@ -16,9 +16,10 @@ module.exports = {
     // brief section 11. Remove this line if the page is ever taken off noindex.
     '/4-week-experience',
     // Isolated PT campaign page — never indexed, never listed in sitemap.
-    // See Briefing_Pagina_Reconstrucao_Emocional_SAL_Ray, seção 18.
+    // See Briefing_Pagina_Reconstrucao_Emocional_SAL_Ray, seção 18. Does NOT
+    // exclude the rest of /pt/ — /pt/reflexoes/ is a sibling section that's
+    // meant to be indexed and listed (see its own priority rule below).
     '/pt/reconstrucao-emocional',
-    '/pt',
   ],
   robotsTxtOptions: {
     policies: [
@@ -71,6 +72,14 @@ module.exports = {
     } else if (p === '/sitemap') {
       priority = 0.2
       changefreq = 'weekly'
+    } else if (p === '/pt/reflexoes') {
+      // hub — biblioteca de áudios em português, conteúdo indexável e gratuito
+      priority = 0.8
+      changefreq = 'weekly'
+    } else if (p.startsWith('/pt/reflexoes/')) {
+      // /pt/reflexoes/[slug]/ — áudio individual
+      priority = 0.6
+      changefreq = 'monthly'
     }
 
     return {

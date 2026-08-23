@@ -1,15 +1,30 @@
 import Image from 'next/image'
 import { Suspense } from 'react'
 import type { Metadata } from 'next'
-import { getOffer, comparisonColumns, comparisonRows, stableMethodPt, ptFaqs, ptTestimonials, buildWhatsAppUrl, whatsapp, PT_CANONICAL_URL } from '@/lib/pt-reconstrucao'
+import { getOffer, comparisonColumns, comparisonRows, stableMethodPt, ptFaqs, ptTestimonials, buildWhatsAppUrl, whatsapp, PT_CANONICAL_URL, ptPageMeta } from '@/lib/pt-reconstrucao'
 import OfferCta from './OfferCta'
 import FaqAccordion from './FaqAccordion'
 import VideoSection from './VideoSection'
 import PageLoadTracker from './PageLoadTracker'
 
+// Rota isolada, própria (briefing seção 18): noindex/nofollow tanto na tag
+// meta quanto — via middleware.ts, matcher '/pt/reconstrucao-emocional/:path*'
+// — no cabeçalho X-Robots-Tag. Não incluir esta rota em app/(marketing)/sitemap,
+// next-sitemap.config.js (exclude já cobre isso) nem em public/llms.txt.
+// Definido aqui (não no app/pt/layout.tsx compartilhado) porque /pt/reflexoes/
+// é uma seção irmã que precisa continuar indexável.
 export const metadata: Metadata = {
+  title: ptPageMeta.title,
+  description: ptPageMeta.description,
   alternates: { canonical: PT_CANONICAL_URL },
   robots: { index: false, follow: false },
+  openGraph: {
+    title: ptPageMeta.title,
+    description: ptPageMeta.description,
+    url: PT_CANONICAL_URL,
+    locale: 'pt_BR',
+    type: 'website',
+  },
 }
 
 const quickChoiceItems = [

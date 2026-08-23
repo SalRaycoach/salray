@@ -279,4 +279,44 @@ export function getFourWeekExperienceSchema(faqItems: Faq[]) {
   }
 }
 
+/** /pt/reflexoes/[slug]: AudioObject (transcript, duration, contentUrl) + BreadcrumbList — ver PROMPT_REFLEXOES_SAL_RAY.md seção 4. */
+export function getAudioSchema(audio: {
+  slug: string
+  titulo: string
+  descricao: string
+  transcricao: string
+  duracaoSegundos: number
+  urlAudio: string
+  dataPublicacao: string
+  ogImage?: string
+}) {
+  const isoDuration = `PT${Math.floor(audio.duracaoSegundos / 60)}M${audio.duracaoSegundos % 60}S`
+  const pageUrl = `${SITE_URL}/pt/reflexoes/${audio.slug}/`
+
+  const audioObject = {
+    '@type': 'AudioObject',
+    name: audio.titulo,
+    description: audio.descricao,
+    transcript: audio.transcricao,
+    duration: isoDuration,
+    contentUrl: audio.urlAudio,
+    uploadDate: audio.dataPublicacao,
+    inLanguage: 'pt-BR',
+    image: audio.ogImage ? `${SITE_URL}${audio.ogImage}` : `${SITE_URL}/images/og/og-default.jpg`,
+    mainEntityOfPage: pageUrl,
+    creator: { '@id': `${SITE_URL}/#person` },
+  }
+
+  const breadcrumb = buildBreadcrumbList([
+    { name: 'Home', url: '/pt/reflexoes/' },
+    { name: 'Reflexões', url: '/pt/reflexoes/' },
+    { name: audio.titulo, url: `/pt/reflexoes/${audio.slug}/` },
+  ])
+
+  return {
+    '@context': 'https://schema.org',
+    '@graph': [audioObject, breadcrumb],
+  }
+}
+
 export { DOMINIO, SITE_URL }

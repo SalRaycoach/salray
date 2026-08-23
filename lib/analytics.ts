@@ -37,6 +37,15 @@ export type AnalyticsEvent =
   | 'video_start'
   | 'video_progress'
   | 'video_complete'
+  // "Reflexões SAL Ray" — biblioteca de áudios, ver PROMPT_REFLEXOES_SAL_RAY.md seção 8.
+  | 'audio_play'
+  | 'audio_25'
+  | 'audio_50'
+  | 'audio_75'
+  | 'audio_complete'
+  | 'audio_share_click'
+  | 'related_audio_click'
+  | 'product_cta_click'
 
 export function trackEvent(event: AnalyticsEvent, payload: Record<string, unknown> = {}) {
   if (typeof window === 'undefined') return

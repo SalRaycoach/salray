@@ -13,6 +13,15 @@ export const SITE_URL = `https://${DOMINIO}`
 export const GA_MEASUREMENT_ID = 'G-YFEG8JC9BF'
 export const META_PIXEL_ID = '892828299770545'
 
+/**
+ * Biblioteca pública de áudios em português — ver PROMPT_REFLEXOES_SAL_RAY.md.
+ * Nome centralizado aqui (não espalhado em texto solto) pra facilitar troca
+ * futura sem precisar caçar ocorrências pelo código.
+ */
+export const reflexoes = {
+  nomeSerie: 'Reflexões SAL Ray',
+} as const
+
 export const business = {
   nome: 'SAL Ray',
   posicionamento: 'Emotional & Life Rebuilding Coach',
