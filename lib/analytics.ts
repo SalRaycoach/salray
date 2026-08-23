@@ -27,6 +27,15 @@ export type AnalyticsEvent =
   | 'scroll_90'
   | 'stable_method_scroll_75'
   | 'ApplicationStart' // 4-Week Experience — PascalCase kept to match Meta Events Manager naming (brief section 12)
+  // "Reflexões SAL Ray" — biblioteca de áudios, ver PROMPT_REFLEXOES_SAL_RAY.md seção 8.
+  | 'audio_play'
+  | 'audio_25'
+  | 'audio_50'
+  | 'audio_75'
+  | 'audio_complete'
+  | 'audio_share_click'
+  | 'related_audio_click'
+  | 'product_cta_click'
 
 export function trackEvent(event: AnalyticsEvent, payload: Record<string, unknown> = {}) {
   if (typeof window === 'undefined') return

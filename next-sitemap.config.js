@@ -67,6 +67,14 @@ module.exports = {
     } else if (p === '/sitemap') {
       priority = 0.2
       changefreq = 'weekly'
+    } else if (p === '/pt/reflexoes') {
+      // hub — biblioteca de áudios em português, conteúdo indexável e gratuito
+      priority = 0.8
+      changefreq = 'weekly'
+    } else if (p.startsWith('/pt/reflexoes/')) {
+      // /pt/reflexoes/[slug]/ — áudio individual
+      priority = 0.6
+      changefreq = 'monthly'
     }
 
     return {
