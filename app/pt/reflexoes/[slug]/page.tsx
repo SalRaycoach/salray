@@ -9,17 +9,13 @@ import AudioPlayer from './AudioPlayer'
 import ShareButton from './ShareButton'
 import ProductCta from './ProductCta'
 
-// Ver nota equivalente em app/pt/reflexoes/page.tsx — sem isso, um áudio
-// agendado só ficaria acessível depois de um novo deploy manual.
-export const revalidate = 3600
-
-export function generateStaticParams() {
-  // Só os já publicados no momento do build — nunca pré-gera (e portanto
-  // nunca vaza) a página de um áudio agendado pro futuro. Quando a data
-  // chegar, a rota é renderizada sob demanda no primeiro acesso (ver
-  // revalidate acima) e passa a ficar em cache normalmente.
-  return getPublishedAudios().map((a) => ({ slug: a.slug }))
-}
+// Ver nota equivalente em app/pt/reflexoes/page.tsx — force-dynamic (em vez
+// de revalidate) garante que um áudio agendado fica acessível assim que sua
+// dataPublicacao chega, sem esperar o próximo ciclo de cache (até 1h de
+// atraso com ISR). generateStaticParams foi removido junto: com
+// force-dynamic nada é pré-gerado, então uma lista estática de slugs no
+// build não tem efeito.
+export const dynamic = 'force-dynamic'
 
 export function generateMetadata({ params }: { params: { slug: string } }): Metadata {
   const audio = getPublishedAudioBySlug(params.slug)

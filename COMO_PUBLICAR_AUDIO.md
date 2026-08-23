@@ -41,7 +41,7 @@ Não existe painel visual nesta primeira versão — cada áudio é uma entrada 
 - **urlAudio** — a URL pública do R2 (ver `README.md`).
 - **transcricao** — texto completo ou resumo fiel do áudio. Pode ter quebras de linha (Enter) pra separar parágrafos.
 - **dataPublicacao** — data e hora em que o áudio passa a aparecer no site, no formato `AAAA-MM-DDTHH:MM:SS-05:00` (o `-05:00` é o fuso horário — ajuste se precisar). **Enquanto essa data não chegar, o áudio fica completamente invisível e inacessível no site** — nem aparece na lista, nem abre por link direto. Isso é o que permite gravar várias semanas de uma vez e deixar o site "soltar" um por vez sozinho.
-  - Importante: a lista do site é atualizada automaticamente no máximo a cada 1 hora (não instantaneamente) — se você programar um áudio pra 09:00, ele pode demorar até 1 hora a mais pra realmente aparecer.
+  - O site verifica a data a cada acesso — assim que o horário programado chega, o áudio aparece no próximo carregamento da página (sem esperar nenhum ciclo de cache).
 - **produtoRelacionado** — qual das 4 ofertas da página de vendas (`/pt/reconstrucao-emocional/`) esse áudio deve sugerir no final. Precisa ser exatamente uma destas:
   - `primeiro-passo` — Primeiro Passo S.T.A.B.L.E.™ (US$ 17)
   - `vivencias` — Vivências de Reconstrução Emocional (US$ 147)

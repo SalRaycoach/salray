@@ -25,7 +25,12 @@ export default function PtFooter() {
             </li>
           ))}
         </ul>
-        <p className="font-body text-xs text-offwhite/50">© {new Date().getFullYear()} SAL Ray. Todos os direitos reservados.</p>
+        <p className="font-body text-xs text-offwhite/50">
+          © {new Date().getFullYear()} SAL Ray. Todos os direitos reservados. ·{' '}
+          <a href="https://salraycoach.com" className="underline underline-offset-2 hover:text-orange">
+            Explore o site completo (em inglês)
+          </a>
+        </p>
       </div>
     </footer>
   )

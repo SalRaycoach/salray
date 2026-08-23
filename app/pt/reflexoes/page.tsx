@@ -7,10 +7,12 @@ import CategoryFilter from './CategoryFilter'
 // momento do último build — um áudio agendado só apareceria depois de um
 // novo deploy manual, o que contradiz o objetivo da publicação programada
 // (gravar várias semanas de uma vez e o site "soltar" um por vez sozinho).
-// Com revalidate, o Next.js reconstrói esta página em segundo plano no
-// máximo 1x/hora, então a defasagem real entre a data programada e o áudio
-// aparecer no ar é de até ~1 hora, não instantânea.
-export const revalidate = 3600
+// force-dynamic (em vez de revalidate) renderiza sob demanda em cada
+// acesso — sem essa mudança (pedida em 23 ago 2026), um ISR com revalidate
+// podia atrasar em até 1h o momento em que um áudio agendado passava a
+// aparecer; com force-dynamic o atraso é o tempo de resposta do servidor,
+// não um ciclo de cache.
+export const dynamic = 'force-dynamic'
 
 // title.template do layout.tsx desta mesma pasta NÃO se aplica ao title
 // definido aqui — regra do Next.js: title.template só afeta segmentos
