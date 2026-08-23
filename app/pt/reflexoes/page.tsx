@@ -36,7 +36,6 @@ export default function ReflexoesHubPage() {
 
   return (
     <main className="max-w-content mx-auto px-6 py-16 md:py-24">
-      <p className="font-body text-xs uppercase tracking-[0.08em] text-aqua mb-3">GRATUITO · EM PORTUGUÊS</p>
       <h1 className="font-display text-4xl md:text-5xl leading-tight text-charcoal mb-6 max-w-2xl">{reflexoes.nomeSerie}</h1>
       <p className="font-body text-lg text-charcoal/80 leading-relaxed max-w-2xl mb-14">
         Reflexões curtas em áudio para reconhecer padrões emocionais e reorganizar a resposta interna, um pouco por
