@@ -13,11 +13,13 @@ export default function ProductCta({
   audioSlug,
   produtoRelacionado,
   produtoNome,
+  produtoArtigo,
   anchor,
 }: {
   audioSlug: string
   produtoRelacionado: ProdutoRelacionado
   produtoNome: string
+  produtoArtigo: string
   anchor: string
 }) {
   return (
@@ -26,7 +28,7 @@ export default function ProductCta({
       onClick={() => trackEvent('product_cta_click', { produto_relacionado: produtoRelacionado, audio_slug: audioSlug })}
       className="inline-block font-body text-sm font-medium bg-orange text-charcoal px-6 py-3 rounded-md hover:bg-charcoal hover:text-offwhite transition-colors"
     >
-      Conhecer o {produtoNome}
+      Conhecer {produtoArtigo} {produtoNome}
     </a>
   )
 }

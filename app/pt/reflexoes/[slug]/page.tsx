@@ -79,12 +79,13 @@ export default function AudioPage({ params }: { params: { slug: string } }) {
         <div className="max-w-2xl border border-charcoal/15 rounded-lg p-6 mb-12">
           <p className="font-body text-xs uppercase tracking-widest text-aqua mb-2">Quer ir mais fundo?</p>
           <p className="font-body text-charcoal/80 leading-relaxed mb-4">
-            Esta reflexão se conecta com o {produto.nome}, parte do Método S.T.A.B.L.E.™.
+            Esta reflexão se conecta com {produto.artigo} {produto.nome}, parte do Método S.T.A.B.L.E.™.
           </p>
           <ProductCta
             audioSlug={audio.slug}
             produtoRelacionado={audio.produtoRelacionado}
             produtoNome={produto.nome}
+            produtoArtigo={produto.artigo}
             anchor={produto.anchor}
           />
         </div>
