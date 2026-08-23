@@ -37,6 +37,7 @@ export type AnalyticsEvent =
   | 'video_start'
   | 'video_progress'
   | 'video_complete'
+  | 'notify_me_submit' // captura "avise-me quando estiver pronto" — ofertas em gravação, ver briefing 23 ago 2026
   // "Reflexões SAL Ray" — biblioteca de áudios, ver PROMPT_REFLEXOES_SAL_RAY.md seção 8.
   | 'audio_play'
   | 'audio_25'

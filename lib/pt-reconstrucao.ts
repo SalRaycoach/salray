@@ -53,7 +53,7 @@ export function buildWhatsAppUrl(message: string): string {
   return `https://wa.me/${number}?text=${encodeURIComponent(message)}`
 }
 
-export type OfferStatus = 'active' | 'open-cohort' | 'preparing' | 'enrollment-closed' | 'contact-only'
+export type OfferStatus = 'active' | 'open-cohort' | 'preparing' | 'enrollment-closed' | 'contact-only' | 'recording'
 
 export type Offer = {
   id: 'primeiro-passo' | 'vivencias' | 'mentoria' | 'personalizado'
@@ -73,6 +73,11 @@ export type Offer = {
   ctaHref: string // link direto de checkout da Payhip — PENDENTE_ até existir
   microtext: string
   limites?: string
+  // status 'recording': texto que substitui o preço/CTA de compra enquanto o
+  // áudio ainda está sendo gravado (pedido em 23 ago 2026) — sem data fixa,
+  // com concordância de gênero/número específica pra cada oferta (não dá pra
+  // templatizar genericamente: "está sendo gravado" vs "estão sendo gravadas").
+  recordingMessage?: string
 }
 
 export const offers: Offer[] = [
@@ -92,11 +97,12 @@ export const offers: Offer[] = [
       'O botão leva diretamente ao checkout da Payhip. O pagamento é processado pelo Stripe. Após a aprovação, a Payhip envia automaticamente o comprovante e o link de acesso por e-mail, sem envio manual por Sal Ray.',
     price: 'US$ 17',
     paymentType: 'pagamento único',
-    status: 'active',
+    status: 'recording',
     ctaText: 'Começar agora por US$ 17',
     ctaHref: 'PENDENTE_CHECKOUT_PAYHIP_17', // NÃO INVENTAR — link direto de checkout da Payhip
     microtext: 'Pagamento seguro processado pelo Stripe. Acesso e instruções enviados automaticamente por e-mail após a confirmação.',
     limites: 'Este programa não inclui mentoria, análise individual ou contato direto com Sal Ray. Se você precisa de orientação personalizada, veja a quarta opção.',
+    recordingMessage: 'O Primeiro Passo está sendo gravado com cuidado. Quer ser avisada assim que estiver pronto?',
   },
   {
     id: 'vivencias',
@@ -112,10 +118,12 @@ export const offers: Offer[] = [
       'Uma sequência de 12 vivências de reconstrução emocional em áudio. Cada vivência cumpre uma função própria dentro do processo, sem depender de encontros ao vivo.',
     price: 'US$ 147',
     paymentType: 'pagamento único',
-    status: 'active',
+    status: 'recording',
     ctaText: 'Quero iniciar as Vivências por US$ 147',
     ctaHref: 'PENDENTE_CHECKOUT_PAYHIP_147', // NÃO INVENTAR — link direto de checkout da Payhip
     microtext: 'Programa digital autoguiado. Pagamento seguro processado pelo Stripe. Acesso automático por e-mail. Não inclui sessões individuais.',
+    recordingMessage:
+      'As Vivências de Reconstrução Emocional estão sendo gravadas com cuidado. Quer ser avisada assim que estiverem prontas?',
   },
   {
     id: 'mentoria',
@@ -299,7 +307,12 @@ export const comparisonRows = [
     criterio: 'Melhor para',
     valores: ['Dar o primeiro passo', 'Aprofundar sozinho', 'Ter direção ao vivo', 'Trabalhar o caso individual'],
   },
-  { criterio: 'Ação', valores: ['Comprar por US$ 17', 'Comprar por US$ 147', 'Comprar vaga da turma', 'Conversar no WhatsApp'] },
+  {
+    criterio: 'Ação',
+    // Primeiro Passo e Vivências: gravação em andamento, sem compra ativa
+    // (23 ago 2026) — CTA aponta pra captura de interesse, não pro preço.
+    valores: ['Avise-me quando estiver pronto', 'Avise-me quando estiver pronto', 'Comprar vaga da turma', 'Conversar no WhatsApp'],
+  },
 ] as const
 
 export const comparisonColumns = ['US$ 17', 'US$ 147', 'Mentoria', 'Personalizado'] as const

@@ -3,6 +3,7 @@ import { Suspense } from 'react'
 import type { Metadata } from 'next'
 import { getOffer, comparisonColumns, comparisonRows, stableMethodPt, ptFaqs, ptTestimonials, buildWhatsAppUrl, whatsapp, PT_CANONICAL_URL, ptPageMeta } from '@/lib/pt-reconstrucao'
 import OfferCta from './OfferCta'
+import NotifyMeForm from './NotifyMeForm'
 import FaqAccordion from './FaqAccordion'
 import VideoSection from './VideoSection'
 import PageLoadTracker from './PageLoadTracker'
@@ -206,10 +207,22 @@ export default function ReconstrucaoEmocionalPage() {
                 Capa digital · fones · 6 faixas numeradas
               </span>
             </div>
-            <p className="font-display text-4xl text-charcoal mb-1">{primeiroPasso.price}</p>
-            <p className="font-body text-sm text-charcoal/60 mb-6">{primeiroPasso.paymentType}</p>
-            <OfferCta offer={primeiroPasso} source="oferta_17" />
-            <p className="font-body text-xs text-charcoal/50 leading-relaxed mt-4">{primeiroPasso.microtext}</p>
+            {primeiroPasso.status === 'recording' ? (
+              <>
+                <span className="inline-block font-body text-xs font-semibold uppercase tracking-widest text-aqua border border-aqua/40 bg-aqua/5 px-4 py-2 rounded-full mb-4">
+                  Gravação em andamento
+                </span>
+                <p className="font-body text-charcoal/75 leading-relaxed mb-6">{primeiroPasso.recordingMessage}</p>
+                <NotifyMeForm offerId={primeiroPasso.id} offerName={primeiroPasso.name} source="oferta_17" />
+              </>
+            ) : (
+              <>
+                <p className="font-display text-4xl text-charcoal mb-1">{primeiroPasso.price}</p>
+                <p className="font-body text-sm text-charcoal/60 mb-6">{primeiroPasso.paymentType}</p>
+                <OfferCta offer={primeiroPasso} source="oferta_17" />
+                <p className="font-body text-xs text-charcoal/50 leading-relaxed mt-4">{primeiroPasso.microtext}</p>
+              </>
+            )}
           </div>
         </div>
       </section>
@@ -257,10 +270,22 @@ export default function ReconstrucaoEmocionalPage() {
                 </div>
               ))}
             </div>
-            <p className="font-display text-4xl text-charcoal mb-1">{vivencias.price}</p>
-            <p className="font-body text-sm text-charcoal/60 mb-6">{vivencias.paymentType}</p>
-            <OfferCta offer={vivencias} source="oferta_147" />
-            <p className="font-body text-xs text-charcoal/50 leading-relaxed mt-4">{vivencias.microtext}</p>
+            {vivencias.status === 'recording' ? (
+              <>
+                <span className="inline-block font-body text-xs font-semibold uppercase tracking-widest text-aqua border border-aqua/40 bg-aqua/5 px-4 py-2 rounded-full mb-4">
+                  Gravação em andamento
+                </span>
+                <p className="font-body text-charcoal/75 leading-relaxed mb-6">{vivencias.recordingMessage}</p>
+                <NotifyMeForm offerId={vivencias.id} offerName={vivencias.name} source="oferta_147" />
+              </>
+            ) : (
+              <>
+                <p className="font-display text-4xl text-charcoal mb-1">{vivencias.price}</p>
+                <p className="font-body text-sm text-charcoal/60 mb-6">{vivencias.paymentType}</p>
+                <OfferCta offer={vivencias} source="oferta_147" />
+                <p className="font-body text-xs text-charcoal/50 leading-relaxed mt-4">{vivencias.microtext}</p>
+              </>
+            )}
           </div>
         </div>
       </section>
