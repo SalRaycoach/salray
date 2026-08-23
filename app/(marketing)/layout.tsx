@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import Script from 'next/script'
 import { Fraunces, Inter } from 'next/font/google'
-import './globals.css'
+import '../globals.css'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import FacebookFloat from '@/components/FacebookFloat'
