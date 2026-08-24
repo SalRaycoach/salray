@@ -73,7 +73,7 @@ export default function AudioPage({ params }: { params: { slug: string } }) {
         <p className="font-body text-sm text-charcoal/50 mb-8">{formatDuration(audio.duracaoSegundos)}</p>
 
         <div className="max-w-2xl mb-6">
-          <AudioPlayer slug={audio.slug} src={audio.urlAudio} duracaoSegundos={audio.duracaoSegundos} />
+          <AudioPlayer slug={audio.slug} titulo={audio.titulo} src={audio.urlAudio} duracaoSegundos={audio.duracaoSegundos} />
         </div>
 
         <p className="font-body text-lg text-charcoal/80 leading-relaxed max-w-2xl mb-12">{audio.descricao}</p>
