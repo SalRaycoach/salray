@@ -48,6 +48,10 @@ Não existe painel visual nesta primeira versão — cada áudio é uma entrada 
   - `mentoria` — Mentoria S.T.A.B.L.E.™
   - `personalizado` — Acompanhamento Personalizado
 
+## "Próxima reflexão" nas páginas já publicadas
+
+Assim que você cadastra um áudio novo com `dataPublicacao` no futuro, as páginas dos áudios já publicados passam a mostrar automaticamente "Próxima reflexão: [dia da semana], [data]" perto do final — sem título, categoria ou qualquer pista do conteúdo, só a data. Você não precisa editar nada pra isso acontecer nem pra isso parar: quando o áudio da fila publicar de verdade, o teaser desaparece sozinho (e passa a apontar pro próximo, se houver outro agendado).
+
 ## Erros comuns
 
 - **Esquecer as aspas simples** (`'`) ao redor de textos — o arquivo é código, cada texto precisa estar entre aspas.

@@ -3,7 +3,16 @@ import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import SchemaOrg from '@/components/SchemaOrg'
 import { getAudioSchema } from '@/lib/schema'
-import { getPublishedAudioBySlug, getPublishedAudios, getRelatedAudios, formatDuration, PRODUTO_INFO, CATEGORIA_LABEL } from '@/lib/audios'
+import {
+  getPublishedAudioBySlug,
+  getPublishedAudios,
+  getRelatedAudios,
+  getNextScheduledAudio,
+  formatProximaData,
+  formatDuration,
+  PRODUTO_INFO,
+  CATEGORIA_LABEL,
+} from '@/lib/audios'
 import { SITE_URL } from '@/lib/config'
 import AudioPlayer from './AudioPlayer'
 import ShareButton from './ShareButton'
@@ -45,6 +54,7 @@ export default function AudioPage({ params }: { params: { slug: string } }) {
   const produto = PRODUTO_INFO[audio.produtoRelacionado]
   const pageUrl = `${SITE_URL}/pt/reflexoes/${audio.slug}/`
   const schema = getAudioSchema(audio)
+  const proximaAudio = getNextScheduledAudio()
 
   return (
     <>
@@ -102,6 +112,12 @@ export default function AudioPage({ params }: { params: { slug: string } }) {
               ))}
             </ul>
           </div>
+        )}
+
+        {proximaAudio && (
+          <p className="font-body text-sm text-charcoal/50 mb-8">
+            Próxima reflexão: {formatProximaData(proximaAudio.dataPublicacao)}
+          </p>
         )}
 
         <div className="max-w-2xl">
