@@ -74,6 +74,20 @@ export const audios: Audio[] = [
     dataPublicacao: '2026-08-24T00:00:00-05:00', // meia-noite — mudança de prazo pedida em 23 ago 2026
     produtoRelacionado: 'vivencias',
   },
+  {
+    slug: 'limite-que-voce-estabeleceu-mas-continua-renegociando',
+    titulo: 'O Limite Que Você Estabeleceu, Mas Continua Renegociando Quando Sente Desconforto',
+    descricao:
+      'O problema pode não ser colocar o limite. Pode ser sustentar a própria decisão depois que surgem culpa, pressão, silêncio ou medo de conflito.',
+    categoria: 'Patterns',
+    duracaoSegundos: 296,
+    urlAudio:
+      'https://pub-e0ca58c6090c4c5997d38f0e2e4165f8.r2.dev/02_%20O%20limite%20que%20voc%C3%AA%20estabeleceu%2C%20mas%20continua%20renegociando%20quando%20sente%20desconforto..mp3',
+    transcricao:
+      'Eu quero te interromper por um instante no meio dessa semana.\nTem algum limite que você já colocou… mas agora está começando a negociar de novo?\nTalvez você tenha decidido que não aceitaria mais uma determinada forma de ser tratado.\nTalvez tenha decidido que não assumiria novamente uma responsabilidade que não é sua.\nOu talvez tenha dito que não continuaria disponível sempre que alguém quisesse, mesmo quando isso estivesse te fazendo mal.\nNo momento em que você tomou essa decisão, parecia claro.\nVocê sabia por que precisava daquele limite.\nMas aí veio a reação.\nA outra pessoa ficou chateada.\nMudou a forma de falar com você.\nFicou em silêncio.\nComeçou a fazer você se sentir culpado.\nOu simplesmente demonstrou que não gostou da sua decisão.\nE agora você começou a questionar o limite que colocou.\nTalvez esteja pensando:\n"Será que eu exagerei?"\n"Será que estou sendo injusto?"\n"Talvez eu possa abrir uma exceção."\n"Só dessa vez não vai fazer diferença."\nMas eu quero que você perceba uma coisa.\nPode ser que nada tenha mudado na situação.\nA única coisa que mudou é que agora você está sentindo o desconforto de sustentar aquilo que decidiu.\nE isso é importante.\nPorque colocar um limite quando tudo está calmo é uma coisa.\nManter esse limite quando alguém demonstra insatisfação é outra completamente diferente.\nÉ nesse momento que o padrão costuma aparecer.\nVocê coloca o limite.\nA outra pessoa reage.\nVocê sente culpa, medo ou ansiedade.\nE, para acabar com esse desconforto, começa a negociar novamente.\nVocê explica mais uma vez.\nTenta suavizar o que disse.\nVolta atrás em uma parte.\nAbre uma exceção.\nE quando percebe, está novamente no mesmo lugar que fez você precisar daquele limite.\nÉ claro que você pode reconsiderar uma decisão.\nMudar de posição diante de uma informação nova também é maturidade.\nMas eu quero que você se pergunte:\nAlguma coisa realmente mudou?\nOu você só está tentando fazer esse desconforto passar?\nPorque existe uma diferença entre mudar uma decisão porque você entendeu algo novo… e mudar apenas porque não conseguiu suportar a reação de alguém.\nEu não estou dizendo que você precisa se tornar uma pessoa fria.\nLimite não é punição.\nNão é uma forma de controlar o outro.\nÉ uma forma de deixar claro o que você aceita, o que não aceita e como vai responder quando alguma coisa ultrapassar isso.\nEntão observa o que está acontecendo hoje.\nQual limite você está prestes a abandonar?\nE antes de voltar atrás, para um pouco.\nNão responda no auge da culpa.\nNão tente resolver tudo só porque o silêncio está te incomodando.\nNão explique pela quinta vez aquilo que você já explicou com clareza.\nDá um tempo para essa reação diminuir.\nDepois, pergunta pra você:\n"O que mudou desde que eu tomei essa decisão?"\nSe surgiu uma informação nova, você pode avaliar.\nMas se nada mudou além do desconforto que você está sentindo, talvez você não precise tomar outra decisão.\nTalvez precise apenas sustentar a que já tomou.\nPorque dizer o limite é só o começo.\nO que faz esse limite existir de verdade é o que você faz depois que alguém não gosta dele.\nEntão, antes de continuar o seu dia, pensa nisso:\nQual limite você está quase abandonando apenas para o desconforto acabar?',
+    dataPublicacao: '2026-08-26T00:00:00-05:00', // quarta-feira, meia-noite — mesmo padrão de publicação exata do primeiro áudio
+    produtoRelacionado: 'primeiro-passo',
+  },
 ]
 
 export function isPublished(audio: Audio, now: Date = new Date()): boolean {
@@ -96,6 +110,37 @@ export function getRelatedAudios(audio: Audio, limit = 3, now: Date = new Date()
   return getPublishedAudios(now)
     .filter((a) => a.slug !== audio.slug && a.categoria === audio.categoria)
     .slice(0, limit)
+}
+
+/**
+ * Teaser "Próxima reflexão" nas páginas já publicadas — pedido em 24 ago
+ * 2026, junto com o segundo áudio real. Computado a partir dos dados (não é
+ * um texto fixo numa página específica), então funciona sozinho pra
+ * qualquer áudio futuro sem precisar editar nada manualmente: assim que o
+ * próximo da fila publicar, o teaser desaparece de quem já mostrava ele e
+ * passa a apontar pro seguinte, se houver.
+ */
+export function getNextScheduledAudio(now: Date = new Date()): Audio | undefined {
+  return audios
+    .filter((a) => !isPublished(a, now))
+    .sort((a, b) => new Date(a.dataPublicacao).getTime() - new Date(b.dataPublicacao).getTime())[0]
+}
+
+/**
+ * "quarta-feira, 26 de agosto" — só dia da semana e data, nunca título ou
+ * categoria (pedido explícito: teaser não pode revelar do que se trata).
+ * timeZone fixo em -05:00 pra combinar com o fuso já usado em
+ * dataPublicacao — sem isso, o servidor rodando num fuso diferente poderia
+ * arredondar pro dia errado perto da virada da meia-noite.
+ */
+export function formatProximaData(dataPublicacao: string): string {
+  const date = new Date(dataPublicacao)
+  return new Intl.DateTimeFormat('pt-BR', {
+    weekday: 'long',
+    day: 'numeric',
+    month: 'long',
+    timeZone: 'America/Bogota',
+  }).format(date)
 }
 
 export function formatDuration(seconds: number): string {
