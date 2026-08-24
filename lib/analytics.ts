@@ -39,10 +39,14 @@ export type AnalyticsEvent =
   | 'video_complete'
   | 'notify_me_submit' // captura "avise-me quando estiver pronto" — ofertas em gravação, ver briefing 23 ago 2026
   // "Reflexões SAL Ray" — biblioteca de áudios, ver PROMPT_REFLEXOES_SAL_RAY.md seção 8.
-  | 'audio_play'
-  | 'audio_25'
-  | 'audio_50'
-  | 'audio_75'
+  // Rastreamento de escuta do player (pedido 24 ago 2026): audio_25/50/75
+  // foram substituídos por um único audio_milestone com milestone_percent
+  // (inclui 100, que audio_complete sozinho não cobria de forma uniforme).
+  | 'audio_start' // primeira vez que a pessoa dá play nesse áudio, uma vez por visita à página
+  | 'audio_play' // toda vez que dá play, inclusive retomando após pausa
+  | 'audio_pause' // ao pausar (ou ao fechar a aba tocando) — inclui seconds_listened
+  | 'audio_progress' // a cada 15s de reprodução contínua — seconds_listened: 15
+  | 'audio_milestone' // cruza 25/50/75/100% — inclui milestone_percent
   | 'audio_complete'
   | 'audio_share_click'
   | 'related_audio_click'

@@ -1,18 +1,64 @@
 'use client'
 
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { formatDuration } from '@/lib/audios'
 import { trackEvent } from '@/lib/analytics'
 
 const SPEEDS = [0.75, 1, 1.25, 1.5, 2]
 
-export default function AudioPlayer({ slug, src, duracaoSegundos }: { slug: string; src: string; duracaoSegundos: number }) {
+/**
+ * Rastreamento de escuta (pedido 24 ago 2026) — audio_start dispara uma vez
+ * por visita à página; audio_play dispara em todo play, inclusive retomando
+ * após pausa; audio_pause manda quanto foi ouvido desde o último play
+ * (currentTime, não tempo de relógio — não sofre com velocidade de
+ * reprodução diferente de 1x); audio_progress é um ping fixo de 15s
+ * enquanto toca, via setInterval (timeupdate não garante intervalo
+ * regular); audio_milestone cobre 25/50/75/100%.
+ *
+ * Ao fechar a aba tocando (sem pausar manualmente), pagehide/beforeunload
+ * disparam o mesmo audio_pause com o trecho final ouvido, usando
+ * transport_type: 'beacon' pra garantir que o gtag consiga enviar antes da
+ * página descarregar.
+ */
+export default function AudioPlayer({
+  slug,
+  titulo,
+  src,
+  duracaoSegundos,
+}: {
+  slug: string
+  titulo: string
+  src: string
+  duracaoSegundos: number
+}) {
   const audioRef = useRef<HTMLAudioElement>(null)
   const [isPlaying, setIsPlaying] = useState(false)
   const [currentTime, setCurrentTime] = useState(0)
   const [speed, setSpeed] = useState(1)
+
   const started = useRef(false)
   const firedMilestones = useRef(new Set<number>())
+  const playStartPosition = useRef(0)
+  const isPlayingRef = useRef(false)
+  const progressIntervalRef = useRef<number | null>(null)
+
+  function baseParams(extra: Record<string, unknown> = {}) {
+    return { audio_id: slug, audio_title: titulo, ...extra }
+  }
+
+  function startProgressInterval() {
+    stopProgressInterval()
+    progressIntervalRef.current = window.setInterval(() => {
+      trackEvent('audio_progress', baseParams({ seconds_listened: 15 }))
+    }, 15000)
+  }
+
+  function stopProgressInterval() {
+    if (progressIntervalRef.current !== null) {
+      clearInterval(progressIntervalRef.current)
+      progressIntervalRef.current = null
+    }
+  }
 
   function togglePlay() {
     const el = audioRef.current
@@ -26,14 +72,30 @@ export default function AudioPlayer({ slug, src, duracaoSegundos }: { slug: stri
 
   function handlePlay() {
     setIsPlaying(true)
+    isPlayingRef.current = true
+    playStartPosition.current = audioRef.current?.currentTime ?? 0
+
     if (!started.current) {
       started.current = true
-      trackEvent('audio_play', { audio_slug: slug })
+      trackEvent('audio_start', baseParams())
     }
+    trackEvent('audio_play', baseParams())
+    startProgressInterval()
   }
 
   function handlePause() {
     setIsPlaying(false)
+    isPlayingRef.current = false
+    stopProgressInterval()
+
+    const el = audioRef.current
+    // Quando a reprodução termina naturalmente, o navegador dispara "pause"
+    // logo antes de "ended" — não é uma pausa real, o handleEnded já cobre
+    // esse caso com audio_complete.
+    if (el?.ended) return
+
+    const secondsListened = el ? Math.max(0, el.currentTime - playStartPosition.current) : 0
+    trackEvent('audio_pause', baseParams({ seconds_listened: Math.round(secondsListened) }))
   }
 
   function handleTimeUpdate() {
@@ -42,19 +104,42 @@ export default function AudioPlayer({ slug, src, duracaoSegundos }: { slug: stri
     setCurrentTime(el.currentTime)
     const dur = el.duration || duracaoSegundos
     if (!dur) return
-    const percent = Math.floor((el.currentTime / dur) * 100)
-    for (const milestone of [25, 50, 75] as const) {
+    const percent = (el.currentTime / dur) * 100
+    for (const milestone of [25, 50, 75, 100] as const) {
       if (percent >= milestone && !firedMilestones.current.has(milestone)) {
         firedMilestones.current.add(milestone)
-        trackEvent(`audio_${milestone}` as 'audio_25' | 'audio_50' | 'audio_75', { audio_slug: slug })
+        trackEvent('audio_milestone', baseParams({ milestone_percent: milestone }))
       }
     }
   }
 
   function handleEnded() {
     setIsPlaying(false)
-    trackEvent('audio_complete', { audio_slug: slug })
+    isPlayingRef.current = false
+    stopProgressInterval()
+    trackEvent('audio_complete', baseParams())
   }
+
+  // Envia o trecho final ouvido se a pessoa fechar/trocar de aba com o
+  // áudio tocando, sem pausar manualmente antes.
+  useEffect(() => {
+    function flushOnLeave() {
+      if (!isPlayingRef.current) return
+      const el = audioRef.current
+      const secondsListened = el ? Math.max(0, el.currentTime - playStartPosition.current) : 0
+      trackEvent('audio_pause', baseParams({ seconds_listened: Math.round(secondsListened), transport_type: 'beacon' }))
+      isPlayingRef.current = false
+    }
+
+    window.addEventListener('pagehide', flushOnLeave)
+    window.addEventListener('beforeunload', flushOnLeave)
+    return () => {
+      window.removeEventListener('pagehide', flushOnLeave)
+      window.removeEventListener('beforeunload', flushOnLeave)
+      stopProgressInterval()
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   function skip(deltaSeconds: number) {
     const el = audioRef.current
