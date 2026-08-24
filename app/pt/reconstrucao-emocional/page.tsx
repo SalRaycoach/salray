@@ -201,7 +201,7 @@ export default function ReconstrucaoEmocionalPage() {
           <div className="border border-charcoal/15 rounded-lg p-8 bg-offwhite/40">
             <div className="relative aspect-square rounded-md overflow-hidden border border-charcoal/10 mb-6">
               <Image
-                src="/images/primeiro-passo/capa.png"
+                src="/images/primeiro-passo/capa.webp"
                 alt="Capa digital do Primeiro Passo S.T.A.B.L.E.™"
                 fill
                 sizes="(max-width: 768px) 100vw, 50vw"
@@ -265,15 +265,12 @@ export default function ReconstrucaoEmocionalPage() {
               {Array.from({ length: 12 }, (_, i) => (
                 <div key={i} className="relative aspect-square rounded overflow-hidden border border-charcoal/10">
                   <Image
-                    src={`/images/vivencias/${i + 1}.png`}
+                    src={`/images/vivencias/${i + 1}.webp`}
                     alt={`Vivência ${i + 1} de 12`}
                     fill
                     sizes="(max-width: 768px) 25vw, 12vw"
                     className="object-cover"
                   />
-                  <span className="absolute bottom-1 right-1 font-display text-[10px] leading-none text-offwhite bg-charcoal/70 rounded px-1.5 py-1">
-                    {String(i + 1).padStart(2, '0')}
-                  </span>
                 </div>
               ))}
             </div>
