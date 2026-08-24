@@ -199,13 +199,14 @@ export default function ReconstrucaoEmocionalPage() {
           </div>
 
           <div className="border border-charcoal/15 rounded-lg p-8 bg-offwhite/40">
-            <div
-              aria-hidden="true"
-              className="aspect-square rounded-md bg-offwhite/60 border border-charcoal/10 flex items-center justify-center mb-6"
-            >
-              <span className="font-body text-xs text-charcoal/40 text-center px-4">
-                Capa digital · fones · 6 faixas numeradas
-              </span>
+            <div className="relative aspect-square rounded-md overflow-hidden border border-charcoal/10 mb-6">
+              <Image
+                src="/images/primeiro-passo/capa.png"
+                alt="Capa digital do Primeiro Passo S.T.A.B.L.E.™"
+                fill
+                sizes="(max-width: 768px) 100vw, 50vw"
+                className="object-cover"
+              />
             </div>
             {primeiroPasso.status === 'recording' ? (
               <>
@@ -260,13 +261,19 @@ export default function ReconstrucaoEmocionalPage() {
           </div>
 
           <div className="border border-charcoal/15 rounded-lg p-8 bg-pale-aqua/40">
-            <div aria-hidden="true" className="grid grid-cols-4 gap-2 mb-6">
+            <div className="grid grid-cols-4 gap-2 mb-6">
               {Array.from({ length: 12 }, (_, i) => (
-                <div
-                  key={i}
-                  className="aspect-square rounded bg-offwhite/60 border border-charcoal/10 flex items-center justify-center font-display text-charcoal/40 text-sm"
-                >
-                  {String(i + 1).padStart(2, '0')}
+                <div key={i} className="relative aspect-square rounded overflow-hidden border border-charcoal/10">
+                  <Image
+                    src={`/images/vivencias/${i + 1}.png`}
+                    alt={`Vivência ${i + 1} de 12`}
+                    fill
+                    sizes="(max-width: 768px) 25vw, 12vw"
+                    className="object-cover"
+                  />
+                  <span className="absolute bottom-1 right-1 font-display text-[10px] leading-none text-offwhite bg-charcoal/70 rounded px-1.5 py-1">
+                    {String(i + 1).padStart(2, '0')}
+                  </span>
                 </div>
               ))}
             </div>
