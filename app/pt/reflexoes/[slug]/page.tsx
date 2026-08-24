@@ -115,9 +115,10 @@ export default function AudioPage({ params }: { params: { slug: string } }) {
         )}
 
         {proximaAudio && (
-          <p className="font-body text-sm text-charcoal/50 mb-8">
-            Próxima reflexão: {formatProximaData(proximaAudio.dataPublicacao)}
-          </p>
+          <div className="max-w-2xl border border-charcoal/15 rounded-lg bg-pale-aqua/40 p-6 mb-12">
+            <p className="font-body text-xs uppercase tracking-widest text-aqua mb-2">Próxima reflexão</p>
+            <p className="font-body text-charcoal/80">{formatProximaData(proximaAudio.dataPublicacao)}</p>
+          </div>
         )}
 
         <div className="max-w-2xl">
