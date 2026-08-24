@@ -17,6 +17,7 @@ import { SITE_URL } from '@/lib/config'
 import AudioPlayer from './AudioPlayer'
 import ShareButton from './ShareButton'
 import ProductCta from './ProductCta'
+import TranscriptAccordion from './TranscriptAccordion'
 
 // Ver nota equivalente em app/pt/reflexoes/page.tsx — force-dynamic (em vez
 // de revalidate) garante que um áudio agendado fica acessível assim que sua
@@ -78,9 +79,17 @@ export default function AudioPage({ params }: { params: { slug: string } }) {
         <p className="font-body text-lg text-charcoal/80 leading-relaxed max-w-2xl mb-12">{audio.descricao}</p>
 
         <div className="max-w-2xl mb-12">
-          <h2 className="font-body text-xs uppercase tracking-widest text-aqua mb-4">Transcrição</h2>
-          <div className="font-body text-charcoal/75 leading-relaxed whitespace-pre-line">{audio.transcricao}</div>
+          <ShareButton slug={audio.slug} titulo={audio.titulo} url={pageUrl} />
         </div>
+
+        {proximaAudio && (
+          <div className="max-w-2xl border border-charcoal/15 rounded-lg bg-pale-aqua/40 p-6 mb-12">
+            <p className="font-body text-xs uppercase tracking-widest text-aqua mb-2">Próxima reflexão</p>
+            <p className="font-body text-charcoal/80">{formatProximaData(proximaAudio.dataPublicacao)}</p>
+          </div>
+        )}
+
+        <TranscriptAccordion transcricao={audio.transcricao} />
 
         <div className="max-w-2xl border border-charcoal/15 rounded-lg p-6 mb-12">
           <p className="font-body text-xs uppercase tracking-widest text-aqua mb-2">Quer ir mais fundo?</p>
@@ -113,16 +122,6 @@ export default function AudioPage({ params }: { params: { slug: string } }) {
             </ul>
           </div>
         )}
-
-        {proximaAudio && (
-          <p className="font-body text-sm text-charcoal/50 mb-8">
-            Próxima reflexão: {formatProximaData(proximaAudio.dataPublicacao)}
-          </p>
-        )}
-
-        <div className="max-w-2xl">
-          <ShareButton slug={audio.slug} titulo={audio.titulo} url={pageUrl} />
-        </div>
       </main>
     </>
   )

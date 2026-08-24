@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { getPublishedAudios, AUDIO_CATEGORIAS } from '@/lib/audios'
+import { getPublishedAudios, getNextScheduledAudio, formatProximaData, AUDIO_CATEGORIAS } from '@/lib/audios'
 import { reflexoes, SITE_URL } from '@/lib/config'
 import CategoryFilter from './CategoryFilter'
 
@@ -35,6 +35,7 @@ export const metadata: Metadata = {
 
 export default function ReflexoesHubPage() {
   const audios = getPublishedAudios()
+  const proximaAudio = getNextScheduledAudio()
 
   return (
     <main className="max-w-content mx-auto px-6 py-16 md:py-24">
@@ -43,6 +44,13 @@ export default function ReflexoesHubPage() {
         Reflexões curtas em áudio para reconhecer padrões emocionais e reorganizar a resposta interna, um pouco por
         vez. Ouça quando fizer sentido para você.
       </p>
+
+      {proximaAudio && (
+        <div className="max-w-2xl border border-charcoal/15 rounded-lg bg-pale-aqua/40 p-6 mb-14">
+          <p className="font-body text-xs uppercase tracking-widest text-aqua mb-2">Próxima reflexão</p>
+          <p className="font-body text-charcoal/80">{formatProximaData(proximaAudio.dataPublicacao)}</p>
+        </div>
+      )}
 
       <CategoryFilter audios={audios} categorias={AUDIO_CATEGORIAS} />
     </main>
