@@ -26,9 +26,9 @@ const inter = Inter({
  * (regra do Next.js pra "multiple root layouts", ver commit da
  * reestruturação de rotas). Deliberadamente sem metadata.robots aqui: cada
  * seção sob /pt/ decide isso na sua própria camada (ex.:
- * app/pt/reflexoes/layout.tsx define index,follow) — não force um default
- * aqui que outra seção com necessidade diferente (ex.: uma landing page
- * comercial futura precisando de noindex) teria que lembrar de sobrescrever.
+ * app/pt/reflexoes/layout.tsx define index,follow; app/pt/reconstrucao-
+ * emocional/page.tsx define noindex,nofollow) — não force um default aqui
+ * que uma seção com necessidade diferente da outra precisaria sobrescrever.
  */
 export const metadata: Metadata = { metadataBase: new URL(SITE_URL) }
 

@@ -27,6 +27,17 @@ export type AnalyticsEvent =
   | 'scroll_90'
   | 'stable_method_scroll_75'
   | 'ApplicationStart' // 4-Week Experience — PascalCase kept to match Meta Events Manager naming (brief section 12)
+  // Página PT "Reconstrução Emocional" — ver briefing seção 17. purchase não é
+  // disparado por este helper: deve vir da própria Payhip após conclusão real
+  // do checkout, nunca no clique nem em uma página de agradecimento própria.
+  | 'view_offers_pt'
+  | 'select_offer'
+  | 'begin_checkout'
+  | 'whatsapp_click'
+  | 'video_start'
+  | 'video_progress'
+  | 'video_complete'
+  | 'notify_me_submit' // captura "avise-me quando estiver pronto" — ofertas em gravação, ver briefing 23 ago 2026
   // "Reflexões SAL Ray" — biblioteca de áudios, ver PROMPT_REFLEXOES_SAL_RAY.md seção 8.
   | 'audio_play'
   | 'audio_25'

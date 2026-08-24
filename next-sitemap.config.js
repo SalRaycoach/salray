@@ -15,6 +15,11 @@ module.exports = {
     // Temporary, capacity-limited campaign page (noindex while active) — see
     // brief section 11. Remove this line if the page is ever taken off noindex.
     '/4-week-experience',
+    // Isolated PT campaign page — never indexed, never listed in sitemap.
+    // See Briefing_Pagina_Reconstrucao_Emocional_SAL_Ray, seção 18. Does NOT
+    // exclude the rest of /pt/ — /pt/reflexoes/ is a sibling section that's
+    // meant to be indexed and listed (see its own priority rule below).
+    '/pt/reconstrucao-emocional',
   ],
   robotsTxtOptions: {
     policies: [

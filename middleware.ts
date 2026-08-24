@@ -32,12 +32,25 @@ const REMOVED_PATHS = new Set([
 
 export function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname.replace(/\/$/, '')
+
   if (REMOVED_PATHS.has(pathname)) {
     return new NextResponse('Gone', { status: 410 })
   }
+
+  // Página isolada em português — nunca indexada. A tag <meta robots> em
+  // app/pt/reconstrucao-emocional/page.tsx já cobre isso; este cabeçalho é o
+  // reforço equivalente pedido no briefing (seção 18), para o caso de algum
+  // crawler ignorar a meta tag. Escopo restrito a esta rota — /pt/reflexoes/
+  // é indexável de propósito e não pode herdar este noindex.
+  if (pathname.startsWith('/pt/reconstrucao-emocional')) {
+    const response = NextResponse.next()
+    response.headers.set('X-Robots-Tag', 'noindex, nofollow')
+    return response
+  }
+
   return NextResponse.next()
 }
 
 export const config = {
-  matcher: ['/resources/:path*'],
+  matcher: ['/resources/:path*', '/pt/:path*'],
 }
