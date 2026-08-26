@@ -1,12 +1,18 @@
 import type { Metadata } from 'next'
+import dynamic from 'next/dynamic'
 import Image from 'next/image'
 import Link from 'next/link'
 import SchemaOrg from '@/components/SchemaOrg'
-import FAQAccordion from '@/components/FAQAccordion'
-import FourWeekApplicationForm from '@/components/FourWeekApplicationForm'
 import TrackMetaEventOnMount from '@/components/TrackMetaEventOnMount'
 import { getFourWeekExperienceSchema } from '@/lib/schema'
 import { stableMethod, fourWeekExperience, fourWeekFaqs, SITE_URL } from '@/lib/config'
+
+// Below-the-fold client components — code-split out of the main bundle so
+// their JS loads in a separate chunk instead of blocking initial hydration.
+// Both keep ssr:true (the default) so content still renders in the initial
+// HTML for SEO and no-JS visibility; only the parse/execute cost is deferred.
+const FAQAccordion = dynamic(() => import('@/components/FAQAccordion'))
+const FourWeekApplicationForm = dynamic(() => import('@/components/FourWeekApplicationForm'))
 
 const title = 'Private 4-Week Emotional & Life Rebuilding Experience'
 const description =
