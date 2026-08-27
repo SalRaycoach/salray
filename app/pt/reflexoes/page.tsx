@@ -44,7 +44,9 @@ export default function ReflexoesHubPage() {
         Reflexões curtas em áudio para reconhecer padrões emocionais e reorganizar a resposta interna, um pouco por
         vez. Ouça quando fizer sentido para você.
       </p>
-      <p className="font-body text-sm text-charcoal/50 max-w-2xl mb-14">Novas reflexões toda segunda, quarta e sexta-feira.</p>
+      <p className="font-body text-lg text-charcoal/80 leading-relaxed max-w-2xl mb-14">
+        Novas reflexões toda segunda, quarta e sexta-feira.
+      </p>
 
       {proximaAudio && (
         <div className="max-w-2xl border border-charcoal/15 rounded-lg bg-pale-aqua/40 p-6 mb-14">
