@@ -63,3 +63,10 @@
     transform: none;
   }
 }
+
+/* Deploy-transition verification marker — unused rule, no visual effect,
+   exists only to force a new CSS content hash for testing the cache fix.
+   Safe to remove. */
+.deploy-test-marker-unused {
+  --deploy-test-marker: 1;
+}
