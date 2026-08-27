@@ -45,7 +45,8 @@ export default function ReflexoesHubPage() {
         vez. Ouça quando fizer sentido para você.
       </p>
       <p className="font-body text-lg text-charcoal/80 leading-relaxed max-w-2xl mb-14">
-        Novas reflexões toda segunda, quarta e sexta-feira.
+        Novas reflexões toda <span className="text-aqua">Segunda</span>, <span className="text-aqua">Quarta</span> e{' '}
+        <span className="text-aqua">Sexta-feira</span>.
       </p>
 
       {proximaAudio && (
