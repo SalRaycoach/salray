@@ -52,6 +52,14 @@ Não existe painel visual nesta primeira versão — cada áudio é uma entrada 
 
 Assim que você cadastra um áudio novo com `dataPublicacao` no futuro, as páginas dos áudios já publicados passam a mostrar automaticamente "Próxima reflexão: [dia da semana], [data]" perto do final — sem título, categoria ou qualquer pista do conteúdo, só a data. Você não precisa editar nada pra isso acontecer nem pra isso parar: quando o áudio da fila publicar de verdade, o teaser desaparece sozinho (e passa a apontar pro próximo, se houver outro agendado).
 
+**Exceção**: se o áudio que você acabou de cadastrar é o último da fila (ex.: o de sexta, e o de segunda seguinte ainda não tem data de gravação confirmada), adicione o campo opcional `proximaReflexaoManual` a ele:
+
+```ts
+proximaReflexaoManual: 'segunda-feira', // sem data, já que ainda não foi gravado
+```
+
+Isso faz a própria página desse áudio mostrar "Próxima reflexão: segunda-feira" (sem data) em vez de nada. Assim que você cadastrar o áudio de segunda de verdade (com `dataPublicacao` real), pode remover essa linha — o teaser volta a ser calculado automaticamente.
+
 ## Erros comuns
 
 - **Esquecer as aspas simples** (`'`) ao redor de textos — o arquivo é código, cada texto precisa estar entre aspas.
