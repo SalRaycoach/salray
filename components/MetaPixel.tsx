@@ -11,17 +11,15 @@ export default function MetaPixel({ pixelId }: { pixelId: string }) {
           __html: `!function(f,b){if(f.fbq)return;var n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[]}(window,document);fbq('init','${pixelId}');fbq('track','PageView');`,
         }}
       />
-      <Script src="https://connect.facebook.net/en_US/fbevents.js" strategy="afterInteractive" />
-      <noscript>
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          height="1"
-          width="1"
-          style={{ display: 'none' }}
-          alt=""
-          src={`https://www.facebook.com/tr?id=${pixelId}&ev=PageView&noscript=1`}
-        />
-      </noscript>
+      <Script src="https://connect.facebook.net/en_US/fbevents.js" strategy="lazyOnload" />
+      {/* Rendered as a raw HTML string (not a JSX <img>) so Next's renderer
+          never sees an <img> element to generate a preload hint for — this
+          tag only executes for visitors with JavaScript disabled anyway. */}
+      <noscript
+        dangerouslySetInnerHTML={{
+          __html: `<img height="1" width="1" style="display:none" alt="" src="https://www.facebook.com/tr?id=${pixelId}&ev=PageView&noscript=1" />`,
+        }}
+      />
     </>
   )
 }
