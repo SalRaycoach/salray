@@ -8,9 +8,8 @@ import { getFourWeekExperienceSchema } from '@/lib/schema'
 import { stableMethod, fourWeekExperience, fourWeekFaqs, SITE_URL } from '@/lib/config'
 
 // Below-the-fold client components — code-split out of the main bundle so
-// their JS loads in a separate chunk instead of blocking initial hydration.
-// Both keep ssr:true (the default) so content still renders in the initial
-// HTML for SEO and no-JS visibility; only the parse/execute cost is deferred.
+// their JS ships as separate chunks instead of the main page bundle.
+// ssr:true (default) keeps them in the initial HTML for SEO/no-JS visibility.
 const FAQAccordion = dynamic(() => import('@/components/FAQAccordion'))
 const FourWeekApplicationForm = dynamic(() => import('@/components/FourWeekApplicationForm'))
 

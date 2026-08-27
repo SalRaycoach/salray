@@ -32,7 +32,7 @@ const nextConfig = {
       {
         // Build-hashed assets — Next.js sets this automatically for `next start`,
         // but the Hostinger reverse proxy in front of the Node process may strip
-        // it, so it's set explicitly here too (brief section 8, item 4).
+        // it, so it's set explicitly here too (brief item 1.4).
         source: '/_next/static/:path*',
         headers: [{ key: 'Cache-Control', value: 'public, max-age=31536000, immutable' }],
       },
