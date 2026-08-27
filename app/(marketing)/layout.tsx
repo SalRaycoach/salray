@@ -1,5 +1,4 @@
 import type { Metadata } from 'next'
-import Script from 'next/script'
 import { Fraunces, Inter } from 'next/font/google'
 import '../globals.css'
 import Navbar from '@/components/Navbar'
@@ -39,7 +38,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className="font-body">
         <GoogleAnalytics measurementId={GA_MEASUREMENT_ID} />
         <MetaPixel pixelId={META_PIXEL_ID} />
-        <Script src="https://t.contentsquare.net/uxa/10cb7940cf1c1.js" strategy="afterInteractive" />
         <Navbar />
         {children}
         <Footer />
