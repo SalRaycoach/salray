@@ -524,6 +524,9 @@ export default function FourWeekApplicationForm() {
       </div>
 
       <div>
+        <p className="font-body text-xs text-charcoal/50 leading-relaxed mb-4">
+          Applications are reviewed individually. Submitting an application does not guarantee selection.
+        </p>
         <button
           type="submit"
           disabled={status === 'submitting'}

@@ -168,18 +168,20 @@ export default function FourWeekExperiencePage() {
       <section className="bg-offwhite">
         <div className="max-w-content mx-auto px-6 py-16 md:py-24 grid md:grid-cols-2 gap-12 items-center">
           <div>
-            <p className="font-body text-xs uppercase tracking-[0.08em] text-aqua mb-3">NOW SELECTING 3 PARTICIPANTS</p>
-            <h1 className="font-display text-4xl md:text-5xl leading-tight text-charcoal mb-6">
+            <p className="font-body text-xs uppercase tracking-[0.08em] text-aqua mb-3">
+              No cost &middot; Selecting 3 Participants
+            </p>
+            <h1 className="font-display text-4xl md:text-5xl leading-tight text-charcoal mb-4">
               A Private 4-Week Emotional &amp; Life Rebuilding Experience
             </h1>
             <p className="font-body text-lg text-charcoal/80 leading-relaxed mb-6">
-              For adults who are still functioning on the outside but feel stuck in overthinking, repeating emotional
-              patterns, difficult boundaries, or a life that no longer feels steady on the inside.
+              You look fine on the outside. Inside, you feel stuck.
             </p>
             <p className="font-body text-charcoal/70 mb-8">
-              Four private online sessions. One session per week. Four consecutive weeks.
+              Four private online sessions with SAL Ray. One each week, for four weeks. At no cost for the three
+              people selected.
             </p>
-            <div className="flex flex-wrap gap-3 mb-4">
+            <div className="flex flex-wrap gap-3">
               <a
                 href="#application"
                 data-event="four_week_apply_click"
@@ -194,9 +196,6 @@ export default function FourWeekExperiencePage() {
                 See How It Works
               </a>
             </div>
-            <p className="font-body text-xs text-charcoal/50 leading-relaxed">
-              Applications are reviewed individually. Submitting an application does not guarantee selection.
-            </p>
           </div>
           <div className="relative">
             <Image
