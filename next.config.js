@@ -18,11 +18,23 @@ const nextConfig = {
   async headers() {
     return [
       {
+        // Applies to every path by default, including HTML documents. The
+        // Hostinger CDN was falling back to its own ~1-year default cache
+        // for HTML (no Cache-Control was set for pages at all before this),
+        // so after a deploy, edges could keep serving old HTML that
+        // referenced already-deleted hashed CSS/JS from the previous build
+        // — a real incident, not theoretical. A short s-maxage with
+        // stale-while-revalidate means any edge self-heals within ~60s of
+        // a deploy without needing a manual purge every time. The more
+        // specific rules below (images/fonts, /_next/static/) override this
+        // for their own paths with a long immutable cache, since Next.js
+        // applies the last matching rule for a given header key.
         source: '/:path*',
         headers: [
           { key: 'X-Frame-Options', value: 'DENY' },
           { key: 'X-Content-Type-Options', value: 'nosniff' },
           { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
+          { key: 'Cache-Control', value: 'public, s-maxage=60, stale-while-revalidate=300' },
         ],
       },
       {
