@@ -5,7 +5,7 @@ import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import FacebookFloat from '@/components/FacebookFloat'
 import AnalyticsListener from '@/components/AnalyticsListener'
-import GoogleAnalytics from '@/components/GoogleAnalytics'
+import ConditionalGoogleAnalytics from '@/components/ConditionalGoogleAnalytics'
 import MetaPixel from '@/components/MetaPixel'
 import { business, SITE_URL, GA_MEASUREMENT_ID, META_PIXEL_ID } from '@/lib/config'
 
@@ -36,7 +36,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en-US" className={`${fraunces.variable} ${inter.variable}`}>
       <body className="font-body">
-        <GoogleAnalytics measurementId={GA_MEASUREMENT_ID} />
+        <ConditionalGoogleAnalytics measurementId={GA_MEASUREMENT_ID} />
         <MetaPixel pixelId={META_PIXEL_ID} />
         <Navbar />
         {children}
