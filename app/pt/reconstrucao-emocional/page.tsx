@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import Link from 'next/link'
 import { Suspense } from 'react'
 import type { Metadata } from 'next'
 import { getOffer, comparisonColumns, comparisonRows, stableMethodPt, ptFaqs, ptTestimonials, buildWhatsAppUrl, whatsapp, PT_CANONICAL_URL, ptPageMeta } from '@/lib/pt-reconstrucao'
@@ -563,6 +564,20 @@ export default function ReconstrucaoEmocionalPage() {
               Preciso de ajuda para escolher
             </a>
           </div>
+        </div>
+      </section>
+
+      {/* ===== MENÇÃO ÀS REFLEXÕES — bloco secundário e discreto, depois do CTA
+           final pra não competir com ele (pedido 27 ago 2026) ===== */}
+      <section className="border-t border-charcoal/10">
+        <div className="max-w-content mx-auto px-6 py-8 text-center">
+          <p className="font-body text-sm text-charcoal/50">
+            Enquanto isso, ouça as{' '}
+            <Link href="/pt/reflexoes/" className="text-aqua hover:text-orange underline underline-offset-2">
+              Reflexões gratuitas
+            </Link>
+            : novo conteúdo toda segunda, quarta e sexta.
+          </p>
         </div>
       </section>
     </main>

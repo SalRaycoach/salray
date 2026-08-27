@@ -56,6 +56,9 @@ export default function AudioPage({ params }: { params: { slug: string } }) {
   const pageUrl = `${SITE_URL}/pt/reflexoes/${audio.slug}/`
   const schema = getAudioSchema(audio)
   const proximaAudio = getNextScheduledAudio()
+  // proximaReflexaoManual tem prioridade — usado quando o próximo da
+  // cadência ainda não tem data de gravação confirmada (ver lib/audios.ts).
+  const proximaReflexaoTexto = audio.proximaReflexaoManual ?? (proximaAudio ? formatProximaData(proximaAudio.dataPublicacao) : null)
 
   return (
     <>
@@ -82,10 +85,10 @@ export default function AudioPage({ params }: { params: { slug: string } }) {
           <ShareButton slug={audio.slug} titulo={audio.titulo} url={pageUrl} />
         </div>
 
-        {proximaAudio && (
+        {proximaReflexaoTexto && (
           <div className="max-w-2xl border border-charcoal/15 rounded-lg bg-pale-aqua/40 p-6 mb-12">
             <p className="font-body text-xs uppercase tracking-widest text-aqua mb-2">Próxima reflexão</p>
-            <p className="font-body text-charcoal/80">{formatProximaData(proximaAudio.dataPublicacao)}</p>
+            <p className="font-body text-charcoal/80">{proximaReflexaoTexto}</p>
           </div>
         )}
 
