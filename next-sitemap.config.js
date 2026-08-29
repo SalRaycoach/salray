@@ -20,6 +20,9 @@ module.exports = {
     // exclude the rest of /pt/ — /pt/reflexoes/ is a sibling section that's
     // meant to be indexed and listed (see its own priority rule below).
     '/pt/reconstrucao-emocional',
+    // Ferramenta de autoavaliação enviada só por link direto a quem comprou
+    // as Vivências — nunca indexada, nunca listada (pedido 27 ago 2026).
+    '/pt/reconstrucao-emocional/avaliacao',
   ],
   robotsTxtOptions: {
     policies: [
