@@ -63,3 +63,37 @@
     transform: none;
   }
 }
+
+/*
+ * Impressão da tela de resultado da autoavaliação (Vivências de
+ * Reconstrução Emocional) — o site inteiro é escuro (fundo #111111, texto
+ * claro), o que imprimiria como uma página preta cheia de tinta. Em vez de
+ * tentar sobrescrever cor por cor de cada elemento, isola só o conteúdo
+ * marcado com .avaliacao-print-area (esconde todo o resto da página) e
+ * força fundo branco/texto escuro ali dentro — técnica padrão de "imprimir
+ * só esta seção", independente do tema do resto do site.
+ */
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  .avaliacao-print-area,
+  .avaliacao-print-area * {
+    visibility: visible;
+  }
+  .avaliacao-print-area {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    background: #ffffff !important;
+  }
+  .avaliacao-print-area * {
+    color: #111111 !important;
+    background: transparent !important;
+    border-color: #cccccc !important;
+  }
+  .no-print {
+    display: none !important;
+  }
+}
