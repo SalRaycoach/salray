@@ -21,7 +21,15 @@ function isRateLimited(ip: string): boolean {
   return recent.length > RATE_LIMIT_MAX
 }
 
-const HOW_LONG_OPTIONS = ['Less than 3 months', '3-12 months', '1-3 years', 'More than 3 years']
+const WORK_ON_OPTIONS = [
+  'Emotional stability',
+  'Repeating patterns',
+  'Relationships or boundaries',
+  'Confidence and self-trust',
+  'Life direction or decisions',
+  'Something else',
+]
+const WHY_NOW_MAX = 250
 const YES_NO_UNSURE = ['Yes', 'No', 'I am not sure']
 const YES_NO = ['Yes', 'No']
 
@@ -68,42 +76,29 @@ export async function POST(request: NextRequest) {
   }
 
   const firstName = str(body, 'firstName')
-  const lastName = str(body, 'lastName')
   const email = str(body, 'email')
   const mobile = str(body, 'mobile')
-  const location = str(body, 'location')
-  const currentSituation = str(body, 'currentSituation')
-  const desiredChange = str(body, 'desiredChange')
-  const howLong = str(body, 'howLong')
+  const state = str(body, 'state')
+  const workOn = str(body, 'workOn')
   const whyNow = str(body, 'whyNow')
   const commitFourWeeks = str(body, 'commitFourWeeks')
-  const activeParticipation = str(body, 'activeParticipation')
   const readyIn14Days = str(body, 'readyIn14Days')
 
   const ackAge18 = body.ackAge18 === true
   const ackNonClinical = body.ackNonClinical === true
-  const ackNoGuarantee = body.ackNoGuarantee === true
-  const ackAttendance = body.ackAttendance === true
-  const ackPrivacy = body.ackPrivacy === true
   const phoneConsent = body.phoneConsent === true
 
   const errors: string[] = []
   if (!firstName) errors.push('First Name is required.')
-  if (!lastName) errors.push('Last Name is required.')
   if (!email || !email.includes('@')) errors.push('A valid Email Address is required.')
-  if (!location) errors.push('Please share where you are located.')
-  if (!currentSituation) errors.push('Please describe what you are currently experiencing.')
-  if (currentSituation.length > 1500) errors.push('The current-situation answer exceeds 1,500 characters.')
-  if (!desiredChange) errors.push('Please describe what you would like to work on.')
-  if (desiredChange.length > 1000) errors.push('The desired-change answer exceeds 1,000 characters.')
-  if (!HOW_LONG_OPTIONS.includes(howLong)) errors.push('Please select how long this has been affecting you.')
+  if (!state) errors.push('Please share your state.')
+  if (!WORK_ON_OPTIONS.includes(workOn)) errors.push('Please select what you would most like to work on.')
   if (!whyNow) errors.push('Please share why now feels like the right time.')
-  if (whyNow.length > 750) errors.push('The "why now" answer exceeds 750 characters.')
+  if (whyNow.length > WHY_NOW_MAX) errors.push(`The "why now" answer exceeds ${WHY_NOW_MAX} characters.`)
   if (!YES_NO_UNSURE.includes(commitFourWeeks)) errors.push('Please answer the four-week commitment question.')
-  if (!YES_NO.includes(activeParticipation)) errors.push('Please answer the active-participation question.')
   if (!YES_NO.includes(readyIn14Days)) errors.push('Please answer the 14-day readiness question.')
-  if (!ackAge18 || !ackNonClinical || !ackNoGuarantee || !ackAttendance || !ackPrivacy) {
-    errors.push('All required acknowledgements must be confirmed.')
+  if (!ackAge18 || !ackNonClinical) {
+    errors.push('Both required acknowledgements must be confirmed.')
   }
 
   if (errors.length > 0) {
@@ -119,8 +114,8 @@ export async function POST(request: NextRequest) {
   const fbclid = str(body, 'fbclid')
 
   const applicationRecord = {
-    firstName, lastName, email, mobile, location, currentSituation, desiredChange,
-    howLong, whyNow, commitFourWeeks, activeParticipation, readyIn14Days, phoneConsent,
+    firstName, email, mobile, state, workOn, whyNow,
+    commitFourWeeks, readyIn14Days, phoneConsent,
     submittedAt, pageUrl, utmSource, utmMedium, utmCampaign, utmContent, fbclid,
   }
 
@@ -144,16 +139,12 @@ export async function POST(request: NextRequest) {
       <p style="color:#555;margin-top:0;">${escapeHtml(submittedAt)}</p>
       <table cellpadding="0" cellspacing="0">
         ${row('First Name', firstName)}
-        ${row('Last Name', lastName)}
         ${row('Email', email)}
         ${row('Mobile', mobile || '—')}
-        ${row('Location', location)}
-        ${row('Currently experiencing / dealing with', currentSituation)}
-        ${row('Wants to understand / change / rebuild', desiredChange)}
-        ${row('How long has this been affecting them', howLong)}
+        ${row('State', state)}
+        ${row('Wants to work on', workOn)}
         ${row('Why now', whyNow)}
         ${row('Can commit to 1 session/week x 4 weeks', commitFourWeeks)}
-        ${row('Prepared to participate actively', activeParticipation)}
         ${row('Ready to begin within 14 days if selected', readyIn14Days)}
         ${row('Phone contact consent', mobile ? (phoneConsent ? 'Yes' : 'No') : 'N/A')}
         ${row('Page URL', pageUrl)}
@@ -181,7 +172,7 @@ export async function POST(request: NextRequest) {
       from: `SAL Ray — 4-Week Experience <${contato.email}>`,
       to: contato.email,
       replyTo: email,
-      subject: `New 4-Week Experience application — ${firstName} ${lastName}`,
+      subject: `New 4-Week Experience application — ${firstName}`,
       html: notificationHtml,
     })
 
