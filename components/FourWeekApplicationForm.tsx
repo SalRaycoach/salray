@@ -7,49 +7,40 @@ import { contato } from '@/lib/config'
 
 type FormState = {
   firstName: string
-  lastName: string
   email: string
   mobile: string
-  location: string
-  currentSituation: string
-  desiredChange: string
-  howLong: string
-  whyNow: string
+  state: string
+  workOn: string
   commitFourWeeks: string
-  activeParticipation: string
   readyIn14Days: string
   ackAge18: boolean
   ackNonClinical: boolean
-  ackNoGuarantee: boolean
-  ackAttendance: boolean
-  ackPrivacy: boolean
   phoneConsent: boolean
   website: string // honeypot — real applicants never see or fill this
 }
 
 const initialState: FormState = {
   firstName: '',
-  lastName: '',
   email: '',
   mobile: '',
-  location: '',
-  currentSituation: '',
-  desiredChange: '',
-  howLong: '',
-  whyNow: '',
+  state: '',
+  workOn: '',
   commitFourWeeks: '',
-  activeParticipation: '',
   readyIn14Days: '',
   ackAge18: false,
   ackNonClinical: false,
-  ackNoGuarantee: false,
-  ackAttendance: false,
-  ackPrivacy: false,
   phoneConsent: false,
   website: '',
 }
 
-const HOW_LONG_OPTIONS = ['Less than 3 months', '3-12 months', '1-3 years', 'More than 3 years']
+const WORK_ON_OPTIONS = [
+  'Emotional stability',
+  'Repeating patterns',
+  'Relationships or boundaries',
+  'Confidence and self-trust',
+  'Life direction or decisions',
+  'Something else',
+]
 
 const inputClass =
   'w-full border border-charcoal/20 bg-offwhite px-4 py-3 font-body text-charcoal rounded-md focus:outline-none focus:ring-3 focus:ring-aqua focus:ring-offset-2 focus:ring-offset-offwhite'
@@ -102,25 +93,15 @@ export default function FourWeekApplicationForm() {
   function getMissingFields(): string[] {
     const missing: string[] = []
     if (form.firstName.trim() === '') missing.push('First Name')
-    if (form.lastName.trim() === '') missing.push('Last Name')
     if (!form.email.includes('@')) missing.push('Email Address')
-    if (form.location.trim() === '') missing.push('Where you are located')
-    if (form.currentSituation.trim() === '' || form.currentSituation.length > 1500) {
-      missing.push('What you are currently experiencing')
-    }
-    if (form.desiredChange.trim() === '' || form.desiredChange.length > 1000) {
-      missing.push('What you would like to understand or change')
-    }
-    if (!HOW_LONG_OPTIONS.includes(form.howLong)) missing.push('How long this has been affecting you')
-    if (form.whyNow.trim() === '' || form.whyNow.length > 750) missing.push('Why now feels like the right time')
+    if (form.mobile.trim() === '') missing.push('Mobile Number')
+    if (form.state.trim() === '') missing.push('State')
+    if (!WORK_ON_OPTIONS.includes(form.workOn)) missing.push('What you would most like to work on')
     if (!['Yes', 'No', 'I am not sure'].includes(form.commitFourWeeks)) {
       missing.push('The four-week commitment question')
     }
-    if (!['Yes', 'No'].includes(form.activeParticipation)) missing.push('The active-participation question')
     if (!['Yes', 'No'].includes(form.readyIn14Days)) missing.push('The 14-day readiness question')
-    if (!form.ackAge18 || !form.ackNonClinical || !form.ackNoGuarantee || !form.ackAttendance || !form.ackPrivacy) {
-      missing.push('All 5 required acknowledgement checkboxes')
-    }
+    if (!form.ackAge18 || !form.ackNonClinical) missing.push('Both required acknowledgement checkboxes')
     return missing
   }
 
@@ -239,24 +220,6 @@ export default function FourWeekApplicationForm() {
           />
         </div>
         <div>
-          <FieldLabel htmlFor="lastName" required>
-            Last Name
-          </FieldLabel>
-          <input
-            id="lastName"
-            name="lastName"
-            type="text"
-            required
-            autoComplete="family-name"
-            value={form.lastName}
-            onChange={(e) => update('lastName', e.target.value)}
-            className={inputClass}
-          />
-        </div>
-      </div>
-
-      <div className="grid sm:grid-cols-2 gap-6">
-        <div>
           <FieldLabel htmlFor="email" required>
             Email Address
           </FieldLabel>
@@ -271,114 +234,65 @@ export default function FourWeekApplicationForm() {
             className={inputClass}
           />
         </div>
+      </div>
+
+      <div className="grid sm:grid-cols-2 gap-6">
         <div>
-          <FieldLabel htmlFor="mobile">Mobile Number</FieldLabel>
+          <FieldLabel htmlFor="mobile" required>
+            Mobile Number
+          </FieldLabel>
           <input
             id="mobile"
             name="mobile"
             type="tel"
+            required
             autoComplete="tel"
             value={form.mobile}
             onChange={(e) => update('mobile', e.target.value)}
             className={inputClass}
           />
-          <p className="font-body text-xs text-charcoal/50 mt-1.5">Used only to reach you about this application.</p>
+          <p className="font-body text-xs text-charcoal/50 mt-1.5">
+            Used only to reach you about this application — including as a backup if our email doesn&apos;t reach you.
+          </p>
         </div>
-      </div>
-
-      <div>
-        <FieldLabel htmlFor="location" required>
-          Where are you located? (City, State, and Time Zone)
-        </FieldLabel>
-        <input
-          id="location"
-          name="location"
-          type="text"
-          required
-          value={form.location}
-          onChange={(e) => update('location', e.target.value)}
-          className={inputClass}
-        />
-      </div>
-
-      <div>
-        <div className="flex items-baseline justify-between">
-          <FieldLabel htmlFor="currentSituation" required>
-            What are you currently experiencing or repeatedly dealing with that you would like to work on?
+        <div>
+          <FieldLabel htmlFor="state" required>
+            State
           </FieldLabel>
-          <span className="font-body text-xs text-charcoal/40 shrink-0 ml-3">{form.currentSituation.length}/1,500</span>
+          <input
+            id="state"
+            name="state"
+            type="text"
+            required
+            autoComplete="address-level1"
+            value={form.state}
+            onChange={(e) => update('state', e.target.value)}
+            className={inputClass}
+          />
         </div>
-        <textarea
-          id="currentSituation"
-          name="currentSituation"
-          required
-          maxLength={1500}
-          rows={4}
-          value={form.currentSituation}
-          onChange={(e) => update('currentSituation', e.target.value)}
-          className={`${inputClass} resize-y`}
-        />
       </div>
 
       <div>
-        <div className="flex items-baseline justify-between">
-          <FieldLabel htmlFor="desiredChange" required>
-            What would you most like to understand, change, or begin rebuilding during these four weeks?
-          </FieldLabel>
-          <span className="font-body text-xs text-charcoal/40 shrink-0 ml-3">{form.desiredChange.length}/1,000</span>
-        </div>
-        <textarea
-          id="desiredChange"
-          name="desiredChange"
-          required
-          maxLength={1000}
-          rows={3}
-          value={form.desiredChange}
-          onChange={(e) => update('desiredChange', e.target.value)}
-          className={`${inputClass} resize-y`}
-        />
-      </div>
-
-      <div>
-        <FieldLabel htmlFor="howLong" required>
-          How long has this been affecting you?
+        <FieldLabel htmlFor="workOn" required>
+          What would you most like to work on right now?
         </FieldLabel>
         <select
-          id="howLong"
-          name="howLong"
+          id="workOn"
+          name="workOn"
           required
-          value={form.howLong}
-          onChange={(e) => update('howLong', e.target.value)}
+          value={form.workOn}
+          onChange={(e) => update('workOn', e.target.value)}
           className={inputClass}
         >
           <option value="" disabled>
             Select one
           </option>
-          {HOW_LONG_OPTIONS.map((opt) => (
+          {WORK_ON_OPTIONS.map((opt) => (
             <option key={opt} value={opt}>
               {opt}
             </option>
           ))}
         </select>
-      </div>
-
-      <div>
-        <div className="flex items-baseline justify-between">
-          <FieldLabel htmlFor="whyNow" required>
-            Why does now feel like the right time to work on this?
-          </FieldLabel>
-          <span className="font-body text-xs text-charcoal/40 shrink-0 ml-3">{form.whyNow.length}/750</span>
-        </div>
-        <textarea
-          id="whyNow"
-          name="whyNow"
-          required
-          maxLength={750}
-          rows={3}
-          value={form.whyNow}
-          onChange={(e) => update('whyNow', e.target.value)}
-          className={`${inputClass} resize-y`}
-        />
       </div>
 
       <fieldset>
@@ -396,29 +310,6 @@ export default function FourWeekApplicationForm() {
                 required
                 checked={form.commitFourWeeks === opt}
                 onChange={(e) => update('commitFourWeeks', e.target.value)}
-                className="accent-aqua"
-              />
-              {opt}
-            </label>
-          ))}
-        </div>
-      </fieldset>
-
-      <fieldset>
-        <legend className="font-body text-sm text-charcoal/90 mb-2">
-          Are you prepared to participate actively, reflect honestly, and apply what is discussed between sessions?{' '}
-          <span className="text-orange">*</span>
-        </legend>
-        <div className="flex flex-wrap gap-4">
-          {['Yes', 'No'].map((opt) => (
-            <label key={opt} className="flex items-center gap-2 font-body text-sm text-charcoal/85">
-              <input
-                type="radio"
-                name="activeParticipation"
-                value={opt}
-                required
-                checked={form.activeParticipation === opt}
-                onChange={(e) => update('activeParticipation', e.target.value)}
                 className="accent-aqua"
               />
               {opt}
@@ -470,45 +361,6 @@ export default function FourWeekApplicationForm() {
           />
           I understand that this is non-clinical coaching and is not therapy, medical care, or crisis support.
         </label>
-        <label className="flex items-start gap-3 font-body text-sm text-charcoal/85">
-          <input
-            type="checkbox"
-            required
-            checked={form.ackNoGuarantee}
-            onChange={(e) => update('ackNoGuarantee', e.target.checked)}
-            className="mt-1 accent-aqua"
-          />
-          I understand that applying does not guarantee selection and that only three participants will be chosen.
-        </label>
-        <label className="flex items-start gap-3 font-body text-sm text-charcoal/85">
-          <input
-            type="checkbox"
-            required
-            checked={form.ackAttendance}
-            onChange={(e) => update('ackAttendance', e.target.checked)}
-            className="mt-1 accent-aqua"
-          />
-          I understand that selected participants are expected to attend all four sessions and provide honest
-          feedback at the end. A testimonial is not required.
-        </label>
-        <label className="flex items-start gap-3 font-body text-sm text-charcoal/85">
-          <input
-            type="checkbox"
-            required
-            checked={form.ackPrivacy}
-            onChange={(e) => update('ackPrivacy', e.target.checked)}
-            className="mt-1 accent-aqua"
-          />
-          I have read and agree to the{' '}
-          <Link href="/privacy-policy/" className="text-aqua underline underline-offset-2">
-            Privacy Policy
-          </Link>{' '}
-          and{' '}
-          <Link href="/disclaimer/" className="text-aqua underline underline-offset-2">
-            Professional Disclaimer
-          </Link>
-          .
-        </label>
 
         {form.mobile.trim() !== '' && (
           <label className="flex items-start gap-3 font-body text-sm text-charcoal/85">
@@ -539,6 +391,10 @@ export default function FourWeekApplicationForm() {
           Your information will be handled according to the{' '}
           <Link href="/privacy-policy/" className="text-aqua underline underline-offset-2">
             Privacy Policy
+          </Link>{' '}
+          and{' '}
+          <Link href="/disclaimer/" className="text-aqua underline underline-offset-2">
+            Professional Disclaimer
           </Link>
           .
         </p>
