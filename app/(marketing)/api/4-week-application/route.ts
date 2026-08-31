@@ -29,7 +29,6 @@ const WORK_ON_OPTIONS = [
   'Life direction or decisions',
   'Something else',
 ]
-const WHY_NOW_MAX = 250
 const YES_NO_UNSURE = ['Yes', 'No', 'I am not sure']
 const YES_NO = ['Yes', 'No']
 
@@ -80,7 +79,6 @@ export async function POST(request: NextRequest) {
   const mobile = str(body, 'mobile')
   const state = str(body, 'state')
   const workOn = str(body, 'workOn')
-  const whyNow = str(body, 'whyNow')
   const commitFourWeeks = str(body, 'commitFourWeeks')
   const readyIn14Days = str(body, 'readyIn14Days')
 
@@ -91,10 +89,9 @@ export async function POST(request: NextRequest) {
   const errors: string[] = []
   if (!firstName) errors.push('First Name is required.')
   if (!email || !email.includes('@')) errors.push('A valid Email Address is required.')
+  if (!mobile) errors.push('A Mobile Number is required.')
   if (!state) errors.push('Please share your state.')
   if (!WORK_ON_OPTIONS.includes(workOn)) errors.push('Please select what you would most like to work on.')
-  if (!whyNow) errors.push('Please share why now feels like the right time.')
-  if (whyNow.length > WHY_NOW_MAX) errors.push(`The "why now" answer exceeds ${WHY_NOW_MAX} characters.`)
   if (!YES_NO_UNSURE.includes(commitFourWeeks)) errors.push('Please answer the four-week commitment question.')
   if (!YES_NO.includes(readyIn14Days)) errors.push('Please answer the 14-day readiness question.')
   if (!ackAge18 || !ackNonClinical) {
@@ -114,7 +111,7 @@ export async function POST(request: NextRequest) {
   const fbclid = str(body, 'fbclid')
 
   const applicationRecord = {
-    firstName, email, mobile, state, workOn, whyNow,
+    firstName, email, mobile, state, workOn,
     commitFourWeeks, readyIn14Days, phoneConsent,
     submittedAt, pageUrl, utmSource, utmMedium, utmCampaign, utmContent, fbclid,
   }
@@ -140,13 +137,12 @@ export async function POST(request: NextRequest) {
       <table cellpadding="0" cellspacing="0">
         ${row('First Name', firstName)}
         ${row('Email', email)}
-        ${row('Mobile', mobile || '—')}
+        ${row('Mobile', mobile)}
         ${row('State', state)}
         ${row('Wants to work on', workOn)}
-        ${row('Why now', whyNow)}
         ${row('Can commit to 1 session/week x 4 weeks', commitFourWeeks)}
         ${row('Ready to begin within 14 days if selected', readyIn14Days)}
-        ${row('Phone contact consent', mobile ? (phoneConsent ? 'Yes' : 'No') : 'N/A')}
+        ${row('Phone contact consent', phoneConsent ? 'Yes' : 'No')}
         ${row('Page URL', pageUrl)}
         ${row('utm_source', utmSource || '—')}
         ${row('utm_medium', utmMedium || '—')}

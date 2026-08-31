@@ -11,7 +11,6 @@ type FormState = {
   mobile: string
   state: string
   workOn: string
-  whyNow: string
   commitFourWeeks: string
   readyIn14Days: string
   ackAge18: boolean
@@ -26,7 +25,6 @@ const initialState: FormState = {
   mobile: '',
   state: '',
   workOn: '',
-  whyNow: '',
   commitFourWeeks: '',
   readyIn14Days: '',
   ackAge18: false,
@@ -43,8 +41,6 @@ const WORK_ON_OPTIONS = [
   'Life direction or decisions',
   'Something else',
 ]
-
-const WHY_NOW_MAX = 250
 
 const inputClass =
   'w-full border border-charcoal/20 bg-offwhite px-4 py-3 font-body text-charcoal rounded-md focus:outline-none focus:ring-3 focus:ring-aqua focus:ring-offset-2 focus:ring-offset-offwhite'
@@ -98,9 +94,9 @@ export default function FourWeekApplicationForm() {
     const missing: string[] = []
     if (form.firstName.trim() === '') missing.push('First Name')
     if (!form.email.includes('@')) missing.push('Email Address')
+    if (form.mobile.trim() === '') missing.push('Mobile Number')
     if (form.state.trim() === '') missing.push('State')
     if (!WORK_ON_OPTIONS.includes(form.workOn)) missing.push('What you would most like to work on')
-    if (form.whyNow.trim() === '' || form.whyNow.length > WHY_NOW_MAX) missing.push('Why now feels like the right time')
     if (!['Yes', 'No', 'I am not sure'].includes(form.commitFourWeeks)) {
       missing.push('The four-week commitment question')
     }
@@ -242,17 +238,22 @@ export default function FourWeekApplicationForm() {
 
       <div className="grid sm:grid-cols-2 gap-6">
         <div>
-          <FieldLabel htmlFor="mobile">Mobile Number</FieldLabel>
+          <FieldLabel htmlFor="mobile" required>
+            Mobile Number
+          </FieldLabel>
           <input
             id="mobile"
             name="mobile"
             type="tel"
+            required
             autoComplete="tel"
             value={form.mobile}
             onChange={(e) => update('mobile', e.target.value)}
             className={inputClass}
           />
-          <p className="font-body text-xs text-charcoal/50 mt-1.5">Used only to reach you about this application.</p>
+          <p className="font-body text-xs text-charcoal/50 mt-1.5">
+            Used only to reach you about this application — including as a backup if our email doesn&apos;t reach you.
+          </p>
         </div>
         <div>
           <FieldLabel htmlFor="state" required>
@@ -292,27 +293,6 @@ export default function FourWeekApplicationForm() {
             </option>
           ))}
         </select>
-      </div>
-
-      <div>
-        <div className="flex items-baseline justify-between">
-          <FieldLabel htmlFor="whyNow" required>
-            In one or two sentences, why does now feel like the right time for you?
-          </FieldLabel>
-          <span className="font-body text-xs text-charcoal/40 shrink-0 ml-3">
-            {form.whyNow.length}/{WHY_NOW_MAX}
-          </span>
-        </div>
-        <textarea
-          id="whyNow"
-          name="whyNow"
-          required
-          maxLength={WHY_NOW_MAX}
-          rows={2}
-          value={form.whyNow}
-          onChange={(e) => update('whyNow', e.target.value)}
-          className={`${inputClass} resize-y`}
-        />
       </div>
 
       <fieldset>
