@@ -27,6 +27,7 @@ export type AnalyticsEvent =
   | 'scroll_90'
   | 'stable_method_scroll_75'
   | 'ApplicationStart' // 4-Week Experience — PascalCase kept to match Meta Events Manager naming (brief section 12)
+  | 'application_completed' // 4-Week Experience — dispara na página de agradecimento, após redirect pós-submit
   // Página PT "Reconstrução Emocional" — ver briefing seção 17. purchase não é
   // disparado por este helper: deve vir da própria Payhip após conclusão real
   // do checkout, nunca no clique nem em uma página de agradecimento própria.
