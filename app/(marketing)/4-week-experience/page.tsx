@@ -212,6 +212,22 @@ export default function FourWeekExperiencePage() {
         </div>
       </section>
 
+      {/* 1b. Application form (duplicate of section 11, placed near the hero
+          so applicants don't have to scroll the full page to apply) */}
+      <section className="bg-offwhite">
+        <div className="max-w-content mx-auto px-6 py-16 md:py-24">
+          <h2 className="font-display text-3xl md:text-4xl leading-tight text-charcoal mb-4 max-w-2xl">
+            Apply for one of the 3 participant places
+          </h2>
+          <p className="font-body text-charcoal/80 leading-relaxed max-w-2xl mb-10">
+            Take a few minutes to answer thoughtfully. Short, specific answers are more useful than polished answers.
+            SAL Ray reviews applications personally. If your application appears to be a strong fit, you will be
+            contacted by email within three business days.
+          </p>
+          <FourWeekApplicationForm />
+        </div>
+      </section>
+
       {/* 2. Recognition */}
       <section className="bg-pale-aqua">
         <div className="max-w-content mx-auto px-6 py-16 md:py-24">

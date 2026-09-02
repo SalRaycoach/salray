@@ -1,6 +1,6 @@
 'use client'
 
-import { useRef, useState } from 'react'
+import { useId, useRef, useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { trackEvent, trackMetaEvent } from '@/lib/analytics'
@@ -55,6 +55,10 @@ function FieldLabel({ htmlFor, required, children }: { htmlFor: string; required
 
 export default function FourWeekApplicationForm() {
   const router = useRouter()
+  // This component may render more than once on the same page (top and
+  // bottom of /4-week-experience/) — a per-instance prefix keeps field ids
+  // unique so <label htmlFor> stays correctly associated in each instance.
+  const uid = useId()
   const [form, setForm] = useState<FormState>(initialState)
   const [status, setStatus] = useState<'idle' | 'submitting' | 'error'>('idle')
   const [errorMessage, setErrorMessage] = useState('')
@@ -163,10 +167,10 @@ export default function FourWeekApplicationForm() {
     <form onSubmit={handleSubmit} noValidate className="max-w-2xl grid gap-8">
       {/* Honeypot — hidden from real visitors, left visible to bots that fill every field */}
       <div style={{ position: 'absolute', left: '-9999px' }} aria-hidden="true">
-        <label htmlFor="website">Website</label>
+        <label htmlFor={`${uid}-website`}>Website</label>
         <input
           type="text"
-          id="website"
+          id={`${uid}-website`}
           name="website"
           tabIndex={-1}
           autoComplete="off"
@@ -189,11 +193,11 @@ export default function FourWeekApplicationForm() {
 
       <div className="grid sm:grid-cols-2 gap-6">
         <div>
-          <FieldLabel htmlFor="firstName" required>
+          <FieldLabel htmlFor={`${uid}-firstName`} required>
             First Name
           </FieldLabel>
           <input
-            id="firstName"
+            id={`${uid}-firstName`}
             name="firstName"
             type="text"
             required
@@ -204,11 +208,11 @@ export default function FourWeekApplicationForm() {
           />
         </div>
         <div>
-          <FieldLabel htmlFor="email" required>
+          <FieldLabel htmlFor={`${uid}-email`} required>
             Email Address
           </FieldLabel>
           <input
-            id="email"
+            id={`${uid}-email`}
             name="email"
             type="email"
             required
@@ -222,11 +226,11 @@ export default function FourWeekApplicationForm() {
 
       <div className="grid sm:grid-cols-2 gap-6">
         <div>
-          <FieldLabel htmlFor="mobile" required>
+          <FieldLabel htmlFor={`${uid}-mobile`} required>
             Mobile Number
           </FieldLabel>
           <input
-            id="mobile"
+            id={`${uid}-mobile`}
             name="mobile"
             type="tel"
             required
@@ -240,11 +244,11 @@ export default function FourWeekApplicationForm() {
           </p>
         </div>
         <div>
-          <FieldLabel htmlFor="state" required>
+          <FieldLabel htmlFor={`${uid}-state`} required>
             State
           </FieldLabel>
           <input
-            id="state"
+            id={`${uid}-state`}
             name="state"
             type="text"
             required
@@ -257,11 +261,11 @@ export default function FourWeekApplicationForm() {
       </div>
 
       <div>
-        <FieldLabel htmlFor="workOn" required>
+        <FieldLabel htmlFor={`${uid}-workOn`} required>
           What would you most like to work on right now?
         </FieldLabel>
         <select
-          id="workOn"
+          id={`${uid}-workOn`}
           name="workOn"
           required
           value={form.workOn}
