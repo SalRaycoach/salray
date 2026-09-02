@@ -33,6 +33,15 @@ export const metadata: Metadata = {
   robots: 'noindex, follow',
 }
 
+const secondFoldSituations = [
+  'You keep explaining your boundaries instead of simply holding them.',
+  'You are tired of being the strong one while feeling uncertain inside.',
+  'You keep repeating a relationship dynamic you promised yourself you would not repeat.',
+  'You are entering a new chapter but do not yet know what you want.',
+  'You second-guess decisions even after thinking about them carefully.',
+  'You want to stop abandoning your own needs to keep peace with others.',
+]
+
 const recognitionPoints = [
   'You keep thinking through the same issue without reaching clarity.',
   'You understand what should change but struggle to respond differently.',
@@ -172,14 +181,16 @@ export default function FourWeekExperiencePage() {
               No cost &middot; Selecting 3 Participants
             </p>
             <h1 className="font-display text-4xl md:text-5xl leading-tight text-charcoal mb-4">
-              A Private 4-Week Emotional &amp; Life Rebuilding Experience
+              A Private 4-Week Experience for Women Ready to Stop Repeating the Same Patterns
             </h1>
             <p className="font-body text-lg text-charcoal/80 leading-relaxed mb-6">
-              You look fine on the outside. Inside, you feel stuck.
+              You may be functioning, caring for others, and keeping life moving — while privately feeling stuck in
+              the same relationship, boundary, emotional, or decision-making patterns.
             </p>
             <p className="font-body text-charcoal/70 mb-8">
-              Four private online sessions with SAL Ray. One each week, for four weeks. At no cost for the three
-              people selected.
+              This private online experience includes four focused sessions with SAL Ray to help you understand what
+              keeps repeating, build a steadier response, and take practical next steps forward. Three participants
+              will be selected at no cost.
             </p>
             <div className="flex flex-wrap gap-3">
               <a
@@ -187,13 +198,13 @@ export default function FourWeekExperiencePage() {
                 data-event="four_week_apply_click"
                 className="inline-block font-body text-sm font-medium bg-orange text-offwhite px-6 py-3.5 rounded-md hover:bg-charcoal transition-colors"
               >
-                Apply for the 4-Week Experience
+                See If This Experience Is a Fit
               </a>
               <a
                 href="#how-it-works"
                 className="inline-block font-body text-sm font-medium border border-orange text-orange px-6 py-3.5 rounded-md hover:bg-orange hover:text-offwhite transition-colors"
               >
-                See How It Works
+                See How the Four Weeks Work
               </a>
             </div>
           </div>
@@ -212,19 +223,61 @@ export default function FourWeekExperiencePage() {
         </div>
       </section>
 
-      {/* 1b. Application form (duplicate of section 11, placed near the hero
-          so applicants don't have to scroll the full page to apply) */}
+      {/* 1b. Second fold — identification copy (left) + application form
+          (right on desktop, sequential on mobile). The form block is a
+          duplicate of section 11 and must stay unchanged. */}
+      <section className="bg-pale-aqua">
+        <div className="max-w-content mx-auto px-6 py-16 md:py-24">
+          <div className="grid md:grid-cols-2 gap-12 items-start">
+            <div>
+              <h2 className="font-display text-3xl md:text-4xl leading-tight text-charcoal mb-6">
+                You May Be Functioning on the Outside — But Still Feeling Stuck Inside
+              </h2>
+              <p className="font-body text-charcoal/85 leading-relaxed mb-5">
+                This experience may be especially relevant if you are in a season of life where you are questioning
+                what comes next, re-evaluating your relationships, or realizing that years of putting everyone else
+                first have made it difficult to hear your own needs.
+              </p>
+              <p className="font-body text-charcoal/85 leading-relaxed mb-6">
+                You may be carrying responsibilities, showing up for work and family, and appearing strong to
+                everyone around you. But privately, you may be tired of overthinking, overgiving, tolerating what no
+                longer feels right, or repeating patterns you already understand.
+              </p>
+              <h3 className="font-display text-xl text-charcoal mb-4">This may be you if:</h3>
+              <ul className="grid gap-3">
+                {secondFoldSituations.map((item) => (
+                  <li key={item} className="font-body text-charcoal/85 leading-relaxed pl-5 border-l-2 border-aqua">
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div>
+              <h2 className="font-display text-3xl md:text-4xl leading-tight text-charcoal mb-4 max-w-2xl">
+                Apply for one of the 3 participant places
+              </h2>
+              <p className="font-body text-charcoal/80 leading-relaxed max-w-2xl mb-10">
+                Take a few minutes to answer thoughtfully. Short, specific answers are more useful than polished
+                answers. SAL Ray reviews applications personally. If your application appears to be a strong fit, you
+                will be contacted by email within three business days.
+              </p>
+              <FourWeekApplicationForm />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 1c. Who this may serve */}
       <section className="bg-offwhite">
         <div className="max-w-content mx-auto px-6 py-16 md:py-24">
           <h2 className="font-display text-3xl md:text-4xl leading-tight text-charcoal mb-4 max-w-2xl">
-            Apply for one of the 3 participant places
+            A Structured Experience for the Next Chapter of Your Life
           </h2>
-          <p className="font-body text-charcoal/80 leading-relaxed max-w-2xl mb-10">
-            Take a few minutes to answer thoughtfully. Short, specific answers are more useful than polished answers.
-            SAL Ray reviews applications personally. If your application appears to be a strong fit, you will be
-            contacted by email within three business days.
+          <p className="font-body text-charcoal/80 leading-relaxed max-w-2xl">
+            This experience is open to adults, and it may be particularly meaningful for women in their 40s, 50s,
+            and 60s who are ready to rebuild emotional steadiness, self-trust, healthier boundaries, and a clearer
+            direction for the next chapter of life.
           </p>
-          <FourWeekApplicationForm />
         </div>
       </section>
 
