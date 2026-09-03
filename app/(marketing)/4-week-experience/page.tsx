@@ -69,23 +69,23 @@ const experienceCards = [
 const fourWeekPath = [
   {
     week: 'Week 1',
-    title: 'Clarify what is happening now',
-    body: 'Identify the current concern, the situations surrounding it, and the change you most want to create.',
+    title: 'Understand What Is Really Happening',
+    body: 'Clarify the situation, the emotional pressure around it, and the change you most want to make.',
   },
   {
     week: 'Week 2',
-    title: 'Recognize the pattern beneath it',
-    body: 'Explore what continues to repeat, what triggers it, and what may be reinforcing the same response.',
+    title: 'Identify the Pattern That Keeps Repeating',
+    body: 'Recognize the triggers, reactions, relationship dynamics, and choices that keep taking you back to the same place.',
   },
   {
     week: 'Week 3',
-    title: 'Build a more stable response',
-    body: 'Strengthen awareness, boundaries, self-trust, and the internal structure needed to respond differently.',
+    title: 'Practice a Steadier Way to Respond',
+    body: 'Work on boundaries, emotional regulation, self-trust, and responding without automatically overgiving, withdrawing, or reacting.',
   },
   {
     week: 'Week 4',
-    title: 'Integrate the next steps',
-    body: 'Translate what you have understood into practical choices, daily application, and a clearer direction forward.',
+    title: 'Move Forward With Clearer Choices',
+    body: 'Turn the work into practical decisions, conversations, routines, and next steps for the life you are building.',
   },
 ]
 
@@ -111,31 +111,45 @@ const commitmentItems = [
   'Schedule all four sessions before the experience begins.',
   'Join each session on time from a quiet, private place with reliable internet.',
   'Provide at least 24 hours’ notice if a schedule change is unavoidable.',
-  'Understand that missed sessions and late cancellations are not automatically replaced and may end participation.',
   'Participate actively, reflect honestly, and apply what is discussed between sessions.',
   'Provide honest feedback after the fourth session. A public testimonial is never required.',
 ]
 
-const selectionSteps = [
+const trustPoints = [
+  {
+    title: 'Private and one-to-one',
+    body: 'Your experience is conducted privately with SAL Ray online.',
+  },
+  {
+    title: 'No public testimonial required',
+    body: 'Honest feedback is welcome, but a public testimonial is never required.',
+  },
+  {
+    title: 'A fit conversation comes first',
+    body: 'Selected applicants have a brief 15-minute conversation before any sessions are scheduled.',
+  },
+]
+
+const afterApplySteps = [
   {
     step: '1',
     title: 'Submit your application',
-    body: 'Answer the short questions thoughtfully and confirm that you can make the four-week commitment.',
+    body: 'Answer a few short questions about your current focus, availability, and readiness for the four-week commitment.',
   },
   {
     step: '2',
     title: 'Application review',
-    body: 'SAL Ray reviews each application personally. If your application appears to be a strong fit, you will be contacted by email within three business days.',
+    body: 'SAL Ray reviews each application personally. You will be contacted within three business days if your application appears to be a strong fit.',
   },
   {
     step: '3',
     title: 'Brief fit conversation',
-    body: 'Potential participants are invited to a short 15-minute video conversation to confirm fit, expectations, and scheduling.',
+    body: 'Potential participants are invited to a short 15-minute video conversation to confirm fit, expectations, scheduling, and next steps.',
   },
   {
     step: '4',
-    title: 'Final selection and scheduling',
-    body: 'If selected, you will receive the participant agreement and schedule all four private sessions before beginning.',
+    title: 'Acceptance and scheduling',
+    body: 'If selected, SAL Ray will contact you using the email address and mobile number provided in your application to confirm acceptance and schedule all four private sessions.',
   },
 ]
 
@@ -254,12 +268,16 @@ export default function FourWeekExperiencePage() {
             </div>
             <div>
               <h2 className="font-display text-3xl md:text-4xl leading-tight text-charcoal mb-4 max-w-2xl">
-                Apply for one of the 3 participant places
+                Apply to Be Considered for the Private 4-Week Experience
               </h2>
-              <p className="font-body text-charcoal/80 leading-relaxed max-w-2xl mb-10">
-                Take a few minutes to answer thoughtfully. Short, specific answers are more useful than polished
-                answers. SAL Ray reviews applications personally. If your application appears to be a strong fit, you
-                will be contacted by email within three business days.
+              <p className="font-body text-charcoal/80 leading-relaxed max-w-2xl mb-4">
+                Your answers do not need to be perfect or polished. They simply help SAL Ray understand whether this
+                experience is appropriate for what you are currently facing.
+              </p>
+              <p className="font-body text-charcoal/70 leading-relaxed max-w-2xl mb-10">
+                Applying does not commit you to coaching and does not guarantee selection. SAL Ray personally reviews
+                each application. If your situation appears to be a fit, you will be invited to a brief 15-minute
+                video conversation to discuss your focus, expectations, availability, and next steps.
               </p>
               <FourWeekApplicationForm />
             </div>
@@ -267,8 +285,26 @@ export default function FourWeekExperiencePage() {
         </div>
       </section>
 
-      {/* 1c. Who this may serve */}
+      {/* 1d. What happens after you apply */}
       <section className="bg-offwhite">
+        <div className="max-w-content mx-auto px-6 py-16 md:py-24">
+          <h2 className="font-display text-3xl md:text-4xl leading-tight text-charcoal mb-10 max-w-2xl">
+            What Happens After You Apply?
+          </h2>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {afterApplySteps.map((item) => (
+              <div key={item.step}>
+                <span className="font-display text-3xl text-aqua block mb-3">{item.step}</span>
+                <h3 className="font-display text-lg text-charcoal mb-2">{item.title}</h3>
+                <p className="font-body text-charcoal/70 leading-relaxed text-sm">{item.body}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 1c. Who this may serve */}
+      <section className="bg-pale-aqua">
         <div className="max-w-content mx-auto px-6 py-16 md:py-24">
           <h2 className="font-display text-3xl md:text-4xl leading-tight text-charcoal mb-4 max-w-2xl">
             A Structured Experience for the Next Chapter of Your Life
@@ -277,6 +313,37 @@ export default function FourWeekExperiencePage() {
             This experience is open to adults, and it may be particularly meaningful for women in their 40s, 50s,
             and 60s who are ready to rebuild emotional steadiness, self-trust, healthier boundaries, and a clearer
             direction for the next chapter of life.
+          </p>
+        </div>
+      </section>
+
+      {/* 1e. The S.T.A.B.L.E. Method (moved up from its previous position
+          further down the page, per Phase 4 — now sits right after the
+          identification/application area instead of after the four-week
+          path). */}
+      <section className="bg-offwhite">
+        <div className="max-w-content mx-auto px-6 py-16 md:py-24">
+          <h2 className="font-display text-3xl md:text-4xl leading-tight text-charcoal mb-4 max-w-2xl">
+            The S.T.A.B.L.E. Method
+          </h2>
+          <p className="font-body text-charcoal/80 leading-relaxed max-w-2xl mb-10">
+            The S.T.A.B.L.E. Method is SAL Ray&apos;s structured, non-clinical framework for recognizing emotional
+            patterns, rebuilding internal stability, and translating insight into sustainable changes in daily life.
+          </p>
+          <div className="grid gap-4 mb-10">
+            {stableMethod.letters.map((item) => (
+              <div key={item.letter} className="flex gap-5 border-b border-charcoal/10 pb-4">
+                <span className="font-display text-3xl text-aqua w-10 shrink-0">{item.letter}</span>
+                <div>
+                  <h3 className="font-display text-lg text-charcoal mb-1">{item.name}</h3>
+                  <p className="font-body text-charcoal/70 leading-relaxed text-sm">{item.shortDescription}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+          <p className="font-body text-charcoal/70 leading-relaxed max-w-2xl">
+            The method provides structure without forcing every person into the same process. The framework remains
+            consistent. The application remains personal.
           </p>
         </div>
       </section>
@@ -352,8 +419,9 @@ export default function FourWeekExperiencePage() {
             What the four weeks may look like
           </h2>
           <p className="font-body text-charcoal/80 leading-relaxed max-w-2xl mb-10">
-            The structure is consistent, but the application is personal. The exact emphasis will depend on your
-            situation, your priorities, and what becomes clear during the process.
+            The structure is consistent, but the application is personal. Each week builds on the previous one,
+            helping you move from understanding what keeps happening to making clearer, steadier choices in daily
+            life.
           </p>
           <div className="grid md:grid-cols-2 gap-6">
             {fourWeekPath.map((item) => (
@@ -366,34 +434,6 @@ export default function FourWeekExperiencePage() {
           </div>
           <p className="font-body text-xs text-charcoal/50 leading-relaxed mt-8 max-w-2xl">
             This outline describes the direction of the work, not a guaranteed outcome or a rigid weekly formula.
-          </p>
-        </div>
-      </section>
-
-      {/* 5. The S.T.A.B.L.E. Method */}
-      <section className="bg-offwhite">
-        <div className="max-w-content mx-auto px-6 py-16 md:py-24">
-          <h2 className="font-display text-3xl md:text-4xl leading-tight text-charcoal mb-4 max-w-2xl">
-            The S.T.A.B.L.E. Method
-          </h2>
-          <p className="font-body text-charcoal/80 leading-relaxed max-w-2xl mb-10">
-            The S.T.A.B.L.E. Method is SAL Ray&apos;s structured, non-clinical framework for recognizing emotional
-            patterns, rebuilding internal stability, and translating insight into sustainable changes in daily life.
-          </p>
-          <div className="grid gap-4 mb-10">
-            {stableMethod.letters.map((item) => (
-              <div key={item.letter} className="flex gap-5 border-b border-charcoal/10 pb-4">
-                <span className="font-display text-3xl text-aqua w-10 shrink-0">{item.letter}</span>
-                <div>
-                  <h3 className="font-display text-lg text-charcoal mb-1">{item.name}</h3>
-                  <p className="font-body text-charcoal/70 leading-relaxed text-sm">{item.shortDescription}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-          <p className="font-body text-charcoal/70 leading-relaxed max-w-2xl">
-            The method provides structure without forcing every person into the same process. The framework remains
-            consistent. The application remains personal.
           </p>
         </div>
       </section>
@@ -469,41 +509,28 @@ export default function FourWeekExperiencePage() {
             Four weeks means four weeks.
           </h2>
           <p className="font-body text-charcoal/80 leading-relaxed max-w-2xl mb-10">
-            The continuity is part of the process. Selected participants must be able to attend one private session
-            each week for four consecutive weeks.
+            Because each session builds on the previous one, selected participants need to protect the same weekly
+            time for four consecutive weeks. This commitment helps make the experience useful and respectful of
+            everyone&apos;s time.
           </p>
-          <ul className="grid gap-3 max-w-2xl mb-10">
+          <ul className="grid gap-3 max-w-2xl mb-6">
             {commitmentItems.map((item) => (
               <li key={item} className="font-body text-charcoal/85 leading-relaxed pl-5 border-l-2 border-aqua">
                 {item}
               </li>
             ))}
           </ul>
-          <p className="font-body text-charcoal bg-offwhite/40 border border-charcoal/15 rounded-lg p-6 max-w-2xl leading-relaxed">
-            If you already know that you cannot protect one session each week, please do not apply for this round.
+          <p className="font-body text-charcoal bg-offwhite/40 border border-charcoal/15 rounded-lg p-6 max-w-2xl leading-relaxed mb-10">
+            Missed sessions and late cancellations may not be replaced and may end participation in the experience.
           </p>
-        </div>
-      </section>
-
-      {/* 9. Selection process */}
-      <section className="bg-offwhite">
-        <div className="max-w-content mx-auto px-6 py-16 md:py-24">
-          <h2 className="font-display text-3xl md:text-4xl leading-tight text-charcoal mb-10 max-w-2xl">
-            How selection works
-          </h2>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
-            {selectionSteps.map((item) => (
-              <div key={item.step}>
-                <span className="font-display text-3xl text-aqua block mb-3">{item.step}</span>
-                <h3 className="font-display text-lg text-charcoal mb-2">{item.title}</h3>
-                <p className="font-body text-charcoal/70 leading-relaxed text-sm">{item.body}</p>
+          <div className="grid sm:grid-cols-3 gap-6 max-w-3xl">
+            {trustPoints.map((point) => (
+              <div key={point.title}>
+                <h3 className="font-display text-lg text-charcoal mb-2">{point.title}</h3>
+                <p className="font-body text-sm text-charcoal/70 leading-relaxed">{point.body}</p>
               </div>
             ))}
           </div>
-          <p className="font-body text-charcoal/70 leading-relaxed max-w-2xl">
-            Only three participants will be selected. Selection is based on fit, readiness, availability, and whether
-            the focus is appropriate for non-clinical coaching — not on the severity of a person&apos;s story.
-          </p>
         </div>
       </section>
 
@@ -521,12 +548,16 @@ export default function FourWeekExperiencePage() {
       <section id="application" className="bg-offwhite">
         <div className="max-w-content mx-auto px-6 py-16 md:py-24">
           <h2 className="font-display text-3xl md:text-4xl leading-tight text-charcoal mb-4 max-w-2xl">
-            Apply for one of the 3 participant places
+            Apply to Be Considered for the Private 4-Week Experience
           </h2>
-          <p className="font-body text-charcoal/80 leading-relaxed max-w-2xl mb-10">
-            Take a few minutes to answer thoughtfully. Short, specific answers are more useful than polished answers.
-            SAL Ray reviews applications personally. If your application appears to be a strong fit, you will be
-            contacted by email within three business days.
+          <p className="font-body text-charcoal/80 leading-relaxed max-w-2xl mb-4">
+            Your answers do not need to be perfect or polished. They simply help SAL Ray understand whether this
+            experience is appropriate for what you are currently facing.
+          </p>
+          <p className="font-body text-charcoal/70 leading-relaxed max-w-2xl mb-10">
+            Applying does not commit you to coaching and does not guarantee selection. SAL Ray personally reviews
+            each application. If your situation appears to be a fit, you will be invited to a brief 15-minute video
+            conversation to discuss your focus, expectations, availability, and next steps.
           </p>
           <FourWeekApplicationForm />
         </div>
