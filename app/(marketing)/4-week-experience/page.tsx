@@ -42,14 +42,6 @@ const secondFoldSituations = [
   'You want to stop abandoning your own needs to keep peace with others.',
 ]
 
-const recognitionPoints = [
-  'You keep thinking through the same issue without reaching clarity.',
-  'You understand what should change but struggle to respond differently.',
-  'You repeat the same boundary, relationship, or emotional cycle.',
-  'You feel stuck between who you have been and how you want to live.',
-  'You have been carrying too much internally for too long.',
-]
-
 const experienceCards = [
   { title: '4 Private Sessions', body: 'One private, one-to-one online coaching session each week.' },
   {
@@ -258,13 +250,17 @@ export default function FourWeekExperiencePage() {
                 longer feels right, or repeating patterns you already understand.
               </p>
               <h3 className="font-display text-xl text-charcoal mb-4">This may be you if:</h3>
-              <ul className="grid gap-3">
+              <ul className="grid gap-3 mb-6">
                 {secondFoldSituations.map((item) => (
                   <li key={item} className="font-body text-charcoal/85 leading-relaxed pl-5 border-l-2 border-aqua">
                     {item}
                   </li>
                 ))}
               </ul>
+              <p className="font-body text-charcoal/70 leading-relaxed">
+                You do not need to arrive with a perfect explanation. You do need one real area of your life that you
+                are ready to examine and work on.
+              </p>
             </div>
             <div>
               <h2 className="font-display text-3xl md:text-4xl leading-tight text-charcoal mb-4 max-w-2xl">
@@ -348,41 +344,8 @@ export default function FourWeekExperiencePage() {
         </div>
       </section>
 
-      {/* 2. Recognition */}
-      <section className="bg-pale-aqua">
-        <div className="max-w-content mx-auto px-6 py-16 md:py-24">
-          <h2 className="font-display text-3xl md:text-4xl leading-tight text-charcoal mb-8 max-w-2xl">
-            You are still functioning. But something inside may no longer feel steady.
-          </h2>
-          <div className="grid md:grid-cols-2 gap-12">
-            <div>
-              <p className="font-body text-charcoal/85 leading-relaxed mb-5">
-                You may be working, caring for others, meeting responsibilities, and doing what needs to be done. At
-                the same time, your mind may feel overloaded, your direction may feel unclear, or the same emotional
-                and relational patterns may continue to repeat.
-              </p>
-              <p className="font-body text-charcoal/85 leading-relaxed">
-                This experience is for people who are ready to look beyond the surface-level problem and understand
-                the pattern beneath what keeps happening.
-              </p>
-            </div>
-            <ul className="grid gap-3">
-              {recognitionPoints.map((point) => (
-                <li key={point} className="font-body text-charcoal/85 leading-relaxed pl-5 border-l-2 border-aqua">
-                  {point}
-                </li>
-              ))}
-            </ul>
-          </div>
-          <p className="font-body text-charcoal/70 leading-relaxed mt-10 max-w-2xl">
-            You do not need to arrive with a perfect explanation. You do need one real area of your life that you are
-            ready to examine and work on.
-          </p>
-        </div>
-      </section>
-
       {/* 3. Experience overview */}
-      <section id="how-it-works" className="bg-offwhite">
+      <section id="how-it-works" className="bg-pale-aqua">
         <div className="max-w-content mx-auto px-6 py-16 md:py-24">
           <h2 className="font-display text-3xl md:text-4xl leading-tight text-charcoal mb-4 max-w-2xl">
             Four weeks of focused, private coaching.
