@@ -231,11 +231,14 @@ export default function FourWeekExperiencePage() {
 
       {/* 1b. Second fold — identification copy (left) + application form
           (right on desktop, sequential on mobile). The form block is a
-          duplicate of section 11 and must stay unchanged. */}
+          duplicate of section 11 and must stay unchanged. On mobile the
+          form is reordered to appear first (order-1/order-2), right after
+          the hero, while the DOM order (identification, then form) and the
+          desktop grid (identification left, form right) stay unchanged. */}
       <section className="bg-pale-aqua">
         <div className="max-w-content mx-auto px-6 py-16 md:py-24">
           <div className="grid md:grid-cols-2 gap-12 items-start">
-            <div>
+            <div className="order-2 md:order-1">
               <h2 className="font-display text-3xl md:text-4xl leading-tight text-charcoal mb-6">
                 You May Be Functioning on the Outside — But Still Feeling Stuck Inside
               </h2>
@@ -262,7 +265,7 @@ export default function FourWeekExperiencePage() {
                 are ready to examine and work on.
               </p>
             </div>
-            <div>
+            <div className="order-1 md:order-2">
               <h2 className="font-display text-3xl md:text-4xl leading-tight text-charcoal mb-4 max-w-2xl">
                 Apply to Be Considered for the Private 4-Week Experience
               </h2>
