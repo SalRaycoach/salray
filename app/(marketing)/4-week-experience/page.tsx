@@ -72,7 +72,7 @@ const fourWeekPath = [
   {
     week: 'Week 3',
     title: 'Practice a Steadier Way to Respond',
-    body: 'Work on boundaries, emotional regulation, self-trust, and responding without automatically overgiving, withdrawing, or reacting.',
+    body: 'Work on boundaries, greater clarity and steadiness, self-trust, and responding without automatically overgiving, withdrawing, or reacting.',
   },
   {
     week: 'Week 4',
