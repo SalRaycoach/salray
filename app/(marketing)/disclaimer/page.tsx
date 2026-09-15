@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { clinicalDisclaimer, crisisResource, SITE_URL } from '@/lib/config'
+import { contato, SITE_URL } from '@/lib/config'
 
 const title = 'Professional Disclaimer | SAL Ray'
 const description = 'SAL Ray provides non-clinical coaching and personal development services. Read the full professional disclaimer.'
@@ -19,39 +19,79 @@ export const metadata: Metadata = {
 export default function DisclaimerPage() {
   return (
     <main className="max-w-content mx-auto px-6 py-16 md:py-24">
-      <div className="bg-pale-orange border border-orange/40 rounded-lg p-4 mb-10 max-w-2xl">
-        <p className="font-body text-xs text-charcoal/70 leading-relaxed">
-          <strong>Draft — pending attorney review.</strong> This page must be reviewed and approved by a licensed
-          attorney in the relevant U.S. jurisdiction before this site is published live.
-        </p>
-      </div>
-
-      <h1 className="font-display text-4xl text-charcoal mb-8">Professional Disclaimer</h1>
+      <h1 className="font-display text-4xl text-charcoal mb-2">Professional Disclaimer</h1>
+      <p className="font-body text-sm text-charcoal/50 mb-8">Last updated: September 14, 2026</p>
 
       <section className="max-w-2xl space-y-6 font-body text-charcoal/85 leading-relaxed">
-        <p>{clinicalDisclaimer}</p>
-
-        <h2 className="font-display text-2xl text-charcoal">No Clinical Claims</h2>
+        <h2 className="font-display text-2xl text-charcoal">Non-Clinical Nature of Services</h2>
         <p>
-          Nothing on this website, in coaching sessions, in testimonials, or in any advertising should be
-          interpreted as a clinical or medical claim. SAL Ray is not a licensed therapist, psychologist,
-          psychiatrist, or medical provider.
+          SAL Ray provides non-clinical coaching and personal development services. These services are educational
+          and supportive in nature and do not diagnose, treat, cure, or prevent mental-health or medical conditions.
+          They are not a substitute for psychotherapy, psychiatry, medical care, or emergency services.
+        </p>
+        <p>
+          Coaching may help clients examine personal patterns, clarify priorities, strengthen self-trust, consider
+          boundaries, and identify practical next steps. Individual experiences and results vary.
         </p>
 
-        <h2 className="font-display text-2xl text-charcoal">Non-Clinical Hypnosis</h2>
+        <h2 className="font-display text-2xl text-charcoal">What Our Services Do Not Include</h2>
+        <p>Our services do not include, and should not be understood as providing:</p>
+        <ul className="list-disc pl-6 space-y-2">
+          <li>Trauma treatment</li>
+          <li>Depression treatment</li>
+          <li>Anxiety treatment</li>
+          <li>Medication guidance</li>
+          <li>Psychiatric treatment</li>
+          <li>Diagnosis of any medical or mental-health condition</li>
+          <li>Clinical hypnotherapy</li>
+          <li>Medical treatment</li>
+          <li>Crisis counseling</li>
+        </ul>
         <p>
-          When appropriate and mutually agreed upon, SAL Ray may use non-clinical hypnosis techniques as one
-          supportive tool within a broader coaching process. This is never presented as medical treatment, and
-          informed consent is obtained before any such tool is used.
+          If you are experiencing a mental-health condition, medical concern, or crisis, please seek support from a
+          licensed healthcare professional or the appropriate emergency service.
         </p>
 
-        <h2 className="font-display text-2xl text-charcoal">Not Emergency or Crisis Care</h2>
-        <p>{crisisResource}</p>
+        <h2 className="font-display text-2xl text-charcoal">Non-Clinical Hypnosis and Guided Exercises</h2>
+        <p>
+          When appropriate and separately agreed upon, sessions may include non-clinical hypnosis, guided
+          visualization, or focused-attention exercises solely for personal development, self-reflection, mindset,
+          habits, beliefs, and goal clarity. These exercises are not clinical hypnosis, hypnotherapy, medical
+          treatment, or mental-health treatment. Participation is voluntary, and you may decline or stop an exercise
+          at any time.
+        </p>
+
+        <h2 className="font-display text-2xl text-charcoal">The S.T.A.B.L.E.™ Method</h2>
+        <p>
+          The S.T.A.B.L.E.™ Method is a proprietary, non-clinical framework created by SAL Ray for recognizing
+          personal patterns, building internal stability, and translating insight into practical, sustainable
+          changes. It is a coaching framework, not a clinical or medical protocol.
+        </p>
 
         <h2 className="font-display text-2xl text-charcoal">No Guarantee of Outcome</h2>
         <p>
-          Coaching outcomes depend on individual engagement and circumstances. SAL Ray does not guarantee specific
-          results, a cure, or a particular outcome from any consultation, session, or program.
+          Coaching outcomes depend on individual effort, circumstances, and participation. We do not promise or
+          guarantee any specific result. Any description of the coaching process (including program structure, such
+          as the four-week format) describes the general direction of the work, not a guaranteed outcome.
+        </p>
+
+        <h2 className="font-display text-2xl text-charcoal">In Case of Crisis</h2>
+        <p>
+          Our services are not appropriate for anyone in immediate crisis, in danger, or in need of emergency
+          support. If you are experiencing a mental-health emergency or thoughts of harming yourself or others,
+          please contact local emergency services or a crisis resource, such as the 988 Suicide &amp; Crisis Lifeline
+          (United States), immediately.
+        </p>
+
+        <h2 className="font-display text-2xl text-charcoal">Contact Us</h2>
+        <p>If you have questions about this disclaimer, contact us at:</p>
+        <p>
+          <strong>Email:</strong>{' '}
+          <a href={`mailto:${contato.email}`} className="text-aqua underline underline-offset-2">
+            {contato.email}
+          </a>
+          <br />
+          <strong>Business:</strong> SAL Ray Coaching LLC
         </p>
       </section>
     </main>
