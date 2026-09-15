@@ -16,9 +16,16 @@ import { trackEvent } from '@/lib/analytics'
 export default function PtHeader() {
   const pathname = usePathname()
   const isReconstrucao = pathname?.startsWith('/pt/reconstrucao-emocional')
+  // A ferramenta de autoavaliação é um sub-contexto de "reconstrucao-emocional"
+  // com uma intenção diferente da página de vendas: quem chega ali já
+  // concluiu as Vivências, então o CTA do header troca de "ajuda para
+  // escolher" para "agendar uma consulta" (pedido 15 set 2026).
+  const isAvaliacao = pathname?.startsWith('/pt/reconstrucao-emocional/avaliacao')
 
   if (isReconstrucao) {
-    const helpUrl = buildWhatsAppUrl(whatsapp.messages.ajudaParaEscolher)
+    const helpUrl = buildWhatsAppUrl(
+      isAvaliacao ? whatsapp.messages.avaliacaoConcluida : whatsapp.messages.ajudaParaEscolher
+    )
     return (
       <header className="sticky top-0 z-50 bg-offwhite border-b border-charcoal/10">
         <nav className="max-w-content mx-auto flex items-center justify-between px-6 py-4">
@@ -29,10 +36,15 @@ export default function PtHeader() {
             href={helpUrl}
             target="_blank"
             rel="noopener noreferrer"
-            onClick={() => trackEvent('whatsapp_click', { cta_location: 'header', offer_name: 'ajuda_para_escolher' })}
+            onClick={() =>
+              trackEvent('whatsapp_click', {
+                cta_location: 'header',
+                offer_name: isAvaliacao ? 'agendar_consulta_pos_avaliacao' : 'ajuda_para_escolher',
+              })
+            }
             className="font-body text-sm font-medium border border-aqua text-aqua px-4 py-2 rounded-md hover:bg-aqua hover:text-offwhite transition-colors"
           >
-            Preciso de ajuda para escolher
+            {isAvaliacao ? 'Agendar uma consulta' : 'Preciso de ajuda para escolher'}
           </a>
         </nav>
       </header>

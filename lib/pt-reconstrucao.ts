@@ -26,12 +26,13 @@ export const ptPageMeta = {
 } as const
 
 /**
- * WhatsApp — número real ainda não fornecido (briefing, seção 21). Formato
- * esperado: código do país + DDD/área, sem símbolos (ex.: "15551234567").
- * PLACEHOLDER ÓBVIO até Sal Ray confirmar o número real.
+ * WhatsApp — número real confirmado por Sal Ray em 15 set 2026 (mesmo número
+ * já usado no resto do site). isPending() e o fallback em buildWhatsAppUrl()
+ * ficam como estão, sem uso agora, apenas como rede de segurança caso o
+ * número precise voltar a um estado "PENDENTE_" no futuro.
  */
 export const whatsapp = {
-  numberE164: 'PENDENTE_NUMERO_WHATSAPP', // ex. real esperado: "1XXXXXXXXXX" — NÃO INVENTAR
+  numberE164: '18635137521',
   isPending(): boolean {
     return this.numberE164.startsWith('PENDENTE_')
   },
@@ -39,6 +40,11 @@ export const whatsapp = {
     ajudaParaEscolher:
       'Olá, Sal Ray. Vi a página de Reconstrução Emocional e preciso de ajuda para escolher a opção mais adequada para mim.',
     personalizado: 'Olá, Sal Ray. Quero entender se o acompanhamento personalizado é adequado para o meu momento.',
+    // Botão de WhatsApp específico da ferramenta de autoavaliação (pedido 15
+    // set 2026) — contexto diferente do botão "ajuda para escolher" do resto
+    // da página: quem chega aqui já concluiu as Vivências.
+    avaliacaoConcluida:
+      'Olá, Sal Ray. Concluí as Vivências de Reconstrução Emocional e gostaria de agendar uma consulta.',
   },
 } as const
 
