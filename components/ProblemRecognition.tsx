@@ -15,7 +15,7 @@ export default function ProblemRecognition() {
           repeat.
         </p>
 
-        <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-4 mb-10">
+        <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-4 mb-4">
           {problemCards.map((card) => (
             <div key={card} className="bg-offwhite border border-charcoal/10 rounded-lg p-5">
               <span className="block w-2.5 h-2.5 rounded-full bg-orange mb-3" aria-hidden="true" />
@@ -23,6 +23,8 @@ export default function ProblemRecognition() {
             </div>
           ))}
         </div>
+
+        <p className="font-body text-sm text-charcoal/50 mb-10">Individual experiences and results vary.</p>
 
         <Link href="/how-i-help/" className="font-body text-sm font-medium text-aqua hover:text-charcoal">
           Continue exploring →

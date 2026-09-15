@@ -100,7 +100,7 @@ export const stableMethod = {
     {
       letter: 'B',
       name: 'Build Internal Stability',
-      shortDescription: 'Strengthen the internal foundation needed for emotional regulation, confidence, and resilience.',
+      shortDescription: 'Strengthen the internal foundation needed for steadier and more intentional responses, confidence, and resilience.',
       expandedExplanation:
         'Recognition alone is not enough. The person must also develop greater internal stability. This element focuses on strengthening emotional responses, personal boundaries, self-trust, clarity, and the capacity to remain grounded during challenging situations.\n\nThis is where understanding begins to become rebuilding.',
       coreQuestion: 'What internal structure do I need to respond differently?',
@@ -260,7 +260,7 @@ export const faqs: Faq[] = [
   {
     question: 'Do you use hypnosis?',
     answer:
-      'When appropriate and agreed upon, SAL Ray may use non-clinical hypnosis as one supportive tool within a broader process. It is not the brand’s central promise and is never presented as medical treatment.',
+      'When appropriate and separately agreed upon, sessions may include non-clinical hypnosis, guided visualization, or focused-attention exercises solely for personal development, self-reflection, mindset, habits, beliefs, and goal clarity. These exercises are not clinical hypnosis, hypnotherapy, medical treatment, or mental-health treatment. Participation is voluntary, and the client may decline or stop an exercise at any time.',
   },
   {
     question: 'What happens in the initial consultation?',
