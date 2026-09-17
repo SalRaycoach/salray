@@ -239,7 +239,13 @@ export default function ReconstrucaoEmocionalPage() {
           <div>
             <p className="font-body text-xs uppercase tracking-widest text-aqua mb-3">{vivencias.level}</p>
             {vivencias.badge && (
-              <p className="font-body text-xs uppercase tracking-widest text-aqua/80 border border-aqua/40 inline-block px-3 py-1 rounded-full mb-4">
+              // Tratamento diferenciado (pedido 17 set 2026): fundo laranja de
+              // destaque em vez do outline aqua padrão dos outros rótulos da
+              // página — sinaliza oferta por tempo limitado à primeira vista.
+              // text-offwhite (não text-charcoal) de propósito: `offwhite` é o
+              // tom escuro deste tema invertido — dá ~8:1 de contraste contra
+              // o laranja, bem melhor que o ~2:1 que `charcoal` daria aqui.
+              <p className="font-body text-xs font-bold uppercase tracking-widest text-offwhite bg-[#F7941D] inline-block px-4 py-1.5 rounded-full mb-4">
                 {vivencias.badge}
               </p>
             )}
