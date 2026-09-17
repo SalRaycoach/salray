@@ -176,6 +176,28 @@ export default function ReconstrucaoEmocionalPage() {
         </div>
       </section>
 
+      {/* ===== AINDA NÃO TEM CERTEZA? — link pras Reflexões gratuitas (pedido
+          17 set 2026, revisado 17 set 2026: sem card/fundo próprio — só
+          texto centralizado + botão, mesma largura de coluna das outras
+          seções de texto centralizado da página, ex. "ANTES DE ESCOLHER"
+          logo acima). Sem bg-pale-aqua nem borda — só a seção com fundo
+          padrão, que já quebra a sequência de bg-pale-aqua entre o vídeo e
+          o Primeiro Passo. */}
+      <section className="border-b border-charcoal/10">
+        <div className="max-w-content mx-auto px-6 py-10 text-center">
+          <h2 className="font-display text-xl text-charcoal mb-2">Ainda não tem certeza?</h2>
+          <p className="font-body text-sm text-charcoal/75 leading-relaxed mb-4 max-w-2xl mx-auto">
+            Ouça uma reflexão gratuita e conheça meu método antes de decidir.
+          </p>
+          <Link
+            href="/pt/reflexoes/"
+            className="inline-block font-body text-sm font-medium border border-aqua text-aqua px-5 py-2.5 rounded-md hover:bg-aqua hover:text-offwhite transition-colors"
+          >
+            Ouvir Reflexões Gratuitas
+          </Link>
+        </div>
+      </section>
+
       {/* ===== OFERTA 1 — US$ 17 ===== */}
       <section id="primeiro-passo" className="border-b border-charcoal/10 bg-pale-aqua">
         <div className="max-w-content mx-auto px-6 py-16 md:py-24 grid md:grid-cols-2 gap-12 items-start">
