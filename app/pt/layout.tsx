@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import { Fraunces, Inter } from 'next/font/google'
 import '../globals.css'
-import GoogleAnalytics from '@/components/GoogleAnalytics'
+import ConditionalGoogleAnalytics from '@/components/ConditionalGoogleAnalytics'
 import MetaPixel from '@/components/MetaPixel'
 import AnalyticsListener from '@/components/AnalyticsListener'
 import { GA_MEASUREMENT_ID, META_PIXEL_ID, SITE_URL } from '@/lib/config'
@@ -36,7 +36,7 @@ export default function PtRootLayout({ children }: { children: React.ReactNode }
   return (
     <html lang="pt-BR" className={`${fraunces.variable} ${inter.variable}`}>
       <body className="font-body">
-        <GoogleAnalytics measurementId={GA_MEASUREMENT_ID} />
+        <ConditionalGoogleAnalytics measurementId={GA_MEASUREMENT_ID} />
         <MetaPixel pixelId={META_PIXEL_ID} />
         <PtHeader />
         {children}

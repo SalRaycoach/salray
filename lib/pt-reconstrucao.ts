@@ -73,6 +73,16 @@ export type Offer = {
   oQueRecebe: string
   comoFunciona?: string
   price?: string
+  // Preço "de", riscado, exibido junto de `price` quando há desconto ativo
+  // (pedido 17 set 2026 — pré-venda das Vivências).
+  originalPrice?: string
+  // Nota curta abaixo do preço (ex.: prazo da condição de pré-venda).
+  priceNote?: string
+  // Selo destacado perto do preço (ex.: "4x sem juros") — visível, não
+  // escondido atrás de texto secundário.
+  installmentBadge?: string
+  // Frase curta de contexto/urgência, acima do preço, no card de compra.
+  narrativeLine?: string
   paymentType?: string
   status: OfferStatus
   ctaText: string
@@ -114,6 +124,7 @@ export const offers: Offer[] = [
     id: 'vivencias',
     anchor: 'vivencias',
     level: 'NÍVEL 2 · APROFUNDAR',
+    badge: 'Pré-venda — acesso a partir de 1º de outubro',
     name: 'Vivências de Reconstrução Emocional',
     subtitle:
       'Doze vivências profundas, conduzidas em áudio, para reconhecer padrões, reorganizar respostas internas e fortalecer uma base emocional mais estável.',
@@ -122,14 +133,19 @@ export const offers: Offer[] = [
       'Para quem já percebe que não precisa apenas de um primeiro alívio, mas de um processo autoguiado mais profundo, com tempo para ouvir, refletir e integrar cada vivência.',
     oQueRecebe:
       'Uma sequência de 12 vivências de reconstrução emocional em áudio. Cada vivência cumpre uma função própria dentro do processo, sem depender de encontros ao vivo.',
-    price: 'US$ 147',
+    // Pré-venda (pedido 17 set 2026): acesso liberado a partir de 01/10/2026,
+    // preço promocional válido até 30/09/2026 — ver schema.org Offer em
+    // lib/schema.ts (getReconstrucaoEmocionalSchema) pros mesmos valores.
+    narrativeLine: 'Comece antes do fim do ano a reconstrução que você quer levar para 2027.',
+    price: 'US$ 117',
+    originalPrice: 'US$ 147',
+    priceNote: 'Preço de pré-venda até 30 de setembro.',
+    installmentBadge: '4x sem juros',
     paymentType: 'pagamento único',
-    status: 'recording',
-    ctaText: 'Quero iniciar as Vivências por US$ 147',
-    ctaHref: 'PENDENTE_CHECKOUT_PAYHIP_147', // NÃO INVENTAR — link direto de checkout da Payhip
+    status: 'active',
+    ctaText: 'Quero iniciar as Vivências por US$ 117',
+    ctaHref: 'https://payhip.com/order?link=LRdlK&pricing_plan=4lW53Yo6B3',
     microtext: 'Programa digital autoguiado. Pagamento seguro processado pelo Stripe. Acesso automático por e-mail. Não inclui sessões individuais.',
-    recordingMessage:
-      'As Vivências de Reconstrução Emocional estão sendo gravadas com cuidado. Quer ser avisada assim que estiverem prontas?',
   },
   {
     id: 'mentoria',
@@ -315,10 +331,11 @@ export const comparisonRows = [
   },
   {
     criterio: 'Ação',
-    // Primeiro Passo e Vivências: gravação em andamento, sem compra ativa
-    // (23 ago 2026) — CTA aponta pra captura de interesse, não pro preço.
-    valores: ['Avise-me quando estiver pronto', 'Avise-me quando estiver pronto', 'Comprar vaga da turma', 'Conversar no WhatsApp'],
+    // Primeiro Passo: ainda em gravação, sem compra ativa (23 ago 2026) — CTA
+    // aponta pra captura de interesse, não pro preço. Vivências: pré-venda
+    // ativa desde 17 set 2026, com checkout real.
+    valores: ['Avise-me quando estiver pronto', 'Comprar em pré-venda', 'Comprar vaga da turma', 'Conversar no WhatsApp'],
   },
 ] as const
 
-export const comparisonColumns = ['US$ 17', 'US$ 147', 'Mentoria', 'Personalizado'] as const
+export const comparisonColumns = ['US$ 17', 'US$ 117', 'Mentoria', 'Personalizado'] as const

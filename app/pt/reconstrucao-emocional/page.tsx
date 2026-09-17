@@ -3,6 +3,8 @@ import Link from 'next/link'
 import { Suspense } from 'react'
 import type { Metadata } from 'next'
 import { getOffer, comparisonColumns, comparisonRows, stableMethodPt, ptFaqs, ptTestimonials, buildWhatsAppUrl, whatsapp, PT_CANONICAL_URL, ptPageMeta } from '@/lib/pt-reconstrucao'
+import { getReconstrucaoEmocionalSchema } from '@/lib/schema'
+import SchemaOrg from '@/components/SchemaOrg'
 import OfferCta from './OfferCta'
 import NotifyMeForm from './NotifyMeForm'
 import FaqAccordion from './FaqAccordion'
@@ -31,7 +33,7 @@ export const metadata: Metadata = {
 
 const quickChoiceItems = [
   { anchor: '#primeiro-passo', label: 'Começar de forma simples · US$ 17' },
-  { anchor: '#vivencias', label: 'Aprofundar no meu ritmo · US$ 147' },
+  { anchor: '#vivencias', label: 'Aprofundar no meu ritmo · US$ 117' },
   { anchor: '#mentoria', label: 'Ter direção em grupo · Mentoria' },
   { anchor: '#personalizado', label: 'Trabalhar diretamente com Sal Ray · Personalizado' },
 ]
@@ -49,9 +51,11 @@ export default function ReconstrucaoEmocionalPage() {
   const mentoria = getOffer('mentoria')
   const personalizado = getOffer('personalizado')
   const ajudaUrl = buildWhatsAppUrl(whatsapp.messages.ajudaParaEscolher)
+  const schema = getReconstrucaoEmocionalSchema()
 
   return (
     <main id="inicio">
+      <SchemaOrg data={schema} />
       <Suspense fallback={null}>
         <PageLoadTracker />
       </Suspense>
@@ -229,11 +233,16 @@ export default function ReconstrucaoEmocionalPage() {
         </div>
       </section>
 
-      {/* ===== OFERTA 2 — US$ 147 ===== */}
+      {/* ===== OFERTA 2 — Vivências (pré-venda, US$ 117) ===== */}
       <section id="vivencias" className="border-b border-charcoal/10">
         <div className="max-w-content mx-auto px-6 py-16 md:py-24 grid md:grid-cols-2 gap-12 items-start">
           <div>
             <p className="font-body text-xs uppercase tracking-widest text-aqua mb-3">{vivencias.level}</p>
+            {vivencias.badge && (
+              <p className="font-body text-xs uppercase tracking-widest text-aqua/80 border border-aqua/40 inline-block px-3 py-1 rounded-full mb-4">
+                {vivencias.badge}
+              </p>
+            )}
             <h2 className="font-display text-3xl md:text-4xl text-charcoal mb-4">{vivencias.name}</h2>
             <p className="font-body text-charcoal/80 leading-relaxed mb-4 max-w-[620px]">{vivencias.subtitle}</p>
             {vivencias.highlight && (
@@ -285,8 +294,24 @@ export default function ReconstrucaoEmocionalPage() {
               </>
             ) : (
               <>
-                <p className="font-display text-4xl text-charcoal mb-1">{vivencias.price}</p>
-                <p className="font-body text-sm text-charcoal/60 mb-6">{vivencias.paymentType}</p>
+                {vivencias.narrativeLine && (
+                  <p className="font-body text-sm text-charcoal/70 leading-relaxed mb-4">{vivencias.narrativeLine}</p>
+                )}
+                <div className="flex items-baseline gap-3 mb-1">
+                  {vivencias.originalPrice && (
+                    <span className="font-body text-lg text-charcoal/40 line-through">{vivencias.originalPrice}</span>
+                  )}
+                  <p className="font-display text-4xl text-charcoal">{vivencias.price}</p>
+                </div>
+                {vivencias.priceNote && (
+                  <p className="font-body text-sm text-orange mb-3">{vivencias.priceNote}</p>
+                )}
+                <p className="font-body text-sm text-charcoal/60 mb-4">{vivencias.paymentType}</p>
+                {vivencias.installmentBadge && (
+                  <span className="inline-block font-body text-xs font-semibold uppercase tracking-widest text-aqua border border-aqua/40 bg-aqua/5 px-4 py-2 rounded-full mb-6">
+                    {vivencias.installmentBadge}
+                  </span>
+                )}
                 <OfferCta offer={vivencias} source="oferta_147" />
                 <p className="font-body text-xs text-charcoal/50 leading-relaxed mt-4">{vivencias.microtext}</p>
               </>
