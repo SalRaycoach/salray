@@ -140,7 +140,10 @@ export const offers: Offer[] = [
     price: 'US$ 117',
     originalPrice: 'US$ 147',
     priceNote: 'Preço de pré-venda até 30 de setembro.',
-    installmentBadge: '4x sem juros',
+    // Nomeia os provedores (pedido 17 set 2026, confirmado por Sal Ray) pra
+    // pessoa saber exatamente qual opção procurar no checkout da Payhip —
+    // essa opção fica escondida atrás de uma seta lá, sem nome visível.
+    installmentBadge: '4x sem juros via Klarna ou Affirm',
     paymentType: 'pagamento único',
     status: 'active',
     ctaText: 'Quero iniciar as Vivências por US$ 117',
