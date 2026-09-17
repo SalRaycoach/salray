@@ -176,6 +176,31 @@ export default function ReconstrucaoEmocionalPage() {
         </div>
       </section>
 
+      {/* ===== AINDA NÃO TEM CERTEZA? — bloco secundário e compacto, link
+          pras Reflexões gratuitas (pedido 17 set 2026). Mesmo padrão visual
+          do bloco "AVISO PROFISSIONAL" mais abaixo: card com bg-pale-aqua
+          dentro de uma seção de fundo padrão, não a bg-pale-aqua usada nas
+          seções vizinhas (vídeo/Primeiro Passo), pra não virar uma 3ª seção
+          seguida da mesma cor. Fundo aqua suave (não laranja — laranja fica
+          reservado pros CTAs de compra) e visivelmente menor que os cards
+          de oferta, pra ficar claro que é secundário. */}
+      <section className="border-b border-charcoal/10">
+        <div className="max-w-content mx-auto px-6 py-10">
+          <div className="max-w-[480px] bg-pale-aqua rounded-lg p-6">
+            <h2 className="font-display text-xl text-charcoal mb-2">Ainda não tem certeza?</h2>
+            <p className="font-body text-sm text-charcoal/75 leading-relaxed mb-4">
+              Ouça uma reflexão gratuita e conheça meu método antes de decidir.
+            </p>
+            <Link
+              href="/pt/reflexoes/"
+              className="inline-block font-body text-sm font-medium border border-aqua text-aqua px-5 py-2.5 rounded-md hover:bg-aqua hover:text-offwhite transition-colors"
+            >
+              Ouvir Reflexões Gratuitas
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* ===== OFERTA 1 — US$ 17 ===== */}
       <section id="primeiro-passo" className="border-b border-charcoal/10 bg-pale-aqua">
         <div className="max-w-content mx-auto px-6 py-16 md:py-24 grid md:grid-cols-2 gap-12 items-start">
