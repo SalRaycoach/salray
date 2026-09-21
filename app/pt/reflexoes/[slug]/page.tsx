@@ -81,19 +81,6 @@ export default function AudioPage({ params }: { params: { slug: string } }) {
 
         <p className="font-body text-lg text-charcoal/80 leading-relaxed max-w-2xl mb-12">{audio.descricao}</p>
 
-        <div className="max-w-2xl mb-12">
-          <ShareButton slug={audio.slug} titulo={audio.titulo} url={pageUrl} />
-        </div>
-
-        {proximaReflexaoTexto && (
-          <div className="max-w-2xl border border-charcoal/15 rounded-lg bg-pale-aqua/40 p-6 mb-12">
-            <p className="font-body text-xs uppercase tracking-widest text-aqua mb-2">Próxima reflexão</p>
-            <p className="font-body text-charcoal/80">{proximaReflexaoTexto}</p>
-          </div>
-        )}
-
-        <TranscriptAccordion transcricao={audio.transcricao} />
-
         <div className="max-w-2xl border border-charcoal/15 rounded-lg p-6 mb-12">
           <p className="font-body text-xs uppercase tracking-widest text-aqua mb-2">Quer ir mais fundo?</p>
           <p className="font-body text-charcoal/80 leading-relaxed mb-4">
@@ -107,6 +94,19 @@ export default function AudioPage({ params }: { params: { slug: string } }) {
             anchor={produto.anchor}
           />
         </div>
+
+        <div className="max-w-2xl mb-12">
+          <ShareButton slug={audio.slug} titulo={audio.titulo} url={pageUrl} />
+        </div>
+
+        {proximaReflexaoTexto && (
+          <div className="max-w-2xl border border-charcoal/15 rounded-lg bg-pale-aqua/40 p-6 mb-12">
+            <p className="font-body text-xs uppercase tracking-widest text-aqua mb-2">Próxima reflexão</p>
+            <p className="font-body text-charcoal/80">{proximaReflexaoTexto}</p>
+          </div>
+        )}
+
+        <TranscriptAccordion transcricao={audio.transcricao} />
 
         {related.length > 0 && (
           <div className="max-w-2xl mb-12">
