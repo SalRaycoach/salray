@@ -1,0 +1,305 @@
+'use client'
+
+import { useId, useRef, useState } from 'react'
+import Link from 'next/link'
+import { useRouter } from 'next/navigation'
+import { trackEvent } from '@/lib/analytics'
+import { FOCUS_AREA_OPTIONS, URGENCY_OPTIONS } from '@/lib/book-session-options'
+
+type FormState = {
+  firstName: string
+  email: string
+  mobile: string
+  focusArea: string
+  urgency: string
+  ackAge18: boolean
+  ackNonClinical: boolean
+  phoneConsent: boolean
+  website: string // honeypot — real visitors never see or fill this
+}
+
+const initialState: FormState = {
+  firstName: '',
+  email: '',
+  mobile: '',
+  focusArea: '',
+  urgency: '',
+  ackAge18: false,
+  ackNonClinical: false,
+  phoneConsent: false,
+  website: '',
+}
+
+const inputClass =
+  'w-full border border-charcoal/20 bg-offwhite px-4 py-3 font-body text-charcoal rounded-md focus:outline-none focus:ring-3 focus:ring-aqua focus:ring-offset-2 focus:ring-offset-offwhite'
+
+function FieldLabel({ htmlFor, required, children }: { htmlFor: string; required?: boolean; children: React.ReactNode }) {
+  return (
+    <label htmlFor={htmlFor} className="font-body text-sm text-charcoal/90 block mb-2">
+      {children} {required && <span className="text-orange">*</span>}
+    </label>
+  )
+}
+
+export default function BookSessionForm() {
+  const router = useRouter()
+  const uid = useId()
+  const [form, setForm] = useState<FormState>(initialState)
+  const [status, setStatus] = useState<'idle' | 'submitting' | 'error'>('idle')
+  const [errorMessage, setErrorMessage] = useState('')
+  const hasStartedRef = useRef(false)
+
+  function markStarted() {
+    if (hasStartedRef.current) return
+    hasStartedRef.current = true
+    trackEvent('BookSessionStart')
+  }
+
+  function update<K extends keyof FormState>(key: K, value: FormState[K]) {
+    markStarted()
+    setForm((prev) => ({ ...prev, [key]: value }))
+  }
+
+  function getMissingFields(): string[] {
+    const missing: string[] = []
+    if (form.firstName.trim() === '') missing.push('First Name')
+    if (!form.email.includes('@')) missing.push('Email')
+    if (form.mobile.trim() === '') missing.push('Mobile Number')
+    if (!FOCUS_AREA_OPTIONS.includes(form.focusArea as (typeof FOCUS_AREA_OPTIONS)[number])) {
+      missing.push('Main Area of Focus')
+    }
+    if (!URGENCY_OPTIONS.includes(form.urgency as (typeof URGENCY_OPTIONS)[number])) {
+      missing.push('How soon would you like to begin')
+    }
+    if (!form.ackAge18 || !form.ackNonClinical) missing.push('Both required acknowledgement checkboxes')
+    return missing
+  }
+
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault()
+    if (status === 'submitting') return
+
+    const missing = getMissingFields()
+    if (missing.length > 0) {
+      setStatus('error')
+      setErrorMessage(`Please complete before submitting: ${missing.join(', ')}.`)
+      e.currentTarget.reportValidity()
+      return
+    }
+
+    setStatus('submitting')
+    setErrorMessage('')
+
+    try {
+      const response = await fetch('/api/book-a-session', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          ...form,
+          landing_page_url: window.location.href,
+          submitted_at: new Date().toISOString(),
+        }),
+      })
+      const data = await response.json()
+
+      if (!response.ok || !data.ok) {
+        setStatus('error')
+        setErrorMessage(data.error || 'We could not send your request. Please try again in a moment.')
+        return
+      }
+
+      router.push('/book-a-session/thank-you/')
+    } catch {
+      setStatus('error')
+      setErrorMessage('We could not send your request. Please check your connection and try again.')
+    }
+  }
+
+  return (
+    <form onSubmit={handleSubmit} noValidate className="max-w-2xl grid gap-8">
+      {/* Honeypot — hidden from real visitors, left visible to bots that fill every field */}
+      <div style={{ position: 'absolute', left: '-9999px' }} aria-hidden="true">
+        <label htmlFor={`${uid}-website`}>Website</label>
+        <input
+          type="text"
+          id={`${uid}-website`}
+          name="website"
+          tabIndex={-1}
+          autoComplete="off"
+          value={form.website}
+          onChange={(e) => setForm((prev) => ({ ...prev, website: e.target.value }))}
+        />
+      </div>
+
+      <p className="font-body text-sm text-charcoal/70 leading-relaxed bg-pale-aqua rounded-lg p-5">
+        <strong className="text-charcoal">Before you request a session:</strong> This is non-clinical coaching, not
+        therapy or crisis support. You must be at least 18. SAL Ray reviews each request personally — this is a
+        request, not an automatic booking.
+      </p>
+
+      {status === 'error' && (
+        <p role="alert" className="font-body text-sm text-orange bg-pale-orange rounded-md p-4">
+          {errorMessage}
+        </p>
+      )}
+
+      <div className="grid sm:grid-cols-2 gap-6">
+        <div>
+          <FieldLabel htmlFor={`${uid}-firstName`} required>
+            First Name
+          </FieldLabel>
+          <input
+            id={`${uid}-firstName`}
+            name="firstName"
+            type="text"
+            required
+            autoComplete="given-name"
+            value={form.firstName}
+            onChange={(e) => update('firstName', e.target.value)}
+            className={inputClass}
+          />
+        </div>
+        <div>
+          <FieldLabel htmlFor={`${uid}-email`} required>
+            Email
+          </FieldLabel>
+          <input
+            id={`${uid}-email`}
+            name="email"
+            type="email"
+            required
+            autoComplete="email"
+            value={form.email}
+            onChange={(e) => update('email', e.target.value)}
+            className={inputClass}
+          />
+        </div>
+      </div>
+
+      <div>
+        <FieldLabel htmlFor={`${uid}-mobile`} required>
+          Mobile Number
+        </FieldLabel>
+        <input
+          id={`${uid}-mobile`}
+          name="mobile"
+          type="tel"
+          required
+          autoComplete="tel"
+          value={form.mobile}
+          onChange={(e) => update('mobile', e.target.value)}
+          className={inputClass}
+        />
+        <p className="font-body text-xs text-charcoal/50 mt-1.5">
+          Used only to reach you about this request — including as a backup if our email doesn&apos;t reach you.
+        </p>
+      </div>
+
+      <div>
+        <FieldLabel htmlFor={`${uid}-focusArea`} required>
+          What is your main area of focus right now?
+        </FieldLabel>
+        <select
+          id={`${uid}-focusArea`}
+          name="focusArea"
+          required
+          value={form.focusArea}
+          onChange={(e) => update('focusArea', e.target.value)}
+          className={inputClass}
+        >
+          <option value="" disabled>
+            Select one
+          </option>
+          {FOCUS_AREA_OPTIONS.map((opt) => (
+            <option key={opt} value={opt}>
+              {opt}
+            </option>
+          ))}
+        </select>
+      </div>
+
+      <fieldset>
+        <legend className="font-body text-sm text-charcoal/90 mb-2">
+          How soon would you like to begin? <span className="text-orange">*</span>
+        </legend>
+        <div className="grid gap-2">
+          {URGENCY_OPTIONS.map((opt) => (
+            <label key={opt} className="flex items-start gap-2 font-body text-sm text-charcoal/85">
+              <input
+                type="radio"
+                name="urgency"
+                value={opt}
+                required
+                checked={form.urgency === opt}
+                onChange={(e) => update('urgency', e.target.value)}
+                className="mt-1 accent-aqua"
+              />
+              {opt}
+            </label>
+          ))}
+        </div>
+      </fieldset>
+
+      <div className="grid gap-3 border-t border-charcoal/10 pt-6">
+        <label className="flex items-start gap-3 font-body text-sm text-charcoal/85">
+          <input
+            type="checkbox"
+            required
+            checked={form.ackAge18}
+            onChange={(e) => update('ackAge18', e.target.checked)}
+            className="mt-1 accent-aqua"
+          />
+          I confirm that I am 18 years of age or older.
+        </label>
+        <label className="flex items-start gap-3 font-body text-sm text-charcoal/85">
+          <input
+            type="checkbox"
+            required
+            checked={form.ackNonClinical}
+            onChange={(e) => update('ackNonClinical', e.target.checked)}
+            className="mt-1 accent-aqua"
+          />
+          I understand that this is non-clinical coaching and is not therapy, medical care, or crisis support.
+        </label>
+
+        {form.mobile.trim() !== '' && (
+          <label className="flex items-start gap-3 font-body text-sm text-charcoal/85">
+            <input
+              type="checkbox"
+              checked={form.phoneConsent}
+              onChange={(e) => update('phoneConsent', e.target.checked)}
+              className="mt-1 accent-aqua"
+            />
+            I agree that SAL Ray may call or text me only about this request.
+          </label>
+        )}
+      </div>
+
+      <div>
+        <p className="font-body text-xs text-charcoal/50 leading-relaxed mb-4">
+          Submitting this form is a request, not a confirmed booking. SAL Ray reviews each request individually
+          before reaching out to schedule.
+        </p>
+        <button
+          type="submit"
+          disabled={status === 'submitting'}
+          className="font-body text-sm font-medium bg-orange text-offwhite px-8 py-3.5 rounded-md hover:bg-charcoal transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
+        >
+          {status === 'submitting' ? 'Sending...' : 'Request a Session'}
+        </button>
+        <p className="font-body text-xs text-charcoal/50 leading-relaxed mt-4 max-w-lg">
+          By submitting, you agree that SAL Ray may review your request and contact you about scheduling. Your
+          information will be handled according to the{' '}
+          <Link href="/privacy-policy/" className="text-aqua underline underline-offset-2">
+            Privacy Policy
+          </Link>{' '}
+          and{' '}
+          <Link href="/disclaimer/" className="text-aqua underline underline-offset-2">
+            Professional Disclaimer
+          </Link>
+          .
+        </p>
+      </div>
+    </form>
+  )
+}

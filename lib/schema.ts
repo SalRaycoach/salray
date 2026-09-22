@@ -319,6 +319,46 @@ export function getAudioSchema(audio: {
   }
 }
 
+/** /reflections/[slug]: AudioObject (transcript, duration, contentUrl) + BreadcrumbList — English counterpart of getAudioSchema() above. */
+export function getReflectionAudioSchema(reflection: {
+  slug: string
+  title: string
+  description: string
+  transcript: string
+  durationSeconds: number
+  audioUrl: string
+  publishDate: string
+  ogImage?: string
+}) {
+  const isoDuration = `PT${Math.floor(reflection.durationSeconds / 60)}M${reflection.durationSeconds % 60}S`
+  const pageUrl = `${SITE_URL}/reflections/${reflection.slug}/`
+
+  const audioObject = {
+    '@type': 'AudioObject',
+    name: reflection.title,
+    description: reflection.description,
+    transcript: reflection.transcript,
+    duration: isoDuration,
+    contentUrl: reflection.audioUrl,
+    uploadDate: reflection.publishDate,
+    inLanguage: 'en-US',
+    image: reflection.ogImage ? `${SITE_URL}${reflection.ogImage}` : `${SITE_URL}/images/og/og-default.jpg`,
+    mainEntityOfPage: pageUrl,
+    creator: { '@id': `${SITE_URL}/#person` },
+  }
+
+  const breadcrumb = buildBreadcrumbList([
+    { name: 'Home', url: '/' },
+    { name: 'S.T.A.B.L.E. Reflections', url: '/reflections/' },
+    { name: reflection.title, url: `/reflections/${reflection.slug}/` },
+  ])
+
+  return {
+    '@context': 'https://schema.org',
+    '@graph': [audioObject, breadcrumb],
+  }
+}
+
 /**
  * /pt/reconstrucao-emocional: Product + Offer para as Vivências de
  * Reconstrução Emocional (pré-venda, pedido 17 set 2026). `availability`

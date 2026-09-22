@@ -10,6 +10,7 @@ const links = [
   { href: '/how-i-help/', label: 'How I Help' },
   { href: '/stable-method/', label: 'The S.T.A.B.L.E. Method' },
   { href: '/resources/', label: 'Resources' },
+  { href: '/reflections/', label: 'S.T.A.B.L.E. Reflections' },
   { href: '/community/', label: 'Community' },
   { href: '/faq/', label: 'FAQ' },
 ]

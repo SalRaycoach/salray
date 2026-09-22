@@ -3,7 +3,6 @@ import { Fraunces, Inter } from 'next/font/google'
 import '../globals.css'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
-import FacebookFloat from '@/components/FacebookFloat'
 import AnalyticsListener from '@/components/AnalyticsListener'
 import ConditionalGoogleAnalytics from '@/components/ConditionalGoogleAnalytics'
 import MetaPixel from '@/components/MetaPixel'
@@ -41,7 +40,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Navbar />
         {children}
         <Footer />
-        <FacebookFloat />
         <AnalyticsListener />
       </body>
     </html>
