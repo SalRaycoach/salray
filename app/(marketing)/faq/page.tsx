@@ -5,15 +5,16 @@ import FAQAccordion from '@/components/FAQAccordion'
 import { getFaqPageSchema } from '@/lib/schema'
 import { faqs, ctas, crisisResource, SITE_URL } from '@/lib/config'
 
-const title = 'FAQ | SAL Ray'
+const title = 'FAQ'
 const description =
   'Answers about Emotional & Life Rebuilding coaching, the S.T.A.B.L.E. Method, pricing, cancellation, and the difference between coaching and therapy.'
 
 export const metadata: Metadata = {
   title,
   description,
+  alternates: { canonical: `${SITE_URL}/faq/` },
   openGraph: {
-    title,
+    title: `${title} | SAL Ray`,
     description,
     url: `${SITE_URL}/faq/`,
     images: [{ url: `${SITE_URL}/images/og/og-default.jpg`, width: 1200, height: 630, alt: title }],
@@ -37,8 +38,8 @@ export default function FaqPage() {
         </div>
 
         <Link
-          href="/consultation/"
-          data-event="consultation_cta_click"
+          href="/book-a-session/"
+          data-event="book_session_cta_click"
           className="inline-block mt-10 font-body text-sm font-medium bg-orange text-charcoal px-6 py-3.5 rounded-md hover:bg-charcoal hover:text-offwhite transition-colors"
         >
           {ctas.primary}

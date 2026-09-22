@@ -35,7 +35,6 @@ export const contato = {
   // salraycoach.com ainda não tem e-mail configurado — hello@salrayofficial.com
   // é a caixa real em uso, confirmado por SAL Ray em 2026-08-09.
   email: 'hello@salrayofficial.com',
-  bookingUrl: 'PENDENTE_LINK_DE_AGENDAMENTO', // NÃO INVENTAR — aguardando plataforma/Stripe
   facebookGroupUrl: 'https://www.facebook.com/groups/backontrackcommunity',
   // Perfil do Facebook — usado apenas como identidade (schema.org sameAs), não como CTA clicável.
   facebookProfileUrl: 'https://www.facebook.com/profile.php?id=61562494663397',
@@ -43,7 +42,9 @@ export const contato = {
 } as const
 
 export const ctas = {
-  primary: 'Schedule an Initial Consultation',
+  // "Schedule an Initial Consultation" retired alongside /consultation/ in
+  // favor of /book-a-session/ (pedido 22 set 2026).
+  primary: 'Book a Session',
   secondary: 'Join the Private Facebook Community',
   tertiary: 'Explore the Resource Library',
 } as const

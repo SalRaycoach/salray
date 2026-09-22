@@ -2,13 +2,14 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { SITE_URL } from '@/lib/config'
 
-const title = 'Welcome to the Community | SAL Ray'
+const title = 'Welcome to the Community'
 
 export const metadata: Metadata = {
   title,
   description: 'Thank you for requesting to join the private Facebook community.',
+  alternates: { canonical: `${SITE_URL}/thank-you-community/` },
   openGraph: {
-    title,
+    title: `${title} | SAL Ray`,
     url: `${SITE_URL}/thank-you-community/`,
     images: [{ url: `${SITE_URL}/images/og/og-default.jpg`, width: 1200, height: 630, alt: title }],
   },

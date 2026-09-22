@@ -14,14 +14,15 @@ export function generateMetadata({ params }: { params: { cluster: string } }): M
   const cluster = clusters.find((c) => c.slug === params.cluster)
   if (!cluster) return {}
 
-  const title = `${cluster.name} | Resources | SAL Ray`
+  const title = `${cluster.name} | Resources`
   const description = cluster.description.slice(0, 155)
 
   return {
     title,
     description,
+    alternates: { canonical: `${SITE_URL}/resources/${cluster.slug}/` },
     openGraph: {
-      title,
+      title: `${title} | SAL Ray`,
       description,
       url: `${SITE_URL}/resources/${cluster.slug}/`,
       images: [{ url: `${SITE_URL}/images/og/og-default.jpg`, width: 1200, height: 630, alt: title }],

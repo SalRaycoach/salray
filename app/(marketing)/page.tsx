@@ -20,6 +20,7 @@ export const metadata: Metadata = {
   title: 'Emotional & Life Rebuilding Coach | SAL Ray',
   description:
     'Non-clinical coaching for women 40–60 who feel emotionally overloaded or stuck in repeating patterns. Schedule your initial consultation.',
+  alternates: { canonical: SITE_URL },
   openGraph: {
     title: 'Emotional & Life Rebuilding Coach | SAL Ray',
     description:

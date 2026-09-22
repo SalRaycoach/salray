@@ -5,7 +5,7 @@ import ScrollDepthTrigger from '@/components/ScrollDepthTrigger'
 import { getStableMethodSchema } from '@/lib/schema'
 import { ctas, stableMethod, business, clinicalDisclaimer, crisisResource, SITE_URL } from '@/lib/config'
 
-const title = 'The S.T.A.B.L.E. Method | Emotional & Life Rebuilding | SAL Ray'
+const title = 'The S.T.A.B.L.E. Method | Emotional & Life Rebuilding'
 const description =
   "Discover the S.T.A.B.L.E. Method, SAL Ray's structured two-phase framework for identifying emotional patterns, rebuilding internal stability, and supporting sustainable personal change."
 
@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   description,
   alternates: { canonical: `${SITE_URL}/stable-method/` },
   openGraph: {
-    title,
+    title: `${title} | SAL Ray`,
     description,
     url: `${SITE_URL}/stable-method/`,
     images: [{ url: `${SITE_URL}/images/og/og-default.jpg`, width: 1200, height: 630, alt: title }],
@@ -101,7 +101,7 @@ export default function StableMethodPage() {
 
         <div className="flex flex-wrap items-center gap-6 mb-16">
           <Link
-            href="/consultation/"
+            href="/book-a-session/"
             data-event="stable_method_hero_consultation_click"
             className="inline-block font-body text-sm font-medium bg-orange text-charcoal px-6 py-3.5 rounded-md hover:bg-charcoal hover:text-offwhite transition-colors"
           >
@@ -439,7 +439,7 @@ export default function StableMethodPage() {
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <Link
-              href="/consultation/"
+              href="/book-a-session/"
               data-event="stable_method_final_consultation_click"
               className="inline-block font-body text-sm font-medium bg-orange text-charcoal px-6 py-3.5 rounded-md hover:bg-charcoal hover:text-offwhite transition-colors"
             >

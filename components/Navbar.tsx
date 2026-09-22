@@ -74,8 +74,8 @@ export default function Navbar() {
           </a>
         ) : (
           <Link
-            href="/consultation/"
-            data-event="consultation_cta_click"
+            href="/book-a-session/"
+            data-event="book_session_cta_click"
             className="hidden lg:inline-block font-body text-sm font-medium bg-orange text-charcoal px-5 py-2.5 rounded-md hover:bg-charcoal hover:text-offwhite transition-colors"
           >
             {ctas.primary}
@@ -127,7 +127,7 @@ export default function Navbar() {
               </a>
             ) : (
               <Link
-                href="/consultation/"
+                href="/book-a-session/"
                 className="block mt-2 text-center bg-orange text-charcoal px-5 py-3 rounded-md font-medium"
                 onClick={() => setMenuOpen(false)}
               >

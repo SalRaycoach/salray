@@ -6,15 +6,16 @@ import { getResourcesIndexSchema } from '@/lib/schema'
 import { articles, clusters } from '@/lib/resources'
 import { SITE_URL } from '@/lib/config'
 
-const title = 'Resource Library | SAL Ray'
+const title = 'Resource Library'
 const description =
   'Articles on overthinking, emotional patterns, relationships, self-trust, life direction, and emotional stability.'
 
 export const metadata: Metadata = {
   title,
   description,
+  alternates: { canonical: `${SITE_URL}/resources/` },
   openGraph: {
-    title,
+    title: `${title} | SAL Ray`,
     description,
     url: `${SITE_URL}/resources/`,
     images: [{ url: `${SITE_URL}/images/og/og-default.jpg`, width: 1200, height: 630, alt: title }],

@@ -2,14 +2,15 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { contato, SITE_URL } from '@/lib/config'
 
-const title = 'Cancellation & Rescheduling Policy | SAL Ray'
+const title = 'Cancellation & Rescheduling Policy'
 const description = 'Cancellation and rescheduling policy for consultations and sessions with SAL Ray.'
 
 export const metadata: Metadata = {
   title,
   description,
+  alternates: { canonical: `${SITE_URL}/cancellation-policy/` },
   openGraph: {
-    title,
+    title: `${title} | SAL Ray`,
     description,
     url: `${SITE_URL}/cancellation-policy/`,
     images: [{ url: `${SITE_URL}/images/og/og-default.jpg`, width: 1200, height: 630, alt: title }],

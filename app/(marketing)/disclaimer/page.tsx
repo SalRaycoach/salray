@@ -1,14 +1,15 @@
 import type { Metadata } from 'next'
 import { contato, SITE_URL } from '@/lib/config'
 
-const title = 'Professional Disclaimer | SAL Ray'
+const title = 'Professional Disclaimer'
 const description = 'SAL Ray provides non-clinical coaching and personal development services. Read the full professional disclaimer.'
 
 export const metadata: Metadata = {
   title,
   description,
+  alternates: { canonical: `${SITE_URL}/disclaimer/` },
   openGraph: {
-    title,
+    title: `${title} | SAL Ray`,
     description,
     url: `${SITE_URL}/disclaimer/`,
     images: [{ url: `${SITE_URL}/images/og/og-default.jpg`, width: 1200, height: 630, alt: title }],

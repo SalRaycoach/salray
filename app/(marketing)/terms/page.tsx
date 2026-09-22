@@ -2,14 +2,15 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { contato, SITE_URL } from '@/lib/config'
 
-const title = 'Terms of Use | SAL Ray'
+const title = 'Terms of Use'
 const description = 'Terms of use for salraycoach.com and coaching services provided by SAL Ray.'
 
 export const metadata: Metadata = {
   title,
   description,
+  alternates: { canonical: `${SITE_URL}/terms/` },
   openGraph: {
-    title,
+    title: `${title} | SAL Ray`,
     description,
     url: `${SITE_URL}/terms/`,
     images: [{ url: `${SITE_URL}/images/og/og-default.jpg`, width: 1200, height: 630, alt: title }],

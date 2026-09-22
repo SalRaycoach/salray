@@ -3,14 +3,15 @@ import Link from 'next/link'
 import ContactForm from '@/components/ContactForm'
 import { contato, crisisResource, SITE_URL } from '@/lib/config'
 
-const title = 'Contact | SAL Ray'
+const title = 'Contact'
 const description = 'Send a message to SAL Ray. Non-emergency inquiries only — typical response time is 1–2 business days.'
 
 export const metadata: Metadata = {
   title,
   description,
+  alternates: { canonical: `${SITE_URL}/contact/` },
   openGraph: {
-    title,
+    title: `${title} | SAL Ray`,
     description,
     url: `${SITE_URL}/contact/`,
     images: [{ url: `${SITE_URL}/images/og/og-default.jpg`, width: 1200, height: 630, alt: title }],
@@ -45,17 +46,9 @@ export default function ContactPage() {
             </Link>
           </p>
 
-          <div className="bg-pale-aqua rounded-lg p-6 mb-6">
+          <div className="bg-pale-aqua rounded-lg p-6">
             <p className="font-body text-sm text-charcoal/80 leading-relaxed">{crisisResource}</p>
           </div>
-
-          <p className="font-body text-sm text-charcoal/70">
-            Ready to schedule directly?{' '}
-            <Link href="/consultation/" className="text-aqua underline underline-offset-2">
-              Book your initial consultation
-            </Link>
-            .
-          </p>
         </div>
       </div>
     </main>
