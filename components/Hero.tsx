@@ -22,8 +22,8 @@ export default function Hero() {
 
           <div className="flex flex-wrap gap-3">
             <Link
-              href="/consultation/"
-              data-event="consultation_cta_click"
+              href="/book-a-session/"
+              data-event="book_session_cta_click"
               className="inline-block font-body text-sm font-medium bg-charcoal text-offwhite px-6 py-3.5 rounded-md hover:bg-orange hover:text-charcoal transition-colors"
             >
               {ctas.primary}

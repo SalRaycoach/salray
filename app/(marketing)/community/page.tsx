@@ -2,15 +2,16 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { contato, ctas, SITE_URL } from '@/lib/config'
 
-const title = 'Private Facebook Community | SAL Ray'
+const title = 'Private Facebook Community'
 const description =
   'Join a private Facebook community focused on emotional strength, clear thinking, and rebuilding life with greater stability.'
 
 export const metadata: Metadata = {
   title,
   description,
+  alternates: { canonical: `${SITE_URL}/community/` },
   openGraph: {
-    title,
+    title: `${title} | SAL Ray`,
     description,
     url: `${SITE_URL}/community/`,
     images: [{ url: `${SITE_URL}/images/og/og-default.jpg`, width: 1200, height: 630, alt: title }],
@@ -90,8 +91,8 @@ export default function CommunityPage() {
         )}
 
         <Link
-          href="/consultation/"
-          data-event="consultation_cta_click"
+          href="/book-a-session/"
+          data-event="book_session_cta_click"
           className="inline-block font-body text-sm font-medium bg-orange text-charcoal px-6 py-3.5 rounded-md hover:bg-charcoal hover:text-offwhite transition-colors"
         >
           {ctas.primary}

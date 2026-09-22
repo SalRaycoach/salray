@@ -132,7 +132,7 @@ Occasional overthinking is a common human experience. However, if racing thought
 
 If your overthinking feels connected to a repeating emotional pattern, [scheduling an initial consultation](#consultation) can help clarify what is underneath it. If you would rather explore this at your own pace first, [the private community](#community) is a good place to start.
 
-## Perguntas frequentes`,
+## Frequently Asked Questions`,
     faq: [
       {
         question: 'Is overthinking the same as anxiety?',
@@ -208,7 +208,7 @@ If the pattern is connected to **unresolved trauma, a diagnosed condition such a
 
 If this pattern feels familiar and you want structured support to work through it, [an initial consultation](#consultation) is the next step. For ongoing support between sessions, [the private community](#community) is also available.
 
-## Perguntas frequentes`,
+## Frequently Asked Questions`,
     faq: [
       {
         question: 'Why do I always react the same way in conflict?',
@@ -280,7 +280,7 @@ If a relationship involves **narcissistic abuse, emotional abuse, or safety conc
 
 If this pattern feels familiar, [an initial consultation](#consultation) can help you understand it more clearly. [The private community](#community) is also available for ongoing support.
 
-## Perguntas frequentes`,
+## Frequently Asked Questions`,
     faq: [
       {
         question: 'Why do I keep ending up with the same type of person?',
@@ -348,7 +348,7 @@ Over time, this work can involve identifying where self-trust was lost, practici
 
 Ready to work on this directly? [Schedule an initial consultation](#consultation) to talk through where self-trust has been affected. If you want ongoing support in the meantime, [join the private community](#community).
 
-## Perguntas frequentes`,
+## Frequently Asked Questions`,
     faq: [
       {
         question: 'Why do I doubt every decision I make?',
@@ -416,7 +416,7 @@ This work often involves clarifying what changed and what didn't, identifying wh
 
 If you are in the middle of a major life transition and want a clearer structure to work from, [schedule an initial consultation](#consultation). For ongoing support along the way, [the private community](#community) is also available.
 
-## Perguntas frequentes`,
+## Frequently Asked Questions`,
     faq: [
       {
         question: 'Where do I even start when rebuilding my life?',

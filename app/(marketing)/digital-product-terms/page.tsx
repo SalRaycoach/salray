@@ -2,14 +2,15 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { contato, SITE_URL } from '@/lib/config'
 
-const title = 'Digital Product Terms | SAL Ray'
+const title = 'Digital Product Terms'
 const description = 'Terms governing pre-recorded digital audio programs from SAL Ray, including Primeiro Passo S.T.A.B.L.E.™ and Vivências de Reconstrução Emocional.'
 
 export const metadata: Metadata = {
   title,
   description,
+  alternates: { canonical: `${SITE_URL}/digital-product-terms/` },
   openGraph: {
-    title,
+    title: `${title} | SAL Ray`,
     description,
     url: `${SITE_URL}/digital-product-terms/`,
     images: [{ url: `${SITE_URL}/images/og/og-default.jpg`, width: 1200, height: 630, alt: title }],

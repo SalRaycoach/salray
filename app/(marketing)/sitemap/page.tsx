@@ -5,7 +5,7 @@ import { getSitemapPageSchema } from '@/lib/schema'
 import { SITE_URL } from '@/lib/config'
 import { clusters, getArticlesByCluster } from '@/lib/resources'
 
-const title = 'Sitemap | SAL Ray'
+const title = 'Sitemap'
 const description = 'A complete, human-readable map of every page and article on the SAL Ray website.'
 
 export const metadata: Metadata = {
@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   description,
   alternates: { canonical: `${SITE_URL}/sitemap/` },
   openGraph: {
-    title,
+    title: `${title} | SAL Ray`,
     description,
     url: `${SITE_URL}/sitemap/`,
     images: [{ url: `${SITE_URL}/images/og/og-default.jpg`, width: 1200, height: 630, alt: title }],
@@ -26,7 +26,8 @@ const mainPages = [
   { href: '/about/', label: 'About SAL Ray' },
   { href: '/how-i-help/', label: 'How I Help' },
   { href: '/stable-method/', label: 'The S.T.A.B.L.E. Method' },
-  { href: '/consultation/', label: 'Initial Consultation' },
+  { href: '/book-a-session/', label: 'Book a Session' },
+  { href: '/reflections/', label: 'S.T.A.B.L.E. Reflections' },
   { href: '/community/', label: 'Private Facebook Community' },
   { href: '/faq/', label: 'FAQ' },
   { href: '/contact/', label: 'Contact' },

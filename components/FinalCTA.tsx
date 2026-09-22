@@ -21,8 +21,8 @@ export default function FinalCTA() {
         )}
 
         <Link
-          href="/consultation/"
-          data-event="consultation_cta_click"
+          href="/book-a-session/"
+          data-event="book_session_cta_click"
           className={`inline-block font-body text-sm font-medium bg-orange text-charcoal px-6 py-3.5 rounded-md hover:bg-aqua transition-colors ${pricing.confirmed ? '' : 'mt-4'}`}
         >
           {ctas.primary}

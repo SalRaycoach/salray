@@ -13,6 +13,17 @@ const nextConfig = {
         permanent: true,
         statusCode: 301,
       },
+      {
+        // /consultation/ retired in favor of /book-a-session/ (pedido 22 set
+        // 2026) — permanent so search engines transfer link equity and any
+        // existing bookmarks/backlinks keep working. Destination keeps the
+        // trailing slash (trailingSlash: true above) so this doesn't chain
+        // into a second 308 hop from Next.js's own slash normalization.
+        source: '/consultation',
+        destination: '/book-a-session/',
+        permanent: true,
+        statusCode: 301,
+      },
     ]
   },
   async headers() {

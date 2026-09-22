@@ -154,14 +154,14 @@ function ClosedState() {
       </h1>
       <p className="font-body text-lg text-charcoal/80 leading-relaxed max-w-xl mx-auto mb-10">
         Applications for the current Private 4-Week Emotional &amp; Life Rebuilding Experience are now closed. If you
-        would like to explore private coaching with SAL Ray outside this limited experience, you can schedule an
-        initial consultation.
+        would like to explore private coaching with SAL Ray outside this limited experience, you can book a private
+        session.
       </p>
       <Link
-        href="/consultation/"
+        href="/book-a-session/"
         className="inline-block font-body text-sm font-medium bg-orange text-offwhite px-8 py-3.5 rounded-md hover:bg-charcoal transition-colors"
       >
-        Schedule an Initial Consultation
+        Book a Session
       </Link>
     </main>
   )

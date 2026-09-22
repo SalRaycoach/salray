@@ -97,33 +97,6 @@ export function getFaqPageSchema() {
   }
 }
 
-/** /consultation: Service (ProfessionalService) + BreadcrumbList */
-export function getServiceSchema() {
-  const service = {
-    '@type': ['Service', 'ProfessionalService'],
-    name: 'Initial Consultation',
-    description:
-      'A structured, non-clinical initial consultation with SAL Ray to understand your situation, identify relevant patterns, and determine fit for ongoing work.',
-    provider: { '@id': `${SITE_URL}/#person` },
-    areaServed: 'United States',
-    availableChannel: {
-      '@type': 'ServiceChannel',
-      serviceUrl: `${SITE_URL}/consultation/`,
-      availableLanguage: 'en-US',
-    },
-  }
-
-  const breadcrumb = buildBreadcrumbList([
-    { name: 'Home', url: '/' },
-    { name: 'Initial Consultation', url: '/consultation/' },
-  ])
-
-  return {
-    '@context': 'https://schema.org',
-    '@graph': [service, breadcrumb],
-  }
-}
-
 /** /resources/[cluster]/[slug]: Article + FAQPage + BreadcrumbList */
 export function getArticleSchema(article: Article, clusterName: string) {
   const articleSchema = {

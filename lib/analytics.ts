@@ -14,9 +14,6 @@ declare global {
 }
 
 export type AnalyticsEvent =
-  | 'consultation_cta_click'
-  | 'consultation_booking_started'
-  | 'consultation_booking_completed'
   | 'community_cta_click'
   | 'book_session_cta_click'
   | 'resource_article_view'
