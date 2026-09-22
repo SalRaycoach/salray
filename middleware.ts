@@ -48,9 +48,17 @@ export function middleware(request: NextRequest) {
     return response
   }
 
+  // English self-assessment tool — same private-link, never-indexed pattern
+  // as /pt/reconstrucao-emocional/avaliacao/ above, requested 22 set 2026.
+  if (pathname.startsWith('/assessment')) {
+    const response = NextResponse.next()
+    response.headers.set('X-Robots-Tag', 'noindex, nofollow')
+    return response
+  }
+
   return NextResponse.next()
 }
 
 export const config = {
-  matcher: ['/resources/:path*', '/pt/:path*'],
+  matcher: ['/resources/:path*', '/pt/:path*', '/assessment/:path*'],
 }

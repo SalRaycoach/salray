@@ -27,6 +27,10 @@ module.exports = {
     // Ferramenta de autoavaliação enviada só por link direto a quem comprou
     // as Vivências — nunca indexada, nunca listada (pedido 27 ago 2026).
     '/pt/reconstrucao-emocional/avaliacao',
+    // Ferramenta de autoavaliação em inglês — mesmo padrão "link privado",
+    // nunca indexada, nunca listada (pedido 22 set 2026).
+    '/assessment',
+    '/assessment/thank-you',
   ],
   robotsTxtOptions: {
     policies: [
