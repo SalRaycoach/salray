@@ -18,7 +18,7 @@ export type AnalyticsEvent =
   | 'consultation_booking_started'
   | 'consultation_booking_completed'
   | 'community_cta_click'
-  | 'messenger_cta_click'
+  | 'book_session_cta_click'
   | 'resource_article_view'
   | 'resource_category_view'
   | 'contact_form_submit'
@@ -28,6 +28,8 @@ export type AnalyticsEvent =
   | 'stable_method_scroll_75'
   | 'ApplicationStart' // 4-Week Experience — PascalCase kept to match Meta Events Manager naming (brief section 12)
   | 'application_completed' // 4-Week Experience — dispara na página de agradecimento, após redirect pós-submit
+  | 'BookSessionStart' // /book-a-session/ — primeira interação com o formulário
+  | 'book_session_completed' // /book-a-session/thank-you/ — dispara após redirect pós-submit
   // Página PT "Reconstrução Emocional" — ver briefing seção 17. purchase não é
   // disparado por este helper: deve vir da própria Payhip após conclusão real
   // do checkout, nunca no clique nem em uma página de agradecimento própria.
@@ -52,6 +54,7 @@ export type AnalyticsEvent =
   | 'audio_share_click'
   | 'related_audio_click'
   | 'product_cta_click'
+  | 'reflections_signup_submit' // /reflections/ — captura de e-mail "Receive New Audio Reflections"
 
 export function trackEvent(event: AnalyticsEvent, payload: Record<string, unknown> = {}) {
   if (typeof window === 'undefined') return

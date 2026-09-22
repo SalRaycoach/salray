@@ -39,16 +39,10 @@ export default function ContactPage() {
             </a>
           </p>
           <p className="font-body text-sm text-charcoal/70 mb-8">
-            Messenger:{' '}
-            <a
-              href={contato.messengerUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              data-event="messenger_cta_click"
-              className="text-aqua"
-            >
-              Message SAL Ray
-            </a>
+            Prefer a private session?{' '}
+            <Link href="/book-a-session/" data-event="book_session_cta_click" className="text-aqua">
+              Book a Session
+            </Link>
           </p>
 
           <div className="bg-pale-aqua rounded-lg p-6 mb-6">

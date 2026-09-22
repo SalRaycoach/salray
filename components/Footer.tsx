@@ -6,6 +6,7 @@ const navLinks = [
   { href: '/how-i-help/', label: 'How I Help' },
   { href: '/stable-method/', label: 'The S.T.A.B.L.E. Method' },
   { href: '/resources/', label: 'Resources' },
+  { href: '/reflections/', label: 'S.T.A.B.L.E. Reflections' },
   { href: '/community/', label: 'Community' },
   { href: '/faq/', label: 'FAQ' },
   { href: '/contact/', label: 'Contact' },
@@ -52,9 +53,9 @@ export default function Footer() {
               </a>
             </li>
             <li>
-              <a href={contato.messengerUrl} target="_blank" rel="noopener noreferrer" className="hover:text-orange">
-                Message SAL Ray
-              </a>
+              <Link href="/book-a-session/" className="hover:text-orange">
+                Book a Session
+              </Link>
             </li>
             {!isInstagramPending && (
               <li>

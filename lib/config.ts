@@ -39,9 +39,6 @@ export const contato = {
   facebookGroupUrl: 'https://www.facebook.com/groups/backontrackcommunity',
   // Perfil do Facebook — usado apenas como identidade (schema.org sameAs), não como CTA clicável.
   facebookProfileUrl: 'https://www.facebook.com/profile.php?id=61562494663397',
-  // Canal principal de contato direto — todos os CTAs de "mensagem" apontam para o Messenger.
-  messengerUrl:
-    "https://m.me/salraycoach?text=Have%20a%20question%3F%20Send%20me%20a%20message.%20I%27ll%20personally%20respond%20as%20soon%20as%20I%20can.",
   instagramUrl: 'PENDENTE_URL_INSTAGRAM',
 } as const
 

@@ -18,6 +18,7 @@ module.exports = {
     // Post-submission confirmation page — never indexed, same pattern as
     // /thank-you-consultation and /thank-you-community below.
     '/4-week-experience/thank-you',
+    '/book-a-session/thank-you',
     // Isolated PT campaign page — never indexed, never listed in sitemap.
     // See Briefing_Pagina_Reconstrucao_Emocional_SAL_Ray, seção 18. Does NOT
     // exclude the rest of /pt/ — /pt/reflexoes/ is a sibling section that's
@@ -55,7 +56,7 @@ module.exports = {
     if (p === '' || p === '/') {
       priority = 1.0
       changefreq = 'weekly'
-    } else if (p === '/consultation') {
+    } else if (p === '/consultation' || p === '/book-a-session') {
       priority = 0.9
       changefreq = 'weekly'
     } else if (p === '/how-i-help' || p === '/stable-method') {
@@ -84,6 +85,14 @@ module.exports = {
       changefreq = 'weekly'
     } else if (p.startsWith('/pt/reflexoes/')) {
       // /pt/reflexoes/[slug]/ — áudio individual
+      priority = 0.6
+      changefreq = 'monthly'
+    } else if (p === '/reflections') {
+      // hub — English audio reflections library, same treatment as /pt/reflexoes
+      priority = 0.8
+      changefreq = 'weekly'
+    } else if (p.startsWith('/reflections/')) {
+      // /reflections/[slug]/ — individual reflection
       priority = 0.6
       changefreq = 'monthly'
     }

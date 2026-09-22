@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Link from 'next/link'
 import SchemaOrg from '@/components/SchemaOrg'
 import { getServiceSchema } from '@/lib/schema'
 import { pricing, contato, clinicalDisclaimer, SITE_URL } from '@/lib/config'
@@ -84,18 +85,16 @@ export default function ConsultationPage() {
           {isBookingPending ? (
             <>
               <p className="font-body text-charcoal/70 leading-relaxed mb-6">
-                Online booking is being finalized. In the meantime, message SAL Ray directly to schedule your
-                consultation.
+                Online booking is being finalized. In the meantime, request a session below and SAL Ray will
+                personally follow up to schedule your consultation.
               </p>
-              <a
-                href={contato.messengerUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                data-event="messenger_cta_click"
+              <Link
+                href="/book-a-session/"
+                data-event="book_session_cta_click"
                 className="inline-block font-body text-sm font-medium bg-orange text-charcoal px-6 py-3.5 rounded-md hover:bg-charcoal hover:text-offwhite transition-colors"
               >
-                Message SAL Ray
-              </a>
+                Request a Session
+              </Link>
             </>
           ) : (
             <a
