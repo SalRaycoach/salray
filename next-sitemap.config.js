@@ -124,7 +124,13 @@ module.exports = {
       {
         userAgent: '*',
         allow: '/',
-        disallow: ['/_next/static/', '/_next/image/', '/api/', '/thank-you-consultation/'],
+        // /_next/static/ and /_next/image/ deliberately NOT disallowed here
+        // (pedido 23 set 2026) — blocking them stops Google from fetching the
+        // CSS/JS/optimized images it needs to render the page, which can get
+        // a visually broken version of the page indexed even though the text
+        // content is fine. Google's own guidance for Next.js sites is to
+        // leave these paths crawlable.
+        disallow: ['/api/', '/thank-you-consultation/'],
       },
     ],
   },
