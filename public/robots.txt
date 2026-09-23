@@ -33,8 +33,6 @@ Allow: /
 # *
 User-agent: *
 Allow: /
-Disallow: /_next/static/
-Disallow: /_next/image/
 Disallow: /api/
 Disallow: /thank-you-consultation/
 
