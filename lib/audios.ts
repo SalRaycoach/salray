@@ -247,26 +247,11 @@ export const audios: Audio[] = [
     dataPublicacao: '2026-09-23T00:00:00-05:00', // quarta-feira, meia-noite
     produtoRelacionado: 'vivencias',
     // proximaReflexaoManual removido em 24 set 2026 — a sexta-feira seguinte
-    // (25/09, extra) já tem data confirmada, então o teaser volta a ser
-    // calculado automaticamente a partir de getNextScheduledAudio().
-  },
-  {
-    slug: 'quanto-da-sua-vida-esta-esperando-voce-se-sentir-pronta',
-    titulo: 'Quanto da Sua Vida Está Esperando Você Se Sentir Pronta?',
-    descricao:
-      'Talvez a pessoa não esteja esperando o momento certo. Esteja esperando que todo o desconforto desapareça antes de agir. Como isso raramente acontece, ela continua chamando o adiamento de preparação.',
-    categoria: 'Clarity',
-    duracaoSegundos: 190,
-    urlAudio:
-      'https://pub-e0ca58c6090c4c5997d38f0e2e4165f8.r2.dev/Seguencia%20Correta/07_%20Extra_%20Sexta%20-%20Quanto%20da%20sua%20vida%20est%C3%A1%20esperando%20voc%C3%AA%20se%20sentir%20pronta.mp3',
-    transcricao:
-      'Antes de terminar esta semana, eu quero que você pense em alguma coisa que vem adiando.\nUma conversa.\nUma decisão.\nUm projeto.\nUma mudança que você já sabe que precisa fazer.\nTalvez você diga:\n"Eu ainda não estou pronta."\n"Preciso pensar um pouco mais."\n"Quando eu me sentir mais segura, eu começo."\nMas há quanto tempo você está esperando essa segurança chegar?\nPorque talvez você não esteja apenas esperando o momento certo.\nTalvez esteja esperando não sentir mais medo, dúvida ou desconforto.\nE esse momento pode nunca chegar da maneira que você imagina.\nExistem coisas para as quais realmente precisamos de mais informação.\nÀs vezes, esperar evita uma decisão precipitada.\nMas existe uma diferença entre se preparar e permanecer parado, tentando eliminar qualquer possibilidade de desconforto.\nVocê pesquisa mais.\nRepensa tudo.\nCria outro plano.\nConversa novamente sobre o mesmo assunto.\nE chama isso de preparação.\nSó que, no fundo, talvez você já saiba qual é o próximo passo.\nO que ainda não sabe é como se sentirá depois de tomá-lo.\nE nenhuma quantidade de planejamento consegue garantir isso.\nA confiança que você está esperando pode não aparecer antes da ação.\nTalvez ela seja construída depois, quando você percebe que consegue lidar com aquilo que acontece.\nEntão olha com sinceridade para o que está adiando.\nO que realmente falta?\nUma informação importante?\nUma condição que ainda precisa mudar?\nOu você está apenas esperando sentir uma certeza completa antes de começar?\nVocê não precisa resolver tudo hoje.\nMas pode escolher um movimento concreto.\nEnviar a mensagem.\nMarcar a conversa.\nComeçar a primeira parte.\nParar de acrescentar novas etapas antes daquilo que já sabe que precisa fazer.\nTalvez você ainda não se sinta pronta.\nMas estar pronta não significa não sentir medo.\nSignifica ter clareza suficiente para dar o próximo passo, mesmo sem controlar tudo o que virá depois.\nEntão, antes de entrar no fim de semana, fica com esta pergunta:\nQuanto da sua vida está parado porque alguma coisa realmente precisa acontecer primeiro?\nE quanto está parado porque você continua esperando se sentir pronta para uma decisão que, por dentro, já sabe que precisa tomar?',
-    dataPublicacao: '2026-09-25T00:00:00-05:00', // sexta-feira, meia-noite
-    produtoRelacionado: 'vivencias',
-    // proximaReflexaoManual removido em 29 set 2026 — a quarta-feira seguinte
-    // (30/09, extra) já tem data confirmada, então o teaser volta a ser
-    // calculado automaticamente a partir de getNextScheduledAudio() (pula
-    // direto pra 30/09, já que não há áudio de segunda 28/09 cadastrado).
+    // (25/09, extra) tinha data confirmada. Esse áudio de 25/09 foi removido
+    // em 30 set 2026 (cadastro por engano — o arquivo nunca existiu de
+    // verdade no R2). Sem override aqui, o teaser é calculado automaticamente
+    // por getNextScheduledAudio(), que hoje não retorna nada (não há próximo
+    // áudio com data confirmada) até que segunda-feira seja cadastrada.
   },
   {
     slug: 'o-que-voce-pretende-deixar-novamente-para-o-proximo-ano',
