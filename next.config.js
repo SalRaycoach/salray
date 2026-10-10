@@ -1,5 +1,8 @@
 /** @type {import('next').NextConfig} */
 const DOMINIO = 'salraycoach.com'
+// Domínio antigo/alternativo: só serve para redirecionar (301) ao DOMINIO
+// mantendo caminho e query. Nunca aparece em link, sitemap nem canonical.
+const DOMINIOS_ALTERNATIVOS = ['salrayofficial.com', 'www.salrayofficial.com']
 
 const nextConfig = {
   trailingSlash: true,
@@ -13,6 +16,23 @@ const nextConfig = {
         permanent: true,
         statusCode: 301,
       },
+      // Três regras por host, nesta ordem: home, arquivos (sitemap.xml, imagens…
+      // sem barra final) e páginas (com barra final, por causa de
+      // trailingSlash: true, para não encadear mais um 308 no domínio novo).
+      ...DOMINIOS_ALTERNATIVOS.flatMap((host) => {
+        const has = [{ type: 'host', value: host }]
+        return [
+          { source: '/', has, destination: `https://${DOMINIO}/`, permanent: true, statusCode: 301 },
+          {
+            source: '/:path((?:[^/]+/)*[^/]+\\.[A-Za-z0-9]+)',
+            has,
+            destination: `https://${DOMINIO}/:path`,
+            permanent: true,
+            statusCode: 301,
+          },
+          { source: '/:path+', has, destination: `https://${DOMINIO}/:path+/`, permanent: true, statusCode: 301 },
+        ]
+      }),
       {
         // /consultation/ retired in favor of /book-a-session/ (pedido 22 set
         // 2026) — permanent so search engines transfer link equity and any
