@@ -45,9 +45,9 @@ export default function CancellationPolicyPage() {
           from a quiet, private location with reliable internet access.
         </p>
 
-        <h2 className="font-display text-2xl text-charcoal">2. Rescheduling — 24-Hour Notice Required</h2>
+        <h2 className="font-display text-2xl text-charcoal">2. Rescheduling: 24-Hour Notice Required</h2>
         <p>
-          Rescheduling a session requires at least <strong>24 hours&apos; notice</strong>. This is not a courtesy —
+          Rescheduling a session requires at least <strong>24 hours&apos; notice</strong>. This is not a courtesy:
           it is a requirement to reschedule without losing the session.
         </p>
 

@@ -141,7 +141,7 @@ export default function TermsPage() {
           We may update these general Terms from time to time.{' '}
           <strong>
             Continued use of the Site after a change is posted applies only to your ongoing use of the Site itself
-            going forward — it does not retroactively modify any specific program or product agreement you have
+            going forward. It does not retroactively modify any specific program or product agreement you have
             already accepted.
           </strong>{' '}
           Any change to a specific agreement you have already accepted requires your separate consent.

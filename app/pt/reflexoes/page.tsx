@@ -22,7 +22,7 @@ export const dynamic = 'force-dynamic'
 export const metadata: Metadata = {
   title: reflexoes.nomeSerie,
   description:
-    'Reflexões curtas em áudio, em português, para reconhecer padrões emocionais e reorganizar a resposta interna — de graça, sem cadastro.',
+    'Reflexões curtas em áudio, em português, para reconhecer padrões emocionais e reorganizar a resposta interna, de graça, sem cadastro.',
   alternates: { canonical: `${SITE_URL}/pt/reflexoes/` },
   openGraph: {
     title: reflexoes.nomeSerie,

@@ -45,7 +45,7 @@ export default function AssessmentApp() {
 
   async function handleSubmit() {
     if (scales.some((v) => v === null)) {
-      setError('Please answer all 10 scale questions before submitting — at least one is still unmarked.')
+      setError('Please answer all 10 scale questions before submitting. At least one is still unmarked.')
       return
     }
     if (mode === 'retake' && !email.includes('@')) {
@@ -117,7 +117,7 @@ export default function AssessmentApp() {
         <p className="font-body text-xs uppercase tracking-widest text-aqua mb-3">Self-Assessment</p>
         <h1 className="font-display text-4xl text-charcoal mb-6">Where Are You Right Now?</h1>
         <p className="font-body text-charcoal/70 leading-relaxed mb-12">
-          For each statement, mark the number that best represents you right now — 0 means not true for you at all,
+          For each statement, mark the number that best represents you right now: 0 means not true for you at all,
           10 means completely true for you.
         </p>
 

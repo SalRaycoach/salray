@@ -4,7 +4,7 @@ import ContactForm from '@/components/ContactForm'
 import { contato, crisisResource, SITE_URL } from '@/lib/config'
 
 const title = 'Contact'
-const description = 'Send a message to SAL Ray. Non-emergency inquiries only — typical response time is 1–2 business days.'
+const description = 'Send a message to SAL Ray. Non-emergency inquiries only. Typical response time is 1–2 business days.'
 
 export const metadata: Metadata = {
   title,

@@ -82,7 +82,7 @@ export async function POST(request: NextRequest) {
       await sendEmail({
         from: `SAL Ray site <${contato.email}>`,
         to: contato.email,
-        subject: `Nova inscrição "avise-me" — ${offerName || offerId}`,
+        subject: `Nova inscrição "avise-me": ${offerName || offerId}`,
         html: `
           <div style="font-family:Arial,sans-serif;font-size:14px;color:#111;">
             <h2 style="margin-bottom:4px;">Nova inscrição para aviso de lançamento</h2>

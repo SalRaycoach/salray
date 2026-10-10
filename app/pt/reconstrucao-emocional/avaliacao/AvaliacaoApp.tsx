@@ -43,7 +43,7 @@ export default function AvaliacaoApp() {
 
   function handleEnviar(etapa: 'antes' | 'depois') {
     if (escalas.some((v) => v === null)) {
-      setErro('Responde todas as 10 perguntas de escala antes de enviar — falta marcar pelo menos uma.')
+      setErro('Responde todas as 10 perguntas de escala antes de enviar. Falta marcar pelo menos uma.')
       return
     }
     const etapaSalva: EtapaSalva = { escalas: escalas as number[], abertas, dataISO: new Date().toISOString() }
@@ -100,7 +100,7 @@ function TelaInicio({
       <p className="font-body text-xs uppercase tracking-widest text-aqua mb-3">Vivências de Reconstrução Emocional</p>
       <h1 className="font-display text-4xl text-charcoal mb-6">Autoavaliação</h1>
       <p className="font-body text-lg text-charcoal/80 leading-relaxed mb-8">
-        Uma forma simples de perceber, com mais clareza, onde você está agora — e comparar com onde você estará depois
+        Uma forma simples de perceber, com mais clareza, onde você está agora e comparar com onde você estará depois
         das 12 vivências. Leva poucos minutos e fica só no seu navegador: nada é enviado nem guardado em servidor
         nenhum.
       </p>
@@ -119,7 +119,7 @@ function TelaInicio({
         <div className="border border-charcoal/15 rounded-lg p-6">
           <p className="font-body text-charcoal/80 leading-relaxed mb-4">
             Você já respondeu a etapa &ldquo;Antes&rdquo; em {formatarData(dados.antes.dataISO)}. Quando estiver pronta
-            para comparar, responda a etapa &ldquo;Depois&rdquo; — as mesmas 10 perguntas, mais 5 perguntas de reflexão.
+            para comparar, responda a etapa &ldquo;Depois&rdquo;: as mesmas 10 perguntas, mais 5 perguntas de reflexão.
           </p>
           <button
             type="button"
@@ -134,7 +134,7 @@ function TelaInicio({
       {dados.antes && dados.depois && (
         <div className="border border-charcoal/15 rounded-lg p-6">
           <p className="font-body text-charcoal/80 leading-relaxed mb-4">
-            Você já completou as duas etapas — Antes em {formatarData(dados.antes.dataISO)}, Depois em{' '}
+            Você já completou as duas etapas: Antes em {formatarData(dados.antes.dataISO)}, Depois em{' '}
             {formatarData(dados.depois.dataISO)}.
           </p>
           <button
@@ -177,7 +177,7 @@ function TelaFormulario({
       </p>
       <h1 className="font-display text-4xl text-charcoal mb-6">Autoavaliação</h1>
       <p className="font-body text-charcoal/70 leading-relaxed mb-12">
-        Para cada afirmação, marca o número que melhor representa você agora — 0 significa que não é verdade pra
+        Para cada afirmação, marca o número que melhor representa você agora: 0 significa que não é verdade pra
         você, 10 significa que é totalmente verdade pra você.
       </p>
 
@@ -261,7 +261,7 @@ function TelaPosAntes({ etapaSalva, onContinuar }: { etapaSalva: EtapaSalva; onC
 
       <div className="border border-charcoal/15 rounded-lg bg-pale-aqua/40 p-6 mb-10">
         <p className="font-body text-sm text-charcoal/80 leading-relaxed">
-          Guarde isso no mesmo navegador que você vai usar depois — suas respostas ficam salvas só neste dispositivo.
+          Guarde isso no mesmo navegador que você vai usar depois. Suas respostas ficam salvas só neste dispositivo.
           Se limpar o histórico do navegador ou trocar de computador/celular antes de responder a etapa
           &ldquo;Depois&rdquo;, essas respostas se perdem.
         </p>
@@ -352,24 +352,24 @@ function TelaResultado({ antes, depois, onReiniciar }: { antes: EtapaSalva; depo
       </div>
 
       <div className="max-w-2xl mb-12">
-        <h2 className="font-display text-xl text-charcoal mb-6">Suas reflexões — Antes</h2>
+        <h2 className="font-display text-xl text-charcoal mb-6">Suas reflexões: Antes</h2>
         <div className="space-y-5">
           {PERGUNTAS_ABERTAS_ANTES.map((pergunta, i) => (
             <div key={i}>
               <p className="font-body text-sm font-semibold text-charcoal mb-1">{pergunta}</p>
-              <p className="font-body text-charcoal/75 leading-relaxed whitespace-pre-line">{antes.abertas[i] || '—'}</p>
+              <p className="font-body text-charcoal/75 leading-relaxed whitespace-pre-line">{antes.abertas[i] || 'Sem resposta'}</p>
             </div>
           ))}
         </div>
       </div>
 
       <div className="max-w-2xl mb-12">
-        <h2 className="font-display text-xl text-charcoal mb-6">Suas reflexões — Depois</h2>
+        <h2 className="font-display text-xl text-charcoal mb-6">Suas reflexões: Depois</h2>
         <div className="space-y-5">
           {PERGUNTAS_ABERTAS_DEPOIS.map((pergunta, i) => (
             <div key={i}>
               <p className="font-body text-sm font-semibold text-charcoal mb-1">{pergunta}</p>
-              <p className="font-body text-charcoal/75 leading-relaxed whitespace-pre-line">{depois.abertas[i] || '—'}</p>
+              <p className="font-body text-charcoal/75 leading-relaxed whitespace-pre-line">{depois.abertas[i] || 'Sem resposta'}</p>
             </div>
           ))}
         </div>

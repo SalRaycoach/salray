@@ -239,7 +239,7 @@ export default function FourWeekApplicationForm() {
             className={inputClass}
           />
           <p className="font-body text-xs text-charcoal/50 mt-1.5">
-            Used only to reach you about this application — including as a backup if our email doesn&apos;t reach you.
+            Used only to reach you about this application, including as a backup if our email doesn&apos;t reach you.
           </p>
         </div>
         <div>

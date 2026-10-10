@@ -33,7 +33,7 @@ export default function ResourcesPage() {
       <main className="max-w-content mx-auto px-6 py-16 md:py-24">
       <h1 className="font-display text-4xl text-charcoal mb-4">Resource Library</h1>
       <p className="font-body text-lg text-charcoal/80 leading-relaxed max-w-2xl mb-12">
-        Practical, non-clinical articles on the patterns that keep people stuck — and what rebuilding can look like.
+        Practical, non-clinical articles on the patterns that keep people stuck, and what rebuilding can look like.
       </p>
 
       <section className="mb-12">

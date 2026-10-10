@@ -210,7 +210,7 @@ export default function StableMethodPage() {
             happening and understanding the emotional structure beneath it. It then moves toward strengthening
             internal stability, applying healthier responses in daily life, and sustaining that development over
             time. Although the framework follows a logical progression, personal development is not always
-            perfectly linear — some elements may need to be revisited as new situations, patterns, or priorities
+            perfectly linear. Some elements may need to be revisited as new situations, patterns, or priorities
             emerge.
           </p>
           <div className="flex flex-wrap items-center gap-2 mb-6" aria-label="See, Trace, Awaken, Build, Live, Evolve">
@@ -274,7 +274,7 @@ export default function StableMethodPage() {
             behavioral cycles affecting the individual&apos;s current situation. During this phase, {business.nome}{' '}
             works to understand what the person is experiencing, how the difficulty appears in daily life, what
             tends to trigger it, and which patterns may be connecting different experiences. The objective is to
-            create clarity — many people arrive knowing the symptom they want to change but not yet understanding
+            create clarity. Many people arrive knowing the symptom they want to change but not yet understanding
             the deeper emotional structure influencing it.
           </p>
 
@@ -316,7 +316,7 @@ export default function StableMethodPage() {
             into practical changes. Depending on the individual&apos;s needs, this may involve developing greater
             emotional stability, improving personal boundaries, strengthening confidence, changing habitual
             responses, approaching relationships differently, or making decisions with greater clarity. The work is
-            adapted to the person&apos;s priorities and pace — the purpose is not to create a temporary motivational
+            adapted to the person&apos;s priorities and pace. The purpose is not to create a temporary motivational
             state, but to support the development of healthier and more sustainable emotional and behavioral
             patterns.
           </p>

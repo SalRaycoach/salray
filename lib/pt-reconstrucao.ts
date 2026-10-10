@@ -22,7 +22,7 @@ export const ptPageMeta = {
   title: 'Reconstrução Emocional em Português | Método S.T.A.B.L.E.™ | SAL Ray',
   description:
     'Conheça quatro formas de começar sua reconstrução emocional com o Método S.T.A.B.L.E.™: vivências guiadas em áudio, mentoria em grupo e acompanhamento personalizado com Sal Ray.',
-  ogImageAlt: 'Reconstrução Emocional com o Método S.T.A.B.L.E.™ — SAL Ray',
+  ogImageAlt: 'Reconstrução Emocional com o Método S.T.A.B.L.E.™, SAL Ray',
 } as const
 
 /**
@@ -104,7 +104,7 @@ export const offers: Offer[] = [
     badge: 'RECOMENDADO PARA COMEÇAR',
     name: 'Primeiro Passo S.T.A.B.L.E.™',
     subtitle:
-      'Cinco vivências guiadas em áudio para começar a reorganizar seu estado interno — com uma vivência bônus para reforçar o processo.',
+      'Cinco vivências guiadas em áudio para começar a reorganizar seu estado interno, com uma vivência bônus para reforçar o processo.',
     paraQuemE:
       'Para quem quer experimentar o Método S.T.A.B.L.E.™ de maneira simples, acessível e autoguiada, antes de decidir se precisa de um processo mais profundo.',
     oQueRecebe:
@@ -124,7 +124,7 @@ export const offers: Offer[] = [
     id: 'vivencias',
     anchor: 'vivencias',
     level: 'NÍVEL 2 · APROFUNDAR',
-    badge: 'Pré-venda — acesso a partir de 1º de outubro',
+    badge: 'Pré-venda: acesso a partir de 1º de outubro',
     name: 'Vivências de Reconstrução Emocional',
     subtitle:
       'Doze vivências profundas, conduzidas em áudio, para reconhecer padrões, reorganizar respostas internas e fortalecer uma base emocional mais estável.',

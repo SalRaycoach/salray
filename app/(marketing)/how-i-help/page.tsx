@@ -4,7 +4,7 @@ import { ctas, helpAreas, processSteps, clinicalDisclaimer, crisisResource, SITE
 
 const title = 'How I Help | Emotional & Life Rebuilding'
 const description =
-  'Non-clinical support for overthinking, repeating patterns, loss of direction, and emotional instability — structured, realistic, and honest about its limits.'
+  'Non-clinical support for overthinking, repeating patterns, loss of direction, and emotional instability. Structured, realistic, and honest about its limits.'
 
 export const metadata: Metadata = {
   title,
@@ -49,7 +49,7 @@ export default function HowIHelpPage() {
         <h2 className="font-display text-2xl text-charcoal mb-4">Realistic Outcomes</h2>
         <p className="font-body text-charcoal/85 leading-relaxed">
           This work can support greater clarity about recurring patterns, a steadier emotional baseline, and more
-          confident decision-making. It does not promise instant transformation, a cure, or a guaranteed outcome —
+          confident decision-making. It does not promise instant transformation, a cure, or a guaranteed outcome:
           progress depends on consistent, active engagement in the process.
         </p>
       </section>

@@ -10,7 +10,7 @@ export default function Credentials({ items }: { items: Credential[] }) {
         {items.map((item, index) => (
           <li key={index}>
             {item.title}
-            {item.issuer && <span className="text-charcoal/60"> — {item.issuer}</span>}
+            {item.issuer && <span className="text-charcoal/60">, {item.issuer}</span>}
             {item.year && <span className="text-charcoal/60"> ({item.year})</span>}
           </li>
         ))}

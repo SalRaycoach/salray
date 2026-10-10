@@ -34,7 +34,7 @@ export async function sendBookSessionFailureAlert(firstName: string, reason: str
         Priority: 'urgent',
         Tags: 'warning,email',
       },
-      body: `A Book a Session request email failed to send (${reason}). Requester first name: ${firstName || 'unknown'}. The request was NOT lost — full details were saved to the server recovery log (data/failed-book-a-session-requests.jsonl).`,
+      body: `A Book a Session request email failed to send (${reason}). Requester first name: ${firstName || 'unknown'}. The request was NOT lost. Full details were saved to the server recovery log (data/failed-book-a-session-requests.jsonl).`,
     })
   } catch (err) {
     console.error('Failed to send ntfy.sh failure alert:', err)

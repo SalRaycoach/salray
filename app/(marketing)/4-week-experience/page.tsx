@@ -190,7 +190,7 @@ export default function FourWeekExperiencePage() {
               A Private 4-Week Experience for Women Ready to Stop Repeating the Same Patterns
             </h1>
             <p className="font-body text-lg text-charcoal/80 leading-relaxed mb-6">
-              You may be functioning, caring for others, and keeping life moving — while privately feeling stuck in
+              You may be functioning, caring for others, and keeping life moving, while privately feeling stuck in
               the same relationship, boundary, emotional, or decision-making patterns.
             </p>
             <p className="font-body text-charcoal/70 mb-8">
@@ -240,7 +240,7 @@ export default function FourWeekExperiencePage() {
           <div className="grid md:grid-cols-2 gap-12 items-start">
             <div className="order-2 md:order-1">
               <h2 className="font-display text-3xl md:text-4xl leading-tight text-charcoal mb-6">
-                You May Be Functioning on the Outside — But Still Feeling Stuck Inside
+                You May Be Functioning on the Outside, But Still Feeling Stuck Inside
               </h2>
               <p className="font-body text-charcoal/85 leading-relaxed mb-5">
                 This experience may be especially relevant if you are in a season of life where you are questioning

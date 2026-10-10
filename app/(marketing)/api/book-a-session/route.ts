@@ -46,7 +46,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json(
       {
         ok: false,
-        error: "You've submitted this form too many times in a row. This is temporary — please wait about 15 minutes and try again.",
+        error: "You've submitted this form too many times in a row. This is temporary. Please wait about 15 minutes and try again.",
       },
       { status: 429 }
     )
@@ -144,10 +144,10 @@ export async function POST(request: NextRequest) {
 
   try {
     await sendEmail({
-      from: `SAL Ray — Book a Session <${contato.email}>`,
+      from: `"SAL Ray, Book a Session" <${contato.email}>`,
       to: contato.email,
       replyTo: email,
-      subject: `${asapPrefix}New Book a Session request — ${firstName}`,
+      subject: `${asapPrefix}New Book a Session request: ${firstName}`,
       html: notificationHtml,
     })
 

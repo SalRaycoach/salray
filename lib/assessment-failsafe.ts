@@ -32,7 +32,7 @@ export async function sendAssessmentFailureAlert(email: string, reason: string):
         Priority: 'urgent',
         Tags: 'warning,email',
       },
-      body: `An /assessment/ retake email failed to send (${reason}). Submitter email: ${email || 'unknown'}. The submission was NOT lost — full details were saved to the server recovery log (data/failed-assessment-retakes.jsonl).`,
+      body: `An /assessment/ retake email failed to send (${reason}). Submitter email: ${email || 'unknown'}. The submission was NOT lost. Full details were saved to the server recovery log (data/failed-assessment-retakes.jsonl).`,
     })
   } catch (err) {
     console.error('Failed to send ntfy.sh failure alert:', err)
