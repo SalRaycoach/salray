@@ -7,7 +7,7 @@ import AvaliacaoApp from './AvaliacaoApp'
 // middleware.ts, escopo '/pt/reconstrucao-emocional') no cabeçalho
 // X-Robots-Tag, e excluída do sitemap em next-sitemap.config.js.
 export const metadata: Metadata = {
-  title: 'Autoavaliação — Vivências de Reconstrução Emocional',
+  title: 'Autoavaliação: Vivências de Reconstrução Emocional',
   description: 'Ferramenta de autoavaliação Antes/Depois para participantes das Vivências de Reconstrução Emocional.',
   robots: { index: false, follow: false },
   alternates: { canonical: `${SITE_URL}/pt/reconstrucao-emocional/avaliacao/` },

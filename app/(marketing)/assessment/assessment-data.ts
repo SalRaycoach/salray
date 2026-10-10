@@ -42,25 +42,25 @@ export const CATEGORIES: Category[] = [
     name: 'Emotional Stability',
     questions: [0, 1],
     ranges: {
-      low: "Your answers suggest that, right now, it's difficult to create space between feeling something intense and reacting to it — emotions tend to take over before you can pause.",
-      medium: "You can already, at times, notice what you're feeling before reacting — but it's still a work in progress, not yet automatic.",
-      high: "Your answers show you already have a real foundation of pausing between feeling and acting — that's worth recognizing, even knowing there's always room to go deeper.",
+      low: "Your answers suggest that, right now, it's difficult to create space between feeling something intense and reacting to it. Emotions tend to take over before you can pause.",
+      medium: "You can already, at times, notice what you're feeling before reacting, but it's still a work in progress, not yet automatic.",
+      high: "Your answers show you already have a real foundation of pausing between feeling and acting. That's worth recognizing, even knowing there's always room to go deeper.",
     },
   },
   {
     name: 'Patterns & Clarity',
     questions: [2, 3],
     ranges: {
-      low: "Right now, it may be hard to see the patterns that repeat — situations can feel disconnected from one another, even when they aren't.",
+      low: "Right now, it may be hard to see the patterns that repeat. Situations can feel disconnected from one another, even when they aren't.",
       medium: 'You already recognize some patterns when they show up, but it can still be hard to separate what actually happened from the story your mind builds around it.',
-      high: 'You already show real clarity about repeating patterns — that awareness is a powerful tool for the next step.',
+      high: 'You already show real clarity about repeating patterns. That awareness is a powerful tool for the next step.',
     },
   },
   {
     name: 'Boundaries & Responsibility',
     questions: [4, 5],
     ranges: {
-      low: "It may be hard, today, to tell what's your responsibility apart from what belongs to someone else — and communicating a boundary can feel too risky.",
+      low: "It may be hard, today, to tell what's your responsibility apart from what belongs to someone else, and communicating a boundary can feel too risky.",
       medium: 'You already have some sense of where your boundaries are, but communicating them without guilt or over-explaining is still a challenge.',
       high: "Your boundaries are already fairly clear to you, and you're able to communicate them without abandoning what you need.",
     },
@@ -71,7 +71,7 @@ export const CATEGORIES: Category[] = [
     ranges: {
       low: 'A rejection or criticism can, today, significantly shake how you see your own worth.',
       medium: "You already have a foundation of self-worth, but it can still waver depending on other people's opinions or reactions.",
-      high: "Your sense of worth already seems well established, independent of outside approval — that's a solid foundation.",
+      high: "Your sense of worth already seems well established, independent of outside approval. That's a solid foundation.",
     },
   },
   {
@@ -79,8 +79,8 @@ export const CATEGORIES: Category[] = [
     questions: [8, 9],
     ranges: {
       low: 'Faced with fear or uncertainty, it can be hard to see what the next possible step would be.',
-      medium: "You can already, at times, create space before repeating an old pattern — but it's not yet consistent.",
-      high: "Even facing fear or discomfort, you're already able to identify a real next step — that's a valuable capacity.",
+      medium: "You can already, at times, create space before repeating an old pattern, but it's not yet consistent.",
+      high: "Even facing fear or discomfort, you're already able to identify a real next step. That's a valuable capacity.",
     },
   },
 ]
@@ -99,7 +99,7 @@ export const OPEN_QUESTIONS_RETAKE: string[] = [
 ]
 
 export const CLOSING_MESSAGE =
-  "This is not a diagnosis or a score — it's simply a snapshot of where you are right now, in your own words. Save this moment. You can retake this assessment anytime, and compare how things shift along the way."
+  "This is not a diagnosis or a score. It's simply a snapshot of where you are right now, in your own words. Save this moment. You can retake this assessment anytime, and compare how things shift along the way."
 
 export function categoryScore(scales: number[], category: Category): number {
   return category.questions.reduce((sum, i) => sum + (scales[i] ?? 0), 0)

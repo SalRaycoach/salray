@@ -277,12 +277,12 @@ export const faqs: Faq[] = [
   {
     question: 'What is the S.T.A.B.L.E. Method?',
     answer:
-      'A structured, non-clinical framework created by SAL Ray for identifying emotional patterns, rebuilding internal stability, and applying meaningful change in daily life — applied through two phases: Emotional Pattern Identification and Emotional & Life Rebuilding. See The S.T.A.B.L.E. Method page for the full explanation of each element.',
+      'A structured, non-clinical framework created by SAL Ray for identifying emotional patterns, rebuilding internal stability, and applying meaningful change in daily life, applied through two phases: Emotional Pattern Identification and Emotional & Life Rebuilding. See The S.T.A.B.L.E. Method page for the full explanation of each element.',
   },
   {
     question: 'What is your cancellation policy?',
     answer:
-      'The final cancellation and rescheduling policy is being finalized — see the Cancellation & Rescheduling Policy page for the current version, and confirm directly during booking.',
+      'The final cancellation and rescheduling policy is being finalized. See the Cancellation & Rescheduling Policy page for the current version, and confirm directly during booking.',
   },
   {
     question: 'How do I begin?',

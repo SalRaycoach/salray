@@ -29,7 +29,7 @@ export default function DigitalProductTermsPage() {
           These Digital Product Terms apply specifically to pre-recorded digital audio programs offered by SAL Ray
           Coaching LLC, including but not limited to <strong>Primeiro Passo S.T.A.B.L.E.™</strong> and{' '}
           <strong>Vivências de Reconstrução Emocional</strong>. These programs are delivered entirely as digital,
-          pre-recorded content — they do not include any live session with SAL Ray.
+          pre-recorded content. They do not include any live session with SAL Ray.
         </p>
         <p>
           These Digital Product Terms take precedence over the general{' '}

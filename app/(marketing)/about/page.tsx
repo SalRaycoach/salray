@@ -49,7 +49,7 @@ export default function AboutPage() {
       <section className="max-w-2xl mb-12">
         <h2 className="font-display text-2xl text-charcoal mb-4">Philosophy</h2>
         <p className="font-body text-charcoal/85 leading-relaxed">
-          Most people who feel stuck are not lacking willpower — they are carrying an unresolved pattern that keeps
+          Most people who feel stuck are not lacking willpower. They are carrying an unresolved pattern that keeps
           repeating until it is understood. SAL Ray's work starts from that premise: clarity about the pattern comes
           before lasting change, not after it.
         </p>
@@ -61,7 +61,7 @@ export default function AboutPage() {
         <h2 className="font-display text-2xl text-charcoal mb-4">Why Pattern Recognition Matters</h2>
         <p className="font-body text-charcoal/85 leading-relaxed">
           Repeating emotional cycles, relationship patterns, and self-doubt rarely resolve through effort alone.
-          When the underlying pattern becomes visible, it becomes possible to respond differently — which is where
+          When the underlying pattern becomes visible, it becomes possible to respond differently, which is where
           real, sustainable change tends to begin.
         </p>
       </section>
@@ -70,7 +70,7 @@ export default function AboutPage() {
         <h2 className="font-display text-2xl text-charcoal mb-4">Approach and Tools</h2>
         <p className="font-body text-charcoal/85 leading-relaxed">
           Sessions combine structured conversation, pattern mapping, and practical, non-clinical tools. When
-          appropriate and agreed upon, this can include non-clinical hypnosis as one supportive tool among others —
+          appropriate and agreed upon, this can include non-clinical hypnosis as one supportive tool among others,
           never the central promise of the work, and never presented as medical treatment.
         </p>
       </section>
@@ -101,7 +101,7 @@ export default function AboutPage() {
       <section className="max-w-2xl mb-16">
         <h2 className="font-display text-2xl text-charcoal mb-4">The S.T.A.B.L.E. Method</h2>
         <p className="font-body text-charcoal/85 leading-relaxed">
-          {business.autoridadeMetodologica}. It is the structured framework behind SAL Ray's work with clients — see{' '}
+          {business.autoridadeMetodologica}. It is the structured framework behind SAL Ray's work with clients. See{' '}
           <Link href="/stable-method/" className="text-aqua underline underline-offset-2">
             The S.T.A.B.L.E. Method
           </Link>{' '}

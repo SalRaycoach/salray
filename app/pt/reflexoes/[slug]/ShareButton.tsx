@@ -5,7 +5,7 @@ import { trackEvent } from '@/lib/analytics'
 
 /** Botão de compartilhar com foco em WhatsApp (ver PROMPT_REFLEXOES_SAL_RAY.md seção 7). */
 export default function ShareButton({ slug, titulo, url }: { slug: string; titulo: string; url: string }) {
-  const whatsappHref = `https://wa.me/?text=${encodeURIComponent(`${titulo} — ${url}`)}`
+  const whatsappHref = `https://wa.me/?text=${encodeURIComponent(`${titulo}: ${url}`)}`
 
   // navigator.share() só existe no cliente — checar isso durante o render
   // divergiria entre servidor (sempre ausente) e cliente, causando erro de

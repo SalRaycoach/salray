@@ -31,7 +31,7 @@ export const metadata: Metadata = {
         url: `${SITE_URL}/images/og/og-default.jpg`,
         width: 1200,
         height: 630,
-        alt: 'SAL Ray — Emotional & Life Rebuilding Coach',
+        alt: 'SAL Ray, Emotional & Life Rebuilding Coach',
       },
     ],
   },

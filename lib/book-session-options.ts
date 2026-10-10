@@ -13,7 +13,7 @@
 export const FOCUS_AREA_OPTIONS = ['Patterns', 'Relationships', 'Clarity', 'Emotional Stability'] as const
 
 export const URGENCY_OPTIONS = [
-  "As soon as possible — I'm ready to start now",
+  "As soon as possible, I'm ready to start now",
   'Within the next couple of weeks',
-  'No rush — just exploring my options',
+  'No rush, just exploring my options',
 ] as const

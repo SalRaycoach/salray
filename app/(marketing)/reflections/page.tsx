@@ -11,7 +11,7 @@ export const dynamic = 'force-dynamic'
 
 const title = 'S.T.A.B.L.E. Reflections'
 const description =
-  'Short audio reflections to help you recognize emotional patterns, understand your responses, and make clearer decisions—one reflection at a time.'
+  'Short audio reflections to help you recognize emotional patterns, understand your responses, and make clearer decisions, one reflection at a time.'
 
 // layout.tsx's title.template in this same folder does NOT apply to the
 // title defined here — Next.js rule: title.template only affects CHILD
@@ -37,7 +37,7 @@ export default function ReflectionsHubPage() {
     <main className="max-w-content mx-auto px-6 py-16 md:py-24">
       <h1 className="font-display text-4xl md:text-5xl leading-tight text-charcoal mb-4 max-w-2xl">{title}</h1>
       <p className="font-body text-sm text-charcoal/60 mb-6">
-        Reflections by SAL Ray — Emotional &amp; Life Rebuilding Coach — Creator of the S.T.A.B.L.E. Method™
+        Reflections by SAL Ray, Emotional &amp; Life Rebuilding Coach, Creator of the S.T.A.B.L.E. Method™
       </p>
       <p className="font-body text-lg text-charcoal/80 leading-relaxed max-w-2xl mb-3">{description}</p>
       <p className="font-body text-lg text-charcoal/80 leading-relaxed max-w-2xl mb-14">

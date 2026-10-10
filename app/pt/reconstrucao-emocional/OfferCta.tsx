@@ -50,7 +50,7 @@ export default function OfferCta({ offer, source }: { offer: Offer; source: stri
         type="button"
         aria-disabled="true"
         disabled
-        title="Checkout ainda não disponível — link será ativado após a configuração da Payhip."
+        title="Checkout ainda não disponível: link será ativado após a configuração da Payhip."
         className={DISABLED_CLASSES}
       >
         {offer.ctaText}

@@ -55,7 +55,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json(
       {
         ok: false,
-        error: "You've submitted this form too many times in a row. This is temporary — please wait about 15 minutes and try again.",
+        error: "You've submitted this form too many times in a row. This is temporary. Please wait about 15 minutes and try again.",
       },
       { status: 429 }
     )
@@ -144,11 +144,11 @@ export async function POST(request: NextRequest) {
         ${row('Ready to begin within 14 days if selected', readyIn14Days)}
         ${row('Phone contact consent', phoneConsent ? 'Yes' : 'No')}
         ${row('Page URL', pageUrl)}
-        ${row('utm_source', utmSource || '—')}
-        ${row('utm_medium', utmMedium || '—')}
-        ${row('utm_campaign', utmCampaign || '—')}
-        ${row('utm_content', utmContent || '—')}
-        ${row('fbclid', fbclid || '—')}
+        ${row('utm_source', utmSource || 'n/a')}
+        ${row('utm_medium', utmMedium || 'n/a')}
+        ${row('utm_campaign', utmCampaign || 'n/a')}
+        ${row('utm_content', utmContent || 'n/a')}
+        ${row('fbclid', fbclid || 'n/a')}
       </table>
     </div>
   `
@@ -165,10 +165,10 @@ export async function POST(request: NextRequest) {
 
   try {
     await sendEmail({
-      from: `SAL Ray — 4-Week Experience <${contato.email}>`,
+      from: `"SAL Ray, 4-Week Experience" <${contato.email}>`,
       to: contato.email,
       replyTo: email,
-      subject: `New 4-Week Experience application — ${firstName}`,
+      subject: `New 4-Week Experience application: ${firstName}`,
       html: notificationHtml,
     })
 

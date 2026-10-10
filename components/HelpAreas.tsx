@@ -12,7 +12,7 @@ export default function HelpAreas() {
         <ul className="grid sm:grid-cols-2 gap-4 mb-10">
           {helpAreas.map((area) => (
             <li key={area} className="flex items-start gap-3 font-body text-charcoal/85 leading-relaxed">
-              <span className="text-aqua mt-1">—</span>
+              <span className="text-aqua mt-1">•</span>
               {area}
             </li>
           ))}

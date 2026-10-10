@@ -37,12 +37,12 @@ export default function CommunityPage() {
           <h2 className="font-display text-2xl text-charcoal mb-4">Purpose</h2>
           <p className="font-body text-charcoal/85 leading-relaxed mb-8">
             A supportive space to reflect on emotional patterns, share progress, and stay connected between
-            sessions — without pressure or judgment.
+            sessions, without pressure or judgment.
           </p>
 
           <h2 className="font-display text-2xl text-charcoal mb-4">Topics</h2>
           <p className="font-body text-charcoal/85 leading-relaxed mb-8">
-            Overthinking, emotional stability, relationship patterns, self-trust, and rebuilding life direction —
+            Overthinking, emotional stability, relationship patterns, self-trust, and rebuilding life direction,
             the same themes covered across the Resource Library.
           </p>
 
@@ -57,7 +57,7 @@ export default function CommunityPage() {
           <h2 className="font-display text-2xl text-charcoal mb-4">Community Guidelines</h2>
           <p className="font-body text-charcoal/85 leading-relaxed mb-8">
             Respectful, non-judgmental participation is required. The group is not a space for crisis support,
-            clinical advice, or diagnosis — see the Professional Disclaimer for details.
+            clinical advice, or diagnosis. See the Professional Disclaimer for details.
           </p>
 
           <h2 className="font-display text-2xl text-charcoal mb-4">Privacy</h2>
@@ -76,7 +76,7 @@ export default function CommunityPage() {
       <div className="flex flex-wrap gap-4 items-center">
         {isPending ? (
           <p className="font-body text-charcoal/60 text-sm">
-            Facebook group link pending — check back soon or ask via Facebook/email.
+            Facebook group link pending. Check back soon or ask via Facebook/email.
           </p>
         ) : (
           <a

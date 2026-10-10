@@ -133,7 +133,7 @@ export default function BookSessionForm() {
 
       <p className="font-body text-sm text-charcoal/70 leading-relaxed bg-pale-aqua rounded-lg p-5">
         <strong className="text-charcoal">Before you request a session:</strong> This is non-clinical coaching, not
-        therapy or crisis support. You must be at least 18. SAL Ray reviews each request personally — this is a
+        therapy or crisis support. You must be at least 18. SAL Ray reviews each request personally. This is a
         request, not an automatic booking.
       </p>
 
@@ -191,7 +191,7 @@ export default function BookSessionForm() {
           className={inputClass}
         />
         <p className="font-body text-xs text-charcoal/50 mt-1.5">
-          Used only to reach you about this request — including as a backup if our email doesn&apos;t reach you.
+          Used only to reach you about this request, including as a backup if our email doesn&apos;t reach you.
         </p>
       </div>
 

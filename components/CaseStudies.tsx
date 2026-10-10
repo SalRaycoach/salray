@@ -12,7 +12,7 @@ export default function CaseStudies({ items }: { items: CaseStudy[] }) {
             <h3 className="font-display text-xl text-charcoal mb-2">{item.title}</h3>
             <p className="font-body text-charcoal/85 leading-relaxed mb-3">{item.summary}</p>
             <p className="font-body text-sm text-charcoal/60">
-              <span className="uppercase tracking-widest text-xs">Outcome</span> — {item.outcome}
+              <span className="uppercase tracking-widest text-xs">Outcome</span>: {item.outcome}
             </p>
           </div>
         ))}

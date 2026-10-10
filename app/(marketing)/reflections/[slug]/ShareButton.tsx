@@ -13,8 +13,8 @@ import { trackEvent } from '@/lib/analytics'
  */
 export default function ShareButton({ slug, title, url }: { slug: string; title: string; url: string }) {
   const facebookHref = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`
-  const emailHref = `mailto:?subject=${encodeURIComponent(title)}&body=${encodeURIComponent(`${title} — ${url}`)}`
-  const whatsappHref = `https://wa.me/?text=${encodeURIComponent(`${title} — ${url}`)}`
+  const emailHref = `mailto:?subject=${encodeURIComponent(title)}&body=${encodeURIComponent(`${title}: ${url}`)}`
+  const whatsappHref = `https://wa.me/?text=${encodeURIComponent(`${title}: ${url}`)}`
 
   const [copied, setCopied] = useState(false)
   // navigator.share() only exists on the client — checking during render

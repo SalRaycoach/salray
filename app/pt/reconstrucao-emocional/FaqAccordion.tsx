@@ -45,7 +45,7 @@ export default function FaqAccordion({ faqs }: { faqs: PtFaq[] }) {
                 <p className="font-body text-sm text-charcoal/75 leading-relaxed max-w-[680px]">{faq.answer}</p>
               ) : (
                 <p className="font-body text-sm text-charcoal/50 italic leading-relaxed max-w-[680px]">
-                  Resposta pendente de aprovação final — será publicada antes do lançamento da página.
+                  Resposta pendente de aprovação final. Será publicada antes do lançamento da página.
                 </p>
               )}
             </div>

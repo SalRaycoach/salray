@@ -104,14 +104,14 @@ export async function POST(request: NextRequest) {
   const openRows = OPEN_QUESTIONS_RETAKE.map(
     (question, i) => `
       <p style="margin:0 0 4px;"><strong>${escapeHtml(question)}</strong></p>
-      <p style="margin:0 0 16px;color:#333;">${nl2br(answers[i] || '—')}</p>
+      <p style="margin:0 0 16px;color:#333;">${nl2br(answers[i] || '(no answer)')}</p>
     `
   ).join('')
 
   const notificationHtml = `
     <div style="font-family:Arial,sans-serif;font-size:14px;color:#111;">
       <h2 style="margin-bottom:4px;">Assessment retake completed</h2>
-      <p style="color:#555;margin-top:0;">${escapeHtml(submittedAt)} — ${escapeHtml(email)}</p>
+      <p style="color:#555;margin-top:0;">${escapeHtml(submittedAt)}, ${escapeHtml(email)}</p>
       <table cellpadding="0" cellspacing="0" style="margin-bottom:20px;">
         ${scaleRows}
       </table>
@@ -132,7 +132,7 @@ export async function POST(request: NextRequest) {
       from: `SAL Ray site <${contato.email}>`,
       to: contato.email,
       replyTo: email,
-      subject: `Assessment retake — ${email}`,
+      subject: `Assessment retake: ${email}`,
       html: notificationHtml,
     })
   } catch (err) {
