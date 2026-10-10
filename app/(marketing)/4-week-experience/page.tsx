@@ -15,7 +15,7 @@ const FourWeekApplicationForm = dynamic(() => import('@/components/FourWeekAppli
 
 const title = 'Private 4-Week Emotional & Life Rebuilding Experience'
 const description =
-  'Apply for one of three selected participant places in a private four-week online coaching experience with SAL Ray and the S.T.A.B.L.E. Method.'
+  'Apply for one of three selected participant places in a private online coaching experience of four sessions with SAL Ray and the S.T.A.B.L.E. Method.'
 
 export const metadata: Metadata = {
   title,
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
   alternates: { canonical: `${SITE_URL}/4-week-experience/` },
   openGraph: {
     title: 'Private 4-Week Emotional & Life Rebuilding Experience',
-    description: 'Four private online sessions over four consecutive weeks for three selected participants.',
+    description: 'Four private online sessions for three selected participants.',
     url: `${SITE_URL}/4-week-experience/`,
     images: [{ url: `${SITE_URL}/images/og/og-default.jpg`, width: 1200, height: 630, alt: title }],
   },
@@ -43,10 +43,10 @@ const secondFoldSituations = [
 ]
 
 const experienceCards = [
-  { title: '4 Private Sessions', body: 'One private, one-to-one online coaching session each week.' },
+  { title: '4 Private Sessions', body: 'Private, one-to-one online coaching with SAL Ray.' },
   {
-    title: '4 Consecutive Weeks',
-    body: 'A continuous process designed to create focus, momentum, and accountability.',
+    title: 'Schedule Set Together',
+    body: 'Session times are arranged with SAL Ray, at times that work for both.',
   },
   {
     title: 'Personalized Focus',
@@ -60,22 +60,22 @@ const experienceCards = [
 
 const fourWeekPath = [
   {
-    week: 'Week 1',
+    week: 'Session 1',
     title: 'Understand What Is Really Happening',
     body: 'Clarify the situation, the emotional pressure around it, and the change you most want to make.',
   },
   {
-    week: 'Week 2',
+    week: 'Session 2',
     title: 'Identify the Pattern That Keeps Repeating',
     body: 'Recognize the triggers, reactions, relationship dynamics, and choices that keep taking you back to the same place.',
   },
   {
-    week: 'Week 3',
+    week: 'Session 3',
     title: 'Practice a Steadier Way to Respond',
     body: 'Work on boundaries, greater clarity and steadiness, self-trust, and responding without automatically overgiving, withdrawing, or reacting.',
   },
   {
-    week: 'Week 4',
+    week: 'Session 4',
     title: 'Move Forward With Clearer Choices',
     body: 'Turn the work into practical decisions, conversations, routines, and next steps for the life you are building.',
   },
@@ -86,7 +86,7 @@ const fitFor = [
   'You are continuing to function in daily life but feel internally stuck or unstable.',
   'You have one real issue, pattern, or area of life you want to work on.',
   'You are willing to examine your own responses, choices, and patterns honestly.',
-  'You can attend one private online session each week for four consecutive weeks.',
+  'You can attend all four private online sessions.',
   'You understand that coaching requires active participation, not passive advice.',
 ]
 
@@ -94,8 +94,8 @@ const notFitFor = [
   'You are in immediate crisis, in danger, or require emergency support.',
   'You are seeking diagnosis, psychotherapy, psychiatric care, or medical treatment.',
   'You are looking for a quick fix or a guaranteed result.',
-  'You want one isolated session but cannot commit to the full four weeks.',
-  'You cannot keep the same weekly time for four consecutive weeks.',
+  'You want one isolated session but cannot commit to all four sessions.',
+  'You cannot make time for the sessions we schedule together.',
   'You are applying mainly because someone else wants you to participate.',
 ]
 
@@ -126,7 +126,7 @@ const afterApplySteps = [
   {
     step: '1',
     title: 'Submit your application',
-    body: 'Answer a few short questions about your current focus, availability, and readiness for the four-week commitment.',
+    body: 'Answer a few short questions about your current focus, availability, and readiness for the four-session commitment.',
   },
   {
     step: '2',
@@ -210,7 +210,7 @@ export default function FourWeekExperiencePage() {
                 href="#how-it-works"
                 className="inline-block font-body text-sm font-medium border border-orange text-orange px-6 py-3.5 rounded-md hover:bg-orange hover:text-offwhite transition-colors"
               >
-                See How the Four Weeks Work
+                See How the Four Sessions Work
               </a>
             </div>
           </div>
@@ -351,11 +351,11 @@ export default function FourWeekExperiencePage() {
       <section id="how-it-works" className="bg-pale-aqua">
         <div className="max-w-content mx-auto px-6 py-16 md:py-24">
           <h2 className="font-display text-3xl md:text-4xl leading-tight text-charcoal mb-4 max-w-2xl">
-            Four weeks of focused, private coaching.
+            Four sessions of focused, private coaching.
           </h2>
           <p className="font-body text-charcoal/80 leading-relaxed max-w-2xl mb-10">
             This is not a one-time motivational conversation. The four sessions are designed as one continuous
-            process, allowing each week to build on what became clearer in the week before.
+            process, allowing each session to build on what became clearer in the session before.
           </p>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
             {experienceCards.map((card) => (
@@ -367,12 +367,12 @@ export default function FourWeekExperiencePage() {
           </div>
           <div className="grid gap-3 max-w-2xl">
             <p className="font-body text-charcoal/90 leading-relaxed">
-              <strong className="text-orange">Selected participants will receive the complete four-week experience
+              <strong className="text-orange">Selected participants will receive the complete 4-Week Experience
               at no cost.</strong>
             </p>
             <p className="font-body text-charcoal/70 leading-relaxed text-sm">
               Because this is a limited experience, participation requires consistent attendance, active involvement,
-              and honest feedback at the end of the four weeks. A testimonial is never required.
+              and honest feedback at the end of the four sessions. A testimonial is never required.
             </p>
           </div>
         </div>
@@ -382,10 +382,10 @@ export default function FourWeekExperiencePage() {
       <section className="bg-pale-orange">
         <div className="max-w-content mx-auto px-6 py-16 md:py-24">
           <h2 className="font-display text-3xl md:text-4xl leading-tight text-charcoal mb-4 max-w-2xl">
-            What the four weeks may look like
+            What the four sessions may look like
           </h2>
           <p className="font-body text-charcoal/80 leading-relaxed max-w-2xl mb-10">
-            The structure is consistent, but the application is personal. Each week builds on the previous one,
+            The structure is consistent, but the application is personal. Each session builds on the previous one,
             helping you move from understanding what keeps happening to making clearer, steadier choices in daily
             life.
           </p>
@@ -399,7 +399,7 @@ export default function FourWeekExperiencePage() {
             ))}
           </div>
           <p className="font-body text-xs text-charcoal/50 leading-relaxed mt-8 max-w-2xl">
-            This outline describes the direction of the work, not a guaranteed outcome or a rigid weekly formula.
+            This outline describes the direction of the work, not a guaranteed outcome or a rigid formula.
           </p>
         </div>
       </section>
@@ -472,12 +472,12 @@ export default function FourWeekExperiencePage() {
       <section className="bg-pale-orange">
         <div className="max-w-content mx-auto px-6 py-16 md:py-24">
           <h2 className="font-display text-3xl md:text-4xl leading-tight text-charcoal mb-4 max-w-2xl">
-            Four weeks means four weeks.
+            Four sessions means four sessions.
           </h2>
           <p className="font-body text-charcoal/80 leading-relaxed max-w-2xl mb-10">
-            Because each session builds on the previous one, selected participants need to protect the same weekly
-            time for four consecutive weeks. This commitment helps make the experience useful and respectful of
-            everyone&apos;s time.
+            Because each session builds on the previous one, selected participants need to protect time for all four
+            sessions. Session times are set together with SAL Ray, at times that work for both. This commitment
+            helps make the experience useful and respectful of everyone&apos;s time.
           </p>
           <ul className="grid gap-3 max-w-2xl mb-6">
             {commitmentItems.map((item) => (

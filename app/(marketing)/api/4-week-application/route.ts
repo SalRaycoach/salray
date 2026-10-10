@@ -92,7 +92,7 @@ export async function POST(request: NextRequest) {
   if (!mobile) errors.push('A Mobile Number is required.')
   if (!state) errors.push('Please share your state.')
   if (!WORK_ON_OPTIONS.includes(workOn)) errors.push('Please select what you would most like to work on.')
-  if (!YES_NO_UNSURE.includes(commitFourWeeks)) errors.push('Please answer the four-week commitment question.')
+  if (!YES_NO_UNSURE.includes(commitFourWeeks)) errors.push('Please answer the four-session commitment question.')
   if (!YES_NO.includes(readyIn14Days)) errors.push('Please answer the 14-day readiness question.')
   if (!ackAge18 || !ackNonClinical) {
     errors.push('Both required acknowledgements must be confirmed.')
@@ -140,7 +140,7 @@ export async function POST(request: NextRequest) {
         ${row('Mobile', mobile)}
         ${row('State', state)}
         ${row('Wants to work on', workOn)}
-        ${row('Can commit to 1 session/week x 4 weeks', commitFourWeeks)}
+        ${row('Can commit to four private online sessions (usually one per week, sometimes two)', commitFourWeeks)}
         ${row('Ready to begin within 14 days if selected', readyIn14Days)}
         ${row('Phone contact consent', phoneConsent ? 'Yes' : 'No')}
         ${row('Page URL', pageUrl)}

@@ -45,7 +45,7 @@ export default function PrivacyPolicyPage() {
           <li>Mobile phone number</li>
           <li>State of residence</li>
           <li>Your response to a multiple-choice question about the area you would like to work on</li>
-          <li>Your response to whether you can commit to weekly sessions and begin within 14 days</li>
+          <li>Your response to whether you can commit to four private online sessions and begin within 14 days</li>
         </ul>
         <p>
           We collect your mobile phone number solely to reach you as a backup in case our email does not reach your

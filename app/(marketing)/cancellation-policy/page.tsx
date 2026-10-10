@@ -75,7 +75,7 @@ export default function CancellationPolicyPage() {
           non-refundable, except where required by applicable law.
         </p>
 
-        <h2 className="font-display text-2xl text-charcoal">7. Four-Week and Multi-Session Programs</h2>
+        <h2 className="font-display text-2xl text-charcoal">7. 4-Week Experience and Multi-Session Programs</h2>
         <p>
           Because each session in a structured program (such as the 4-Week Experience) builds on the one before it,
           consistent attendance matters. Participants are expected to:
