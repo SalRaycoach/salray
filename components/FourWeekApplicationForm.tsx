@@ -103,7 +103,7 @@ export default function FourWeekApplicationForm() {
     if (form.state.trim() === '') missing.push('State')
     if (!WORK_ON_OPTIONS.includes(form.workOn)) missing.push('What you would most like to work on')
     if (!['Yes', 'No', 'I am not sure'].includes(form.commitFourWeeks)) {
-      missing.push('The four-week commitment question')
+      missing.push('The four-session commitment question')
     }
     if (!['Yes', 'No'].includes(form.readyIn14Days)) missing.push('The 14-day readiness question')
     if (!form.ackAge18 || !form.ackNonClinical) missing.push('Both required acknowledgement checkboxes')
@@ -181,8 +181,7 @@ export default function FourWeekApplicationForm() {
 
       <p className="font-body text-sm text-charcoal/70 leading-relaxed bg-pale-aqua rounded-lg p-5">
         <strong className="text-charcoal">Before you apply:</strong> This is non-clinical coaching, not therapy or
-        crisis support. You must be at least 18 and available for one private online session each week for four
-        consecutive weeks.
+        crisis support. You must be at least 18 and available for four private online sessions.
       </p>
 
       {status === 'error' && (
@@ -285,7 +284,7 @@ export default function FourWeekApplicationForm() {
 
       <fieldset>
         <legend className="font-body text-sm text-charcoal/90 mb-2">
-          Can you commit to one private online session per week for four consecutive weeks?{' '}
+          Can you commit to four private online sessions, usually one per week and sometimes two?{' '}
           <span className="text-orange">*</span>
         </legend>
         <div className="flex flex-wrap gap-4">

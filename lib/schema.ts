@@ -220,7 +220,7 @@ export function getFourWeekExperienceSchema(faqItems: Faq[]) {
     '@type': ['Service', 'ProfessionalService'],
     name: 'Private 4-Week Emotional & Life Rebuilding Experience',
     description:
-      'Four private online coaching sessions delivered over four consecutive weeks for three selected participants, guided by the S.T.A.B.L.E. Method.',
+      'Four private online coaching sessions for three selected participants, guided by the S.T.A.B.L.E. Method.',
     provider: { '@id': `${SITE_URL}/#person` },
     areaServed: 'United States',
     availableChannel: {

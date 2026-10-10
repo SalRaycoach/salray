@@ -73,7 +73,7 @@ export default function DisclaimerPage() {
         <p>
           Coaching outcomes depend on individual effort, circumstances, and participation. We do not promise or
           guarantee any specific result. Any description of the coaching process (including program structure, such
-          as the four-week format) describes the general direction of the work, not a guaranteed outcome.
+          as the four-session format) describes the general direction of the work, not a guaranteed outcome.
         </p>
 
         <h2 className="font-display text-2xl text-charcoal">In Case of Crisis</h2>
