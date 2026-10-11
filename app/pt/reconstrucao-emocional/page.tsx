@@ -11,17 +11,14 @@ import FaqAccordion from './FaqAccordion'
 import VideoSection from './VideoSection'
 import PageLoadTracker from './PageLoadTracker'
 
-// Rota isolada, própria (briefing seção 18): noindex/nofollow tanto na tag
-// meta quanto — via middleware.ts, matcher '/pt/reconstrucao-emocional/:path*'
-// — no cabeçalho X-Robots-Tag. Não incluir esta rota em app/(marketing)/sitemap,
-// next-sitemap.config.js (exclude já cobre isso) nem em public/llms.txt.
-// Definido aqui (não no app/pt/layout.tsx compartilhado) porque /pt/reflexoes/
-// é uma seção irmã que precisa continuar indexável.
+// Rota isolada, própria (briefing seção 18). Desde out 2026 esta página é
+// indexável e está no sitemap; só a ferramenta /avaliacao/ continua noindex
+// (meta tag e cabeçalho X-Robots-Tag em middleware.ts).
 export const metadata: Metadata = {
   title: ptPageMeta.title,
   description: ptPageMeta.description,
   alternates: { canonical: PT_CANONICAL_URL },
-  robots: { index: false, follow: false },
+  robots: { index: true, follow: true },
   openGraph: {
     title: ptPageMeta.title,
     description: ptPageMeta.description,

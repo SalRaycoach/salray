@@ -86,19 +86,10 @@ module.exports = {
     '/robots.txt',
     '/sitemap.xml',
     '/thank-you-consultation',
-    '/thank-you-community',
-    // Temporary, capacity-limited campaign page (noindex while active) — see
-    // brief section 11. Remove this line if the page is ever taken off noindex.
-    '/4-week-experience',
     // Post-submission confirmation page — never indexed, same pattern as
     // /thank-you-consultation and /thank-you-community below.
     '/4-week-experience/thank-you',
     '/book-a-session/thank-you',
-    // Isolated PT campaign page — never indexed, never listed in sitemap.
-    // See Briefing_Pagina_Reconstrucao_Emocional_SAL_Ray, seção 18. Does NOT
-    // exclude the rest of /pt/ — /pt/reflexoes/ is a sibling section that's
-    // meant to be indexed and listed (see its own priority rule below).
-    '/pt/reconstrucao-emocional',
     // Ferramenta de autoavaliação enviada só por link direto a quem comprou
     // as Vivências — nunca indexada, nunca listada (pedido 27 ago 2026).
     '/pt/reconstrucao-emocional/avaliacao',

@@ -40,12 +40,11 @@ export function middleware(request: NextRequest) {
     return new NextResponse('Gone', { status: 410 })
   }
 
-  // Página isolada em português — nunca indexada. A tag <meta robots> em
-  // app/pt/reconstrucao-emocional/page.tsx já cobre isso; este cabeçalho é o
-  // reforço equivalente pedido no briefing (seção 18), para o caso de algum
-  // crawler ignorar a meta tag. Escopo restrito a esta rota — /pt/reflexoes/
-  // é indexável de propósito e não pode herdar este noindex.
-  if (pathname.startsWith('/pt/reconstrucao-emocional')) {
+  // Ferramenta de autoavaliação em português — nunca indexada. A tag <meta
+  // robots> em avaliacao/page.tsx já cobre isso; este cabeçalho é o reforço.
+  // A página /pt/reconstrucao-emocional/ em si é indexável desde out 2026, e
+  // /pt/reflexoes/ também.
+  if (pathname.startsWith('/pt/reconstrucao-emocional/avaliacao')) {
     const response = NextResponse.next()
     response.headers.set('X-Robots-Tag', 'noindex, nofollow')
     return response

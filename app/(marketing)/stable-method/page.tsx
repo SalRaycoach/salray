@@ -446,13 +446,17 @@ export default function StableMethodPage() {
               {ctas.primary}
             </Link>
             <Link
-              href="/community/"
-              data-event="stable_method_community_click"
+              href="/4-week-experience/#application"
+              data-event="four_week_apply_click"
               className="inline-block font-body text-sm font-medium border border-aqua text-charcoal px-6 py-3 rounded-md hover:bg-aqua transition-colors"
             >
-              {ctas.secondary}
+              Apply for the 4-Week Experience
             </Link>
           </div>
+          <p className="font-body text-sm text-charcoal/75 leading-relaxed max-w-xl mx-auto mt-6">
+            Want to start in a smaller, private space? The 4-Week Experience is a non-clinical coaching space to look
+            at your daily patterns. It does not replace clinical care.
+          </p>
         </section>
       </main>
     </>
