@@ -23,7 +23,6 @@ Não existe painel visual nesta primeira versão — cada áudio é uma entrada 
   urlAudio: 'https://pub-xxxxxxxxxxxxxxxx.r2.dev/nome-do-arquivo.mp3', // URL copiada do R2
   transcricao: 'Texto completo (ou um resumo fiel) do que é dito no áudio. Obrigatório — é o que permite o Google indexar o conteúdo, já que áudio sozinho não é lido pelos buscadores.',
   dataPublicacao: '2026-09-01T09:00:00-05:00', // ver explicação abaixo
-  produtoRelacionado: 'primeiro-passo', // ver lista de opções válidas abaixo
 },
 ```
 
@@ -42,11 +41,8 @@ Não existe painel visual nesta primeira versão — cada áudio é uma entrada 
 - **transcricao** — texto completo ou resumo fiel do áudio. Pode ter quebras de linha (Enter) pra separar parágrafos.
 - **dataPublicacao** — data e hora em que o áudio passa a aparecer no site, no formato `AAAA-MM-DDTHH:MM:SS-05:00` (o `-05:00` é o fuso horário — ajuste se precisar). **Enquanto essa data não chegar, o áudio fica completamente invisível e inacessível no site** — nem aparece na lista, nem abre por link direto. Isso é o que permite gravar várias semanas de uma vez e deixar o site "soltar" um por vez sozinho.
   - O site verifica a data a cada acesso — assim que o horário programado chega, o áudio aparece no próximo carregamento da página (sem esperar nenhum ciclo de cache).
-- **produtoRelacionado** — qual das 4 ofertas da página de vendas (`/pt/reconstrucao-emocional/`) esse áudio deve sugerir no final. Precisa ser exatamente uma destas:
-  - `primeiro-passo` — Primeiro Passo S.T.A.B.L.E.™ (US$ 17)
-  - `vivencias` — Vivências de Reconstrução Emocional (US$ 147)
-  - `mentoria` — Mentoria S.T.A.B.L.E.™
-  - `personalizado` — Acompanhamento Personalizado
+
+O bloco "Quer ir mais fundo?" no final da página é igual em todos os áudios (leva para `/pt/reconstrucao-emocional/`). Não existe campo para escolher produto.
 
 ## "Próxima reflexão" nas páginas já publicadas
 
@@ -64,5 +60,5 @@ Isso faz a própria página desse áudio mostrar "Próxima reflexão: segunda-fe
 
 - **Esquecer as aspas simples** (`'`) ao redor de textos — o arquivo é código, cada texto precisa estar entre aspas.
 - **Repetir um slug já usado** — cada áudio precisa de um slug único.
-- **Categoria ou produtoRelacionado escritos diferente da lista** (maiúscula errada, espaço a mais) — precisa ser exatamente igual ao que está nas listas acima.
+- **Categoria escrita diferente da lista** (maiúscula errada, espaço a mais) — precisa ser exatamente igual ao que está na lista acima.
 - **Esquecer a vírgula** no final do bloco, se for adicionar mais de um áudio de uma vez.

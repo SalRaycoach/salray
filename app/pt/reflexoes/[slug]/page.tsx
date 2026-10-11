@@ -10,7 +10,6 @@ import {
   getNextScheduledAudio,
   formatProximaData,
   formatDuration,
-  PRODUTO_INFO,
   CATEGORIA_LABEL,
 } from '@/lib/audios'
 import { SITE_URL } from '@/lib/config'
@@ -52,7 +51,6 @@ export default function AudioPage({ params }: { params: { slug: string } }) {
   if (!audio) notFound()
 
   const related = getRelatedAudios(audio)
-  const produto = PRODUTO_INFO[audio.produtoRelacionado]
   const pageUrl = `${SITE_URL}/pt/reflexoes/${audio.slug}/`
   const schema = getAudioSchema(audio)
   const proximaAudio = getNextScheduledAudio()
@@ -84,15 +82,10 @@ export default function AudioPage({ params }: { params: { slug: string } }) {
         <div className="max-w-2xl border border-charcoal/15 rounded-lg p-6 mb-12">
           <p className="font-body text-xs uppercase tracking-widest text-aqua mb-2">Quer ir mais fundo?</p>
           <p className="font-body text-charcoal/80 leading-relaxed mb-4">
-            Esta reflexão se conecta com {produto.artigo} {produto.nome}, parte do Método S.T.A.B.L.E.™.
+            Esta reflexão faz parte do Método S.T.A.B.L.E.™. Conheça os programas de Reconstrução Emocional e
+            escolha o seu ponto de partida.
           </p>
-          <ProductCta
-            audioSlug={audio.slug}
-            produtoRelacionado={audio.produtoRelacionado}
-            produtoNome={produto.nome}
-            produtoArtigo={produto.artigo}
-            anchor={produto.anchor}
-          />
+          <ProductCta audioSlug={audio.slug} />
         </div>
 
         <div className="max-w-2xl mb-12">
