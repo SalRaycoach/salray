@@ -35,6 +35,19 @@ const ARTICLE_MERGES = [
   ['/resources/high-functioning-anxiety/how-do-i-know-if-im-anxious-if-i-dont-look-anxious', '/resources/high-functioning-anxiety/high-functioning-anxiety-patterns/'],
   ['/resources/high-functioning-anxiety/why-i-struggle-at-work-even-though-im-capable', '/resources/high-functioning-anxiety/am-i-actually-failing-or-is-something-else-going-on/'],
   ['/resources/high-functioning-anxiety/why-my-anxiety-feels-different-from-others', '/resources/high-functioning-anxiety/why-i-feel-broken-when-everyone-else-seems-fine/'],
+  ['/resources/overthinking-emotional-overload/can-anxiety-go-away-naturally', '/resources/overthinking-emotional-overload/anxiety-symptoms-chronic-anxiety/'],
+  ['/resources/overthinking-emotional-overload/can-anxiety-make-you-feel-physically-sick', '/resources/overthinking-emotional-overload/anxiety-symptoms-chronic-anxiety/'],
+  ['/resources/overthinking-emotional-overload/chronic-vs-severe-anxiety-signs', '/resources/overthinking-emotional-overload/anxiety-symptoms-chronic-anxiety/'],
+  ['/resources/overthinking-emotional-overload/constant-worry-vs-anxiety-difference', '/resources/overthinking-emotional-overload/anxiety-symptoms-chronic-anxiety/'],
+  ['/resources/overthinking-emotional-overload/generalized-anxiety-daily-pattern', '/resources/overthinking-emotional-overload/anxiety-symptoms-chronic-anxiety/'],
+  ['/resources/overthinking-emotional-overload/how-to-calm-anxiety-in-the-moment', '/resources/overthinking-emotional-overload/anxiety-symptoms-chronic-anxiety/'],
+  ['/resources/overthinking-emotional-overload/panic-attacks-vs-panic-disorder', '/resources/overthinking-emotional-overload/anxiety-symptoms-chronic-anxiety/'],
+  ['/resources/overthinking-emotional-overload/social-anxiety-beyond-shyness', '/resources/overthinking-emotional-overload/anxiety-symptoms-chronic-anxiety/'],
+  ['/resources/overthinking-emotional-overload/what-anxiety-relief-actually-looks-like', '/resources/overthinking-emotional-overload/anxiety-symptoms-chronic-anxiety/'],
+  ['/resources/overthinking-emotional-overload/why-am-i-anxious-all-the-time', '/resources/overthinking-emotional-overload/anxiety-symptoms-chronic-anxiety/'],
+  ['/resources/overthinking-emotional-overload/why-do-i-feel-anxious-for-no-reason', '/resources/overthinking-emotional-overload/anxiety-symptoms-chronic-anxiety/'],
+  ['/resources/overthinking-emotional-overload/why-do-i-wake-up-anxious-every-morning', '/resources/overthinking-emotional-overload/anxiety-symptoms-chronic-anxiety/'],
+  ['/resources/high-functioning-anxiety/can-anxiety-cause-physical-symptoms-when-i-look-calm', '/resources/overthinking-emotional-overload/anxiety-symptoms-chronic-anxiety/'],
 ]
 
 const nextConfig = {
