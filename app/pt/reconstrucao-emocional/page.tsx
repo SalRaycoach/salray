@@ -2,7 +2,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { Suspense } from 'react'
 import type { Metadata } from 'next'
-import { getOffer, comparisonColumns, comparisonRows, stableMethodPt, ptFaqs, ptTestimonials, buildWhatsAppUrl, whatsapp, PT_CANONICAL_URL, ptPageMeta } from '@/lib/pt-reconstrucao'
+import { getOffer, getComparisonColumns, comparisonRows, stableMethodPt, ptFaqs, ptTestimonials, buildWhatsAppUrl, whatsapp, PT_CANONICAL_URL, ptPageMeta } from '@/lib/pt-reconstrucao'
 import { getReconstrucaoEmocionalSchema } from '@/lib/schema'
 import SchemaOrg from '@/components/SchemaOrg'
 import OfferCta from './OfferCta'
@@ -28,9 +28,11 @@ export const metadata: Metadata = {
   },
 }
 
-const quickChoiceItems = [
+// O preço das Vivências muda em 1º/11/2026 (ver getOffer em lib/pt-reconstrucao.ts),
+// então esta lista é montada a cada render.
+const getQuickChoiceItems = (vivenciasPrice: string) => [
   { anchor: '#primeiro-passo', label: 'Começar de forma simples · US$ 17' },
-  { anchor: '#vivencias', label: 'Aprofundar no meu ritmo · US$ 117' },
+  { anchor: '#vivencias', label: `Aprofundar no meu ritmo · ${vivenciasPrice}` },
   { anchor: '#mentoria', label: 'Ter direção em grupo · Mentoria' },
   { anchor: '#personalizado', label: 'Trabalhar diretamente com Sal Ray · Personalizado' },
 ]
@@ -42,13 +44,19 @@ const orientationCards = [
   { nivel: 'NÍVEL 4 · PERSONALIZAR', text: 'Quero trabalhar diretamente com Sal Ray sobre a minha situação.', linkText: 'Conhecer o acompanhamento', anchor: '#personalizado' },
 ]
 
+// Renderizada a cada acesso: a troca de preço de 1º/11/2026 não pede novo deploy.
+export const dynamic = 'force-dynamic'
+
 export default function ReconstrucaoEmocionalPage() {
-  const primeiroPasso = getOffer('primeiro-passo')
-  const vivencias = getOffer('vivencias')
+  const now = new Date()
+  const primeiroPasso = getOffer('primeiro-passo', now)
+  const vivencias = getOffer('vivencias', now)
+  const quickChoiceItems = getQuickChoiceItems(vivencias.price ?? '')
+  const comparisonColumns = getComparisonColumns(now)
   const mentoria = getOffer('mentoria')
   const personalizado = getOffer('personalizado')
   const ajudaUrl = buildWhatsAppUrl(whatsapp.messages.ajudaParaEscolher)
-  const schema = getReconstrucaoEmocionalSchema()
+  const schema = getReconstrucaoEmocionalSchema(now)
 
   return (
     <main id="inicio">
@@ -252,7 +260,7 @@ export default function ReconstrucaoEmocionalPage() {
         </div>
       </section>
 
-      {/* ===== OFERTA 2 — Vivências (pré-venda, US$ 117) ===== */}
+      {/* ===== OFERTA 2 — Vivências (valor de lançamento até 31/10, depois US$ 147) ===== */}
       <section id="vivencias" className="border-b border-charcoal/10">
         <div className="max-w-content mx-auto px-6 py-16 md:py-24 grid md:grid-cols-2 gap-12 items-start">
           <div>
@@ -323,9 +331,6 @@ export default function ReconstrucaoEmocionalPage() {
                   <p className="font-body text-sm text-charcoal/70 leading-relaxed mb-4">{vivencias.narrativeLine}</p>
                 )}
                 <div className="flex items-baseline gap-3 mb-1">
-                  {vivencias.originalPrice && (
-                    <span className="font-body text-lg text-charcoal/40 line-through">{vivencias.originalPrice}</span>
-                  )}
                   <p className="font-display text-4xl text-charcoal">{vivencias.price}</p>
                 </div>
                 {vivencias.priceNote && (
