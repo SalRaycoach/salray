@@ -1,6 +1,7 @@
 import { business, contato, faqs, SITE_URL, DOMINIO } from './config'
 import type { Faq } from './config'
 import type { Article } from './resources'
+import { isVivenciasLaunchPrice } from './pt-reconstrucao'
 
 type BreadcrumbItem = { name: string; url: string } // url deve iniciar com "/" e terminar com "/"
 
@@ -335,12 +336,13 @@ export function getReflectionAudioSchema(reflection: {
 /**
  * /pt/reconstrucao-emocional: Product + Offer para as Vivências de
  * Reconstrução Emocional. Produto digital (áudio): sem frete nem política de
- * devolução física. Acesso liberado desde 2026-10-01, então `availability` é
- * InStock; `priceValidUntil` e `availabilityStarts` saíram porque as datas
- * (pré-venda) já venceram (Search Console, out 2026). `image` é obrigatório
- * para listagens de comerciante.
+ * devolução física. `availability` é InStock. Preço 117 com
+ * `priceValidUntil` 2026-10-31 (valor de lançamento); a partir de 01/11/2026
+ * 00:00 em Nova York o preço é 147 e `priceValidUntil` some (mesma data de
+ * lib/pt-reconstrucao.ts). `image` é obrigatório para listagens de comerciante.
  */
-export function getReconstrucaoEmocionalSchema() {
+export function getReconstrucaoEmocionalSchema(now: Date = new Date()) {
+  const launch = isVivenciasLaunchPrice(now)
   const product = {
     '@type': 'Product',
     name: 'Vivências de Reconstrução Emocional',
@@ -352,8 +354,10 @@ export function getReconstrucaoEmocionalSchema() {
     offers: {
       '@type': 'Offer',
       url: `${SITE_URL}/pt/reconstrucao-emocional/#vivencias`,
-      price: '117',
+      price: launch ? '117' : '147',
       priceCurrency: 'USD',
+      // Valor de lançamento vale até 31/10/2026; depois, sem data de validade.
+      ...(launch ? { priceValidUntil: '2026-10-31' } : {}),
       availability: 'https://schema.org/InStock',
     },
   }

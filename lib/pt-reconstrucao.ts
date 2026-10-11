@@ -73,10 +73,9 @@ export type Offer = {
   oQueRecebe: string
   comoFunciona?: string
   price?: string
-  // Preço "de", riscado, exibido junto de `price` quando há desconto ativo
-  // (pedido 17 set 2026 — pré-venda das Vivências).
+  // Preço "de", riscado, exibido junto de `price` quando há desconto ativo.
   originalPrice?: string
-  // Nota curta abaixo do preço (ex.: prazo da condição de pré-venda).
+  // Nota curta abaixo do preço (ex.: prazo do valor de lançamento).
   priceNote?: string
   // Selo destacado perto do preço (ex.: "4x sem juros") — visível, não
   // escondido atrás de texto secundário.
@@ -94,6 +93,23 @@ export type Offer = {
   // com concordância de gênero/número específica pra cada oferta (não dá pra
   // templatizar genericamente: "está sendo gravado" vs "estão sendo gravadas").
   recordingMessage?: string
+}
+
+/**
+ * Vivências: dois preços, uma troca automática. Até 31/10/2026 vale o valor de
+ * lançamento (US$ 117). A partir de 01/11/2026 às 00:00 em Nova York (EDT,
+ * UTC-4: o horário de verão só termina às 02:00 desse dia) vale US$ 147, sem
+ * selo e sem nota. A página é renderizada a cada acesso (force-dynamic), então
+ * a troca acontece sozinha, sem novo deploy.
+ */
+export const VIVENCIAS_PRICE_CHANGE_AT = '2026-11-01T00:00:00-04:00'
+export const VIVENCIAS_CHECKOUT_117 = 'https://payhip.com/order?link=LRdlK&pricing_plan=4lW53Yo6B3'
+// PENDENTE: link do plano de US$ 147 na Payhip. Enquanto começar com PENDENTE_,
+// o botão fica desativado (OfferCta.tsx). Trocar pelo link real antes de 1º/11.
+export const VIVENCIAS_CHECKOUT_147 = 'PENDENTE_CHECKOUT_PAYHIP_147'
+
+export function isVivenciasLaunchPrice(now: Date = new Date()): boolean {
+  return now.getTime() < new Date(VIVENCIAS_PRICE_CHANGE_AT).getTime()
 }
 
 export const offers: Offer[] = [
@@ -124,7 +140,7 @@ export const offers: Offer[] = [
     id: 'vivencias',
     anchor: 'vivencias',
     level: 'NÍVEL 2 · APROFUNDAR',
-    badge: 'Pré-venda: acesso a partir de 1º de outubro',
+    badge: 'VALOR DE LANÇAMENTO',
     name: 'Vivências de Reconstrução Emocional',
     subtitle:
       'Doze vivências profundas, conduzidas em áudio, para reconhecer padrões, reorganizar respostas internas e fortalecer uma base emocional mais estável.',
@@ -133,13 +149,12 @@ export const offers: Offer[] = [
       'Para quem já percebe que não precisa apenas de um primeiro alívio, mas de um processo autoguiado mais profundo, com tempo para ouvir, refletir e integrar cada vivência.',
     oQueRecebe:
       'Uma sequência de 12 vivências de reconstrução emocional em áudio. Cada vivência cumpre uma função própria dentro do processo, sem depender de encontros ao vivo.',
-    // Pré-venda (pedido 17 set 2026): acesso liberado a partir de 01/10/2026,
-    // preço promocional válido até 30/09/2026 — ver schema.org Offer em
-    // lib/schema.ts (getReconstrucaoEmocionalSchema) pros mesmos valores.
+    // Valor de lançamento: US$ 117 até 31/10/2026. A partir de 01/11/2026 (00:00,
+    // Nova York) vale o preço cheio — ver getOffer() abaixo e o schema.org Offer
+    // em lib/schema.ts (getReconstrucaoEmocionalSchema), que seguem a mesma data.
     narrativeLine: 'Comece antes do fim do ano a reconstrução que você quer levar para 2027.',
     price: 'US$ 117',
-    originalPrice: 'US$ 147',
-    priceNote: 'Preço de pré-venda até 30 de setembro.',
+    priceNote: 'Valor de lançamento: US$ 117 até 31 de outubro. A partir de 1º de novembro: US$ 147.',
     // Nomeia os provedores (pedido 17 set 2026, confirmado por Sal Ray) pra
     // pessoa saber exatamente qual opção procurar no checkout da Payhip —
     // essa opção fica escondida atrás de uma seta lá, sem nome visível.
@@ -147,7 +162,7 @@ export const offers: Offer[] = [
     paymentType: 'pagamento único',
     status: 'active',
     ctaText: 'Quero iniciar as Vivências por US$ 117',
-    ctaHref: 'https://payhip.com/order?link=LRdlK&pricing_plan=4lW53Yo6B3',
+    ctaHref: VIVENCIAS_CHECKOUT_117,
     microtext: 'Programa digital autoguiado. Pagamento seguro processado pelo Stripe. Acesso automático por e-mail. Não inclui sessões individuais.',
   },
   {
@@ -183,9 +198,20 @@ export const offers: Offer[] = [
   },
 ]
 
-export function getOffer(id: Offer['id']): Offer {
+export function getOffer(id: Offer['id'], now: Date = new Date()): Offer {
   const offer = offers.find((o) => o.id === id)
   if (!offer) throw new Error(`Offer not found: ${id}`)
+  if (id === 'vivencias' && !isVivenciasLaunchPrice(now)) {
+    return {
+      ...offer,
+      badge: undefined,
+      originalPrice: undefined,
+      priceNote: undefined,
+      price: 'US$ 147',
+      ctaText: 'Quero iniciar as Vivências por US$ 147',
+      ctaHref: VIVENCIAS_CHECKOUT_147,
+    }
+  }
   return offer
 }
 
@@ -335,10 +361,11 @@ export const comparisonRows = [
   {
     criterio: 'Ação',
     // Primeiro Passo: ainda em gravação, sem compra ativa (23 ago 2026) — CTA
-    // aponta pra captura de interesse, não pro preço. Vivências: pré-venda
-    // ativa desde 17 set 2026, com checkout real.
-    valores: ['Avise-me quando estiver pronto', 'Comprar em pré-venda', 'Comprar vaga da turma', 'Conversar no WhatsApp'],
+    // aponta pra captura de interesse, não pro preço. Vivências: checkout real.
+    valores: ['Avise-me quando estiver pronto', 'Comprar as Vivências', 'Comprar vaga da turma', 'Conversar no WhatsApp'],
   },
 ] as const
 
-export const comparisonColumns = ['US$ 17', 'US$ 117', 'Mentoria', 'Personalizado'] as const
+export function getComparisonColumns(now: Date = new Date()) {
+  return ['US$ 17', getOffer('vivencias', now).price ?? '', 'Mentoria', 'Personalizado']
+}

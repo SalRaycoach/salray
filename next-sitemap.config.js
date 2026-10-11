@@ -125,8 +125,10 @@ module.exports = {
   // (see the comment on extractPublishedSlugs above) — routed through the
   // same transform() below so they get the same priority/changefreq/lastmod
   // logic as every other URL, not a separate ad-hoc shape.
+  // /pt/reconstrucao-emocional é force-dynamic (troca de preço automática em
+  // 01/11/2026), então também não aparece no crawl estático: listada aqui.
   additionalPaths: async (config) => {
-    const paths = ['/pt/reflexoes', ...PT_REFLEXOES_AUDIOS.map((a) => `/pt/reflexoes/${a.slug}`), '/reflections', ...EN_REFLECTIONS.map((a) => `/reflections/${a.slug}`)]
+    const paths = ['/pt/reconstrucao-emocional', '/pt/reflexoes', ...PT_REFLEXOES_AUDIOS.map((a) => `/pt/reflexoes/${a.slug}`), '/reflections', ...EN_REFLECTIONS.map((a) => `/reflections/${a.slug}`)]
     return Promise.all(paths.map((p) => config.transform(config, p)))
   },
   transform: async (config, path) => {
