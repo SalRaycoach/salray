@@ -334,12 +334,11 @@ export function getReflectionAudioSchema(reflection: {
 
 /**
  * /pt/reconstrucao-emocional: Product + Offer para as Vivências de
- * Reconstrução Emocional (pré-venda, pedido 17 set 2026). `availability`
- * usa PreOrder (não InStock) porque o acesso só é liberado em 2026-10-01 —
- * `availabilityStarts` marca essa data exata, e `priceValidUntil` marca o
- * fim da condição promocional. Página é noindex/nofollow (ver page.tsx),
- * então este schema não gera rich results, mas fica pronto caso a página
- * deixe de ser noindex no futuro.
+ * Reconstrução Emocional. Produto digital (áudio): sem frete nem política de
+ * devolução física. Acesso liberado desde 2026-10-01, então `availability` é
+ * InStock; `priceValidUntil` e `availabilityStarts` saíram porque as datas
+ * (pré-venda) já venceram (Search Console, out 2026). `image` é obrigatório
+ * para listagens de comerciante.
  */
 export function getReconstrucaoEmocionalSchema() {
   const product = {
@@ -348,15 +347,14 @@ export function getReconstrucaoEmocionalSchema() {
     description:
       'Doze vivências profundas, conduzidas em áudio, para reconhecer padrões, reorganizar respostas internas e fortalecer uma base emocional mais estável.',
     brand: { '@id': `${SITE_URL}/#person` },
+    image: `${SITE_URL}/images/og/og-default.jpg`,
     inLanguage: 'pt-BR',
     offers: {
       '@type': 'Offer',
       url: `${SITE_URL}/pt/reconstrucao-emocional/#vivencias`,
       price: '117',
       priceCurrency: 'USD',
-      priceValidUntil: '2026-09-30',
-      availability: 'https://schema.org/PreOrder',
-      availabilityStarts: '2026-10-01',
+      availability: 'https://schema.org/InStock',
     },
   }
 
