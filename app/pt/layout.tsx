@@ -27,7 +27,7 @@ const inter = Inter({
  * reestruturação de rotas). Deliberadamente sem metadata.robots aqui: cada
  * seção sob /pt/ decide isso na sua própria camada (ex.:
  * app/pt/reflexoes/layout.tsx define index,follow; app/pt/reconstrucao-
- * emocional/page.tsx define noindex,nofollow) — não force um default aqui
+ * emocional/page.tsx define index,follow; só avaliacao/ é noindex) — não force um default aqui
  * que uma seção com necessidade diferente da outra precisaria sobrescrever.
  */
 export const metadata: Metadata = { metadataBase: new URL(SITE_URL) }
