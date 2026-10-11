@@ -27,10 +27,9 @@ export const metadata: Metadata = {
     url: `${SITE_URL}/4-week-experience/`,
     images: [{ url: `${SITE_URL}/images/og/og-default.jpg`, width: 1200, height: 630, alt: title }],
   },
-  // Temporary, capacity-limited campaign page — see brief section 11. Stays
-  // reachable via menu/ads/direct link without creating a stale search result
-  // once the three places are filled.
-  robots: 'noindex, follow',
+  // Indexed and listed in the sitemap (out 2026). The thank-you page below it
+  // stays noindex.
+  robots: 'index, follow',
 }
 
 const secondFoldSituations = [

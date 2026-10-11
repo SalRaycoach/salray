@@ -93,6 +93,20 @@ const nextConfig = {
         permanent: true,
         statusCode: 301,
       },
+      {
+        // Grupo do Facebook retirado do site (out 2026): as duas páginas
+        // antigas levam à candidatura da 4-Week Experience.
+        source: '/community',
+        destination: '/4-week-experience/',
+        permanent: true,
+        statusCode: 301,
+      },
+      {
+        source: '/thank-you-community',
+        destination: '/4-week-experience/',
+        permanent: true,
+        statusCode: 301,
+      },
       ...ARTICLE_MERGES.map(([source, destination]) => ({ source, destination, permanent: true, statusCode: 301 })),
       {
         // /consultation/ retired in favor of /book-a-session/ (pedido 22 set
