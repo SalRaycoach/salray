@@ -981,9 +981,9 @@ If any of these patterns sound familiar, [an initial consultation](#consultation
     title: 'Self-Worth, Self-Esteem & Fear of Failure: A Complete Guide',
     keyword: 'self-worth self-esteem fear of failure',
     excerpt:
-      'Low self-worth and fear of failure often trace back to childhood and get reinforced by comparison. Here is how the pattern works and how to rebuild it.',
+      'Low self-worth and fear of failure often start with conditional approval and get reinforced by comparison. Here is how it works and how to rebuild it.',
     datePublished: '2026-04-17T09:00:00-05:00',
-    dateModified: '2026-04-17T09:00:00-05:00',
+    dateModified: '2026-10-11T09:00:00-05:00',
     needsProfessionalCareNote: false,
     relatedArticles: ['why-dont-i-trust-myself-anymore', 'people-pleasing-perfectionism'],
     ogImage: '/images/og/og-default.jpg',
@@ -999,7 +999,7 @@ Persistent self-doubt often develops after a pattern of having your judgment que
 
 ## Low self-esteem: where the pattern really starts
 
-Low self-esteem frequently originates in childhood, shaped by messages, direct or indirect, about conditional worth: being praised mainly for achievement, compared unfavorably to others, or having emotional needs consistently minimized. These early messages often continue operating as an internal voice long after the original source is gone.
+Low self-esteem often starts with messages, direct or indirect, about conditional worth: being praised mainly for achievement, compared unfavorably to others, or having your emotional needs consistently minimized. These messages can keep running as an inner voice long after the original source is gone.
 
 ## Lack of confidence vs. low self-worth: what's the difference?
 
@@ -1013,9 +1013,9 @@ Fear of failure is frequently less about the practical consequences of failing a
 
 Impostor syndrome persists despite evidence of competence because it operates on a belief system, not on facts: the belief that you do not truly belong or deserve your success. New achievements get reframed as luck, timing, or other people's low standards, rather than genuine evidence of your ability.
 
-## How self-worth gets built (or broken) in childhood
+## How self-worth gets built (or broken)
 
-Children build a sense of worth largely through how consistently their caregivers responded to their needs and emotions, not primarily through achievement. When love and attention felt conditional on performance or behavior, worth becomes tied to output rather than existing as a stable, internal baseline.
+A sense of worth grows mostly from how consistently the people around us respond to our needs and emotions, not mainly from achievement. When love, attention, or respect feel conditional on performance or behavior, worth becomes tied to output instead of being a stable, internal baseline.
 
 ## Why comparing yourself to others keeps the pattern alive
 

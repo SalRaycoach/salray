@@ -34,6 +34,20 @@ const nextConfig = {
         ]
       }),
       {
+        // Onda 1 de limpeza de artigos (out 2026): conteúdo reunido em outro
+        // artigo. Destinos com barra final por causa de trailingSlash: true.
+        source: '/resources/emotional-patterns-self-sabotage/when-to-seek-clinical-support-for-trauma',
+        destination: '/resources/emotional-patterns-self-sabotage/trauma-healing-coaching-vs-therapy/',
+        permanent: true,
+        statusCode: 301,
+      },
+      {
+        source: '/resources/relationships-boundaries/repeating-your-parents-relationship-patterns',
+        destination: '/resources/relationships-boundaries/why-toxic-relationships-feel-familiar/',
+        permanent: true,
+        statusCode: 301,
+      },
+      {
         // /consultation/ retired in favor of /book-a-session/ (pedido 22 set
         // 2026) — permanent so search engines transfer link equity and any
         // existing bookmarks/backlinks keep working. Destination keeps the
