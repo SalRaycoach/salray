@@ -8,7 +8,7 @@ import StableMethodPreview from '@/components/StableMethodPreview'
 import ProcessTimeline from '@/components/ProcessTimeline'
 import HelpAreas from '@/components/HelpAreas'
 import ResourcesPreview from '@/components/ResourcesPreview'
-import CommunityCTA from '@/components/CommunityCTA'
+import FourWeekCTA from '@/components/FourWeekCTA'
 import Testimonials from '@/components/Testimonials'
 import FAQAccordion from '@/components/FAQAccordion'
 import FinalCTA from '@/components/FinalCTA'
@@ -62,7 +62,7 @@ export default function HomePage() {
           </section>
         )}
 
-        <CommunityCTA />
+        <FourWeekCTA />
 
         <section className="border-b border-charcoal/10">
           <div className="max-w-content mx-auto px-6 py-16 md:py-24">

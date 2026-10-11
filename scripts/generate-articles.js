@@ -164,7 +164,7 @@ Mandatory rules:
 4. Bold 3-5 key terms or verifiable claims total — not more.
 5. Length: 1200-1800 words.
 6. Include at least 3 internal links: one to the parent pillar guide using [${item.pillarSlug}](#pillar), and two to sibling articles using [text](#related) placeholders — do not invent real slugs, just mark them as placeholders.
-7. Include exactly one CTA link partway through and one near the end, using [Schedule an Initial Consultation](#consultation) or [Join the private community](#community) depending on fit.
+7. Include exactly one CTA link partway through and one near the end, using [Schedule an Initial Consultation](#consultation) or [Apply for the 4-Week Experience](/4-week-experience/#application) depending on fit. Never link to a Facebook group or a private community.
 8. ${clinicalStep}
 9. End the body with "## Frequently Asked Questions" heading (no questions here — those go in the separate "faq" field).
 10. Include a short author bio + non-clinical disclaimer as the final paragraph before the FAQ heading.

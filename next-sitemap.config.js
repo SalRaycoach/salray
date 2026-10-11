@@ -17,15 +17,15 @@ const DOMINIO = 'salraycoach.com'
  * update this list if a seed article's dateModified changes there.
  */
 const SEED_ARTICLE_DATES = {
-  'why-do-i-keep-reacting-the-same-way': '2026-03-05T09:00:00-05:00',
-  'overthinking-racing-thoughts': '2026-10-11T09:45:00-05:00',
-  'anxiety-symptoms-chronic-anxiety': '2026-10-11T10:00:00-05:00',
-  'unresolved-trauma-recovery': '2026-10-11T09:45:00-05:00',
-  'toxic-relationships-abuse-patterns': '2026-10-11T09:45:00-05:00',
-  'attachment-trust-boundaries': '2026-04-13T09:00:00-05:00',
-  'self-worth-self-esteem-failure': '2026-10-11T09:45:00-05:00',
-  'people-pleasing-perfectionism': '2026-04-20T09:00:00-05:00',
-  'life-direction-identity-starting-over': '2026-04-22T09:00:00-05:00',
+  'why-do-i-keep-reacting-the-same-way': '2026-10-11T14:30:00-05:00',
+  'overthinking-racing-thoughts': '2026-10-11T14:30:00-05:00',
+  'anxiety-symptoms-chronic-anxiety': '2026-10-11T14:30:00-05:00',
+  'unresolved-trauma-recovery': '2026-10-11T14:30:00-05:00',
+  'toxic-relationships-abuse-patterns': '2026-10-11T14:30:00-05:00',
+  'attachment-trust-boundaries': '2026-10-11T14:30:00-05:00',
+  'self-worth-self-esteem-failure': '2026-10-11T14:30:00-05:00',
+  'people-pleasing-perfectionism': '2026-10-11T14:30:00-05:00',
+  'life-direction-identity-starting-over': '2026-10-11T14:30:00-05:00',
   'high-functioning-anxiety-patterns': '2026-10-11T09:45:00-05:00',
 }
 

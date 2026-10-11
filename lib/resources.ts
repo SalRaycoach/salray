@@ -100,7 +100,7 @@ const seedArticles: Article[] = [
     excerpt:
       'Repeating the same emotional reaction in different situations usually points to a pattern formed earlier, not a character flaw.',
     datePublished: '2026-03-05T09:00:00-05:00',
-    dateModified: '2026-03-05T09:00:00-05:00',
+    dateModified: '2026-10-11T14:30:00-05:00',
     needsProfessionalCareNote: true,
     relatedArticles: ['overthinking-racing-thoughts', 'why-do-i-attract-toxic-people-pattern'],
     ogImage: '/images/og/og-default.jpg',
@@ -130,7 +130,11 @@ Rebuilding this area of your life often means separating the old strategy from y
 
 If the pattern is connected to **unresolved trauma, a diagnosed condition such as PTSD, or reactions that feel outside of your control (dissociation, intense flashbacks, or safety concerns)**, this goes beyond the scope of non-clinical coaching. A licensed trauma-informed therapist is the appropriate professional to work with in that case.
 
-If this pattern feels familiar and you want structured support to work through it, [an initial consultation](#consultation) is the next step. For ongoing support between sessions, [the private community](#community) is also available.
+If this pattern feels familiar and you want structured support to work through it, [an initial consultation](#consultation) is the next step.
+
+If this feels familiar, the 4-Week Experience is a private, non-clinical coaching space to look at the reactions that keep repeating. It does not replace clinical care.
+
+[Apply for the 4-Week Experience](/4-week-experience/#application)
 
 ## Frequently Asked Questions`,
     faq: [
@@ -180,7 +184,7 @@ If this pattern feels familiar and you want structured support to work through i
     excerpt:
       'Overthinking usually means your mind is trying to solve an unresolved problem, not that something is wrong with you. Here is the complete picture.',
     datePublished: '2026-04-01T09:00:00-05:00',
-    dateModified: '2026-10-11T09:45:00-05:00',
+    dateModified: '2026-10-11T14:30:00-05:00',
     needsProfessionalCareNote: true,
     relatedArticles: ['anxiety-symptoms-chronic-anxiety'],
     ogImage: '/images/og/og-default.jpg',
@@ -254,7 +258,11 @@ One pattern worth watching for is the loop where overthinking itself becomes exh
 
 Overthinking on its own is a common, non-clinical experience. However, if it is accompanied by **panic attacks, persistent physical anxiety symptoms, a diagnosed anxiety disorder, or worry that consistently interferes with work, sleep, or relationships**, this goes beyond what non-clinical coaching is designed to address. A licensed mental health professional is the appropriate next step in that case. Coaching supports the pattern around the thinking, not a diagnosable condition itself.
 
-If this pattern sounds familiar, [an initial consultation](#consultation) is a structured way to understand what is underneath it. If you would rather explore this at your own pace first, [the private community](#community) is a good place to start.
+If this pattern sounds familiar, [an initial consultation](#consultation) is a structured way to understand what is underneath it.
+
+If this feels familiar, the 4-Week Experience is a private, non-clinical coaching space to look at your daily patterns and how you make decisions. It does not replace clinical care.
+
+[Apply for the 4-Week Experience](/4-week-experience/#application)
 
 ## Frequently Asked Questions`,
     faq: [
@@ -309,7 +317,7 @@ If this pattern sounds familiar, [an initial consultation](#consultation) is a s
     excerpt:
       'Anxiety that shows up constantly, not just occasionally, follows a recognizable pattern. Here is what it can look like, and when to seek clinical support.',
     datePublished: '2026-04-03T09:00:00-05:00',
-    dateModified: '2026-10-11T10:00:00-05:00',
+    dateModified: '2026-10-11T14:30:00-05:00',
     needsProfessionalCareNote: true,
     relatedArticles: ['overthinking-racing-thoughts'],
     ogImage: '/images/og/og-default.jpg',
@@ -423,9 +431,9 @@ Avoidance is one reason. Skipping what feels uncomfortable gives short relief bu
 
 Many people who improve without formal help still changed something. They left a draining job, cut back a major stressor, or built steady sleep and exercise habits. The change came from the conditions, not from time passing. Support can come from lifestyle changes, non-clinical coaching for daily patterns, clinical care when needed, or a mix of these. The longer a chronic pattern lasts, the more settled it can become. Earlier support usually works faster.
 
-If this has been part of your life for a while, the private community can be a supportive, non-clinical space while you also consider clinical options.
+If this has been part of your life for a while, the 4-Week Experience is a private, non-clinical coaching space to look at your daily patterns. It does not replace clinical care.
 
-[Join the Private Facebook Community](#community)
+[Apply for the 4-Week Experience](/4-week-experience/#application)
 
 ## What anxiety therapy and coaching can (and can't) offer
 
@@ -496,7 +504,7 @@ If anxiety is frequent, physically intense, or tied to panic attacks, **this is 
     excerpt:
       'Unresolved trauma often shapes daily reactions without being obvious. Here is how to recognize it, what recovery involves, and when to seek clinical care.',
     datePublished: '2026-04-08T09:00:00-05:00',
-    dateModified: '2026-10-11T09:45:00-05:00',
+    dateModified: '2026-10-11T14:30:00-05:00',
     needsProfessionalCareNote: true,
     relatedArticles: ['why-do-i-keep-reacting-the-same-way', 'people-pleasing-perfectionism'],
     ogImage: '/images/og/og-default.jpg',
@@ -518,9 +526,9 @@ Repeating reactions across different situations usually means the reaction is ti
 
 Recovery is rarely linear. Day to day, it tends to look like noticing a trigger earlier than before, having more tools to regulate in the moment, and gradually reducing how much a reminder of the past can derail your present. Good days and setback days both remain part of the process for a long time. This is normal, not a sign of failure.
 
-If you want ongoing, non-clinical support alongside any clinical care you may have, the private community is available while you work through this.
+If you want non-clinical support next to any clinical care you may have, the 4-Week Experience is a private coaching space to look at your daily patterns. It does not replace clinical care.
 
-[Join the Private Facebook Community](#community)
+[Apply for the 4-Week Experience](/4-week-experience/#application)
 
 ## Common (non-clinical) signs associated with PTSD
 
@@ -617,7 +625,7 @@ If you are in crisis or feel unsafe, contact local emergency services or the 988
     excerpt:
       'Toxic relationship patterns often feel familiar rather than obviously wrong. Here is how to recognize them and what rebuilding afterward can look like.',
     datePublished: '2026-04-10T09:00:00-05:00',
-    dateModified: '2026-10-11T09:45:00-05:00',
+    dateModified: '2026-10-11T14:30:00-05:00',
     needsProfessionalCareNote: true,
     relatedArticles: ['why-do-i-attract-toxic-people-pattern', 'attachment-trust-boundaries'],
     ogImage: '/images/og/og-default.jpg',
@@ -671,7 +679,11 @@ A licensed therapist, particularly one trained in trauma-informed approaches, ca
 
 If you are currently in an unsafe or abusive relationship, please contact a licensed professional, a domestic violence resource, or local emergency services if you are in immediate danger. If you are in crisis, the 988 Suicide & Crisis Lifeline (call or text 988 in the U.S.) is also available. This content is educational only and does not provide safety planning or legal advice. Professional, specialized support is essential in situations involving abuse.
 
-If a past or current relationship pattern feels familiar to what is described here, [an initial consultation](#consultation) can help you think through it. [The private community](#community) is also available for ongoing, non-clinical support.
+If a past or current relationship pattern feels familiar to what is described here, [an initial consultation](#consultation) can help you think through it.
+
+If this feels familiar, the 4-Week Experience is a private, non-clinical coaching space to look at the patterns you repeat in your relationships. It does not replace clinical care.
+
+[Apply for the 4-Week Experience](/4-week-experience/#application)
 
 ## Frequently Asked Questions`,
     faq: [
@@ -726,7 +738,7 @@ If a past or current relationship pattern feels familiar to what is described he
     excerpt:
       'Trust issues, fear of abandonment, and difficulty with boundaries usually share a common root. Here is how they connect and what rebuilding looks like.',
     datePublished: '2026-04-13T09:00:00-05:00',
-    dateModified: '2026-04-13T09:00:00-05:00',
+    dateModified: '2026-10-11T14:30:00-05:00',
     needsProfessionalCareNote: false,
     relatedArticles: ['toxic-relationships-abuse-patterns', 'why-do-i-attract-toxic-people-pattern'],
     ogImage: '/images/og/og-default.jpg',
@@ -772,7 +784,11 @@ Anxious attachment describes a pattern (heightened sensitivity to signs of dista
 
 Repeating a parent's relationship pattern often shows up as recognizing a familiar dynamic only in hindsight: the same kind of partner, the same conflict style, the same silences. Comparing your current relationship's shape to your early caregiving relationships, honestly and without judgment, is often revealing.
 
-If any of these patterns sound familiar, [an initial consultation](#consultation) is a place to start untangling them. [The private community](#community) is also available for ongoing support.
+If any of these patterns sound familiar, [an initial consultation](#consultation) is a place to start untangling them.
+
+If this feels familiar, the 4-Week Experience is a private, non-clinical coaching space to look at how trust, attachment, and boundaries show up in your life. It does not replace clinical care.
+
+[Apply for the 4-Week Experience](/4-week-experience/#application)
 
 ## Frequently Asked Questions`,
     faq: [
@@ -827,7 +843,7 @@ If any of these patterns sound familiar, [an initial consultation](#consultation
     excerpt:
       'Low self-worth and fear of failure often start with conditional approval and get reinforced by comparison. Here is how it works and how to rebuild it.',
     datePublished: '2026-04-17T09:00:00-05:00',
-    dateModified: '2026-10-11T09:45:00-05:00',
+    dateModified: '2026-10-11T14:30:00-05:00',
     needsProfessionalCareNote: false,
     relatedArticles: ['why-do-i-keep-doubting-myself', 'people-pleasing-perfectionism'],
     ogImage: '/images/og/og-default.jpg',
@@ -881,7 +897,11 @@ A useful practice is simply noticing when the critical internal voice activates 
 
 Over time, deliberately gathering evidence that contradicts the old internal narrative (noticing your actual strengths, values, and positive impact on others) helps build a more balanced, accurate internal narrative to compete with the old, harsher one.
 
-If this pattern feels familiar, [an initial consultation](#consultation) can help you understand where it started and how to rebuild it. [The private community](#community) is also available for ongoing support.
+If this pattern feels familiar, [an initial consultation](#consultation) can help you understand where it started and how to rebuild it.
+
+If this feels familiar, the 4-Week Experience is a private, non-clinical coaching space to look at how you see your own worth. It does not replace clinical care.
+
+[Apply for the 4-Week Experience](/4-week-experience/#application)
 
 ## Frequently Asked Questions`,
     faq: [
@@ -936,7 +956,7 @@ If this pattern feels familiar, [an initial consultation](#consultation) can hel
     excerpt:
       'People-pleasing and perfectionism often work together to keep self-sabotage running. Here is how the pattern connects and how to interrupt it.',
     datePublished: '2026-04-20T09:00:00-05:00',
-    dateModified: '2026-04-20T09:00:00-05:00',
+    dateModified: '2026-10-11T14:30:00-05:00',
     needsProfessionalCareNote: false,
     relatedArticles: ['self-worth-self-esteem-failure', 'unresolved-trauma-recovery'],
     ogImage: '/images/og/og-default.jpg',
@@ -982,7 +1002,11 @@ Perfectionism is frequently an attempt to control how you are perceived: if you 
 
 Self-sabotage usually has a signature: the same kind of situation (relationships getting serious, projects nearing completion, opportunities requiring visibility) consistently triggers the same undermining behavior. Tracking when and where the pattern shows up, rather than judging yourself for it, is the most reliable way to start recognizing it clearly.
 
-If this pattern sounds familiar, [an initial consultation](#consultation) is a place to start working through it directly. [The private community](#community) offers ongoing, non-clinical support as well.
+If this pattern sounds familiar, [an initial consultation](#consultation) is a place to start working through it directly.
+
+If this feels familiar, the 4-Week Experience is a private, non-clinical coaching space to look at your people-pleasing and perfectionism habits. It does not replace clinical care.
+
+[Apply for the 4-Week Experience](/4-week-experience/#application)
 
 ## Frequently Asked Questions`,
     faq: [
@@ -1037,7 +1061,7 @@ If this pattern sounds familiar, [an initial consultation](#consultation) is a p
     excerpt:
       'Feeling lost or facing an identity crisis after a major life change is common. Here is what rebuilding direction actually involves.',
     datePublished: '2026-04-22T09:00:00-05:00',
-    dateModified: '2026-04-22T09:00:00-05:00',
+    dateModified: '2026-10-11T14:30:00-05:00',
     needsProfessionalCareNote: false,
     relatedArticles: ['rebuilding-your-life-without-starting-from-zero'],
     ogImage: '/images/og/og-default.jpg',
@@ -1083,7 +1107,11 @@ Major transitions often reactivate earlier patterns (old fears of inadequacy, ol
 
 Rebuilding does not require discarding everything and beginning again. It typically means carrying forward what still holds value (relationships, skills, values) while consciously updating what no longer fits. Most people rebuilding a life keep more of their foundation than they initially assume.
 
-If you are in the middle of a significant transition and want a clearer structure to work from, [an initial consultation](#consultation) can help. [The private community](#community) is also available for ongoing support along the way.
+If you are in the middle of a significant transition and want a clearer structure to work from, [an initial consultation](#consultation) can help.
+
+If this feels familiar, the 4-Week Experience is a private, non-clinical coaching space to look at your next steps through a big change. It does not replace clinical care.
+
+[Apply for the 4-Week Experience](/4-week-experience/#application)
 
 ## Frequently Asked Questions`,
     faq: [

@@ -7,7 +7,6 @@ const navLinks = [
   { href: '/stable-method/', label: 'The S.T.A.B.L.E. Method' },
   { href: '/resources/', label: 'Resources' },
   { href: '/reflections/', label: 'S.T.A.B.L.E. Reflections' },
-  { href: '/community/', label: 'Community' },
   { href: '/faq/', label: 'FAQ' },
   { href: '/contact/', label: 'Contact' },
 ]
@@ -21,7 +20,6 @@ const legalLinks = [
 
 export default function Footer() {
   const isInstagramPending = contato.instagramUrl.startsWith('PENDENTE_')
-  const isFacebookPending = contato.facebookGroupUrl.startsWith('PENDENTE_')
 
   return (
     <footer className="bg-charcoal text-offwhite">
@@ -61,13 +59,6 @@ export default function Footer() {
               <li>
                 <a href={contato.instagramUrl} target="_blank" rel="noopener noreferrer" className="hover:text-orange">
                   Instagram
-                </a>
-              </li>
-            )}
-            {!isFacebookPending && (
-              <li>
-                <a href={contato.facebookGroupUrl} target="_blank" rel="noopener noreferrer" className="hover:text-orange">
-                  Private Facebook Community
                 </a>
               </li>
             )}

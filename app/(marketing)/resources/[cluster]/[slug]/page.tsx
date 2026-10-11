@@ -50,7 +50,7 @@ export default function ArticlePage({ params }: { params: { cluster: string; slu
   const html = markdownToHtml(
     article.content
       .replaceAll('(#consultation)', '(/book-a-session/)')
-      .replaceAll('(#community)', '(/community/)')
+      .replaceAll('(#community)', '(/4-week-experience/#application)')
       .replaceAll('(#pillar)', `(${pillarUrl})`)
       .replaceAll('(#related)', `(${relatedUrl})`)
   )
