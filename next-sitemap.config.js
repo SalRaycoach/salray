@@ -154,6 +154,10 @@ module.exports = {
     } else if (p === '/how-i-help' || p === '/stable-method') {
       priority = 0.9
       changefreq = 'monthly'
+    } else if (p === '/resources/relationship-patterns-and-emotional-wellbeing') {
+      priority = 0.8
+      changefreq = 'monthly'
+      lastmod = '2026-10-11T12:40:00-05:00'
     } else if (p === '/resources') {
       priority = 0.8
       changefreq = 'daily'

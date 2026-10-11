@@ -68,7 +68,8 @@ export type Article = {
   cluster: ClusterSlug
   tipo: 'pilar' | 'complementar'
   pillarSlug?: string // preenchido em artigos complementares — slug do pilar-pai no mesmo cluster
-  title: string // headline, máx 110 chars
+  title: string // headline (H1), máx 110 chars
+  metaTitle?: string // opcional: <title> da página e título do compartilhamento (até 60 chars) quando o H1 é longo demais
   keyword: string
   excerpt: string // description, máx 155 chars
   datePublished: string
