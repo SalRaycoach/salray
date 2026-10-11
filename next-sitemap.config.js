@@ -141,6 +141,11 @@ module.exports = {
     if (p === '' || p === '/') {
       priority = 1.0
       changefreq = 'weekly'
+    } else if (p === '/4-week-experience' || p === '/pt/reconstrucao-emocional') {
+      // Tornadas indexáveis em 11 out 2026 — lastmod fixo nessa data (não muda a cada build).
+      priority = 0.8
+      changefreq = 'monthly'
+      lastmod = '2026-10-11T12:00:00-05:00'
     } else if (p === '/book-a-session') {
       priority = 0.9
       changefreq = 'weekly'
