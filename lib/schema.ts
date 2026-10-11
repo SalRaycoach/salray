@@ -134,7 +134,7 @@ export function getArticleSchema(article: Article, clusterName: string) {
 
   return {
     '@context': 'https://schema.org',
-    '@graph': [articleSchema, buildFaqPage(article.faq), breadcrumb],
+    '@graph': [articleSchema, ...(article.faq.length > 0 ? [buildFaqPage(article.faq)] : []), breadcrumb],
   }
 }
 

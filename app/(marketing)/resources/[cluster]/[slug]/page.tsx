@@ -16,11 +16,11 @@ export function generateMetadata({ params }: { params: { cluster: string; slug: 
   if (!article) return {}
 
   return {
-    title: article.title,
+    title: article.metaTitle ?? article.title,
     description: article.excerpt,
     alternates: { canonical: `${SITE_URL}/resources/${article.cluster}/${article.slug}/` },
     openGraph: {
-      title: article.title,
+      title: article.metaTitle ?? article.title,
       description: article.excerpt,
       url: `${SITE_URL}/resources/${article.cluster}/${article.slug}/`,
       type: 'article',

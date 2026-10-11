@@ -4,6 +4,33 @@
  * geração). Mantido em um único lugar para não haver deriva entre os dois.
  */
 
+/**
+ * Exceção só para a coleção "Relationship Patterns and Emotional Wellbeing" (out 2026):
+ * estes 18 artigos foram publicados com o texto do PDF original, sem FAQ e mais curtos que a
+ * meta de palavras. Para eles, a regra de FAQ e o aviso de contagem de palavras não se aplicam.
+ * Todas as outras checagens continuam valendo. A regra geral não muda.
+ */
+const RELATIONSHIP_COLLECTION_EXEMPT = new Set([
+  'why-you-keep-repeating-the-same-relationship-pattern',
+  'a-simple-relationship-pattern-map',
+  'emotional-regulation-when-relationship-feelings-become-overwhelming',
+  'a-five-minute-pause-before-you-respond',
+  'understanding-attachment-without-turning-it-into-a-label',
+  'when-your-partner-needs-space-and-you-feel-anxious',
+  'choosing-partners-who-can-meet-you-emotionally',
+  'chemistry-and-consistency-in-early-dating',
+  'how-to-stay-connected-to-yourself-in-a-relationship',
+  'a-week-of-small-ways-to-reconnect-with-yourself',
+  'simple-words-for-saying-no-without-overexplaining',
+  'expressing-your-needs-without-anger-or-shutting-down',
+  'repairing-a-conversation-after-an-argument',
+  'reflecting-on-relationships-without-spiraling-into-self-blame',
+  'rebuilding-your-self-worth-after-painful-relationships',
+  'rebuilding-self-trust-through-small-decisions',
+  'turning-relationship-awareness-into-lasting-change',
+  'a-gentle-thirty-day-plan-for-practicing-new-relationship-habits',
+])
+
 const SENSITIVE_PATTERN = /\b(hopeless|hopelessness|empty|emptiness|abuse|self-harm|suicid)/i
 
 /**
@@ -16,8 +43,11 @@ const SENSITIVE_PATTERN = /\b(hopeless|hopelessness|empty|emptiness|abuse|self-h
 function validateArticle(a, slugSet) {
   const errors = []
   const warnings = []
+  const exempt = RELATIONSHIP_COLLECTION_EXEMPT.has(a.slug)
 
-  if (a.tipo === 'pilar') {
+  if (exempt) {
+    // sem exigência de FAQ
+  } else if (a.tipo === 'pilar') {
     if (a.faqCount < 8 || a.faqCount > 10) errors.push(`FAQ count ${a.faqCount}, expected 8-10 for a pillar`)
   } else {
     if (a.faqCount < 3) errors.push(`FAQ count ${a.faqCount}, expected at least 3-4 for a complementary article`)
@@ -52,7 +82,7 @@ function validateArticle(a, slugSet) {
   if (a.title && a.title.length > 110) errors.push(`title is ${a.title.length} chars, max 110`)
   if (a.excerpt && a.excerpt.length > 155) errors.push(`excerpt is ${a.excerpt.length} chars, max 155`)
 
-  if (a.wordCount) {
+  if (a.wordCount && !exempt) {
     const [min, max] = a.tipo === 'pilar' ? [2500, 3500] : [1200, 1800]
     if (a.wordCount < min) warnings.push(`${a.wordCount} words, below the ${min}-${max} target`)
   }
@@ -74,4 +104,4 @@ function deriveFieldsFromContent(content) {
   }
 }
 
-module.exports = { validateArticle, deriveFieldsFromContent, SENSITIVE_PATTERN }
+module.exports = { validateArticle, deriveFieldsFromContent, SENSITIVE_PATTERN, RELATIONSHIP_COLLECTION_EXEMPT }

@@ -53,6 +53,21 @@ export default function ResourcesPage() {
       </section>
 
       <section className="mb-12">
+        <h2 className="font-body text-xs uppercase tracking-widest text-aqua mb-4">Guides</h2>
+        <Link
+          href="/resources/relationship-patterns-and-emotional-wellbeing/"
+          className="group block border border-charcoal/10 rounded-lg p-6 max-w-2xl"
+        >
+          <h3 className="font-display text-xl text-charcoal mb-2 group-hover:text-orange transition-colors">
+            Relationship Patterns and Emotional Wellbeing
+          </h3>
+          <p className="font-body text-sm text-charcoal/70">
+            A collection of articles on recurring relationship patterns, strong emotions, attachment, boundaries, and practicing change.
+          </p>
+        </Link>
+      </section>
+
+      <section className="mb-12">
         <h2 className="font-body text-xs uppercase tracking-widest text-aqua mb-4">Recently Published</h2>
         <div className="grid md:grid-cols-3 gap-6">
           {recent.map((article) => (

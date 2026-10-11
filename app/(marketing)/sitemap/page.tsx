@@ -43,6 +43,7 @@ export default function SitemapPage() {
   const schemaItems = [
     ...mainPages,
     { href: '/resources/', label: 'Resources' },
+    { href: '/resources/relationship-patterns-and-emotional-wellbeing/', label: 'Relationship Patterns and Emotional Wellbeing' },
     ...clusters.map((c) => ({ href: `/resources/${c.slug}/`, label: c.name })),
     ...clusters.flatMap((c) =>
       getArticlesByCluster(c.slug).map((a) => ({ href: `/resources/${a.cluster}/${a.slug}/`, label: a.title }))
@@ -79,6 +80,15 @@ export default function SitemapPage() {
             <Link href="/resources/" className="inline-block font-body text-sm text-aqua underline underline-offset-2 mb-8">
               Browse all resources
             </Link>
+            <p className="font-body text-sm text-charcoal/80 mb-8">
+              Guide:{' '}
+              <Link
+                href="/resources/relationship-patterns-and-emotional-wellbeing/"
+                className="hover:text-orange underline underline-offset-2"
+              >
+                Relationship Patterns and Emotional Wellbeing
+              </Link>
+            </p>
 
             {clusters.map((cluster) => {
               const clusterArticles = getArticlesByCluster(cluster.slug)
