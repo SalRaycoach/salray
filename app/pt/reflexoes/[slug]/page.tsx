@@ -77,9 +77,7 @@ export default function AudioPage({ params }: { params: { slug: string } }) {
           <AudioPlayer slug={audio.slug} titulo={audio.titulo} src={audio.urlAudio} duracaoSegundos={audio.duracaoSegundos} />
         </div>
 
-        <p className="font-body text-lg text-charcoal/80 leading-relaxed max-w-2xl mb-12">{audio.descricao}</p>
-
-        <div className="max-w-2xl border border-charcoal/15 rounded-lg p-6 mb-12">
+        <div className="max-w-2xl border border-charcoal/15 rounded-lg p-6 mb-8">
           <p className="font-body text-xs uppercase tracking-widest text-aqua mb-2">Quer ir mais fundo?</p>
           <p className="font-body text-charcoal/80 leading-relaxed mb-4">
             Esta reflexão faz parte do Método S.T.A.B.L.E.™. Conheça os programas de Reconstrução Emocional e
@@ -87,6 +85,8 @@ export default function AudioPage({ params }: { params: { slug: string } }) {
           </p>
           <ProductCta audioSlug={audio.slug} />
         </div>
+
+        <p className="font-body text-lg text-charcoal/80 leading-relaxed max-w-2xl mb-12">{audio.descricao}</p>
 
         <div className="max-w-2xl mb-12">
           <ShareButton slug={audio.slug} titulo={audio.titulo} url={pageUrl} />
