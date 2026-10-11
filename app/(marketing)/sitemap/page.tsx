@@ -28,7 +28,6 @@ const mainPages = [
   { href: '/stable-method/', label: 'The S.T.A.B.L.E. Method' },
   { href: '/book-a-session/', label: 'Book a Session' },
   { href: '/reflections/', label: 'S.T.A.B.L.E. Reflections' },
-  { href: '/community/', label: 'Private Facebook Community' },
   { href: '/faq/', label: 'FAQ' },
   { href: '/contact/', label: 'Contact' },
 ]
