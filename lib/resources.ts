@@ -983,7 +983,7 @@ If any of these patterns sound familiar, [an initial consultation](#consultation
     excerpt:
       'Low self-worth and fear of failure often start with conditional approval and get reinforced by comparison. Here is how it works and how to rebuild it.',
     datePublished: '2026-04-17T09:00:00-05:00',
-    dateModified: '2026-10-11T09:00:00-05:00',
+    dateModified: '2026-10-11T09:30:00-05:00',
     needsProfessionalCareNote: false,
     relatedArticles: ['why-dont-i-trust-myself-anymore', 'people-pleasing-perfectionism'],
     ogImage: '/images/og/og-default.jpg',
@@ -995,7 +995,7 @@ This is one of the clearest signs that self-worth and achievement have become di
 
 ## Why do I keep doubting myself?
 
-Persistent self-doubt often develops after a pattern of having your judgment questioned, criticized, or overridden, by a parent, a relationship, or repeated setbacks. Over time, second-guessing becomes automatic, showing up even in situations where your judgment is demonstrably sound.
+Persistent self-doubt often develops after a pattern of having your judgment questioned, criticized, or overridden, by people close to you, by a past relationship, or by repeated setbacks. Over time, second-guessing becomes automatic, showing up even in situations where your judgment is demonstrably sound.
 
 ## Low self-esteem: where the pattern really starts
 
