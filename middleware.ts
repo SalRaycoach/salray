@@ -28,6 +28,9 @@ const REMOVED_PATHS = new Set([
   '/resources/emotional-stability/why-do-i-feel-empty-even-when-life-looks-fine',
   '/resources/emotional-stability/why-dont-i-enjoy-anything-anymore',
   '/resources/self-trust-identity/how-self-worth-gets-built-or-broken-in-childhood',
+  // Onda 1 de limpeza de artigos (out 2026): removidos em definitivo.
+  '/resources/emotional-patterns-self-sabotage/people-pleasing-as-a-learned-survival-skill',
+  '/resources/emotional-patterns-self-sabotage/non-clinical-signs-associated-with-ptsd',
 ])
 
 export function middleware(request: NextRequest) {
