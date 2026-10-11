@@ -17,20 +17,16 @@ const DOMINIO = 'salraycoach.com'
  * update this list if a seed article's dateModified changes there.
  */
 const SEED_ARTICLE_DATES = {
-  'why-cant-i-stop-overthinking': '2026-03-01T09:00:00-05:00',
   'why-do-i-keep-reacting-the-same-way': '2026-03-05T09:00:00-05:00',
-  'why-do-i-attract-toxic-relationships': '2026-03-08T09:00:00-05:00',
-  'why-dont-i-trust-myself-anymore': '2026-03-12T09:00:00-05:00',
-  'how-to-rebuild-your-life-after-it-falls-apart': '2026-03-15T09:00:00-05:00',
-  'overthinking-racing-thoughts': '2026-04-01T09:00:00-05:00',
+  'overthinking-racing-thoughts': '2026-10-11T09:45:00-05:00',
   'anxiety-symptoms-chronic-anxiety': '2026-04-03T09:00:00-05:00',
-  'unresolved-trauma-recovery': '2026-04-08T09:00:00-05:00',
-  'toxic-relationships-abuse-patterns': '2026-04-10T09:00:00-05:00',
+  'unresolved-trauma-recovery': '2026-10-11T09:45:00-05:00',
+  'toxic-relationships-abuse-patterns': '2026-10-11T09:45:00-05:00',
   'attachment-trust-boundaries': '2026-04-13T09:00:00-05:00',
-  'self-worth-self-esteem-failure': '2026-10-11T09:30:00-05:00',
+  'self-worth-self-esteem-failure': '2026-10-11T09:45:00-05:00',
   'people-pleasing-perfectionism': '2026-04-20T09:00:00-05:00',
   'life-direction-identity-starting-over': '2026-04-22T09:00:00-05:00',
-  'high-functioning-anxiety-patterns': '2026-08-11T09:00:00-05:00',
+  'high-functioning-anxiety-patterns': '2026-10-11T09:45:00-05:00',
 }
 
 function loadGeneratedArticleDates() {

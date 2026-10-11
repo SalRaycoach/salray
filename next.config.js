@@ -4,6 +4,39 @@ const DOMINIO = 'salraycoach.com'
 // mantendo caminho e query. Nunca aparece em link, sitemap nem canonical.
 const DOMINIOS_ALTERNATIVOS = ['salrayofficial.com', 'www.salrayofficial.com']
 
+// Onda 2 de limpeza de artigos (out 2026): cada artigo de origem foi reunido no destino.
+// Destinos com barra final por causa de trailingSlash: true; sempre direto ao
+// destino final, sem encadear redirecionamentos.
+const ARTICLE_MERGES = [
+  ['/resources/relationships-boundaries/why-do-i-attract-toxic-relationships', '/resources/relationships-boundaries/why-do-i-attract-toxic-people-pattern/'],
+  ['/resources/relationships-boundaries/relationship-trauma-shapes-future-relationships', '/resources/relationships-boundaries/why-toxic-relationships-feel-familiar/'],
+  ['/resources/relationships-boundaries/what-emotional-abuse-can-look-like', '/resources/relationships-boundaries/signs-of-narcissistic-abuse-easy-to-miss/'],
+  ['/resources/relationships-boundaries/when-to-seek-professional-support-after-abuse', '/resources/relationships-boundaries/toxic-relationships-abuse-patterns/'],
+  ['/resources/relationships-boundaries/why-do-i-fear-abandonment-in-healthy-relationships', '/resources/relationships-boundaries/relationship-anxiety-why-good-relationships-feel-unsafe/'],
+  ['/resources/self-trust-identity/why-dont-i-trust-myself-anymore', '/resources/self-trust-identity/why-do-i-keep-doubting-myself/'],
+  ['/resources/self-trust-identity/difference-between-confidence-and-self-trust', '/resources/self-trust-identity/lack-of-confidence-vs-low-self-worth/'],
+  ['/resources/self-trust-identity/low-self-esteem-where-the-pattern-starts', '/resources/self-trust-identity/self-worth-self-esteem-failure/'],
+  ['/resources/life-direction-rebuilding/how-to-rebuild-your-life-after-it-falls-apart', '/resources/life-direction-rebuilding/rebuilding-your-life-without-starting-from-zero/'],
+  ['/resources/life-direction-rebuilding/starting-over-emotionally-what-it-involves', '/resources/life-direction-rebuilding/rebuilding-your-life-without-starting-from-zero/'],
+  ['/resources/life-direction-rebuilding/feeling-lost-in-life-what-it-usually-means', '/resources/life-direction-rebuilding/why-do-i-feel-like-i-dont-know-my-purpose/'],
+  ['/resources/life-direction-rebuilding/life-transitions-why-change-feels-harder-40s-50s', '/resources/life-direction-rebuilding/feeling-lost-at-40-or-50-not-behind/'],
+  ['/resources/emotional-patterns-self-sabotage/bodys-reaction-to-old-trauma', '/resources/emotional-patterns-self-sabotage/unresolved-trauma-recovery/'],
+  ['/resources/emotional-patterns-self-sabotage/how-do-i-know-if-i-have-unresolved-trauma', '/resources/emotional-patterns-self-sabotage/unresolved-trauma-recovery/'],
+  ['/resources/emotional-patterns-self-sabotage/what-trauma-recovery-looks-like-day-to-day', '/resources/emotional-patterns-self-sabotage/unresolved-trauma-recovery/'],
+  ['/resources/emotional-patterns-self-sabotage/why-some-people-feel-fine-but-carry-trauma', '/resources/emotional-patterns-self-sabotage/unresolved-trauma-recovery/'],
+  ['/resources/emotional-patterns-self-sabotage/why-do-i-care-so-much-what-people-think', '/resources/emotional-patterns-self-sabotage/why-do-i-seek-validation-from-everyone/'],
+  ['/resources/overthinking-emotional-overload/why-cant-i-stop-overthinking', '/resources/overthinking-emotional-overload/overthinking-racing-thoughts/'],
+  ['/resources/overthinking-emotional-overload/how-to-calm-your-mind-without-forcing-relaxation', '/resources/overthinking-emotional-overload/overthinking-racing-thoughts/'],
+  ['/resources/overthinking-emotional-overload/how-to-stop-worrying-about-things-you-cant-control', '/resources/overthinking-emotional-overload/overthinking-racing-thoughts/'],
+  ['/resources/overthinking-emotional-overload/stress-management-habits-that-interrupt-overthinking', '/resources/overthinking-emotional-overload/overthinking-racing-thoughts/'],
+  ['/resources/overthinking-emotional-overload/why-is-my-brain-always-racing-at-night', '/resources/overthinking-emotional-overload/overthinking-racing-thoughts/'],
+  ['/resources/overthinking-emotional-overload/why-overthinking-gets-worse-when-tired-overwhelmed', '/resources/overthinking-emotional-overload/overthinking-racing-thoughts/'],
+  ['/resources/high-functioning-anxiety/anxious-even-when-everyone-thinks-im-fine', '/resources/high-functioning-anxiety/high-functioning-anxiety-patterns/'],
+  ['/resources/high-functioning-anxiety/how-do-i-know-if-im-anxious-if-i-dont-look-anxious', '/resources/high-functioning-anxiety/high-functioning-anxiety-patterns/'],
+  ['/resources/high-functioning-anxiety/why-i-struggle-at-work-even-though-im-capable', '/resources/high-functioning-anxiety/am-i-actually-failing-or-is-something-else-going-on/'],
+  ['/resources/high-functioning-anxiety/why-my-anxiety-feels-different-from-others', '/resources/high-functioning-anxiety/why-i-feel-broken-when-everyone-else-seems-fine/'],
+]
+
 const nextConfig = {
   trailingSlash: true,
   images: { unoptimized: true },
@@ -47,6 +80,7 @@ const nextConfig = {
         permanent: true,
         statusCode: 301,
       },
+      ...ARTICLE_MERGES.map(([source, destination]) => ({ source, destination, permanent: true, statusCode: 301 })),
       {
         // /consultation/ retired in favor of /book-a-session/ (pedido 22 set
         // 2026) — permanent so search engines transfer link equity and any

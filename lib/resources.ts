@@ -91,82 +91,6 @@ export function getChildArticles(pillarSlug: string): Article[] {
 
 const seedArticles: Article[] = [
   {
-    slug: 'why-cant-i-stop-overthinking',
-    cluster: 'overthinking-emotional-overload',
-    tipo: 'complementar',
-    pillarSlug: 'overthinking-racing-thoughts',
-    title: "Why Can't I Stop Overthinking?",
-    keyword: "why can't I stop overthinking",
-    excerpt:
-      "If you can't stop overthinking, it's often less about the thoughts themselves and more about an unresolved pattern underneath them. Here's what that can look like.",
-    datePublished: '2026-03-01T09:00:00-05:00',
-    dateModified: '2026-03-01T09:00:00-05:00',
-    needsProfessionalCareNote: true,
-    relatedArticles: ['overthinking-racing-thoughts', 'why-do-i-keep-reacting-the-same-way'],
-    ogImage: '/images/og/og-default.jpg',
-    content: `If you can't stop overthinking, it is rarely a sign that something is wrong with your mind. More often, it is a sign that your mind is trying to solve a problem (safety, control, or certainty) that thinking alone cannot resolve. Understanding **what the overthinking is protecting you from** is usually the first real step toward quieting it.
-
-## Why the mind keeps racing
-
-Overthinking often shows up when there is unresolved pressure: a decision you are avoiding, a relationship that feels uncertain, or a version of yourself you are not sure how to become. The mind treats these as unfinished problems, so it keeps returning to them, not because you are failing to think clearly, but because it has not yet found a stable place to put the concern down.
-
-## Signs the pattern has taken over
-
-You may notice the same worry replaying with slightly different words. You may rehearse conversations that have not happened yet, or replay ones that already ended. You may feel mentally tired by mid-morning, even when nothing unusual has happened. These are signs of a **pattern**, not a personal flaw.
-
-## Why the pattern may persist
-
-Overthinking often persists because it feels productive, like you are "doing something" about the problem. In reality, repeated thinking without a structure to act on it tends to reinforce the loop rather than resolve it. The pattern continues because nothing has changed the underlying condition that triggers it.
-
-## A non-clinical framework for interrupting the loop
-
-Rather than trying to "stop thinking," it can help to **name the pattern**, identify what it is protecting you from, and create one small, concrete action connected to the underlying concern. This shifts the mind from rehearsing to resolving, even in a small way, which tends to quiet the loop more effectively than willpower alone.
-
-## What rebuilding can involve
-
-Rebuilding in this area often means learning to recognize the early signs of the pattern, developing a structure for making decisions instead of circling them, and strengthening the trust that you can handle what comes next. This is the kind of work at the center of the S.T.A.B.L.E. Method.
-
-## When professional clinical care may be appropriate
-
-Occasional overthinking is a common human experience. However, if racing thoughts are accompanied by **panic attacks, persistent physical symptoms of anxiety, a diagnosed anxiety disorder, or a level of worry that consistently interferes with daily functioning**, this may fall outside the scope of non-clinical coaching. In that case, a licensed mental health professional is the appropriate next step. Coaching is not a substitute for psychotherapy or medical care.
-
-If your overthinking feels connected to a repeating emotional pattern, [scheduling an initial consultation](#consultation) can help clarify what is underneath it. If you would rather explore this at your own pace first, [the private community](#community) is a good place to start.
-
-## Frequently Asked Questions`,
-    faq: [
-      {
-        question: 'Is overthinking the same as anxiety?',
-        answer:
-          'Overthinking and anxiety often overlap but are not identical. Overthinking describes a pattern of repetitive, circling thoughts, while anxiety can include physical symptoms like a racing heart or tension. Occasional overthinking is common; persistent anxiety symptoms that interfere with daily life may warrant a conversation with a licensed clinician.',
-      },
-      {
-        question: 'Can coaching help with overthinking?',
-        answer:
-          'Non-clinical coaching can help you recognize the pattern behind the overthinking, understand what it may be protecting you from, and build a more structured way of making decisions. It does not diagnose or treat anxiety disorders. If symptoms are severe or persistent, clinical support is the appropriate path.',
-      },
-      {
-        question: 'Why do I overthink more at night?',
-        answer:
-          'Nighttime often removes the distractions that keep overthinking in the background during the day, so unresolved concerns surface more clearly. It is also when decision fatigue is highest, which can make thoughts feel more urgent or unsolvable than they are in the morning.',
-      },
-      {
-        question: 'Is it normal to replay conversations in my head?',
-        answer:
-          'Yes, this is a common pattern, especially for people who value connection and want to be understood correctly. It becomes worth attention when the replaying is frequent, distressing, or prevents you from moving forward. That is often a sign of a deeper pattern worth exploring.',
-      },
-      {
-        question: 'How long does it take to reduce overthinking?',
-        answer:
-          'This varies widely by person and by what is underneath the pattern. Some people notice a shift in how they relate to their thoughts within a few weeks of structured work; deeper patterns tied to identity or trust may take longer to rebuild.',
-      },
-      {
-        question: 'What is the difference between overthinking and being careful?',
-        answer:
-          'Careful thinking leads somewhere: a decision, an action, a resolution. Overthinking circles without resolving. If you notice the same thought returning without new information or a next step attached, it is more likely the latter.',
-      },
-    ],
-  },
-  {
     slug: 'why-do-i-keep-reacting-the-same-way',
     cluster: 'emotional-patterns-self-sabotage',
     tipo: 'complementar',
@@ -178,7 +102,7 @@ If your overthinking feels connected to a repeating emotional pattern, [scheduli
     datePublished: '2026-03-05T09:00:00-05:00',
     dateModified: '2026-03-05T09:00:00-05:00',
     needsProfessionalCareNote: true,
-    relatedArticles: ['why-cant-i-stop-overthinking', 'why-do-i-attract-toxic-relationships'],
+    relatedArticles: ['overthinking-racing-thoughts', 'why-do-i-attract-toxic-people-pattern'],
     ogImage: '/images/og/og-default.jpg',
     content: `If you notice yourself reacting the same way across very different situations (the same defensiveness, the same shutdown, the same overcommitting), it is rarely random. **Repeating emotional reactions usually trace back to a pattern that was useful once and never got updated.**
 
@@ -242,214 +166,6 @@ If this pattern feels familiar and you want structured support to work through i
       },
     ],
   },
-  {
-    slug: 'why-do-i-attract-toxic-relationships',
-    cluster: 'relationships-boundaries',
-    tipo: 'complementar',
-    pillarSlug: 'toxic-relationships-abuse-patterns',
-    title: 'Why Do I Attract Toxic Relationships?',
-    keyword: 'why do I attract toxic people',
-    excerpt:
-      "Repeating unhealthy relationship patterns is rarely about attracting the 'wrong' people. It is usually about a boundary or trust pattern worth understanding.",
-    datePublished: '2026-03-08T09:00:00-05:00',
-    dateModified: '2026-03-08T09:00:00-05:00',
-    needsProfessionalCareNote: true,
-    relatedArticles: ['why-do-i-keep-reacting-the-same-way', 'why-dont-i-trust-myself-anymore'],
-    ogImage: '/images/og/og-default.jpg',
-    content: `If you keep ending up in relationships that feel unhealthy, it is rarely about "attracting" the wrong people at random. More often, it points to a **pattern in how boundaries, trust, and self-worth were shaped earlier in life**, one that can be understood and rebuilt.
-
-## Why the same relationship pattern repeats
-
-People are often drawn to what feels familiar, even when familiar is not healthy. If early relationships modeled instability, inconsistency, or blurred boundaries, those dynamics can feel more recognizable, and therefore more comfortable, than a genuinely healthy relationship might.
-
-## Signs of a repeating relationship pattern
-
-You may notice a consistent type of partner or friend who takes more than they give, difficulty recognizing early warning signs, or a tendency to stay well past the point where the relationship has stopped serving you. These are signs of a pattern, not a personal failing.
-
-## Rebuilding boundaries as a non-clinical framework
-
-Rebuilding this area typically starts with learning to notice early discomfort instead of overriding it, practicing smaller boundaries in lower-stakes relationships, and building the self-trust to act on what you notice rather than explaining it away.
-
-## What healthier relationship patterns can look like
-
-Over time, this work can support recognizing red flags earlier, communicating boundaries clearly and without over-explaining, and choosing relationships based on how they actually feel rather than how much potential they seem to have.
-
-## When professional clinical care may be appropriate
-
-If a relationship involves **narcissistic abuse, emotional abuse, or safety concerns**, this content is educational only and is not a substitute for professional support. SAL Ray's coaching does not provide legal advice or safety planning. If you are in an abusive relationship or unsafe situation, please contact a licensed professional, a domestic violence resource, or, in an emergency, local emergency services. If you are in crisis, the 988 Suicide & Crisis Lifeline (call or text 988 in the U.S.) is also available.
-
-If this pattern feels familiar, [an initial consultation](#consultation) can help you understand it more clearly. [The private community](#community) is also available for ongoing support.
-
-## Frequently Asked Questions`,
-    faq: [
-      {
-        question: 'Why do I keep ending up with the same type of person?',
-        answer:
-          'This usually reflects a pattern of familiarity rather than coincidence: the traits that feel recognizable, even when unhealthy, tend to repeat until the underlying pattern is understood and addressed directly.',
-      },
-      {
-        question: 'Why is it hard for me to leave a relationship that is not good for me?',
-        answer:
-          'Leaving is often harder when the relationship reflects familiar emotional dynamics from earlier in life, or when self-trust has been eroded to the point where your own judgment about the relationship feels unreliable.',
-      },
-      {
-        question: 'How do I know if I have a boundary problem?',
-        answer:
-          'Common signs include agreeing to things you do not want, feeling resentful after saying yes, over-explaining simple decisions, or feeling guilty when prioritizing your own needs. These point toward an area of boundary work.',
-      },
-      {
-        question: 'Can coaching help me set boundaries?',
-        answer:
-          'Yes, non-clinical coaching can help you identify where boundaries are missing, practice communicating them clearly, and build the self-trust to maintain them, especially in relationships where boundaries have historically been difficult.',
-      },
-      {
-        question: 'Is this the same as trust issues?',
-        answer:
-          'Trust issues and boundary patterns are closely related but not identical. Trust issues often involve difficulty believing others (or yourself); boundary patterns involve difficulty acting on what you already know or feel. They frequently show up together.',
-      },
-      {
-        question: 'What should I do if I think I am in an abusive relationship?',
-        answer:
-          'Please seek support from a licensed professional or a domestic violence resource, and contact local emergency services if you are in immediate danger. Coaching content on this topic is educational only and is not a substitute for professional safety planning.',
-      },
-    ],
-  },
-  {
-    slug: 'why-dont-i-trust-myself-anymore',
-    cluster: 'self-trust-identity',
-    tipo: 'complementar',
-    pillarSlug: 'self-worth-self-esteem-failure',
-    title: "Why Don't I Trust Myself Anymore?",
-    keyword: 'how to trust yourself again',
-    excerpt:
-      'Losing trust in your own judgment usually happens gradually, after repeated self-doubt or a difficult relationship. Rebuilding it is a structured process.',
-    datePublished: '2026-03-12T09:00:00-05:00',
-    dateModified: '2026-03-12T09:00:00-05:00',
-    needsProfessionalCareNote: false,
-    relatedArticles: ['why-do-i-attract-toxic-relationships', 'how-to-rebuild-your-life-after-it-falls-apart'],
-    ogImage: '/images/og/og-default.jpg',
-    content: `Losing trust in yourself rarely happens in one moment. More often, it builds gradually, after a series of decisions that did not go the way you expected, or a relationship that taught you to doubt your own perception. **Rebuilding self-trust is less about confidence and more about evidence.**
-
-## Why self-trust erodes over time
-
-Self-trust tends to erode when your instincts were repeatedly overridden, criticized, or proven "wrong" by someone else's version of events. Over time, the habit of second-guessing yourself becomes automatic, even in situations where your judgment was accurate all along.
-
-## What losing self-trust can look like
-
-This often shows up as chronic indecision, needing reassurance before making even small choices, or a persistent sense that you don't really know what you want. None of these are permanent traits. They are patterns that formed and can be rebuilt.
-
-## A structured way to rebuild self-trust
-
-Rebuilding self-trust usually starts small: making low-stakes decisions and following through on them without over-consulting others, then reviewing the outcome honestly. Each completed decision becomes evidence: proof that your judgment can be relied on again.
-
-## What rebuilding can involve
-
-Over time, this work can involve identifying where self-trust was lost, practicing decision-making in low-risk areas first, and gradually applying that same trust to bigger decisions about relationships, direction, and identity.
-
-Ready to work on this directly? [Schedule an initial consultation](#consultation) to talk through where self-trust has been affected. If you want ongoing support in the meantime, [join the private community](#community).
-
-## Frequently Asked Questions`,
-    faq: [
-      {
-        question: 'Why do I doubt every decision I make?',
-        answer:
-          'Chronic self-doubt usually develops after a pattern of having your judgment questioned or overridden, whether by a relationship, an authority figure, or repeated setbacks. It becomes automatic over time, even in situations where your judgment is sound.',
-      },
-      {
-        question: 'How long does it take to rebuild self-trust?',
-        answer:
-          'This varies by person, but most people notice a shift within a few weeks of consistently making and following through on small decisions. Deeper self-trust, especially around major life choices, tends to build over a period of months.',
-      },
-      {
-        question: 'Is low self-esteem the same as low self-trust?',
-        answer:
-          'They are related but distinct. Low self-esteem is about how you value yourself overall; low self-trust is specifically about whether you believe your own judgment and perception. You can have one without the other, though they often reinforce each other.',
-      },
-      {
-        question: 'Why do I ask everyone else what I should do?',
-        answer:
-          'This often reflects a habit of outsourcing decisions after self-trust has been eroded. It can feel safer to rely on someone else\'s judgment than risk being wrong again on your own.',
-      },
-      {
-        question: 'Can rebuilding self-trust help with people-pleasing?',
-        answer:
-          'Yes. People-pleasing is often connected to low self-trust. It can be easier to defer to others\' preferences than trust your own. Rebuilding self-trust tends to reduce the need for constant external validation over time.',
-      },
-      {
-        question: 'What is the first step to trusting myself again?',
-        answer:
-          'Start by making one small decision independently, following through on it, and reviewing the outcome honestly without judgment. Repeating this consistently builds the evidence base that self-trust is rebuilt on.',
-      },
-    ],
-  },
-  {
-    slug: 'how-to-rebuild-your-life-after-it-falls-apart',
-    cluster: 'life-direction-rebuilding',
-    tipo: 'complementar',
-    pillarSlug: 'life-direction-identity-starting-over',
-    title: 'How to Rebuild Your Life After It Falls Apart',
-    keyword: 'how to rebuild your life',
-    excerpt:
-      'Rebuilding your life after a major change does not require having everything figured out at once. Here is a more structured way to approach it.',
-    datePublished: '2026-03-15T09:00:00-05:00',
-    dateModified: '2026-03-15T09:00:00-05:00',
-    needsProfessionalCareNote: false,
-    relatedArticles: ['why-dont-i-trust-myself-anymore', 'feeling-lost-in-life-what-it-usually-means'],
-    ogImage: '/images/og/og-default.jpg',
-    content: `When a major part of your life falls apart (a relationship, a career, an identity you had built your life around), the instinct is often to look for a complete answer immediately. **Rebuilding rarely works that way. It tends to happen in a structured sequence, not all at once.**
-
-## Why "starting over" feels so disorienting
-
-Starting over is disorienting because the usual reference points (routine, identity, direction) are suddenly missing. Without those references, even simple decisions can feel overwhelming, which is a normal response to genuine disruption, not a sign that something is wrong with you.
-
-## What tends to make rebuilding harder
-
-Rebuilding is often made harder by trying to solve everything at once, comparing your timeline to someone else's, or waiting to feel fully "ready" before taking any action. None of these are required for meaningful progress to begin.
-
-## A structured approach to rebuilding
-
-A more workable approach usually starts with understanding what actually needs rebuilding (is it direction, identity, stability, or trust?) before jumping to solutions. From there, small, concrete steps in one area tend to create more momentum than trying to address everything simultaneously.
-
-## What rebuilding can involve
-
-This work often involves clarifying what changed and what didn't, identifying which patterns from before are worth keeping and which need to change, and creating a realistic, sequenced plan rather than an all-at-once transformation.
-
-If you are in the middle of a major life transition and want a clearer structure to work from, [schedule an initial consultation](#consultation). For ongoing support along the way, [the private community](#community) is also available.
-
-## Frequently Asked Questions`,
-    faq: [
-      {
-        question: 'Where do I even start when rebuilding my life?',
-        answer:
-          'Start by identifying what specifically needs rebuilding: direction, identity, stability, relationships, or a combination. Trying to address everything at once tends to create overwhelm; starting with one clear area creates faster, more sustainable momentum.',
-      },
-      {
-        question: 'Is it normal to feel lost in my 40s or 50s?',
-        answer:
-          'Yes, feeling lost during a major life transition is a common experience, especially after a significant change in relationships, career, or identity. It reflects the loss of familiar reference points, not a personal failure.',
-      },
-      {
-        question: 'How long does it take to rebuild your life after a major change?',
-        answer:
-          "This varies significantly depending on the change and the person, but most people notice meaningful clarity within a few months of structured work, even if the full rebuilding process continues longer.",
-      },
-      {
-        question: 'What if I do not know what I want anymore?',
-        answer:
-          'Not knowing what you want is common after a major identity shift. Rather than searching for a complete answer immediately, it often helps to start by noticing what feels aligned or misaligned in daily choices: clarity tends to build gradually from there.',
-      },
-      {
-        question: 'Is burnout part of needing to rebuild?',
-        answer:
-          'Burnout is often one of the signals that something needs to change, whether in direction, workload, or identity. Recovering from burnout and rebuilding direction frequently happen together, though they are not identical processes.',
-      },
-      {
-        question: 'Can I rebuild my life without knowing my long-term purpose?',
-        answer:
-          'Yes. Meaningful rebuilding can begin with clarity about the next season, not necessarily a complete long-term purpose. Purpose often becomes clearer as stability and direction are rebuilt, rather than being a prerequisite for starting.',
-      },
-    ],
-  },
 
   // ============================================================
   // 10 ARTIGOS PILAR — guias abrangentes que ancoram os clusters
@@ -464,9 +180,9 @@ If you are in the middle of a major life transition and want a clearer structure
     excerpt:
       'Overthinking usually means your mind is trying to solve an unresolved problem, not that something is wrong with you. Here is the complete picture.',
     datePublished: '2026-04-01T09:00:00-05:00',
-    dateModified: '2026-04-01T09:00:00-05:00',
+    dateModified: '2026-10-11T09:45:00-05:00',
     needsProfessionalCareNote: true,
-    relatedArticles: ['why-cant-i-stop-overthinking', 'anxiety-symptoms-chronic-anxiety'],
+    relatedArticles: ['anxiety-symptoms-chronic-anxiety'],
     ogImage: '/images/og/og-default.jpg',
     content: `If you feel like your mind never stops (replaying conversations, rehearsing decisions, circling the same worry from every angle), you are dealing with a pattern that has a shape and a cause, not a personal failing. **Overthinking is what happens when the mind tries to resolve an unfinished problem through repetition instead of action.** This guide covers why it happens, how it shows up, and what actually helps.
 
@@ -509,6 +225,30 @@ Quick fixes calm a moment; they do not resolve a pattern. Real, lasting relief t
 ## Overthinking at work: why it happens and what helps
 
 Work overthinking often centers on being judged, making an irreversible mistake, or not measuring up. It tends to ease when you separate **preparation** (useful, bounded) from **rumination** (repetitive, unbounded), and when you build in a clear point at which "enough thinking" has happened and it is time to act or wait for more information.
+
+## Signs the pattern has taken over
+
+You may notice the same worry replaying with slightly different words. You may rehearse conversations that have not happened yet, or replay ones that already ended. You may feel mentally tired by mid-morning, even when nothing unusual has happened. These are signs of a **pattern**, not a personal flaw.
+
+## Why "just relax" backfires
+
+When you tell yourself to stop thinking about something, you are asking your mind to ignore a concern it has flagged as unresolved. Most minds do not comply well with that instruction, instead, the suppressed thought tends to resurface with more urgency, precisely because it was dismissed rather than addressed. The harder you push it away, the more it seems to insist on being noticed. This is sometimes called the "ironic effect" of suppression: trying not to think about something requires monitoring for that very thought, which paradoxically keeps it active in your mind.
+
+## A simple sorting exercise
+
+Writing the worry down and splitting it into two columns can make this distinction concrete: what depends on me, and what does not. Items in the first column get a specific next action. Items in the second column get acknowledged, named out loud or on paper, and then deliberately set aside, not because the concern does not matter, but because continuing to hold it does not change the outcome.
+
+## Building a personal early-warning system
+
+Most people can, with a bit of attention, identify a handful of situations that reliably trigger overthinking for them: a certain kind of email, an ambiguous comment from someone close to them, an unstructured evening with no plans. Building awareness of your own specific triggers allows you to apply these habits proactively, at the first sign of the pattern starting, rather than only after it has already taken hold for an hour or more.
+
+## A practical wind-down structure
+
+Rather than trying to force your mind to stop, it usually helps to give it a **structured off-ramp** earlier in the evening. This can be as simple as: writing down anything unresolved on your mind before you get into bed, naming one small next step for each item (even if the step is just "revisit tomorrow"), and setting a consistent cutoff time after which you deliberately shift attention to something low-stimulation. The goal is not to solve everything. It is to signal to your mind that the concern has been acknowledged and does not need to keep circling to stay "held."
+
+## Recognizing the fatigue-overthinking loop
+
+One pattern worth watching for is the loop where overthinking itself becomes exhausting, which then makes you more prone to overthinking, which drains you further. Breaking this loop usually starts with recognizing it as fatigue-driven rather than assuming the underlying problem has genuinely gotten worse. A useful check is asking: would this concern still feel this urgent if I had slept well last night? Often, the honest answer is no. This question alone does not resolve the worry, but it helps separate the actual content of the concern from the amplification effect of exhaustion.
 
 ## When professional clinical care may be appropriate
 
@@ -571,7 +311,7 @@ If this pattern sounds familiar, [an initial consultation](#consultation) is a s
     datePublished: '2026-04-03T09:00:00-05:00',
     dateModified: '2026-04-03T09:00:00-05:00',
     needsProfessionalCareNote: true,
-    relatedArticles: ['overthinking-racing-thoughts', 'why-cant-i-stop-overthinking'],
+    relatedArticles: ['overthinking-racing-thoughts'],
     ogImage: '/images/og/og-default.jpg',
     content: `Feeling anxious occasionally is part of being human. **Feeling anxious as a near-constant background state is a different pattern**, and it is worth understanding clearly rather than normalizing indefinitely. This guide is educational and non-clinical. It is designed to help you recognize the pattern, not to diagnose or treat it.
 
@@ -676,7 +416,7 @@ If anxiety is frequent, physically intense, tied to panic attacks, or significan
     excerpt:
       'Unresolved trauma often shapes daily reactions without being obvious. Here is how to recognize it, what recovery involves, and when to seek clinical care.',
     datePublished: '2026-04-08T09:00:00-05:00',
-    dateModified: '2026-04-08T09:00:00-05:00',
+    dateModified: '2026-10-11T09:45:00-05:00',
     needsProfessionalCareNote: true,
     relatedArticles: ['why-do-i-keep-reacting-the-same-way', 'people-pleasing-perfectionism'],
     ogImage: '/images/og/og-default.jpg',
@@ -721,6 +461,22 @@ Trauma is stored not only as memory but as a learned bodily response: a nervous 
 ## How unresolved trauma quietly shapes daily decisions
 
 Unresolved trauma can influence decisions in ways that are easy to miss: avoiding opportunities that involve vulnerability, over-preparing to prevent any possibility of being caught off guard, or choosing smaller, "safer" options even when a bigger choice would serve you better. Recognizing this influence is often the first step toward making decisions less driven by old fear.
+
+## Body's timeline vs. mind's timeline
+
+The mind can often update its understanding of a situation relatively quickly: recognizing intellectually that a past danger is over. The body's learned response tends to update much more slowly, requiring repeated, safe experience of the trigger without the original danger actually occurring before it gradually recalibrates. This mismatch between the mind's faster timeline and the body's slower one is a common and expected part of trauma recovery, not a sign that something is going wrong.
+
+## Why self-assessment has real limits
+
+While noticing these patterns in yourself is valuable, self-assessment has genuine limits: trauma can distort your own perception of your experience in ways that make accurate self-diagnosis difficult, and some of the most significant signs may be the ones you're least aware of. This is one of the clearest reasons a licensed professional's assessment carries weight that self-reflection alone cannot fully replace.
+
+## What a difficult day can look like
+
+On a harder day, recovery might look like being fully overtaken by an old reaction, needing to cancel plans, or feeling emotionally depleted by something that would have been manageable on a better day. This does not undo the progress made on better days. It reflects the reality that capacity fluctuates, especially during trauma recovery, based on sleep, stress, and other current demands.
+
+## What can bring it to the surface
+
+This kind of underlying pattern often stays manageable until something specific surfaces it: a new relationship that requires real intimacy and vulnerability, a significant life transition, a period of reduced structure like a vacation or retirement, or a health issue that limits the usual outlets for compartmentalizing. These moments can bring underlying material to the surface fairly suddenly, which can feel confusing or alarming after years of feeling generally fine.
 
 ## When professional clinical care may be appropriate
 
@@ -781,9 +537,9 @@ If you are in crisis or feel unsafe, contact local emergency services or the 988
     excerpt:
       'Toxic relationship patterns often feel familiar rather than obviously wrong. Here is how to recognize them and what rebuilding afterward can look like.',
     datePublished: '2026-04-10T09:00:00-05:00',
-    dateModified: '2026-04-10T09:00:00-05:00',
+    dateModified: '2026-10-11T09:45:00-05:00',
     needsProfessionalCareNote: true,
-    relatedArticles: ['why-do-i-attract-toxic-relationships', 'attachment-trust-boundaries'],
+    relatedArticles: ['why-do-i-attract-toxic-people-pattern', 'attachment-trust-boundaries'],
     ogImage: '/images/og/og-default.jpg',
     content: `Toxic relationship patterns rarely announce themselves clearly. They tend to build gradually, often feeling familiar rather than obviously wrong, which is exactly what makes them hard to see from the inside. **This guide is educational only** and does not provide legal, safety, or clinical advice; if you are in an abusive or unsafe relationship, please contact a licensed professional or a domestic violence resource.
 
@@ -822,6 +578,14 @@ Many toxic relationship dynamics follow a repeating cycle: intense idealization 
 ## Rebuilding self-trust after a toxic relationship
 
 After a toxic relationship, it is common to doubt your own judgment broadly, not just about that one relationship. Rebuilding usually starts small: making low-stakes decisions independently and following through, gradually restoring the evidence that your perception and judgment can be relied on again.
+
+## Signs professional support is needed
+
+Persistent distress that doesn't ease with time, intrusive memories of the relationship, significant anxiety or hypervigilance, difficulty functioning in daily responsibilities, or ongoing safety concerns are all clear signs that licensed support is appropriate. This is also true if you're experiencing symptoms consistent with trauma more broadly: flashbacks, severe avoidance, or a persistent sense of danger even in safe situations.
+
+## Licensed therapists and domestic violence resources
+
+A licensed therapist, particularly one trained in trauma-informed approaches, can help process the experience and address its lasting effects. If safety is an ongoing concern, domestic violence organizations and advocates offer specialized support, including safety planning, that goes beyond what general therapy or coaching addresses, and many operate confidential hotlines specifically for this purpose.
 
 ## When professional clinical care may be appropriate
 
@@ -884,7 +648,7 @@ If a past or current relationship pattern feels familiar to what is described he
     datePublished: '2026-04-13T09:00:00-05:00',
     dateModified: '2026-04-13T09:00:00-05:00',
     needsProfessionalCareNote: false,
-    relatedArticles: ['toxic-relationships-abuse-patterns', 'why-do-i-attract-toxic-relationships'],
+    relatedArticles: ['toxic-relationships-abuse-patterns', 'why-do-i-attract-toxic-people-pattern'],
     ogImage: '/images/og/og-default.jpg',
     content: `Struggling with trust, fearing abandonment, or feeling unsafe even in a good relationship often trace back to the same root: **an attachment pattern formed early, before you had much say in shaping it.** The good news is that these patterns, while deeply ingrained, are not fixed for life.
 
@@ -983,9 +747,9 @@ If any of these patterns sound familiar, [an initial consultation](#consultation
     excerpt:
       'Low self-worth and fear of failure often start with conditional approval and get reinforced by comparison. Here is how it works and how to rebuild it.',
     datePublished: '2026-04-17T09:00:00-05:00',
-    dateModified: '2026-10-11T09:30:00-05:00',
+    dateModified: '2026-10-11T09:45:00-05:00',
     needsProfessionalCareNote: false,
-    relatedArticles: ['why-dont-i-trust-myself-anymore', 'people-pleasing-perfectionism'],
+    relatedArticles: ['why-do-i-keep-doubting-myself', 'people-pleasing-perfectionism'],
     ogImage: '/images/og/og-default.jpg',
     content: `No amount of achievement fully resolves low self-worth, because **self-worth and achievement operate on different systems**: one is about external validation, the other about an internal sense of being fundamentally okay. Understanding that distinction is often the first real step toward change.
 
@@ -1028,6 +792,14 @@ Rebuilding self-worth on a more stable foundation usually involves practicing se
 ## The difference between confidence and real self-trust
 
 Confidence often depends on familiarity or practice with a specific task. Self-trust is broader: it is the belief that you can handle whatever comes, even situations you have not faced before, and that your judgment is generally reliable. Real self-trust tends to be more resilient than task-specific confidence, because it is not tied to any one skill.
+
+## Recognizing the critical voice as it happens
+
+A useful practice is simply noticing when the critical internal voice activates (often in response to a mistake, a comparison to someone else, or an anticipated judgment) and naming it explicitly as "that old voice" rather than accepting its assessment automatically as accurate.
+
+## Building a more accurate self-view
+
+Over time, deliberately gathering evidence that contradicts the old internal narrative (noticing your actual strengths, values, and positive impact on others) helps build a more balanced, accurate internal narrative to compete with the old, harsher one.
 
 If this pattern feels familiar, [an initial consultation](#consultation) can help you understand where it started and how to rebuild it. [The private community](#community) is also available for ongoing support.
 
@@ -1187,7 +959,7 @@ If this pattern sounds familiar, [an initial consultation](#consultation) is a p
     datePublished: '2026-04-22T09:00:00-05:00',
     dateModified: '2026-04-22T09:00:00-05:00',
     needsProfessionalCareNote: false,
-    relatedArticles: ['how-to-rebuild-your-life-after-it-falls-apart', 'starting-over-emotionally-what-it-involves'],
+    relatedArticles: ['rebuilding-your-life-without-starting-from-zero'],
     ogImage: '/images/og/og-default.jpg',
     content: `Losing your sense of direction rarely happens all at once. It tends to build gradually, often after a major life change removes the reference points you had been using to navigate. **Feeling lost is a common, recognizable pattern, not evidence that something has gone wrong with you.**
 
@@ -1286,13 +1058,9 @@ If you are in the middle of a significant transition and want a clearer structur
     excerpt:
       'High-functioning anxiety hides behind competence and achievement. Here is what the pattern actually looks like, and when to seek clinical support.',
     datePublished: '2026-08-11T09:00:00-05:00',
-    dateModified: '2026-08-11T09:00:00-05:00',
+    dateModified: '2026-10-11T09:45:00-05:00',
     needsProfessionalCareNote: true,
-    relatedArticles: [
-      'why-i-feel-like-im-pretending-to-be-okay',
-      'why-anxiety-shows-up-differently-in-high-achieving-women',
-      'can-anxiety-hide-my-real-abilities-from-myself',
-    ],
+    relatedArticles: ['why-i-feel-like-im-pretending-to-be-okay', 'why-anxiety-shows-up-differently-in-high-achieving-women', 'can-anxiety-hide-my-real-abilities-from-myself'],
     ogImage: '/images/og/og-default.jpg',
     ctaOverride: { label: 'Start the 4-Week Experience', href: '/4-week-experience/', event: 'four_week_apply_click' },
     content: `From the outside, you look like someone who has it together. You hit deadlines, show up prepared, keep your commitments, and probably get told you're doing great. **What that picture leaves out is what it costs you to produce it.** High-functioning anxiety is not a clinical diagnosis, but it describes something real: a pattern of carrying constant internal tension while your outward performance stays intact, sometimes for years.
@@ -1382,6 +1150,22 @@ This doesn't make one form of anxiety more serious than the other. It means the 
 No, and this is often the biggest misconception that keeps people stuck in the pattern longer than necessary. Addressing high-functioning anxiety isn't about lowering your standards or becoming less capable. It's about changing what's fueling the effort, moving from anxiety-driven performance, where the work is a way to manage fear, toward performance that comes from genuine engagement and choice. People often find they can sustain a similar level of output, sometimes more, once the output stops being entirely financed by a constant undercurrent of tension.
 
 What tends to change first isn't the results. It's the experience of producing them: less bracing, more capacity to actually stop when the work is done, less of the low hum of dread that used to accompany even ordinary tasks. The competence stays. The cost of it starts to come down.
+
+## Does being told you seem fine make the anxiety feel worse?
+
+For many people, yes. Hearing "you always seem so calm" or "I wish I had it together like you" can land as isolating rather than reassuring, because it confirms how successfully the anxiety has been hidden, and how far the perception has drifted from what you're actually experiencing. It can also make the idea of ever being honest about it feel riskier, since the gap between perception and reality has grown wider each time the comment is repeated.
+
+## What does it look like to start narrowing this gap gradually?
+
+You don't need one dramatic conversation to correct years of impression. A more sustainable approach is often small and repeated: mentioning briefly that something felt harder than it looked, letting a moment of visible tiredness stand without immediately covering it with a joke or reassurance, or simply not rushing to say "I'm fine" the next time someone asks and you're not entirely sure that's true. Each small instance chips away at the gap without requiring you to overhaul how you're perceived all at once.
+
+## What questions can help you check whether this is anxiety?
+
+Ask yourself a few direct questions. Do you have trouble fully relaxing, even when there is nothing specific to do? Does your mind keep generating worst-case scenarios, even for low-stakes situations? Do you notice physical tension that has no obvious cause? Does downtime feel harder to tolerate than being busy? Answering yes to several of these is a strong sign that an anxious pattern is present, even without any visible symptoms.
+
+## What's a simple way to start taking this seriously?
+
+A useful starting point is treating your own internal reports the same way you'd treat a friend's: if you told yourself "I have trouble relaxing, my mind won't switch off, and I feel physically tense most days," would you consider that worth addressing in someone else? If the answer is yes, it's worth addressing in yourself too, regardless of whether it comes with any outwardly visible symptoms at all.
 
 ## When professional clinical care may be appropriate
 
