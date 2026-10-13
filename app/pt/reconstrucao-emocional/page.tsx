@@ -205,18 +205,20 @@ export default function ReconstrucaoEmocionalPage() {
               Escolha entre vivências guiadas em áudio, um processo autoguiado mais profundo, mentoria em grupo ou
               acompanhamento personalizado com Sal Ray.
             </p>
-            <div className="flex flex-wrap gap-3 mb-4">
+            <div className="flex flex-col items-start gap-3 mb-4">
               <a
                 href="#escolher"
-                className="inline-block font-body text-sm font-medium bg-orange text-charcoal px-6 py-3.5 rounded-md hover:bg-charcoal hover:text-offwhite transition-colors"
+                className="inline-block w-full sm:w-auto text-center font-body text-sm font-medium border border-aqua text-aqua px-6 py-3.5 rounded-md hover:bg-aqua hover:text-offwhite transition-colors"
               >
                 Encontrar meu ponto de partida
               </a>
               <a
-                href="#metodo"
-                className="inline-block font-body text-sm font-medium border border-aqua text-aqua px-6 py-3.5 rounded-md hover:bg-aqua hover:text-offwhite transition-colors"
+                href="https://chat.whatsapp.com/C2uKMyZbupXBO8ACZdHsxk?mode=gi_t"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block w-full sm:w-auto text-center font-body text-sm font-medium border border-transparent bg-[#F7941D] text-[#171717] px-6 py-3.5 rounded-md hover:bg-charcoal transition-colors"
               >
-                Conhecer o Método S.T.A.B.L.E.™
+                Grupo do WhatsApp | Reconstrução Emocional
               </a>
             </div>
             <p className="font-body text-sm text-charcoal/50">Quatro formas de começar. Uma mesma estrutura de reconstrução.</p>
