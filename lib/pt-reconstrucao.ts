@@ -209,16 +209,16 @@ export const offers: Offer[] = [
     // em lib/schema.ts (getReconstrucaoEmocionalSchema), que seguem a mesma data.
     narrativeLine: 'Comece antes do fim do ano a reconstrução que você quer levar para 2027.',
     price: 'US$ 117',
-    priceNote: 'Valor de lançamento: US$ 117 até 31 de outubro. A partir de 1º de novembro: US$ 147.',
+    originalPrice: 'US$ 147',
     // Nomeia os provedores (pedido 17 set 2026, confirmado por Sal Ray) pra
     // pessoa saber exatamente qual opção procurar no checkout da Payhip —
     // essa opção fica escondida atrás de uma seta lá, sem nome visível.
     installmentBadge: '4x sem juros via Klarna ou Affirm',
     paymentType: 'pagamento único',
     status: 'active',
-    ctaText: 'Quero iniciar as Vivências por US$ 117',
+    ctaText: 'Quero iniciar as Vivências',
     ctaHref: VIVENCIAS_CHECKOUT_117,
-    microtext: 'Programa digital autoguiado. Pagamento seguro processado pelo Stripe. Acesso automático por e-mail. Não inclui sessões individuais.',
+    microtext: 'Programa digital autoguiado. Pagamento seguro processado pelo Stripe. Acesso automático por e-mail. Não inclui sessões individuais. Parcelamento sujeito à aprovação do Klarna ou Affirm.',
   },
   {
     id: 'personalizado',
@@ -247,7 +247,7 @@ export function getOffer(id: Offer['id'], now: Date = new Date()): Offer {
       originalPrice: undefined,
       priceNote: undefined,
       price: 'US$ 147',
-      ctaText: 'Quero iniciar as Vivências por US$ 147',
+      ctaText: 'Quero iniciar as Vivências',
       ctaHref: VIVENCIAS_CHECKOUT_147,
     }
   }
@@ -392,10 +392,23 @@ export const comparisonRows = [
 export function getComparisonColumns(now: Date = new Date()) {
   const primeiroPasso = getOffer('primeiro-passo', now)
   const vivencias = getOffer('vivencias', now)
+  const mentoria = getMentoriaReconstrucao(now)
+  // Espaço sem quebra no preço, para o valor nunca quebrar no meio.
+  const semQuebra = (preco: string) => preco.replace(/ /g, ' ')
   return [
-    { nome: primeiroPasso.name, preco: primeiroPasso.price ?? '' },
-    { nome: vivencias.name, preco: vivencias.price ?? '' },
-    { nome: 'Mentoria', preco: getMentoriaReconstrucao(now).price },
-    { nome: 'Personalizado', preco: 'a partir de US$ 50' },
+    { nome: primeiroPasso.name, preco: semQuebra(primeiroPasso.price ?? ''), prefixo: undefined, nota: undefined },
+    {
+      nome: vivencias.name,
+      preco: semQuebra(vivencias.price ?? ''),
+      prefixo: undefined,
+      nota: isVivenciasLaunchPrice(now) ? 'até 31 out. Depois: US$ 147' : undefined,
+    },
+    {
+      nome: 'Mentoria',
+      preco: semQuebra(mentoria.price),
+      prefixo: undefined,
+      nota: mentoria.presale ? 'até 18 nov. Depois: US$ 297' : undefined,
+    },
+    { nome: 'Personalizado', preco: semQuebra('US$ 50'), prefixo: 'a partir de', nota: undefined },
   ]
 }

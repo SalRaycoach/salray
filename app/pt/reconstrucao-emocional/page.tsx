@@ -2,7 +2,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { Suspense } from 'react'
 import type { Metadata } from 'next'
-import { getOffer, getMentoriaReconstrucao, getComparisonColumns, comparisonRows, stableMethodPt, ptFaqs, ptTestimonials, buildWhatsAppUrl, whatsapp, PT_CANONICAL_URL, ptPageMeta } from '@/lib/pt-reconstrucao'
+import { getOffer, isVivenciasLaunchPrice, getMentoriaReconstrucao, getComparisonColumns, comparisonRows, stableMethodPt, ptFaqs, ptTestimonials, buildWhatsAppUrl, whatsapp, PT_CANONICAL_URL, ptPageMeta } from '@/lib/pt-reconstrucao'
 import { getReconstrucaoEmocionalSchema } from '@/lib/schema'
 import SchemaOrg from '@/components/SchemaOrg'
 import OfferCta from './OfferCta'
@@ -100,6 +100,19 @@ export default function ReconstrucaoEmocionalPage() {
   const ajudaUrl = buildWhatsAppUrl(whatsapp.messages.ajudaParaEscolher)
   const schema = getReconstrucaoEmocionalSchema(now)
   const mentoriaTurma = getMentoriaReconstrucao(now)
+  // Vivências: o bloco 1 da faixa e o bloco de preço seguem a mesma data de troca do preço (isVivenciasLaunchPrice).
+  const vivenciasLancamento = isVivenciasLaunchPrice(now)
+  const vivenciasFaixa = [
+    vivenciasLancamento
+      ? {
+          rotulo: 'VALOR DE LANÇAMENTO ATÉ',
+          destaque: <time dateTime="2026-10-31T23:59:00-04:00">31 OUT</time>,
+          texto: <>US$ 117. Depois: US$ 147.</>,
+        }
+      : { rotulo: 'VALOR', destaque: <>US$ 147</>, texto: <>pagamento único</> },
+    { rotulo: 'FORMATO', destaque: <>12 áudios</>, texto: <>em sequência, no seu ritmo</> },
+    { rotulo: 'PAGAMENTO', destaque: <>Único</>, texto: <>processado pelo Stripe</> },
+  ]
 
   // Tabela de comparação: células com formatação ou link (Ritmo da Mentoria e linha Ação).
   // Mentoria: link para a seção; vira texto simples após o encerramento das inscrições (28/11 23:59, Nova York)
@@ -435,11 +448,33 @@ export default function ReconstrucaoEmocionalPage() {
                 {vivencias.narrativeLine && (
                   <p className="font-body text-sm text-charcoal/70 leading-relaxed mb-4">{vivencias.narrativeLine}</p>
                 )}
+                {/* Faixa de destaques (mesmo estilo da faixa da Mentoria): 3 blocos iguais, 1 por linha no celular */}
+                <ul className="grid grid-cols-1 lg:grid-cols-3 auto-rows-fr gap-3 mb-6">
+                  {vivenciasFaixa.map((b) => (
+                    <li key={b.rotulo} className="flex flex-col border border-[#F7941D]/40 bg-[#F7941D]/5 rounded-lg p-4">
+                      <p className="font-body text-xs font-semibold uppercase tracking-widest text-[#20B9CE] mb-2">{b.rotulo}</p>
+                      <p className="font-display text-3xl lg:text-2xl leading-none text-[#F7941D] mb-3 break-words">{b.destaque}</p>
+                      <p className="font-body text-sm text-charcoal/70 leading-snug">{b.texto}</p>
+                    </li>
+                  ))}
+                </ul>
+                {vivenciasLancamento && (
+                  <p className="font-body text-xs font-semibold uppercase tracking-widest text-[#F7941D] mb-2">Valor de lançamento</p>
+                )}
                 <div className="flex items-baseline gap-3 mb-1">
+                  {vivencias.originalPrice && (
+                    <span className="font-body text-lg text-charcoal/40 line-through">{vivencias.originalPrice}</span>
+                  )}
                   <p className="font-display text-4xl text-charcoal">{vivencias.price}</p>
                 </div>
-                {vivencias.priceNote && (
-                  <p className="font-body text-sm text-orange mb-3">{vivencias.priceNote}</p>
+                {vivenciasLancamento && (
+                  <p className="font-body text-sm text-[#F7941D] mb-3">
+                    Válido até{' '}
+                    <time dateTime="2026-10-31T23:59:00-04:00" className="font-bold">
+                      31 de outubro
+                    </time>
+                    . Depois: US$ 147.
+                  </p>
                 )}
                 <p className="font-body text-sm text-charcoal/60 mb-4">{vivencias.paymentType}</p>
                 {vivencias.installmentBadge && (
@@ -740,7 +775,9 @@ export default function ReconstrucaoEmocionalPage() {
                   {comparisonColumns.map((col) => (
                     <th key={col.nome} className="text-left align-top py-3 px-4">
                       <span className="block font-display text-lg text-charcoal leading-snug">{col.nome}</span>
-                      <span className="block font-display text-2xl text-[#F7941D] mt-1">{col.preco}</span>
+                      {col.prefixo && <span className="block font-body text-xs text-charcoal/60 mt-1">{col.prefixo}</span>}
+                      <span className={`block font-display text-2xl text-[#F7941D] ${col.prefixo ? '' : 'mt-1'}`}>{col.preco}</span>
+                      {col.nota && <span className="block font-body text-xs text-charcoal/60 mt-1">{col.nota}</span>}
                     </th>
                   ))}
                 </tr>
@@ -764,7 +801,9 @@ export default function ReconstrucaoEmocionalPage() {
             {comparisonColumns.map((col, colIndex) => (
               <div key={col.nome} className="border border-charcoal/15 rounded-lg p-5">
                 <p className="font-display text-lg text-charcoal leading-snug">{col.nome}</p>
-                <p className="font-display text-3xl text-[#F7941D] mb-4">{col.preco}</p>
+                {col.prefixo && <p className="font-body text-xs text-charcoal/60 mt-1">{col.prefixo}</p>}
+                <p className={`font-display text-3xl text-[#F7941D] ${col.nota ? '' : 'mb-4'}`}>{col.preco}</p>
+                {col.nota && <p className="font-body text-xs text-charcoal/60 mb-4">{col.nota}</p>}
                 <dl className="space-y-2 mb-5">
                   {comparisonRows
                     .filter((row) => row.criterio !== 'Ação')
