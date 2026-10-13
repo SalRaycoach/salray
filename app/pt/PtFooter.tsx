@@ -1,13 +1,14 @@
 /**
  * Rodapé mínimo compartilhado por toda a árvore /pt/ — não repete o menu em
  * inglês. Os links legais apontam para as páginas legais existentes do site
- * (ainda não há versão em português delas).
+ * (em inglês), exceto a política da Mentoria em Grupo, que tem versão em português.
  */
 export default function PtFooter() {
   const legalLinks = [
     { href: '/privacy-policy/', label: 'Política de Privacidade' },
     { href: '/terms/', label: 'Termos de Uso' },
     { href: '/disclaimer/', label: 'Aviso Profissional' },
+    { href: '/pt/politica-de-cancelamento-mentoria/', label: 'Cancelamento e Reembolso da Mentoria' },
     { href: '/contact/', label: 'Contato' },
   ]
 

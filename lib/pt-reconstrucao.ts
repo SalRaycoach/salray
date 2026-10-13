@@ -10,7 +10,6 @@
  * Sal Ray. Nenhum destes valores deve ser inventado. Enquanto um campo
  * PENDENTE_ não for preenchido:
  *   - CTAs pagos ficam com aria-disabled (nunca apontam para "#").
- *   - A seção de Mentoria fica oculta (não publicar com placeholder visível).
  *   - A pergunta de reembolso no FAQ não deve ser publicada com resposta genérica.
  * ---------------------------------------------------------------------------
  */
@@ -59,10 +58,10 @@ export function buildWhatsAppUrl(message: string): string {
   return `https://wa.me/${number}?text=${encodeURIComponent(message)}`
 }
 
-export type OfferStatus = 'active' | 'open-cohort' | 'preparing' | 'enrollment-closed' | 'contact-only' | 'recording'
+export type OfferStatus = 'active' | 'contact-only' | 'recording'
 
 export type Offer = {
-  id: 'primeiro-passo' | 'vivencias' | 'mentoria' | 'personalizado'
+  id: 'primeiro-passo' | 'vivencias' | 'personalizado'
   anchor: string
   level: string
   badge?: string
@@ -113,7 +112,7 @@ export function isVivenciasLaunchPrice(now: Date = new Date()): boolean {
 }
 
 /**
- * Mentoria de Reconstrução Emocional (primeira turma, 29/11/2026). Mesmo mecanismo das
+ * Mentoria de Reconstrução Emocional (última turma de 2026, 29/11/2026). Mesmo mecanismo das
  * Vivências: a página é renderizada a cada acesso (force-dynamic) e as datas abaixo decidem
  * o preço e o estado do botão, sem novo deploy. Horário de Nova York em novembro é EST (UTC-5):
  * o horário de verão terminou em 01/11/2026.
@@ -217,22 +216,6 @@ export const offers: Offer[] = [
     microtext: 'Programa digital autoguiado. Pagamento seguro processado pelo Stripe. Acesso automático por e-mail. Não inclui sessões individuais.',
   },
   {
-    id: 'mentoria',
-    anchor: 'mentoria',
-    level: 'NÍVEL 3 · ACOMPANHAMENTO EM GRUPO',
-    name: 'Mentoria S.T.A.B.L.E.™',
-    subtitle:
-      'Direção, estrutura e encontros ao vivo para quem quer aplicar o método com acompanhamento, sem entrar imediatamente em um processo individual.',
-    paraQuemE:
-      'Para quem compreende melhor quando pode ouvir uma explicação ao vivo, organizar o que está acontecendo, fazer perguntas e acompanhar a aplicação do método junto a outras pessoas.',
-    oQueRecebe:
-      'Encontros online em grupo com Sal Ray, direcionamento estruturado, aplicação prática do Método S.T.A.B.L.E.™ e espaço organizado para perguntas e integração.',
-    status: 'preparing', // "Próxima turma em preparação" — nunca 'open-cohort' sem preço/calendário/vagas reais aprovados
-    ctaText: 'Quero participar da Mentoria S.T.A.B.L.E.™',
-    ctaHref: 'PENDENTE_CHECKOUT_PAYHIP_MENTORIA', // NÃO INVENTAR — link do plano de preço/checkout da Mentoria
-    microtext: 'Pagamento processado pelo Stripe. Após a confirmação, você receberá automaticamente por e-mail o acesso, as datas e as primeiras orientações.',
-  },
-  {
     id: 'personalizado',
     anchor: 'personalizado',
     level: 'NÍVEL 4 · PROCESSO PERSONALIZADO',
@@ -266,26 +249,6 @@ export function getOffer(id: Offer['id'], now: Date = new Date()): Offer {
   return offer
 }
 
-/** Mentoria: só pode ficar visível com checkout ativo quando turma realmente aberta E dados abaixo confirmados (briefing, seção 8 e 21). */
-export const mentoriaConfig = {
-  status: 'preparing' as OfferStatus,
-  price: null as string | null, // PENDENTE — não inventar
-  numeroEncontros: null as number | null, // PENDENTE
-  duracaoPorEncontro: null as string | null, // PENDENTE
-  calendario: null as string | null, // PENDENTE
-  limiteParticipantes: null as number | null, // PENDENTE
-  politicaDeFaltas: null as string | null, // PENDENTE
-  isReadyToPublish(): boolean {
-    return (
-      this.status === 'open-cohort' &&
-      this.price !== null &&
-      this.numeroEncontros !== null &&
-      this.duracaoPorEncontro !== null &&
-      this.calendario !== null &&
-      this.limiteParticipantes !== null
-    )
-  },
-} as const
 
 export const offerLinksReady = {
   primeiroPasso: !getOffer('primeiro-passo').ctaHref.startsWith('PENDENTE_'),
