@@ -112,6 +112,57 @@ export function isVivenciasLaunchPrice(now: Date = new Date()): boolean {
   return now.getTime() < new Date(VIVENCIAS_PRICE_CHANGE_AT).getTime()
 }
 
+/**
+ * Mentoria de Reconstrução Emocional (primeira turma, 29/11/2026). Mesmo mecanismo das
+ * Vivências: a página é renderizada a cada acesso (force-dynamic) e as datas abaixo decidem
+ * o preço e o estado do botão, sem novo deploy. Horário de Nova York em novembro é EST (UTC-5):
+ * o horário de verão terminou em 01/11/2026.
+ *  - Pré-venda: US$ 247 até 18/11/2026 23:59. Desde 19/11/2026 00:00: US$ 297.
+ *  - Inscrições: até 28/11/2026 23:59. A partir de 29/11/2026 00:00 o botão fica desativado.
+ */
+export const MENTORIA_PRICE_CHANGE_AT = '2026-11-19T00:00:00-05:00'
+export const MENTORIA_ENROLLMENT_CLOSES_AT = '2026-11-29T00:00:00-05:00'
+export const MENTORIA_CHECKOUT_247 = 'https://buy.stripe.com/8x200icItemA5jQb6afIs06'
+// PENDENTE: link de pagamento de US$ 297 (ainda não existe). Vazio = botão desativado
+// ("Checkout ainda não disponível") a partir de 19/11/2026. Colar o link aqui quando existir.
+export const MENTORIA_CHECKOUT_297 = ''
+
+export const mentoriaReconstrucaoConfig = {
+  // true = botão desativado com "Vagas esgotadas". Nunca mostrar contador de vagas.
+  vagasEsgotadas: false,
+  // true = mostra a linha de parcelamento (Affirm ou Klarna) abaixo do botão ativo.
+  parcelamentoDisponivel: true,
+} as const
+
+export type MentoriaButtonState = 'active' | 'closed' | 'soldout' | 'unavailable'
+
+export function getMentoriaReconstrucao(now: Date = new Date()) {
+  const presale = now.getTime() < new Date(MENTORIA_PRICE_CHANGE_AT).getTime()
+  const closed = now.getTime() >= new Date(MENTORIA_ENROLLMENT_CLOSES_AT).getTime()
+  const checkoutHref = presale ? MENTORIA_CHECKOUT_247 : MENTORIA_CHECKOUT_297
+  let state: MentoriaButtonState = 'active'
+  if (closed) state = 'closed'
+  else if (mentoriaReconstrucaoConfig.vagasEsgotadas) state = 'soldout'
+  else if (!checkoutHref) state = 'unavailable'
+  const labels: Record<MentoriaButtonState, string> = {
+    active: 'Garantir minha vaga na mentoria',
+    closed: 'Inscrições encerradas',
+    soldout: 'Vagas esgotadas',
+    unavailable: 'Checkout ainda não disponível',
+  }
+  return {
+    presale,
+    priceLabel: presale ? 'Condição especial de pré-venda' : 'Investimento',
+    price: presale ? 'US$ 247' : 'US$ 297',
+    strikePrice: presale ? 'US$ 297' : undefined,
+    priceNote: presale ? 'Válida até 18 de novembro. Depois: US$ 297.' : undefined,
+    checkoutHref,
+    state,
+    buttonLabel: labels[state],
+    showInstallments: state === 'active' && mentoriaReconstrucaoConfig.parcelamentoDisponivel,
+  }
+}
+
 export const offers: Offer[] = [
   {
     id: 'primeiro-passo',

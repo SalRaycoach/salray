@@ -2,10 +2,11 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { Suspense } from 'react'
 import type { Metadata } from 'next'
-import { getOffer, getComparisonColumns, comparisonRows, stableMethodPt, ptFaqs, ptTestimonials, buildWhatsAppUrl, whatsapp, PT_CANONICAL_URL, ptPageMeta } from '@/lib/pt-reconstrucao'
+import { getOffer, getMentoriaReconstrucao, getComparisonColumns, comparisonRows, stableMethodPt, ptFaqs, ptTestimonials, buildWhatsAppUrl, whatsapp, PT_CANONICAL_URL, ptPageMeta } from '@/lib/pt-reconstrucao'
 import { getReconstrucaoEmocionalSchema } from '@/lib/schema'
 import SchemaOrg from '@/components/SchemaOrg'
 import OfferCta from './OfferCta'
+import MentoriaCta from './MentoriaCta'
 import NotifyMeForm from './NotifyMeForm'
 import FaqAccordion from './FaqAccordion'
 import VideoSection from './VideoSection'
@@ -57,6 +58,7 @@ export default function ReconstrucaoEmocionalPage() {
   const personalizado = getOffer('personalizado')
   const ajudaUrl = buildWhatsAppUrl(whatsapp.messages.ajudaParaEscolher)
   const schema = getReconstrucaoEmocionalSchema(now)
+  const mentoriaTurma = getMentoriaReconstrucao(now)
 
   return (
     <main id="inicio">
@@ -404,6 +406,152 @@ export default function ReconstrucaoEmocionalPage() {
 
             <OfferCta offer={personalizado} source="oferta_personalizado" />
             <p className="font-body text-xs text-charcoal/50 leading-relaxed mt-4 max-w-[560px]">{personalizado.microtext}</p>
+          </div>
+        </div>
+      </section>
+
+      {/* ===== MENTORIA DE RECONSTRUÇÃO EMOCIONAL: primeira turma (preço e botão mudam por data, ver getMentoriaReconstrucao) ===== */}
+      <section id="mentoria-reconstrucao" className="border-b border-charcoal/10 bg-[#171717]">
+        <div className="max-w-content mx-auto px-6 py-16 md:py-24">
+          <div className="max-w-[760px]">
+            <p className="font-body text-xs font-semibold uppercase tracking-widest text-[#20B9CE] mb-3">
+              Primeira turma · Vagas limitadas
+            </p>
+            <h2 className="font-display text-3xl md:text-4xl text-charcoal mb-2">Mentoria de Reconstrução Emocional</h2>
+            <p className="font-display text-xl text-[#20B9CE] mb-8">Método S.T.A.B.L.E.™</p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center mb-12">
+            <div className="order-1 md:order-2">
+              <Image
+                src="/images/mentoria-reconstrucao-emocional.webp"
+                alt="Mentoria de Reconstrução Emocional, Método S.T.A.B.L.E.™"
+                width={1200}
+                height={1200}
+                loading="lazy"
+                sizes="(max-width: 768px) 100vw, 480px"
+                className="w-full h-auto rounded-lg"
+              />
+            </div>
+            <div className="order-2 md:order-1">
+              <p className="font-body text-lg text-charcoal/90 leading-relaxed mb-6">
+                Durante dez encontros ao vivo, você vai aprender a reconhecer os padrões emocionais que se repetem na
+                sua vida, compreender suas reações e trabalhar novas maneiras de responder às situações do dia a dia.
+              </p>
+              <ul className="space-y-3">
+                {['Domingos, às 7 PM · Horário da Flórida', '10 encontros online de 90 minutos', 'Turma pequena'].map((item) => (
+                  <li key={item} className="font-body text-sm font-medium text-charcoal border border-[#20B9CE]/40 bg-[#20B9CE]/5 rounded-md px-4 py-3">
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+
+          <div className="max-w-[760px]">
+            <div className="space-y-4 font-body text-charcoal/80 leading-relaxed mb-8">
+              <p>Você já percebeu que algumas situações continuam se repetindo na sua vida, mesmo quando promete que vai agir diferente?</p>
+              <p>
+                Talvez você tenha dificuldade para colocar limites, sinta que carrega responsabilidades demais ou
+                perceba que suas emoções continuam influenciando escolhas que gostaria de mudar.
+              </p>
+              <p>
+                Nos encontros, vamos trabalhar essas situações através do Método S.T.A.B.L.E.™, com reflexões guiadas,
+                exercícios e acompanhamento do seu desenvolvimento.
+              </p>
+              <p>
+                Você terá um espaço respeitoso para olhar para seus próprios padrões, compreender melhor suas respostas
+                emocionais e praticar mudanças possíveis no seu dia a dia.
+              </p>
+            </div>
+
+            <h3 className="font-body text-sm font-semibold text-charcoal mb-3">O que está incluído:</h3>
+            <ul className="list-disc pl-6 space-y-2 font-body text-charcoal/80 leading-relaxed mb-8">
+              <li>10 encontros online de 90 minutos.</li>
+              <li>Avaliação inicial individual por formulário.</li>
+              <li>Reflexões e exercícios semanais.</li>
+              <li>Acompanhamento do progresso durante o programa.</li>
+              <li>Plano pessoal para continuar o trabalho após a mentoria.</li>
+            </ul>
+
+            <p className="font-body text-charcoal font-medium leading-relaxed mb-8">
+              Primeira turma: domingo, 29 de novembro de 2026, às 7 PM, horário da Flórida.
+            </p>
+
+            <div className="border border-[#F7941D]/40 bg-[#F7941D]/5 rounded-lg p-6 mb-10">
+              <p className="font-body text-xs font-semibold uppercase tracking-widest text-[#F7941D] mb-2">{mentoriaTurma.priceLabel}</p>
+              <div className="flex items-baseline gap-3 mb-1">
+                {mentoriaTurma.strikePrice && (
+                  <span className="font-body text-lg text-charcoal/40 line-through">{mentoriaTurma.strikePrice}</span>
+                )}
+                <p className="font-display text-4xl text-charcoal">{mentoriaTurma.price}</p>
+              </div>
+              {mentoriaTurma.priceNote && <p className="font-body text-sm text-[#F7941D] mb-4">{mentoriaTurma.priceNote}</p>}
+              <div className={mentoriaTurma.priceNote ? '' : 'mt-4'}>
+                <MentoriaCta
+                  state={mentoriaTurma.state}
+                  label={mentoriaTurma.buttonLabel}
+                  href={mentoriaTurma.checkoutHref}
+                  price={mentoriaTurma.price}
+                  source="oferta_mentoria_reconstrucao"
+                />
+              </div>
+              {mentoriaTurma.showInstallments && (
+                <p className="font-body text-xs text-charcoal/60 leading-relaxed mt-4">
+                  Parcelamento disponível pelo Affirm ou Klarna, sujeito à aprovação e às condições de cada um, que
+                  podem incluir juros.
+                </p>
+              )}
+            </div>
+
+            <h3 className="font-display text-2xl text-charcoal mb-4">Como funciona a inscrição</h3>
+            <ul className="space-y-3 font-body text-charcoal/80 leading-relaxed mb-4">
+              <li>
+                <strong className="text-charcoal">Inscrições:</strong> até 28 de novembro de 2026, ou até as vagas
+                acabarem. Depois que o primeiro encontro começar, não é possível entrar na turma.
+              </li>
+              <li>
+                <strong className="text-charcoal">Turma mínima:</strong> a turma acontece com 5 inscrições confirmadas.
+                Se esse número não for atingido até 28 de novembro, você recebe 100% do valor pago de volta, inclusive
+                as taxas.
+              </li>
+              <li>
+                <strong className="text-charcoal">Desistência:</strong> você pode pedir reembolso em até 7 dias após a
+                compra, desde que antes do primeiro encontro. O valor devolvido é o valor pago menos as taxas de
+                processamento do pagamento, que o Stripe não devolve. Depois que a turma começa, não há reembolso.
+              </li>
+              <li>
+                <strong className="text-charcoal">Pagamento parcelado:</strong> a devolução segue as regras de cada
+                serviço (Affirm ou Klarna).
+              </li>
+              <li>
+                <strong className="text-charcoal">Remarcação:</strong> se eu precisar remarcar um encontro, ele será
+                reposto em nova data. Em semanas de feriado, as datas podem ser ajustadas com a turma.
+              </li>
+            </ul>
+            <p className="font-body text-sm text-charcoal/70 leading-relaxed mb-8">
+              Veja também a{' '}
+              <Link href="/cancellation-policy/#mentoria-em-grupo" className="text-aqua underline underline-offset-2">
+                política de cancelamento e reembolso da mentoria em grupo (em inglês)
+              </Link>
+              .
+            </p>
+
+            <p className="font-body text-sm text-charcoal/60 leading-relaxed mb-10">
+              A mentoria é um programa de coaching e desenvolvimento pessoal, não substituindo psicoterapia ou
+              atendimento médico.
+            </p>
+
+            <p className="font-display text-xl text-charcoal mb-4">
+              Garanta sua vaga na primeira turma da Mentoria de Reconstrução Emocional.
+            </p>
+            <MentoriaCta
+              state={mentoriaTurma.state}
+              label={mentoriaTurma.buttonLabel}
+              href={mentoriaTurma.checkoutHref}
+              price={mentoriaTurma.price}
+              source="oferta_mentoria_reconstrucao_fim"
+            />
           </div>
         </div>
       </section>

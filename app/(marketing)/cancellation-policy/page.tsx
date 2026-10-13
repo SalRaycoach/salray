@@ -22,7 +22,7 @@ export default function CancellationPolicyPage() {
   return (
     <main className="max-w-content mx-auto px-6 py-16 md:py-24">
       <h1 className="font-display text-4xl text-charcoal mb-2">Cancellation &amp; Rescheduling Policy</h1>
-      <p className="font-body text-sm text-charcoal/50 mb-8">Last updated: September 14, 2026</p>
+      <p className="font-body text-sm text-charcoal/50 mb-8">Last updated: October 13, 2026</p>
 
       <section className="max-w-2xl space-y-6 font-body text-charcoal/85 leading-relaxed">
         <p>
@@ -97,7 +97,37 @@ export default function CancellationPolicyPage() {
           place in the program ended to make room for another applicant.
         </p>
 
-        <h2 className="font-display text-2xl text-charcoal">9. Contact Us</h2>
+        <h2 id="mentoria-em-grupo" className="font-display text-2xl text-charcoal">
+          9. Group Mentorship (Mentoria em grupo)
+        </h2>
+        <p>
+          This section applies to the Mentoria de Reconstrução Emocional, a live online group program with ten
+          90-minute meetings. If it conflicts with the sections above, this section applies to the group mentorship.
+        </p>
+        <ul className="list-disc pl-6 space-y-2">
+          <li>
+            <strong>Enrollment:</strong> until November 28, 2026, or until the places are taken. Once the first meeting
+            starts, no one can join the group.
+          </li>
+          <li>
+            <strong>Minimum group:</strong> the group runs with 5 confirmed enrollments. If that number is not reached
+            by November 28, you receive 100% of what you paid back, including fees.
+          </li>
+          <li>
+            <strong>Withdrawal:</strong> you can ask for a refund within 7 days of purchase, as long as it is before
+            the first meeting. The refund is the amount you paid minus the payment processing fees, which Stripe does
+            not return. After the group starts, there is no refund.
+          </li>
+          <li>
+            <strong>Installment payments:</strong> refunds follow the rules of each service (Affirm or Klarna).
+          </li>
+          <li>
+            <strong>Rescheduling:</strong> if SAL Ray needs to reschedule a meeting, it will be made up on a new date.
+            In holiday weeks, dates may be adjusted with the group.
+          </li>
+        </ul>
+
+        <h2 className="font-display text-2xl text-charcoal">10. Contact Us</h2>
         <p>To reschedule a session or ask a question about this policy, contact us at:</p>
         <p>
           <strong>Email:</strong>{' '}
