@@ -372,7 +372,7 @@ export const comparisonRows = [
   { criterio: 'Formato', valores: ['6 áudios', '12 áudios', 'Grupo ao vivo', 'Sessões individuais'] },
   { criterio: 'Profundidade', valores: ['Inicial', 'Profunda e autoguiada', 'Guiada em grupo', 'Personalizada'] },
   { criterio: 'Acesso a Sal Ray', valores: ['Não', 'Não', 'Durante encontros', 'Direto e individual'] },
-  { criterio: 'Ritmo', valores: ['Próprio', 'Próprio, em sequência', 'Calendário da turma', 'Agenda definida'] },
+  { criterio: 'Ritmo', valores: ['Próprio', 'Próprio, em sequência', 'Domingos, 7 PM (Flórida), a partir de 29 de nov', 'Agenda definida'] },
   {
     criterio: 'Melhor para',
     valores: ['Dar o primeiro passo', 'Aprofundar sozinho', 'Ter direção ao vivo', 'Trabalhar o caso individual'],
@@ -381,10 +381,21 @@ export const comparisonRows = [
     criterio: 'Ação',
     // Primeiro Passo: ainda em gravação, sem compra ativa (23 ago 2026) — CTA
     // aponta pra captura de interesse, não pro preço. Vivências: checkout real.
-    valores: ['Avise-me quando estiver pronto', 'Comprar as Vivências', 'Comprar vaga da turma', 'Conversar no WhatsApp'],
+    valores: ['Avise-me quando estiver pronto', 'Comprar as Vivências', 'Garantir minha vaga', 'Agendar minha consulta'],
   },
 ] as const
 
+/**
+ * Cabeçalhos da tabela de comparação: nome em cima, preço embaixo. Os preços das Vivências e da
+ * Mentoria vêm das mesmas funções (e datas) das seções dos programas: fonte única.
+ */
 export function getComparisonColumns(now: Date = new Date()) {
-  return ['US$ 17', getOffer('vivencias', now).price ?? '', 'Mentoria', 'Personalizado']
+  const primeiroPasso = getOffer('primeiro-passo', now)
+  const vivencias = getOffer('vivencias', now)
+  return [
+    { nome: primeiroPasso.name, preco: primeiroPasso.price ?? '' },
+    { nome: vivencias.name, preco: vivencias.price ?? '' },
+    { nome: 'Mentoria', preco: getMentoriaReconstrucao(now).price },
+    { nome: 'Personalizado', preco: 'a partir de US$ 50' },
+  ]
 }
