@@ -500,8 +500,8 @@ export default function ReconstrucaoEmocionalPage() {
           </ul>
           <p className="font-body text-sm text-charcoal/70 leading-relaxed mb-10">
             Veja também a{' '}
-            <Link href="/cancellation-policy/#mentoria-em-grupo" className="text-aqua underline underline-offset-2">
-              política de cancelamento e reembolso da mentoria em grupo (em inglês)
+            <Link href="/pt/politica-de-cancelamento-mentoria/" className="text-aqua underline underline-offset-2">
+              política de cancelamento e reembolso da mentoria em grupo
             </Link>
             .
           </p>
@@ -511,18 +511,9 @@ export default function ReconstrucaoEmocionalPage() {
             A mentoria é um programa de coaching e desenvolvimento pessoal, não substituindo psicoterapia ou
             atendimento médico.
           </p>
-          <div className="grid lg:grid-cols-[1fr_minmax(320px,440px)] gap-6 lg:gap-12 items-center">
-            <p className="font-display text-xl md:text-2xl text-charcoal">
-              Garanta sua vaga na última turma de 2026 da Mentoria de Reconstrução Emocional.
-            </p>
-            <MentoriaCta
-              state={mentoriaTurma.state}
-              label={mentoriaTurma.buttonLabel}
-              href={mentoriaTurma.checkoutHref}
-              price={mentoriaTurma.price}
-              source="oferta_mentoria_reconstrucao_fim"
-            />
-          </div>
+          <p className="font-display text-xl md:text-2xl text-charcoal">
+            Garanta sua vaga na última turma de 2026 da Mentoria de Reconstrução Emocional.
+          </p>
         </div>
       </section>
 
