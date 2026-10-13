@@ -7,6 +7,7 @@ import { getReconstrucaoEmocionalSchema } from '@/lib/schema'
 import SchemaOrg from '@/components/SchemaOrg'
 import OfferCta from './OfferCta'
 import MentoriaCta from './MentoriaCta'
+import PersonalizadoCta from './PersonalizadoCta'
 import NotifyMeForm from './NotifyMeForm'
 import FaqAccordion from './FaqAccordion'
 import VideoSection from './VideoSection'
@@ -43,6 +44,46 @@ const orientationCards = [
   { nivel: 'NÍVEL 2 · APROFUNDAR', text: 'Quero fazer uma reconstrução emocional mais profunda no meu ritmo.', linkText: 'Ir para as 12 vivências', anchor: '#vivencias' },
   { nivel: 'NÍVEL 3 · SER ACOMPANHADO', text: 'Quero direção, encontros ao vivo e apoio em grupo.', linkText: 'Conhecer a mentoria', anchor: '#mentoria' },
   { nivel: 'NÍVEL 4 · PERSONALIZAR', text: 'Quero trabalhar diretamente com Sal Ray sobre a minha situação.', linkText: 'Conhecer o acompanhamento', anchor: '#personalizado' },
+]
+
+// Faixa de serviços do Acompanhamento Personalizado (mesmo modelo visual da faixa da Mentoria).
+// Nunca publicar e-mail ou telefone do Zelle: os dados são enviados no agendamento.
+const personalizadoFaixa = [
+  {
+    servico: 'consulta' as const,
+    rotulo: 'CONSULTA',
+    valor: 'US$ 50',
+    texto:
+      'Comece por aqui. Um encontro para entender o que você está vivendo, identificar os padrões emocionais e de comportamento e definir a direção do seu processo.',
+    botao: 'Agendar minha consulta',
+    destaque: true,
+  },
+  {
+    servico: 'sessao' as const,
+    rotulo: 'SESSÃO',
+    valor: 'US$ 80',
+    texto:
+      'Atendimento individual para trabalhar os padrões emocionais e de comportamento que afetam suas decisões, seus relacionamentos e sua estabilidade emocional, com as ferramentas do Método S.T.A.B.L.E.™.',
+    botao: 'Agendar uma sessão',
+    destaque: false,
+  },
+  {
+    servico: 'pacote' as const,
+    rotulo: 'PACOTE',
+    valor: 'US$ 600',
+    texto:
+      '10 sessões individuais. Equivale a US$ 60 por sessão, US$ 200 a menos do que dez avulsas. Válido por 90 dias a partir da compra.',
+    botao: 'Quero o pacote',
+    destaque: false,
+  },
+  {
+    servico: null,
+    rotulo: 'PAGAMENTO',
+    valor: 'Stripe ou Zelle',
+    texto: 'Os dados do Zelle são enviados no agendamento.',
+    botao: null,
+    destaque: false,
+  },
 ]
 
 // Renderizada a cada acesso: a troca de preço de 1º/11/2026 não pede novo deploy.
@@ -562,38 +603,87 @@ export default function ReconstrucaoEmocionalPage() {
         </div>
       </section>
 
-      {/* ===== OFERTA 4 — PERSONALIZADO ===== */}
+      {/* ===== OFERTA 4: PERSONALIZADO (faixa de serviços no mesmo modelo da faixa da Mentoria) ===== */}
       <section id="personalizado" className="border-b border-charcoal/10">
-        <div className="max-w-content mx-auto px-6 py-16 md:py-24 grid md:grid-cols-2 gap-12 items-center">
-          <div className="relative order-2 md:order-1">
-            <Image
-              src="/images/about/sal-ray-portrait.jpg"
-              alt="Sal Ray, criador do Método S.T.A.B.L.E.™"
-              width={700}
-              height={840}
-              sizes="(max-width: 768px) 100vw, 50vw"
-              className="w-full h-auto object-cover rounded-lg"
-            />
+        <div className="max-w-content mx-auto px-6 py-16 md:py-24">
+          <div className="grid md:grid-cols-2 gap-12 items-center mb-12 md:mb-16">
+            <div className="relative order-2 md:order-1">
+              <Image
+                src="/images/about/sal-ray-portrait.jpg"
+                alt="Sal Ray, criador do Método S.T.A.B.L.E.™"
+                width={700}
+                height={840}
+                sizes="(max-width: 768px) 100vw, 50vw"
+                className="w-full h-auto object-cover rounded-lg"
+              />
+            </div>
+            <div className="order-1 md:order-2">
+              <p className="font-body text-xs uppercase tracking-widest text-aqua mb-3">{personalizado.level}</p>
+              <h2 className="font-display text-3xl md:text-4xl text-charcoal mb-4">{personalizado.name}</h2>
+              <p className="font-body text-charcoal/80 leading-relaxed max-w-[560px]">{personalizado.subtitle}</p>
+            </div>
           </div>
-          <div className="order-1 md:order-2">
-            <p className="font-body text-xs uppercase tracking-widest text-aqua mb-3">{personalizado.level}</p>
-            <h2 className="font-display text-3xl md:text-4xl text-charcoal mb-4">{personalizado.name}</h2>
-            <p className="font-body text-charcoal/80 leading-relaxed mb-6 max-w-[560px]">{personalizado.subtitle}</p>
 
-            <p className="font-body text-sm font-semibold text-charcoal mb-1">Para quem é</p>
-            <p className="font-body text-charcoal/75 leading-relaxed mb-5 max-w-[560px]">{personalizado.paraQuemE}</p>
+          {/* Faixa de serviços: 4 cartões iguais no desktop; 1 por linha no celular, com o botão logo abaixo do valor */}
+          <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 md:auto-rows-fr gap-4 md:gap-5 mb-12 md:mb-16 pt-3">
+            {personalizadoFaixa.map((b) => (
+              <li
+                key={b.rotulo}
+                className={`relative flex flex-col rounded-lg p-5 md:p-6 bg-[#F7941D]/5 ${
+                  b.destaque ? 'border-2 border-[#F7941D]' : 'border border-[#F7941D]/40'
+                }`}
+              >
+                {b.destaque && (
+                  <span className="absolute -top-3 left-5 bg-[#F7941D] text-[#171717] font-body text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full">
+                    Comece por aqui
+                  </span>
+                )}
+                <p className="order-1 font-body text-xs font-semibold uppercase tracking-widest text-[#20B9CE] mb-2">{b.rotulo}</p>
+                <p className="order-2 font-display text-4xl leading-none text-[#F7941D] mb-4 break-words">{b.valor}</p>
+                {b.botao && b.servico && (
+                  <div className="order-3 lg:order-4 mb-4 lg:mb-0 lg:mt-auto lg:pt-6">
+                    <PersonalizadoCta
+                      servico={b.servico}
+                      label={b.botao}
+                      href={buildWhatsAppUrl(whatsapp.messages[b.servico])}
+                    />
+                  </div>
+                )}
+                <p className="order-4 lg:order-3 font-body text-sm text-charcoal/70 leading-snug">{b.texto}</p>
+              </li>
+            ))}
+          </ul>
 
-            <p className="font-body text-sm font-semibold text-charcoal mb-1">Como começa</p>
-            <p className="font-body text-charcoal/75 leading-relaxed mb-5 max-w-[560px]">
-              O processo começa com uma conversa estruturada para entender o que está acontecendo, reconhecer os
-              padrões mais relevantes e verificar se o acompanhamento é adequado para a situação.
+          <div className="grid lg:grid-cols-3 gap-x-12 gap-y-6 mb-12">
+            <div>
+              <p className="font-body text-sm font-semibold text-charcoal mb-1">Para quem é</p>
+              <p className="font-body text-charcoal/75 leading-relaxed">{personalizado.paraQuemE}</p>
+            </div>
+            <div>
+              <p className="font-body text-sm font-semibold text-charcoal mb-1">Como começa</p>
+              <p className="font-body text-charcoal/75 leading-relaxed">
+                O processo começa com uma conversa estruturada para entender o que está acontecendo, reconhecer os
+                padrões mais relevantes e verificar se o acompanhamento é adequado para a situação.
+              </p>
+            </div>
+            <div>
+              <p className="font-body text-sm font-semibold text-charcoal mb-1">O que pode incluir</p>
+              <p className="font-body text-charcoal/75 leading-relaxed">{personalizado.oQueRecebe}</p>
+            </div>
+          </div>
+
+          <div className="pt-8 border-t border-charcoal/10 space-y-3">
+            <p className="font-body text-xs text-charcoal/50 leading-relaxed">{personalizado.microtext}</p>
+            <p className="font-body text-sm text-charcoal/70 leading-relaxed">
+              Cancelamento e remarcação: veja a{' '}
+              <Link href="/pt/politica-de-cancelamento/" className="text-aqua underline underline-offset-2">
+                política de cancelamento
+              </Link>
+              .
             </p>
-
-            <p className="font-body text-sm font-semibold text-charcoal mb-1">O que pode incluir</p>
-            <p className="font-body text-charcoal/75 leading-relaxed mb-8 max-w-[560px]">{personalizado.oQueRecebe}</p>
-
-            <OfferCta offer={personalizado} source="oferta_personalizado" />
-            <p className="font-body text-xs text-charcoal/50 leading-relaxed mt-4 max-w-[560px]">{personalizado.microtext}</p>
+            <p className="font-body text-sm text-charcoal/60 leading-relaxed">
+              Coaching é um serviço de desenvolvimento pessoal e não substitui psicoterapia ou atendimento médico.
+            </p>
           </div>
         </div>
       </section>

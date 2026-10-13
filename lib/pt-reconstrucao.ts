@@ -39,6 +39,10 @@ export const whatsapp = {
     ajudaParaEscolher:
       'Olá, Sal Ray. Vi a página de Reconstrução Emocional e preciso de ajuda para escolher a opção mais adequada para mim.',
     personalizado: 'Olá, Sal Ray. Quero entender se o acompanhamento personalizado é adequado para o meu momento.',
+    // Botões da faixa de serviços do Acompanhamento Personalizado: o texto identifica o serviço.
+    consulta: 'Olá, Sal Ray. Quero agendar a consulta de US$ 50.',
+    sessao: 'Olá, Sal Ray. Quero agendar uma sessão individual de US$ 80.',
+    pacote: 'Olá, Sal Ray. Quero o pacote de 10 sessões de US$ 600.',
     // Botão de WhatsApp específico da ferramenta de autoavaliação (pedido 15
     // set 2026) — contexto diferente do botão "ajuda para escolher" do resto
     // da página: quem chega aqui já concluiu as Vivências.
