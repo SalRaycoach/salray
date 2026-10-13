@@ -13,19 +13,9 @@ const DISABLED_CLASSES = 'inline-block text-center font-body text-sm font-medium
  * - As 3 ofertas pagas só apontam para links de checkout da Payhip, nunca
  *   Stripe Payment Link direto, nunca "#". Enquanto o link real não existir
  *   (offer.ctaHref começa com "PENDENTE_"), o botão fica aria-disabled.
- * - Mentoria sem turma ativa: nem checkout nem WhatsApp — só estado informativo.
  * - Personalizado: sempre WhatsApp, nunca checkout/Payhip/Stripe.
  */
 export default function OfferCta({ offer, source }: { offer: Offer; source: string }) {
-  if (offer.status === 'preparing' || offer.status === 'enrollment-closed') {
-    const label = offer.status === 'preparing' ? 'Próxima turma em preparação' : 'Inscrições encerradas'
-    return (
-      <span className="inline-block font-body text-sm font-medium text-charcoal/70 border border-charcoal/20 px-6 py-3.5 rounded-md">
-        {label}
-      </span>
-    )
-  }
-
   if (offer.status === 'contact-only') {
     return (
       <a
