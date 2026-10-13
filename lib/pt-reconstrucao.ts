@@ -151,6 +151,7 @@ export function getMentoriaReconstrucao(now: Date = new Date()) {
   }
   return {
     presale,
+    closed,
     priceLabel: presale ? 'Condição especial de pré-venda' : 'Investimento',
     price: presale ? 'US$ 247' : 'US$ 297',
     strikePrice: presale ? 'US$ 297' : undefined,

@@ -58,6 +58,38 @@ export default function ReconstrucaoEmocionalPage() {
   const ajudaUrl = buildWhatsAppUrl(whatsapp.messages.ajudaParaEscolher)
   const schema = getReconstrucaoEmocionalSchema(now)
   const mentoriaTurma = getMentoriaReconstrucao(now)
+  // Faixa de destaques da mentoria. O bloco 3 segue a mesma data de troca de preço (presale) e o bloco 4
+  // a mesma data de encerramento (closed) de getMentoriaReconstrucao: fonte única em lib/pt-reconstrucao.ts.
+  const mentoriaFaixa = [
+    {
+      rotulo: 'INÍCIO',
+      destaque: <time dateTime="2026-11-29T19:00:00-05:00">29 NOV</time>,
+      texto: <>Domingo, 7 PM, horário da Flórida</>,
+    },
+    { rotulo: 'ENCONTROS', destaque: <>10</>, texto: <>encontros online de 90 minutos</> },
+    mentoriaTurma.presale
+      ? {
+          rotulo: 'PRÉ-VENDA ATÉ',
+          destaque: <time dateTime="2026-11-18T23:59:00-05:00">18 NOV</time>,
+          texto: <>US$ 247. Depois: US$ 297</>,
+        }
+      : { rotulo: 'VALOR', destaque: <>US$ 297</>, texto: <>pagamento único</> },
+    mentoriaTurma.closed
+      ? {
+          rotulo: 'INSCRIÇÕES',
+          destaque: <>ENCERRADAS</>,
+          texto: (
+            <>
+              a turma começa em <time dateTime="2026-11-29T19:00:00-05:00">29 de novembro</time>.
+            </>
+          ),
+        }
+      : {
+          rotulo: 'INSCRIÇÕES ATÉ',
+          destaque: <time dateTime="2026-11-28T23:59:00-05:00">28 NOV</time>,
+          texto: <>ou até as vagas acabarem</>,
+        },
+  ]
 
   return (
     <main id="inicio">
@@ -384,18 +416,22 @@ export default function ReconstrucaoEmocionalPage() {
                 Durante dez encontros ao vivo, você vai aprender a reconhecer os padrões emocionais que se repetem na
                 sua vida, compreender suas reações e trabalhar novas maneiras de responder às situações do dia a dia.
               </p>
-              <ul className="flex flex-col sm:flex-row gap-3">
-                {['Domingos, às 7 PM · Horário da Flórida', '10 encontros online de 90 minutos', 'Turma pequena'].map((item) => (
-                  <li
-                    key={item}
-                    className="flex-1 font-body text-sm font-medium text-charcoal border border-[#20B9CE]/40 bg-[#20B9CE]/5 rounded-md px-4 py-3"
-                  >
-                    {item}
-                  </li>
-                ))}
-              </ul>
             </div>
           </div>
+
+          {/* Faixa de destaques: 4 blocos de igual largura e altura (2 por 2 no celular) */}
+          <ul className="grid grid-cols-2 lg:grid-cols-4 auto-rows-fr gap-3 md:gap-4 mb-12 md:mb-16">
+            {mentoriaFaixa.map((b) => (
+              <li
+                key={b.rotulo}
+                className="flex flex-col border border-[#F7941D]/40 bg-[#F7941D]/5 rounded-lg p-4 md:p-6"
+              >
+                <p className="font-body text-xs font-semibold uppercase tracking-widest text-[#20B9CE] mb-2">{b.rotulo}</p>
+                <p className="font-display text-3xl md:text-5xl leading-none text-[#F7941D] mb-3 break-words">{b.destaque}</p>
+                <p className="font-body text-sm text-charcoal/70 leading-snug">{b.texto}</p>
+              </li>
+            ))}
+          </ul>
 
           {/* Linha 2: "Para quem é" e corpo à esquerda; "O que está incluído" à direita */}
           <div className="grid lg:grid-cols-2 gap-x-12 gap-y-8 mb-12 md:mb-16">
@@ -431,9 +467,6 @@ export default function ReconstrucaoEmocionalPage() {
                 <li>Acompanhamento do progresso durante o programa.</li>
                 <li>Plano pessoal para continuar o trabalho após a mentoria.</li>
               </ul>
-              <p className="font-body text-charcoal font-medium leading-relaxed">
-                Última turma de 2026: domingo, 29 de novembro, às 7 PM, horário da Flórida.
-              </p>
             </div>
           </div>
 
@@ -448,7 +481,15 @@ export default function ReconstrucaoEmocionalPage() {
                   )}
                   <p className="font-display text-4xl text-charcoal">{mentoriaTurma.price}</p>
                 </div>
-                {mentoriaTurma.priceNote && <p className="font-body text-sm text-[#F7941D]">{mentoriaTurma.priceNote}</p>}
+                {mentoriaTurma.priceNote && (
+                  <p className="font-body text-sm text-charcoal/80">
+                    Válida até{' '}
+                    <time dateTime="2026-11-18T23:59:00-05:00" className="font-bold text-[#F7941D]">
+                      18 de novembro
+                    </time>
+                    . Depois: US$ 297.
+                  </p>
+                )}
               </div>
               <MentoriaCta
                 state={mentoriaTurma.state}
@@ -476,7 +517,11 @@ export default function ReconstrucaoEmocionalPage() {
           <h3 className="font-display text-2xl text-charcoal mb-6">Como funciona a inscrição</h3>
           <ul className="grid md:grid-cols-2 gap-x-12 gap-y-4 font-body text-charcoal/80 leading-relaxed mb-4">
             <li>
-              <strong className="text-charcoal">Inscrições:</strong> até 28 de novembro de 2026, ou até as vagas
+              <strong className="text-charcoal">Inscrições:</strong> até{' '}
+              <time dateTime="2026-11-28T23:59:00-05:00" className="font-bold text-charcoal">
+                28 de novembro de 2026
+              </time>
+              , ou até as vagas
               acabarem. Depois que o primeiro encontro começar, não é possível entrar na turma.
             </li>
             <li>
