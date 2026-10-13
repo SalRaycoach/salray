@@ -87,6 +87,9 @@ const personalizadoFaixa = [
   },
 ]
 
+// Título da seção do vídeo (também é o título acessível do player).
+const VIDEO_TITULO = 'Por que eu criei quatro formas de começar?'
+
 // Renderizada a cada acesso: a troca de preço de 1º/11/2026 não pede novo deploy.
 export const dynamic = 'force-dynamic'
 
@@ -289,13 +292,13 @@ export default function ReconstrucaoEmocionalPage() {
         <div className="max-w-content mx-auto px-6 py-16 md:py-24">
           <p className="font-body text-xs uppercase tracking-[0.08em] text-aqua mb-3 text-center">ANTES DE ESCOLHER</p>
           <h2 className="font-display text-3xl md:text-4xl text-charcoal mb-4 text-center max-w-2xl mx-auto">
-            Por que eu criei quatro formas de começar?
+            {VIDEO_TITULO}
           </h2>
           <p className="font-body text-charcoal/70 leading-relaxed text-center max-w-[620px] mx-auto mb-10">
             Nem toda pessoa precisa do mesmo nível de apoio no mesmo momento. Neste vídeo, Sal Ray explica o que
             conecta todas as opções e como escolher sem pressão.
           </p>
-          <VideoSection />
+          <VideoSection title={VIDEO_TITULO} />
         </div>
       </section>
 

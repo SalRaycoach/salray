@@ -342,20 +342,19 @@ export const ptFaqs: PtFaq[] = [
 ]
 
 /**
- * Vídeo principal — briefing, seção 5. A página pode entrar no ar só com este
- * vídeo (vídeos individuais são melhoria futura). Objeto plano de dados (sem
- * métodos) porque é importado diretamente por um Client Component — passar
- * um objeto com função como prop de Server para Client quebra o build.
+ * Vídeo principal da seção "Por que eu criei quatro formas de começar?".
+ * Campo único de configuração: `videoUrl`. Aceita o link do YouTube (youtu.be, watch?v= ou embed).
+ * Vazio = a página volta a mostrar o aviso "Vídeo principal em preparação". Objeto plano de dados
+ * (sem métodos), porque é importado diretamente por um Client Component.
  */
 export const mainVideo = {
-  srcUrl: null as string | null, // PENDENTE_VIDEO_PRINCIPAL — não inventar
-  posterUrl: null as string | null, // PENDENTE — poster estático
-  captionsUrl: null as string | null, // PENDENTE — legendas em português (.vtt)
-  transcript: null as string | null, // PENDENTE — transcrição acessível
+  videoUrl: 'https://youtu.be/Not9hEscmcQ',
 } as const
 
-export function isMainVideoReady(): boolean {
-  return mainVideo.srcUrl !== null
+/** Extrai o ID do vídeo do YouTube de um link; devolve null se o campo estiver vazio ou não for um link válido. */
+export function getYouTubeId(url: string): string | null {
+  const m = url.trim().match(/(?:youtu\.be\/|youtube(?:-nocookie)?\.com\/(?:watch\?(?:.*&)?v=|embed\/|shorts\/))([A-Za-z0-9_-]{11})/)
+  return m?.[1] ?? null
 }
 
 /** Depoimentos — componente reutilizável, permanece oculto até haver conteúdo real e autorizado (briefing, seção 13). */
