@@ -170,7 +170,7 @@ module.exports = {
       priority = 0.7
       changefreq = 'monthly'
       lastmod = ARTICLE_DATES[p.split('/')[3]]
-    } else if (['/privacy-policy', '/terms', '/disclaimer', '/cancellation-policy', '/pt/politica-de-cancelamento-mentoria'].includes(p)) {
+    } else if (['/privacy-policy', '/terms', '/disclaimer', '/cancellation-policy', '/pt/politica-de-cancelamento-mentoria', '/pt/politica-de-cancelamento'].includes(p)) {
       priority = 0.3
       changefreq = 'yearly'
     } else if (p === '/sitemap') {
