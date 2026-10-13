@@ -8,6 +8,7 @@ import SchemaOrg from '@/components/SchemaOrg'
 import OfferCta from './OfferCta'
 import MentoriaCta from './MentoriaCta'
 import PersonalizadoCta from './PersonalizadoCta'
+import ComparisonAction from './ComparisonAction'
 import NotifyMeForm from './NotifyMeForm'
 import FaqAccordion from './FaqAccordion'
 import VideoSection from './VideoSection'
@@ -99,6 +100,36 @@ export default function ReconstrucaoEmocionalPage() {
   const ajudaUrl = buildWhatsAppUrl(whatsapp.messages.ajudaParaEscolher)
   const schema = getReconstrucaoEmocionalSchema(now)
   const mentoriaTurma = getMentoriaReconstrucao(now)
+
+  // Tabela de comparação: células com formatação ou link (Ritmo da Mentoria e linha Ação).
+  // Mentoria: link para a seção; vira texto simples após o encerramento das inscrições (28/11 23:59, Nova York)
+  // ou quando vagasEsgotadas for true. Estados vêm de getMentoriaReconstrucao (fonte única).
+  const acaoMentoriaTexto =
+    mentoriaTurma.state === 'closed' ? 'Inscrições encerradas' : mentoriaTurma.state === 'soldout' ? 'Vagas esgotadas' : null
+  const acaoCelula = (i: number, valor: string, variant: 'link' | 'button') => {
+    if (i === 2) {
+      return acaoMentoriaTexto ?? <ComparisonAction href="#mentoria" label={valor} offerName="mentoria" variant={variant} />
+    }
+    if (i === 3) return <ComparisonAction href="#personalizado" label={valor} offerName="consulta" variant={variant} />
+    return valor
+  }
+  const ritmoMentoria = (valor: string) => {
+    const destaque = '29 de nov'
+    const pos = valor.indexOf(destaque)
+    if (pos < 0) return valor
+    return (
+      <>
+        {valor.slice(0, pos)}
+        <strong className="font-bold text-[#F7941D]">{destaque}</strong>
+        {valor.slice(pos + destaque.length)}
+      </>
+    )
+  }
+  const valorCelula = (criterio: string, i: number, valor: string) => {
+    if (criterio === 'Ação') return acaoCelula(i, valor, 'link')
+    if (criterio === 'Ritmo' && i === 2) return ritmoMentoria(valor)
+    return valor
+  }
   // Faixa de destaques da mentoria. O bloco 3 segue a mesma data de troca de preço (presale) e o bloco 4
   // a mesma data de encerramento (closed) de getMentoriaReconstrucao: fonte única em lib/pt-reconstrucao.ts.
   const mentoriaFaixa = [
@@ -707,8 +738,9 @@ export default function ReconstrucaoEmocionalPage() {
                 <tr className="border-b border-charcoal/20">
                   <th className="text-left font-body text-xs uppercase tracking-widest text-charcoal/50 py-3 pr-4">Critério</th>
                   {comparisonColumns.map((col) => (
-                    <th key={col} className="text-left font-display text-lg text-charcoal py-3 px-4">
-                      {col}
+                    <th key={col.nome} className="text-left align-top py-3 px-4">
+                      <span className="block font-display text-lg text-charcoal leading-snug">{col.nome}</span>
+                      <span className="block font-display text-2xl text-[#F7941D] mt-1">{col.preco}</span>
                     </th>
                   ))}
                 </tr>
@@ -719,7 +751,7 @@ export default function ReconstrucaoEmocionalPage() {
                     <td className="font-body text-sm font-semibold text-charcoal/70 py-4 pr-4 align-top">{row.criterio}</td>
                     {row.valores.map((valor, i) => (
                       <td key={i} className="font-body text-sm text-charcoal/80 py-4 px-4 align-top">
-                        {valor}
+                        {valorCelula(row.criterio, i, valor)}
                       </td>
                     ))}
                   </tr>
@@ -730,16 +762,24 @@ export default function ReconstrucaoEmocionalPage() {
 
           <div className="md:hidden grid gap-4">
             {comparisonColumns.map((col, colIndex) => (
-              <div key={col} className="border border-charcoal/15 rounded-lg p-5">
-                <p className="font-display text-lg text-charcoal mb-3">{col}</p>
-                <dl className="space-y-2">
-                  {comparisonRows.map((row) => (
-                    <div key={row.criterio} className="flex justify-between gap-4 text-sm">
-                      <dt className="font-body text-charcoal/50">{row.criterio}</dt>
-                      <dd className="font-body text-charcoal/85 text-right">{row.valores[colIndex]}</dd>
-                    </div>
-                  ))}
+              <div key={col.nome} className="border border-charcoal/15 rounded-lg p-5">
+                <p className="font-display text-lg text-charcoal leading-snug">{col.nome}</p>
+                <p className="font-display text-3xl text-[#F7941D] mb-4">{col.preco}</p>
+                <dl className="space-y-2 mb-5">
+                  {comparisonRows
+                    .filter((row) => row.criterio !== 'Ação')
+                    .map((row) => (
+                      <div key={row.criterio} className="flex justify-between gap-4 text-sm">
+                        <dt className="font-body text-charcoal/50">{row.criterio}:</dt>
+                        <dd className="font-body text-charcoal/85 text-right">
+                          {valorCelula(row.criterio, colIndex, row.valores[colIndex] ?? '')}
+                        </dd>
+                      </div>
+                    ))}
                 </dl>
+                <div className="font-body text-sm text-charcoal/85">
+                  {acaoCelula(colIndex, comparisonRows.find((row) => row.criterio === 'Ação')?.valores[colIndex] ?? '', 'button')}
+                </div>
               </div>
             ))}
           </div>
