@@ -58,10 +58,10 @@ export default function GrupoGratuitoPage() {
           </div>
           <div>
             <Image
-              src="/images/grupo-gratuito/sal-ray-retrato.webp"
+              src="/images/grupo-gratuito/sal-ray-mesa.webp"
               alt="Sal Ray, Emotional & Life Rebuilding Coach"
-              width={1000}
-              height={1250}
+              width={1122}
+              height={1281}
               priority
               sizes="(max-width: 768px) 100vw, 50vw"
               className="w-full h-auto rounded-lg"
