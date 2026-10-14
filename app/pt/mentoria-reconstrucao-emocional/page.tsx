@@ -105,21 +105,26 @@ export default function GrupoGratuitoPage() {
         <div className="max-w-content mx-auto px-6 py-12 md:py-16 grid md:grid-cols-2 gap-10 md:gap-12 items-center">
           <div>
             <Image
-              src="/images/grupo-gratuito/sal-ray-escritorio.webp"
+              src="/images/grupo-gratuito/sal-ray-executivo.webp"
               alt="Sal Ray, Emotional & Life Rebuilding Coach"
-              width={1033}
-              height={1282}
+              width={1122}
+              height={1402}
               loading="lazy"
               sizes="(max-width: 768px) 100vw, 50vw"
               className="w-full h-auto rounded-lg"
             />
           </div>
-          <p className="font-body text-lg md:text-xl text-charcoal/90 leading-relaxed text-left">
-            Sal Ray é um coach especializado em reconstrução emocional e de vida, que ajuda adultos a identificar os
-            padrões mais profundos que os mantêm estagnados. Seu trabalho combina o reconhecimento preciso de padrões,
-            o desenvolvimento pessoal estruturado usando hipnose, PNL, Terapia Cognitivo-Comportamental e Análise
-            Transacional, para promover clareza, estabilidade e um avanço responsável.
-          </p>
+          <div className="text-left">
+            <p className="font-body text-xs uppercase tracking-[0.08em] text-aqua mb-3">
+              EMOTIONAL &amp; LIFE REBUILDING COACH · CRIADOR DO MÉTODO S.T.A.B.L.E.™
+            </p>
+            <p className="font-body text-lg md:text-xl text-charcoal/90 leading-relaxed">
+              Sal Ray é um coach especializado em reconstrução emocional e de vida, que ajuda adultos a identificar os
+              padrões mais profundos que os mantêm estagnados. Seu trabalho combina o reconhecimento preciso de padrões,
+              o desenvolvimento pessoal estruturado usando hipnose, PNL, Terapia Cognitivo-Comportamental e Análise
+              Transacional, para promover clareza, estabilidade e um avanço responsável.
+            </p>
+          </div>
         </div>
       </section>
 
