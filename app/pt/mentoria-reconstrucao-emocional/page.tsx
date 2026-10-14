@@ -87,7 +87,7 @@ export default function GrupoGratuitoPage() {
 
       <section className="border-b border-charcoal/10">
         <div className="max-w-content mx-auto px-6 py-12 md:py-16">
-          <div className="max-w-[720px]">
+          <div className="max-w-[720px] mx-auto text-center">
             <p className="font-body text-lg text-charcoal/80 leading-relaxed mb-8">
               Aqui não existe julgamento, cobrança ou obrigação de participar. Você pode responder enquetes, fazer
               perguntas ou só acompanhar.
@@ -105,17 +105,20 @@ export default function GrupoGratuitoPage() {
         <div className="max-w-content mx-auto px-6 py-12 md:py-16 grid md:grid-cols-2 gap-10 md:gap-12 items-center">
           <div>
             <Image
-              src="/images/grupo-gratuito/sal-ray-notebook.webp"
+              src="/images/grupo-gratuito/sal-ray-escritorio.webp"
               alt="Sal Ray, Emotional & Life Rebuilding Coach"
-              width={1000}
-              height={1250}
+              width={1033}
+              height={1282}
               loading="lazy"
               sizes="(max-width: 768px) 100vw, 50vw"
               className="w-full h-auto rounded-lg"
             />
           </div>
-          <p className="font-display text-2xl md:text-3xl text-charcoal leading-snug">
-            Sal Ray é Emotional &amp; Life Rebuilding Coach e criador do Método S.T.A.B.L.E.™
+          <p className="font-body text-lg md:text-xl text-charcoal/90 leading-relaxed text-left">
+            Sal Ray é um coach especializado em reconstrução emocional e de vida, que ajuda adultos a identificar os
+            padrões mais profundos que os mantêm estagnados. Seu trabalho combina o reconhecimento preciso de padrões,
+            o desenvolvimento pessoal estruturado usando hipnose, PNL, Terapia Cognitivo-Comportamental e Análise
+            Transacional, para promover clareza, estabilidade e um avanço responsável.
           </p>
         </div>
       </section>
