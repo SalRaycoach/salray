@@ -8,8 +8,8 @@ import GroupButton from './GroupButton'
 export const dynamic = 'force-dynamic'
 
 export const metadata: Metadata = {
-  title: 'Grupo gratuito de Reconstrução Emocional | SAL Ray',
-  description: 'Entre no grupo gratuito de Reconstrução Emocional de Sal Ray no WhatsApp.',
+  title: 'Grupo do WhatsApp Reconstrução Emocional | SAL Ray',
+  description: 'Entre no grupo Reconstrução Emocional de Sal Ray no WhatsApp.',
   robots: { index: false, follow: false },
 }
 
@@ -46,9 +46,9 @@ export default function GrupoGratuitoPage() {
       <section className="border-b border-charcoal/10">
         <div className="max-w-content mx-auto px-6 py-12 md:py-20 grid md:grid-cols-2 gap-10 md:gap-12 items-center">
           <div>
-            <p className="font-body text-xs uppercase tracking-[0.08em] text-aqua mb-3">GRUPO GRATUITO · WHATSAPP</p>
+            <p className="font-body text-xs uppercase tracking-[0.08em] text-aqua mb-3">GRUPO DO WHATSAPP</p>
             <h1 className="font-display text-4xl md:text-5xl leading-tight text-charcoal mb-5">
-              Entre no grupo gratuito de Reconstrução Emocional
+              Entre no grupo Reconstrução Emocional
             </h1>
             <p className="font-body text-lg text-charcoal/80 leading-relaxed mb-8">
               Um espaço de cuidado criado por Sal Ray para você entender seus sentimentos e reconhecer os padrões que se
