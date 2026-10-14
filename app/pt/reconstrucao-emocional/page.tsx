@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import SalRayTopPhoto from '@/components/SalRayTopPhoto'
 import Link from 'next/link'
 import { Suspense } from 'react'
 import type { Metadata } from 'next'
@@ -224,16 +225,7 @@ export default function ReconstrucaoEmocionalPage() {
             <p className="font-body text-sm text-charcoal/50">Quatro formas de começar. Uma mesma estrutura de reconstrução.</p>
           </div>
           <div className="relative">
-            <Image
-              src="/images/hero/hero-desktop.jpg"
-              alt="Sal Ray, criador do Método S.T.A.B.L.E.™"
-              width={800}
-              height={960}
-              priority
-              fetchPriority="high"
-              sizes="(max-width: 768px) 100vw, 50vw"
-              className="w-full h-auto object-cover rounded-lg"
-            />
+            <SalRayTopPhoto sizes="(max-width: 768px) calc(100vw - 48px), (max-width: 1180px) calc(50vw - 48px), 542px" />
           </div>
         </div>
       </section>

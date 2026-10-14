@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import dynamic from 'next/dynamic'
 import Image from 'next/image'
+import SalRayTopPhoto from '@/components/SalRayTopPhoto'
 import Link from 'next/link'
 import SchemaOrg from '@/components/SchemaOrg'
 import TrackMetaEventOnMount from '@/components/TrackMetaEventOnMount'
@@ -214,16 +215,7 @@ export default function FourWeekExperiencePage() {
             </div>
           </div>
           <div className="relative">
-            <Image
-              src="/images/hero/hero-desktop.jpg"
-              alt="SAL Ray, Emotional & Life Rebuilding Coach."
-              width={800}
-              height={960}
-              priority
-              fetchPriority="high"
-              sizes="(max-width: 768px) 100vw, 50vw"
-              className="w-full h-auto object-cover rounded-lg"
-            />
+            <SalRayTopPhoto sizes="(max-width: 768px) calc(100vw - 48px), (max-width: 1180px) calc(50vw - 48px), 542px" />
           </div>
         </div>
       </section>
