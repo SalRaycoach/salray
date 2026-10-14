@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import SalRayTopPhoto from '@/components/SalRayTopPhoto'
+import Image from 'next/image'
 import Link from 'next/link'
 import Testimonials from '@/components/Testimonials'
 import CaseStudies from '@/components/CaseStudies'
@@ -27,7 +27,15 @@ export default function AboutPage() {
   return (
     <main className="max-w-content mx-auto px-6 py-16 md:py-24">
       <div className="grid md:grid-cols-[300px_1fr] gap-12 mb-16">
-        <SalRayTopPhoto sizes="(max-width: 768px) calc(100vw - 48px), 300px" />
+        <Image
+          src="/images/about/sal-ray-portrait.jpg"
+          alt={business.nome}
+          width={420}
+          height={504}
+          sizes="(max-width: 768px) calc(100vw - 48px), 300px"
+          priority
+          className="w-full h-auto object-cover rounded-lg"
+        />
 
         <div>
           <h1 className="font-display text-4xl text-charcoal mb-6">About SAL Ray</h1>
