@@ -1,5 +1,4 @@
 import type { Metadata } from 'next'
-import Image from 'next/image'
 import { getMentoriaReconstrucao } from '@/lib/pt-reconstrucao'
 import GroupButton from './GroupButton'
 
@@ -57,13 +56,16 @@ export default function GrupoGratuitoPage() {
             <GroupButton location="topo" />
           </div>
           <div>
-            <Image
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
               src="/images/grupo-gratuito/sal-ray-aneis.webp"
+              srcSet="/images/grupo-gratuito/sal-ray-aneis-480.webp 480w, /images/grupo-gratuito/sal-ray-aneis-640.webp 640w, /images/grupo-gratuito/sal-ray-aneis-800.webp 800w, /images/grupo-gratuito/sal-ray-aneis.webp 1122w"
+              sizes="(max-width: 768px) calc(100vw - 48px), 542px"
               alt="Sal Ray, Emotional & Life Rebuilding Coach"
               width={1122}
               height={1274}
-              priority
-              sizes="(max-width: 768px) 100vw, 50vw"
+              fetchPriority="high"
+              decoding="async"
               className="w-full h-auto rounded-lg"
             />
           </div>
@@ -104,13 +106,16 @@ export default function GrupoGratuitoPage() {
       <section className="border-b border-charcoal/10 bg-pale-aqua">
         <div className="max-w-content mx-auto px-6 py-12 md:py-16 grid md:grid-cols-2 gap-10 md:gap-12 items-center">
           <div>
-            <Image
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
               src="/images/grupo-gratuito/sal-ray-executivo.webp"
+              srcSet="/images/grupo-gratuito/sal-ray-executivo-480.webp 480w, /images/grupo-gratuito/sal-ray-executivo-640.webp 640w, /images/grupo-gratuito/sal-ray-executivo-800.webp 800w, /images/grupo-gratuito/sal-ray-executivo.webp 1122w"
+              sizes="(max-width: 768px) calc(100vw - 48px), 542px"
               alt="Sal Ray, Emotional & Life Rebuilding Coach"
               width={1122}
               height={1402}
               loading="lazy"
-              sizes="(max-width: 768px) 100vw, 50vw"
+              decoding="async"
               className="w-full h-auto rounded-lg"
             />
           </div>
