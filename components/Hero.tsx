@@ -39,10 +39,10 @@ export default function Hero() {
 
         <div className="relative">
           <Image
-            src="/images/hero/hero-desktop.jpg"
-            alt={`${business.nome}, ${business.posicionamento}`}
-            width={800}
-            height={960}
+            src="/images/home/hero-sal-ray.webp"
+            alt="Sal Ray, Emotional & Life Rebuilding Coach"
+            width={1122}
+            height={1274}
             priority
             fetchPriority="high"
             sizes="(max-width: 768px) 100vw, 50vw"
