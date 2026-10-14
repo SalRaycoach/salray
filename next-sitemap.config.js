@@ -86,6 +86,8 @@ module.exports = {
     '/robots.txt',
     '/sitemap.xml',
     '/thank-you-consultation',
+    // Página de captura de anúncios (grupo gratuito do WhatsApp): noindex, nunca listada.
+    '/pt/mentoria-reconstrucao-emocional',
     // Post-submission confirmation page — never indexed, same pattern as
     // /thank-you-consultation and /thank-you-community below.
     '/4-week-experience/thank-you',
