@@ -1,4 +1,4 @@
-import Image from 'next/image'
+import SalRayTopPhoto from '@/components/SalRayTopPhoto'
 import Link from 'next/link'
 import { business, ctas } from '@/lib/config'
 
@@ -38,17 +38,7 @@ export default function Hero() {
         </div>
 
         <div className="relative">
-          <Image
-            src="/images/home/hero-sal-ray.webp"
-            alt="Sal Ray, Emotional & Life Rebuilding Coach"
-            width={1122}
-            height={1274}
-            priority
-            fetchPriority="high"
-            sizes="(max-width: 768px) 100vw, 50vw"
-            className="w-full h-auto object-cover rounded-lg"
-            style={{ opacity: 1 }}
-          />
+          <SalRayTopPhoto sizes="(max-width: 768px) calc(100vw - 48px), (max-width: 1180px) calc(50vw - 48px), 542px" style={{ opacity: 1 }} />
         </div>
       </div>
     </section>

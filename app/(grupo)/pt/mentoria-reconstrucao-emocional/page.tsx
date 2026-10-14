@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { getMentoriaReconstrucao } from '@/lib/pt-reconstrucao'
 import GroupButton from './GroupButton'
+import SalRayTopPhoto from '@/components/SalRayTopPhoto'
 
 // Página de captura para anúncios: fora do sitemap, noindex, e renderizada a cada acesso só para a
 // frase da mentoria nas perguntas (ela some depois do encerramento das inscrições).
@@ -56,18 +57,7 @@ export default function GrupoGratuitoPage() {
             <GroupButton location="topo" />
           </div>
           <div>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="/images/grupo-gratuito/sal-ray-aneis.webp"
-              srcSet="/images/grupo-gratuito/sal-ray-aneis-480.webp 480w, /images/grupo-gratuito/sal-ray-aneis-640.webp 640w, /images/grupo-gratuito/sal-ray-aneis-800.webp 800w, /images/grupo-gratuito/sal-ray-aneis.webp 1122w"
-              sizes="(max-width: 768px) calc(100vw - 48px), 542px"
-              alt="Sal Ray, Emotional & Life Rebuilding Coach"
-              width={1122}
-              height={1274}
-              fetchPriority="high"
-              decoding="async"
-              className="w-full h-auto rounded-lg"
-            />
+            <SalRayTopPhoto sizes="(max-width: 768px) calc(100vw - 48px), 542px" className="w-full h-auto rounded-lg" />
           </div>
         </div>
       </section>
