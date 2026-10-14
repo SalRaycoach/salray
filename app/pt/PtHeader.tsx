@@ -22,6 +22,17 @@ export default function PtHeader() {
   // escolher" para "agendar uma consulta" (pedido 15 set 2026).
   const isAvaliacao = pathname?.startsWith('/pt/reconstrucao-emocional/avaliacao')
 
+  // Página de captura de anúncios: só o logo, sem menu e sem outros links.
+  if (pathname?.startsWith('/pt/mentoria-reconstrucao-emocional')) {
+    return (
+      <header className="bg-offwhite border-b border-charcoal/10">
+        <div className="max-w-content mx-auto px-6 py-4">
+          <span className="font-display font-semibold text-lg text-charcoal">SAL Ray</span>
+        </div>
+      </header>
+    )
+  }
+
   if (isReconstrucao) {
     const helpUrl = buildWhatsAppUrl(
       isAvaliacao ? whatsapp.messages.avaliacaoConcluida : whatsapp.messages.ajudaParaEscolher

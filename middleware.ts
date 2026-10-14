@@ -50,6 +50,13 @@ export function middleware(request: NextRequest) {
     return response
   }
 
+  // Página de captura de anúncios (grupo gratuito): noindex também no cabeçalho, além da meta tag.
+  if (pathname.startsWith('/pt/mentoria-reconstrucao-emocional')) {
+    const response = NextResponse.next()
+    response.headers.set('X-Robots-Tag', 'noindex, nofollow')
+    return response
+  }
+
   // English self-assessment tool — same private-link, never-indexed pattern
   // as /pt/reconstrucao-emocional/avaliacao/ above, requested 22 set 2026.
   if (pathname.startsWith('/assessment')) {
