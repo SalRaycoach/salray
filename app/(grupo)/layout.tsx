@@ -22,7 +22,7 @@ const inter = Inter({
  * criada para carregar rápido no celular (tráfego do Facebook). Diferenças para app/pt/layout.tsx:
  * cabeçalho e rodapé estáticos (sem componentes de cliente que leem a rota) e sem GA4. O Meta Pixel
  * continua, com o carregamento adiado (veja components/MetaPixel.tsx, prop deferLoad) e o
- * AnalyticsListener continua para os eventos de rolagem. Não force robots aqui: a página define noindex.
+ * AnalyticsListener continua para os eventos de rolagem. Não force robots aqui: a página define index,follow.
  */
 export const metadata: Metadata = { metadataBase: new URL(SITE_URL) }
 

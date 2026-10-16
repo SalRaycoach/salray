@@ -86,8 +86,6 @@ module.exports = {
     '/robots.txt',
     '/sitemap.xml',
     '/thank-you-consultation',
-    // Página de captura de anúncios (grupo gratuito do WhatsApp): noindex, nunca listada.
-    '/pt/mentoria-reconstrucao-emocional',
     // Post-submission confirmation page — never indexed, same pattern as
     // /thank-you-consultation and /thank-you-community below.
     '/4-week-experience/thank-you',
@@ -130,7 +128,7 @@ module.exports = {
   // /pt/reconstrucao-emocional é force-dynamic (troca de preço automática em
   // 01/11/2026), então também não aparece no crawl estático: listada aqui.
   additionalPaths: async (config) => {
-    const paths = ['/pt/reconstrucao-emocional', '/pt/reflexoes', ...PT_REFLEXOES_AUDIOS.map((a) => `/pt/reflexoes/${a.slug}`), '/reflections', ...EN_REFLECTIONS.map((a) => `/reflections/${a.slug}`)]
+    const paths = ['/pt/reconstrucao-emocional', '/pt/mentoria-reconstrucao-emocional', '/pt/reflexoes', ...PT_REFLEXOES_AUDIOS.map((a) => `/pt/reflexoes/${a.slug}`), '/reflections', ...EN_REFLECTIONS.map((a) => `/reflections/${a.slug}`)]
     return Promise.all(paths.map((p) => config.transform(config, p)))
   },
   transform: async (config, path) => {
@@ -150,6 +148,11 @@ module.exports = {
       priority = 0.8
       changefreq = 'monthly'
       lastmod = '2026-10-11T12:00:00-05:00'
+    } else if (p === '/pt/mentoria-reconstrucao-emocional') {
+      // Página dos anúncios (grupo gratuito do WhatsApp): indexável desde 16 out 2026.
+      priority = 0.8
+      changefreq = 'monthly'
+      lastmod = '2026-10-16T12:00:00-04:00'
     } else if (p === '/book-a-session') {
       priority = 0.9
       changefreq = 'weekly'

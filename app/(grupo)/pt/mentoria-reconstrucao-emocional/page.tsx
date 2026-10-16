@@ -3,14 +3,15 @@ import { getMentoriaReconstrucao } from '@/lib/pt-reconstrucao'
 import GroupButton from './GroupButton'
 import SalRayTopPhoto from '@/components/SalRayTopPhoto'
 
-// Página de captura para anúncios: fora do sitemap, noindex, e renderizada a cada acesso só para a
+// Página de captura para anúncios: indexável (index,follow), no sitemap, e renderizada a cada acesso só para a
 // frase da mentoria nas perguntas (ela some depois do encerramento das inscrições).
 export const dynamic = 'force-dynamic'
 
 export const metadata: Metadata = {
   title: 'Grupo do WhatsApp Reconstrução Emocional | SAL Ray',
   description: 'Entre no grupo Reconstrução Emocional de Sal Ray no WhatsApp.',
-  robots: { index: false, follow: false },
+  alternates: { canonical: 'https://salraycoach.com/pt/mentoria-reconstrucao-emocional/' },
+  robots: { index: true, follow: true },
 }
 
 const faixa = [
