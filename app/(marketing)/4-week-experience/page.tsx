@@ -117,8 +117,8 @@ const trustPoints = [
     body: 'Honest feedback is welcome, but a public testimonial is never required.',
   },
   {
-    title: 'A fit conversation comes first',
-    body: 'Selected applicants have a brief 15-minute conversation before any sessions are scheduled.',
+    title: 'A prior consultation comes first',
+    body: 'Selected applicants have a prior consultation before any sessions are scheduled.',
   },
 ]
 
@@ -135,8 +135,8 @@ const afterApplySteps = [
   },
   {
     step: '3',
-    title: 'Brief fit conversation',
-    body: 'Potential participants are invited to a short 15-minute video conversation to confirm fit, expectations, scheduling, and next steps.',
+    title: 'Prior consultation',
+    body: 'Potential participants are invited to a prior video consultation to confirm fit, expectations, scheduling, and next steps.',
   },
   {
     step: '4',
@@ -266,8 +266,8 @@ export default function FourWeekExperiencePage() {
               </p>
               <p className="font-body text-charcoal/70 leading-relaxed max-w-2xl mb-10">
                 Applying does not commit you to coaching and does not guarantee selection. SAL Ray personally reviews
-                each application. If your situation appears to be a fit, you will be invited to a brief 15-minute
-                video conversation to discuss your focus, expectations, availability, and next steps.
+                each application. If your situation appears to be a fit, you will be invited to a prior video
+                consultation to discuss your focus, expectations, availability, and next steps.
               </p>
               <FourWeekApplicationForm />
             </div>
@@ -513,8 +513,8 @@ export default function FourWeekExperiencePage() {
           </p>
           <p className="font-body text-charcoal/70 leading-relaxed max-w-2xl mb-10">
             Applying does not commit you to coaching and does not guarantee selection. SAL Ray personally reviews
-            each application. If your situation appears to be a fit, you will be invited to a brief 15-minute video
-            conversation to discuss your focus, expectations, availability, and next steps.
+            each application. If your situation appears to be a fit, you will be invited to a prior video
+            consultation to discuss your focus, expectations, availability, and next steps.
           </p>
           <FourWeekApplicationForm />
         </div>
