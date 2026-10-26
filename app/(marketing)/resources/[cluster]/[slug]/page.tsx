@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { ogImagesFor, twitterFor } from '@/lib/og'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import SchemaOrg from '@/components/SchemaOrg'
@@ -19,6 +20,7 @@ export function generateMetadata({ params }: { params: { cluster: string; slug: 
     title: article.metaTitle ?? article.title,
     description: article.excerpt,
     alternates: { canonical: `${SITE_URL}/resources/${article.cluster}/${article.slug}/` },
+    twitter: twitterFor(article.ogImage, article.title),
     openGraph: {
       title: article.metaTitle ?? article.title,
       description: article.excerpt,
@@ -26,7 +28,7 @@ export function generateMetadata({ params }: { params: { cluster: string; slug: 
       type: 'article',
       publishedTime: article.datePublished,
       modifiedTime: article.dateModified,
-      images: [{ url: `${SITE_URL}${article.ogImage}`, width: 1200, height: 630, alt: article.title }],
+      images: ogImagesFor(article.ogImage, article.title),
     },
     robots: 'index, follow',
   }

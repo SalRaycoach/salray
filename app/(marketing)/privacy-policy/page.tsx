@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { OG_IMAGES, TWITTER_CARD } from '@/lib/og'
 import { contato, SITE_URL } from '@/lib/config'
 
 const title = 'Privacy Policy'
@@ -8,11 +9,12 @@ export const metadata: Metadata = {
   title,
   description,
   alternates: { canonical: `${SITE_URL}/privacy-policy/` },
+  twitter: TWITTER_CARD,
   openGraph: {
     title: `${title} | SAL Ray`,
     description,
     url: `${SITE_URL}/privacy-policy/`,
-    images: [{ url: `${SITE_URL}/images/og/og-default.jpg`, width: 1200, height: 630, alt: title }],
+    images: OG_IMAGES,
   },
   robots: 'index, follow',
 }

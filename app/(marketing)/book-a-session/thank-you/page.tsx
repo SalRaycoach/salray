@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { OG_IMAGES, TWITTER_CARD } from '@/lib/og'
 import TrackOnMount from '@/components/TrackOnMount'
 import { contato, SITE_URL } from '@/lib/config'
 
@@ -8,10 +9,11 @@ const ogTitle = 'Request Received | SAL Ray'
 export const metadata: Metadata = {
   title,
   description: 'Your session request has been received.',
+  twitter: TWITTER_CARD,
   openGraph: {
     title: ogTitle,
     url: `${SITE_URL}/book-a-session/thank-you/`,
-    images: [{ url: `${SITE_URL}/images/og/og-default.jpg`, width: 1200, height: 630, alt: ogTitle }],
+    images: OG_IMAGES,
   },
   robots: 'noindex, nofollow',
 }

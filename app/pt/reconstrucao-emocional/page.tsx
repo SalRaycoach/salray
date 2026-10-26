@@ -3,6 +3,7 @@ import SalRayTopPhoto from '@/components/SalRayTopPhoto'
 import Link from 'next/link'
 import { Suspense } from 'react'
 import type { Metadata } from 'next'
+import { OG_IMAGES, TWITTER_CARD } from '@/lib/og'
 import { getOffer, isVivenciasLaunchPrice, getMentoriaReconstrucao, getComparisonColumns, comparisonRows, stableMethodPt, ptFaqs, ptTestimonials, buildWhatsAppUrl, whatsapp, PT_CANONICAL_URL, ptPageMeta } from '@/lib/pt-reconstrucao'
 import { getReconstrucaoEmocionalSchema } from '@/lib/schema'
 import SchemaOrg from '@/components/SchemaOrg'
@@ -23,12 +24,14 @@ export const metadata: Metadata = {
   description: ptPageMeta.description,
   alternates: { canonical: PT_CANONICAL_URL },
   robots: { index: true, follow: true },
+  twitter: TWITTER_CARD,
   openGraph: {
     title: ptPageMeta.title,
     description: ptPageMeta.description,
     url: PT_CANONICAL_URL,
     locale: 'pt_BR',
     type: 'website',
+    images: OG_IMAGES,
   },
 }
 

@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { OG_IMAGES, TWITTER_CARD } from '@/lib/og'
 import { getPublishedReflections, getNextScheduledReflection, formatNextReflectionDate, REFLECTION_CATEGORIES } from '@/lib/reflections'
 import { SITE_URL } from '@/lib/config'
 import ReflectionCategoryFilter from './ReflectionCategoryFilter'
@@ -20,12 +21,14 @@ export const metadata: Metadata = {
   title,
   description,
   alternates: { canonical: `${SITE_URL}/reflections/` },
+  twitter: TWITTER_CARD,
   openGraph: {
     title,
     description,
     url: `${SITE_URL}/reflections/`,
     locale: 'en_US',
     type: 'website',
+    images: OG_IMAGES,
   },
 }
 

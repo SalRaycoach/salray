@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { OG_IMAGES, TWITTER_CARD } from '@/lib/og'
 import Link from 'next/link'
 import SchemaOrg from '@/components/SchemaOrg'
 import { articles } from '@/lib/resources'
@@ -15,6 +16,7 @@ export const metadata: Metadata = {
   title,
   description,
   alternates: { canonical: `${SITE_URL}${path}` },
+  twitter: TWITTER_CARD,
   openGraph: {
     title,
     description,
@@ -22,7 +24,7 @@ export const metadata: Metadata = {
     type: 'article',
     publishedTime: published,
     modifiedTime: published,
-    images: [{ url: `${SITE_URL}/images/og/og-default.jpg`, width: 1200, height: 630, alt: title }],
+    images: OG_IMAGES,
   },
   robots: 'index, follow',
 }
