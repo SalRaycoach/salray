@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { SITE_ICONS } from '@/lib/icons'
 import { Fraunces, Inter } from 'next/font/google'
 import '../globals.css'
 import MetaPixel from '@/components/MetaPixel'
@@ -24,7 +25,7 @@ const inter = Inter({
  * continua, com o carregamento adiado (veja components/MetaPixel.tsx, prop deferLoad) e o
  * AnalyticsListener continua para os eventos de rolagem. Não force robots aqui: a página define index,follow.
  */
-export const metadata: Metadata = { metadataBase: new URL(SITE_URL) }
+export const metadata: Metadata = { metadataBase: new URL(SITE_URL), icons: SITE_ICONS }
 
 export default function GrupoRootLayout({ children }: { children: React.ReactNode }) {
   return (
