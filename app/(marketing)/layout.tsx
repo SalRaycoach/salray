@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { SITE_ICONS } from '@/lib/icons'
 import { Fraunces, Inter } from 'next/font/google'
 import '../globals.css'
 import Navbar from '@/components/Navbar'
@@ -22,6 +23,7 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
+  icons: SITE_ICONS,
   title: {
     default: `${business.nome} | ${business.posicionamento}`,
     template: `%s | ${business.nome}`,

@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { SITE_ICONS } from '@/lib/icons'
 import { Fraunces, Inter } from 'next/font/google'
 import '../globals.css'
 import ConditionalGoogleAnalytics from '@/components/ConditionalGoogleAnalytics'
@@ -30,7 +31,7 @@ const inter = Inter({
  * emocional/page.tsx define index,follow; só avaliacao/ é noindex) — não force um default aqui
  * que uma seção com necessidade diferente da outra precisaria sobrescrever.
  */
-export const metadata: Metadata = { metadataBase: new URL(SITE_URL) }
+export const metadata: Metadata = { metadataBase: new URL(SITE_URL), icons: SITE_ICONS }
 
 export default function PtRootLayout({ children }: { children: React.ReactNode }) {
   return (
