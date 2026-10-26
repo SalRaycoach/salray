@@ -338,6 +338,7 @@ export const ptFaqs: PtFaq[] = [
   {
     question: 'Qual é a política de reembolso?',
     answer: null, // PENDENTE — briefing seção 14: "NÃO PUBLICAR ESTA RESPOSTA COMO PLACEHOLDER"
+    // OCULTA no site até a política de reembolso ser fornecida: o page.tsx só mostra FAQs com answer preenchido. Preencher a resposta acima reativa a pergunta.
   },
 ]
 
