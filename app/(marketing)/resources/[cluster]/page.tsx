@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { OG_IMAGES, TWITTER_CARD } from '@/lib/og'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import SchemaOrg from '@/components/SchemaOrg'
@@ -21,11 +22,12 @@ export function generateMetadata({ params }: { params: { cluster: string } }): M
     title,
     description,
     alternates: { canonical: `${SITE_URL}/resources/${cluster.slug}/` },
+    twitter: TWITTER_CARD,
     openGraph: {
       title: `${title} | SAL Ray`,
       description,
       url: `${SITE_URL}/resources/${cluster.slug}/`,
-      images: [{ url: `${SITE_URL}/images/og/og-default.jpg`, width: 1200, height: 630, alt: title }],
+      images: OG_IMAGES,
     },
     robots: 'index, follow',
   }

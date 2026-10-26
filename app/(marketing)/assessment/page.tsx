@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { OG_IMAGES, TWITTER_CARD } from '@/lib/og'
 import { SITE_URL } from '@/lib/config'
 import AssessmentApp from './AssessmentApp'
 
@@ -12,6 +13,15 @@ export const metadata: Metadata = {
   description: 'A private self-assessment for clients working with SAL Ray.',
   robots: { index: false, follow: false },
   alternates: { canonical: `${SITE_URL}/assessment/` },
+  twitter: TWITTER_CARD,
+  openGraph: {
+    title: 'Self-Assessment',
+    description: 'A private self-assessment for clients working with SAL Ray.',
+    url: `${SITE_URL}/assessment/`,
+    locale: 'en_US',
+    type: 'website',
+    images: OG_IMAGES,
+  },
 }
 
 export default function AssessmentPage() {

@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { ogImagesFor, twitterFor } from '@/lib/og'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import SchemaOrg from '@/components/SchemaOrg'
@@ -35,13 +36,14 @@ export function generateMetadata({ params }: { params: { slug: string } }): Meta
     title: audio.titulo,
     description: audio.descricao,
     alternates: { canonical: url },
+    twitter: twitterFor(audio.ogImage, audio.titulo),
     openGraph: {
       title: audio.titulo,
       description: audio.descricao,
       url,
       locale: 'pt_BR',
       type: 'music.song', // OG não tem tipo "áudio de reflexão" — mais perto disso do que "article"
-      images: [{ url: `${SITE_URL}${audio.ogImage ?? '/images/og/og-default.jpg'}`, width: 1200, height: 630, alt: audio.titulo }],
+      images: ogImagesFor(audio.ogImage, audio.titulo),
     },
   }
 }

@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { OG_IMAGES, TWITTER_CARD } from '@/lib/og'
 import Link from 'next/link'
 import Hero from '@/components/Hero'
 import ProblemRecognition from '@/components/ProblemRecognition'
@@ -21,19 +22,13 @@ export const metadata: Metadata = {
   description:
     'Non-clinical coaching for women 40–60 who feel emotionally overloaded or stuck in repeating patterns. Schedule your initial consultation.',
   alternates: { canonical: SITE_URL },
+  twitter: TWITTER_CARD,
   openGraph: {
     title: 'Emotional & Life Rebuilding Coach | SAL Ray',
     description:
       'Non-clinical coaching for women 40–60 who feel emotionally overloaded or stuck in repeating patterns. Schedule your initial consultation.',
     url: SITE_URL,
-    images: [
-      {
-        url: `${SITE_URL}/images/og/og-default.jpg`,
-        width: 1200,
-        height: 630,
-        alt: 'SAL Ray, Emotional & Life Rebuilding Coach',
-      },
-    ],
+    images: OG_IMAGES,
   },
   robots: 'index, follow',
 }

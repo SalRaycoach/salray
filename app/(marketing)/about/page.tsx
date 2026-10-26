@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { OG_IMAGES, TWITTER_CARD } from '@/lib/og'
 import Image from 'next/image'
 import Link from 'next/link'
 import Testimonials from '@/components/Testimonials'
@@ -14,11 +15,12 @@ export const metadata: Metadata = {
   title,
   description,
   alternates: { canonical: `${SITE_URL}/about/` },
+  twitter: TWITTER_CARD,
   openGraph: {
     title,
     description,
     url: `${SITE_URL}/about/`,
-    images: [{ url: `${SITE_URL}/images/og/og-default.jpg`, width: 1200, height: 630, alt: title }],
+    images: OG_IMAGES,
   },
   robots: 'index, follow',
 }

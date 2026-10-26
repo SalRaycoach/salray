@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { OG_IMAGES, TWITTER_CARD } from '@/lib/og'
 import { getPublishedAudios, getNextScheduledAudio, formatProximaData, AUDIO_CATEGORIAS } from '@/lib/audios'
 import { reflexoes, SITE_URL } from '@/lib/config'
 import CategoryFilter from './CategoryFilter'
@@ -24,12 +25,14 @@ export const metadata: Metadata = {
   description:
     'Reflexões curtas em áudio, em português, para reconhecer padrões emocionais e reorganizar a resposta interna, de graça, sem cadastro.',
   alternates: { canonical: `${SITE_URL}/pt/reflexoes/` },
+  twitter: TWITTER_CARD,
   openGraph: {
     title: reflexoes.nomeSerie,
     description: 'Reflexões curtas em áudio, em português, para reconhecer padrões e reorganizar a resposta interna.',
     url: `${SITE_URL}/pt/reflexoes/`,
     locale: 'pt_BR',
     type: 'website',
+    images: OG_IMAGES,
   },
 }
 

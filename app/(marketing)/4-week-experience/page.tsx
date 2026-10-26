@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { OG_IMAGES, TWITTER_CARD } from '@/lib/og'
 import dynamic from 'next/dynamic'
 import Image from 'next/image'
 import SalRayTopPhoto from '@/components/SalRayTopPhoto'
@@ -22,11 +23,12 @@ export const metadata: Metadata = {
   title,
   description,
   alternates: { canonical: `${SITE_URL}/4-week-experience/` },
+  twitter: TWITTER_CARD,
   openGraph: {
     title: 'Private 4-Week Emotional & Life Rebuilding Experience',
     description: 'Four private online sessions for three selected participants.',
     url: `${SITE_URL}/4-week-experience/`,
-    images: [{ url: `${SITE_URL}/images/og/og-default.jpg`, width: 1200, height: 630, alt: title }],
+    images: OG_IMAGES,
   },
   // Indexed and listed in the sitemap (out 2026). The thank-you page below it
   // stays noindex.
@@ -118,7 +120,7 @@ const trustPoints = [
   },
   {
     title: 'A selection consultation comes first',
-    body: 'Selected applicants have a selection consultation before any sessions are scheduled.',
+    body: 'Before any sessions are scheduled, selected applicants have a consultation with SAL Ray.',
   },
 ]
 

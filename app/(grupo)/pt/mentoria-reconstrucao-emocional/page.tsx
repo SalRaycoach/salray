@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { OG_IMAGES, TWITTER_CARD } from '@/lib/og'
 import { getMentoriaReconstrucao } from '@/lib/pt-reconstrucao'
 import GroupButton from './GroupButton'
 import SalRayTopPhoto from '@/components/SalRayTopPhoto'
@@ -11,6 +12,15 @@ export const metadata: Metadata = {
   title: 'Grupo do WhatsApp Reconstrução Emocional | SAL Ray',
   description: 'Entre no grupo Reconstrução Emocional de Sal Ray no WhatsApp.',
   alternates: { canonical: 'https://salraycoach.com/pt/mentoria-reconstrucao-emocional/' },
+  twitter: TWITTER_CARD,
+  openGraph: {
+    title: 'Grupo do WhatsApp Reconstrução Emocional | SAL Ray',
+    description: 'Entre no grupo Reconstrução Emocional de Sal Ray no WhatsApp.',
+    url: 'https://salraycoach.com/pt/mentoria-reconstrucao-emocional/',
+    locale: 'pt_BR',
+    type: 'website',
+    images: OG_IMAGES,
+  },
   robots: { index: true, follow: true },
 }
 

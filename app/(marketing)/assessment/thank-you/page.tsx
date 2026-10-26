@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { OG_IMAGES, TWITTER_CARD } from '@/lib/og'
 import { SITE_URL } from '@/lib/config'
 
 export const metadata: Metadata = {
@@ -6,6 +7,15 @@ export const metadata: Metadata = {
   description: 'Your self-assessment summary has been sent.',
   robots: { index: false, follow: false },
   alternates: { canonical: `${SITE_URL}/assessment/thank-you/` },
+  twitter: TWITTER_CARD,
+  openGraph: {
+    title: 'Thank You',
+    description: 'Your self-assessment summary has been sent.',
+    url: `${SITE_URL}/assessment/thank-you/`,
+    locale: 'en_US',
+    type: 'website',
+    images: OG_IMAGES,
+  },
 }
 
 export default function AssessmentThankYouPage() {

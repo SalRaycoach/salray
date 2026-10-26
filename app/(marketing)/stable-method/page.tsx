@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { OG_IMAGES, TWITTER_CARD } from '@/lib/og'
 import Link from 'next/link'
 import SchemaOrg from '@/components/SchemaOrg'
 import ScrollDepthTrigger from '@/components/ScrollDepthTrigger'
@@ -13,11 +14,12 @@ export const metadata: Metadata = {
   title,
   description,
   alternates: { canonical: `${SITE_URL}/stable-method/` },
+  twitter: TWITTER_CARD,
   openGraph: {
     title: `${title} | SAL Ray`,
     description,
     url: `${SITE_URL}/stable-method/`,
-    images: [{ url: `${SITE_URL}/images/og/og-default.jpg`, width: 1200, height: 630, alt: title }],
+    images: OG_IMAGES,
   },
   robots: 'index, follow',
 }
