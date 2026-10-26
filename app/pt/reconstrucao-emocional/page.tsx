@@ -925,7 +925,8 @@ export default function ReconstrucaoEmocionalPage() {
         <div className="max-w-content mx-auto px-6 py-16 md:py-24">
           <h2 className="font-display text-3xl md:text-4xl text-charcoal mb-10">Perguntas frequentes</h2>
           <div className="max-w-[720px]">
-            <FaqAccordion faqs={ptFaqs} />
+            {/* A pergunta "Qual é a política de reembolso?" fica OCULTA (e fora de qualquer schema FAQ) enquanto a resposta for null em lib/pt-reconstrucao.ts. Para reativar: preencher o campo answer dela, e ela volta sozinha. */}
+            <FaqAccordion faqs={ptFaqs.filter((faq) => faq.answer)} />
           </div>
         </div>
       </section>
