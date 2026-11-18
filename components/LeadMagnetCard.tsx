@@ -19,17 +19,61 @@ import { trackEvent } from '@/lib/analytics'
 
 export type LeadMagnetVariant = 'page' | 'article' | 'compact'
 
-const COVER_SRC = '/email/training-cover.jpg'
 const COVER_WIDTH = 630
 const COVER_HEIGHT = 1120
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/
 
-const MESSAGES = {
-  invalid: 'Please enter a valid email.',
-  general: 'Something went wrong. Please try again in a moment.',
-  rateLimit: 'Too many attempts. Please wait a minute and try again.',
-}
+export type LeadMagnetLang = 'en' | 'pt'
+
+const COPY = {
+  en: {
+    coverSrc: '/email/training-cover.jpg',
+    coverAlt: 'Cover of the training: The Same Problem Keeps Finding You',
+    invalid: 'Please enter a valid email.',
+    general: 'Something went wrong. Please try again in a moment.',
+    rateLimit: 'Too many attempts. Please wait a minute and try again.',
+    eyebrowPage: 'Interactive training PDF · 120 pages',
+    eyebrowCompact: 'Interactive training PDF',
+    titlePage: 'The Same Problem Keeps Finding You',
+    titleCompact: 'Thirty days to find the pattern running your life',
+    bodyPage:
+      'Not a reading PDF. You write in it, day by day, and by day 30 the pattern has a name. Sent straight to your inbox.',
+    bodyCompact: 'Every box can be filled in. About 20 minutes a day.',
+    successTitle: 'Check your inbox.',
+    successBody:
+      'Your training is on its way. If you do not see it in a few minutes, look in your Promotions or Spam folder.',
+    emailLabel: 'Your email',
+    emailPlaceholder: 'Your email',
+    button: 'Get the training',
+    sending: 'Sending...',
+    micro: 'Delivered to your inbox. You can unsubscribe at any time.',
+    privacy: 'Privacy Policy',
+  },
+  pt: {
+    coverSrc: '/email/training-cover-pt.jpg',
+    coverAlt: 'Capa do treinamento: O Mesmo Problema Continua Te Encontrando',
+    invalid: 'Digite um email válido.',
+    general: 'Algo deu errado. Tente de novo em instantes.',
+    rateLimit: 'Muitas tentativas. Espere um minuto e tente de novo.',
+    eyebrowPage: 'PDF interativo de treinamento · 120 páginas',
+    eyebrowCompact: 'PDF interativo de treinamento',
+    titlePage: 'O Mesmo Problema Continua Te Encontrando',
+    titleCompact: 'Trinta dias para encontrar o padrão que comanda a sua vida',
+    bodyPage:
+      'Não é um PDF de leitura. Você escreve nele, dia após dia, e no dia 30 o padrão tem nome. Enviado direto para o seu email.',
+    bodyCompact: 'Cada caixa pode ser preenchida. Cerca de 20 minutos por dia.',
+    successTitle: 'Confira sua caixa de entrada.',
+    successBody:
+      'Seu treinamento está a caminho. Se não aparecer em alguns minutos, olhe em Promoções ou Spam.',
+    emailLabel: 'Seu email',
+    emailPlaceholder: 'Seu email',
+    button: 'Receber o treinamento',
+    sending: 'Enviando...',
+    micro: 'Enviado para o seu email. Você pode cancelar quando quiser.',
+    privacy: 'Política de Privacidade',
+  },
+} as const
 
 type Status = 'idle' | 'submitting' | 'success' | 'error'
 
@@ -37,9 +81,12 @@ export default function LeadMagnetCard({
   variant = 'page',
   source,
   priority = false,
+  lang = 'en',
 }: {
   variant?: LeadMagnetVariant
   source: string
+  /** Idioma do cartão e do e-mail de entrega ("en" por padrão: os cartões em inglês não mudam). */
+  lang?: LeadMagnetLang
   /** Cartão na primeira dobra: carrega a capa já, sem lazy. */
   priority?: boolean
 }) {
@@ -50,6 +97,7 @@ export default function LeadMagnetCard({
   const [errorMessage, setErrorMessage] = useState('')
 
   const compact = variant !== 'page'
+  const t = COPY[lang]
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
@@ -58,7 +106,7 @@ export default function LeadMagnetCard({
     const value = email.trim()
     if (!EMAIL_RE.test(value) || value.length > 200) {
       setStatus('error')
-      setErrorMessage(MESSAGES.invalid)
+      setErrorMessage(t.invalid)
       return
     }
 
@@ -69,13 +117,13 @@ export default function LeadMagnetCard({
       const response = await fetch('/api/first-steps-signup/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email: value, lang: 'en', source, website }),
+        body: JSON.stringify({ email: value, lang, source, website }),
       })
       const data = (await response.json().catch(() => ({}))) as { ok?: boolean }
 
       if (response.ok && data.ok) {
         // Nunca vai e-mail em parâmetro de evento.
-        trackEvent('lead_magnet_signup', { lang: 'en', source })
+        trackEvent('lead_magnet_signup', { lang, source })
         setStatus('success')
         setEmail('')
         return
@@ -83,19 +131,17 @@ export default function LeadMagnetCard({
 
       setStatus('error')
       setErrorMessage(
-        response.status === 429 ? MESSAGES.rateLimit : response.status === 400 ? MESSAGES.invalid : MESSAGES.general
+        response.status === 429 ? t.rateLimit : response.status === 400 ? t.invalid : t.general
       )
     } catch {
       setStatus('error')
-      setErrorMessage(MESSAGES.general)
+      setErrorMessage(t.general)
     }
   }
 
-  const eyebrow = compact ? 'Interactive training PDF' : 'Interactive training PDF · 120 pages'
-  const title = compact ? 'Thirty days to find the pattern running your life' : 'The Same Problem Keeps Finding You'
-  const body = compact
-    ? 'Every box can be filled in. About 20 minutes a day.'
-    : 'Not a reading PDF. You write in it, day by day, and by day 30 the pattern has a name. Sent straight to your inbox.'
+  const eyebrow = compact ? t.eyebrowCompact : t.eyebrowPage
+  const title = compact ? t.titleCompact : t.titlePage
+  const body = compact ? t.bodyCompact : t.bodyPage
 
   const emailId = `${uid}-email`
   const errorId = `${uid}-error`
@@ -108,10 +154,10 @@ export default function LeadMagnetCard({
     >
       <div className={`shrink-0 flex justify-center ${compact ? 'sm:w-[110px]' : 'md:w-[260px]'} py-2`}>
         <img
-          src={COVER_SRC}
+          src={t.coverSrc}
           width={COVER_WIDTH}
           height={COVER_HEIGHT}
-          alt="Cover of the training: The Same Problem Keeps Finding You"
+          alt={t.coverAlt}
           loading={priority ? 'eager' : 'lazy'}
           decoding="async"
           // fetchpriority é válido no DOM, mas o React 18.3 ainda não tipa o atributo.
@@ -133,11 +179,8 @@ export default function LeadMagnetCard({
         <div aria-live="polite">
           {status === 'success' ? (
             <div className="rounded-lg border border-aqua/40 bg-pale-aqua/60 p-4">
-              <p className="font-display text-xl text-charcoal mb-1">Check your inbox.</p>
-              <p className="font-body text-charcoal/80 leading-relaxed">
-                Your training is on its way. If you do not see it in a few minutes, look in your Promotions or Spam
-                folder.
-              </p>
+              <p className="font-display text-xl text-charcoal mb-1">{t.successTitle}</p>
+              <p className="font-body text-charcoal/80 leading-relaxed">{t.successBody}</p>
             </div>
           ) : (
             <form onSubmit={handleSubmit} noValidate>
@@ -157,7 +200,7 @@ export default function LeadMagnetCard({
 
               <div className="flex flex-col sm:flex-row gap-3">
                 <label htmlFor={emailId} className="sr-only">
-                  Your email
+                  {t.emailLabel}
                 </label>
                 <input
                   id={emailId}
@@ -166,7 +209,7 @@ export default function LeadMagnetCard({
                   required
                   autoComplete="email"
                   inputMode="email"
-                  placeholder="Your email"
+                  placeholder={t.emailPlaceholder}
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   aria-invalid={status === 'error' ? true : undefined}
@@ -178,7 +221,7 @@ export default function LeadMagnetCard({
                   disabled={status === 'submitting'}
                   className="whitespace-nowrap rounded-md bg-orange px-6 py-3.5 font-body text-sm font-semibold text-offwhite transition-colors hover:bg-charcoal focus:outline-none focus-visible:ring-2 focus-visible:ring-aqua focus-visible:ring-offset-2 focus-visible:ring-offset-[#171717] disabled:cursor-not-allowed disabled:opacity-60"
                 >
-                  {status === 'submitting' ? 'Sending...' : 'Get the training'}
+                  {status === 'submitting' ? t.sending : t.button}
                 </button>
               </div>
 
@@ -189,9 +232,9 @@ export default function LeadMagnetCard({
               )}
 
               <p className="mt-3 font-body text-xs leading-relaxed text-charcoal/70">
-                Delivered to your inbox. You can unsubscribe at any time.{' '}
+                {t.micro}{' '}
                 <Link href="/privacy-policy/" className="underline underline-offset-2 hover:text-orange">
-                  Privacy Policy
+                  {t.privacy}
                 </Link>
               </p>
             </form>
