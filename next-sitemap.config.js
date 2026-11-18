@@ -99,8 +99,6 @@ module.exports = {
     '/assessment/thank-you',
     // Descadastro da lista do PDF 1: página com token, nunca indexada.
     '/unsubscribe',
-    // Página de captura do PDF 1: escondida até SAL Ray aprovar (Fase A). Na Fase B, remover esta linha.
-    '/first-steps',
   ],
   robotsTxtOptions: {
     policies: [

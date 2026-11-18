@@ -6,7 +6,8 @@ import SchemaOrg from '@/components/SchemaOrg'
 import { articles, clusters, getChildArticles } from '@/lib/resources'
 import { getArticleSchema } from '@/lib/schema'
 import { markdownToHtml } from '@/lib/mdx'
-import { ctas, crisisResource, SITE_URL } from '@/lib/config'
+import LeadMagnetCard from '@/components/LeadMagnetCard'
+import { crisisResource, SITE_URL } from '@/lib/config'
 
 export function generateStaticParams() {
   return articles.map((a) => ({ cluster: a.cluster, slug: a.slug }))
@@ -101,17 +102,25 @@ export default function ArticlePage({ params }: { params: { cluster: string; slu
           </div>
         )}
 
-        <div className="max-w-2xl mt-12 border border-charcoal/10 rounded-lg p-6 flex flex-wrap items-center justify-between gap-4">
-          <p className="font-body text-charcoal/80">Ready to work on this directly?</p>
-          <div className="flex gap-3">
+        {/* Fim do artigo (Fase B do PDF 1): cartão do treinamento no lugar do CTA direto
+            da sessão. A sessão continua numa linha discreta logo abaixo; os artigos com
+            ctaOverride (12, ansiedade funcional) mantêm o destino 4-Week Experience e o
+            mesmo evento de analytics de antes. */}
+        <div className="max-w-2xl mt-12">
+          <p className="font-body text-xs uppercase tracking-widest text-aqua mb-3">
+            End of the article · what to do next
+          </p>
+          <LeadMagnetCard variant="compact" source="article" />
+          <p className="mt-5 text-center font-body text-sm text-charcoal/70">
+            Prefer to talk it through?{' '}
             <Link
               href={article.ctaOverride?.href ?? '/book-a-session/'}
               data-event={article.ctaOverride?.event ?? 'book_session_cta_click'}
-              className="font-body text-xs font-medium bg-orange text-charcoal px-5 py-3 rounded-md hover:bg-charcoal hover:text-offwhite transition-colors shrink-0"
+              className="underline underline-offset-4 hover:text-orange"
             >
-              {article.ctaOverride?.label ?? ctas.primary}
+              {article.ctaOverride ? 'Apply for the 4-Week Experience' : 'Book a session with me'}
             </Link>
-          </div>
+          </p>
         </div>
 
         {seriesArticles.length > 0 && (
