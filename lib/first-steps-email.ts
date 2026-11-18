@@ -110,7 +110,7 @@ export function buildFirstStepsEmail({ lang, email, baseUrl = SITE_URL, imageSrc
   const oneClickUnsubscribeUrl = `${baseUrl}/api/first-steps/unsubscribe/?t=${token}`
   const privacyUrl = `${baseUrl}/privacy-policy/`
   const logoSrc = imageSrc?.logo ?? `${baseUrl}/email/logo.png`
-  const coverSrc = imageSrc?.cover ?? `${baseUrl}/email/training-cover.jpg`
+  const coverSrc = imageSrc?.cover ?? `${baseUrl}/email/${lang === 'pt' ? 'training-cover-pt.jpg' : 'training-cover.jpg'}`
 
   const bulletRows = c.bullets
     .map(
@@ -181,7 +181,16 @@ export const FIRST_STEPS_FROM = `${business.nome} <${contato.email}>`
  */
 export function buildSignupNotification({ lang, source, date }: { lang: Lang; source: string; date: Date }) {
   const label = lang === 'pt' ? 'PT' : 'EN'
-  const when = date.toLocaleString('pt-BR', { timeZone: 'America/New_York', dateStyle: 'short', timeStyle: 'short' })
+  // Hora sempre em 12 horas com AM/PM (horário de Nova York).
+  const when = date.toLocaleString('en-US', {
+    timeZone: 'America/New_York',
+    month: 'short',
+    day: 'numeric',
+    year: 'numeric',
+    hour: 'numeric',
+    minute: '2-digit',
+    hour12: true,
+  })
   const rows: [string, string][] = [
     ['Idioma', label],
     ['Origem', source],
