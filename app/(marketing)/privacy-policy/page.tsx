@@ -23,7 +23,7 @@ export default function PrivacyPolicyPage() {
   return (
     <main className="max-w-content mx-auto px-6 py-16 md:py-24">
       <h1 className="font-display text-4xl text-charcoal mb-2">Privacy Policy</h1>
-      <p className="font-body text-sm text-charcoal/50 mb-8">Last updated: September 14, 2026</p>
+      <p className="font-body text-sm text-charcoal/50 mb-8">Last updated: November 18, 2026</p>
 
       <section className="max-w-2xl space-y-6 font-body text-charcoal/85 leading-relaxed">
         <p>
@@ -74,8 +74,9 @@ export default function PrivacyPolicyPage() {
         </p>
         <ul className="list-disc pl-6 space-y-2">
           <li>
-            <strong>Google Analytics 4 (GA4):</strong> used on most pages of the Site to understand how visitors use
-            the Site. GA4 is not used on the /4-week-experience/ page.
+            <strong>Google Analytics 4 (GA4):</strong> used on the training sign-up pages and on the resource
+            articles to understand how visitors use them. GA4 is not used on the home page or on pages connected to
+            our advertising, such as the 4-Week Experience page.
           </li>
           <li>
             <strong>Meta Pixel and Meta Conversions API:</strong> used to measure the effectiveness of our
@@ -93,12 +94,24 @@ export default function PrivacyPolicyPage() {
           These tools may use cookies or similar technologies. You can control cookies through your browser
           settings, though disabling them may affect how the Site functions.
         </p>
+        <p>
+          <strong>Analytics.</strong> We use Google Analytics 4 on parts of this website to understand which pages
+          help people. We do not send your email address to analytics tools.
+        </p>
 
         <h3 className="font-display text-xl text-charcoal">1.4 Self-Assessment Tool</h3>
         <p>
           If you use the self-assessment tool associated with the Vivências de Reconstrução Emocional program, your
           answers are stored only in your own browser&apos;s local storage (localStorage). This information is never
           transmitted to or stored on our servers, and we do not have access to it.
+        </p>
+
+        <h3 className="font-display text-xl text-charcoal">1.5 Training Emails</h3>
+        <p>
+          <strong>Training emails.</strong> When you request the interactive training, we collect your email address,
+          your language, the page where you signed up, and the date. We use them to send you the training and, over
+          the following 30 days, a few short emails to support your practice. We do not sell your email address and we
+          do not share it for advertising.
         </p>
 
         <h2 className="font-display text-2xl text-charcoal">2. How We Use Your Information</h2>
@@ -129,6 +142,10 @@ export default function PrivacyPolicyPage() {
             others
           </li>
         </ul>
+        <p>
+          <strong>Service providers.</strong> We send emails through Google (Gmail) and host this website with
+          Hostinger. They process data on our behalf to provide these services.
+        </p>
 
         <h2 className="font-display text-2xl text-charcoal">4. Payment Information</h2>
         <p>
@@ -158,6 +175,14 @@ export default function PrivacyPolicyPage() {
           <li>Opt out of future email communication by contacting us</li>
           <li>Contact us with any questions about this policy or your information</li>
         </ul>
+        <p>
+          <strong>Unsubscribe.</strong> Every email includes an unsubscribe link. When you use it, we stop sending and
+          keep only what we need to remember that you unsubscribed. You can also write to{' '}
+          <a href={`mailto:${contato.email}`} className="text-aqua underline underline-offset-2">
+            {contato.email}
+          </a>{' '}
+          to ask us to delete your data.
+        </p>
         <p>
           Depending on your state of residence, you may have additional rights under applicable state privacy laws.
           To exercise any rights, contact us using the details below.
