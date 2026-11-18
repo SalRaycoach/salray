@@ -25,11 +25,13 @@ export const SUBSCRIBERS_FILE = path.join(DATA_DIR, 'first-steps-subscribers.jso
 export const UNSUBSCRIBED_FILE = path.join(DATA_DIR, 'first-steps-unsubscribed.jsonl')
 export const DOWNLOADS_FILE = path.join(DATA_DIR, 'first-steps-downloads.jsonl')
 export const FAILED_DELIVERIES_FILE = path.join(DATA_DIR, 'first-steps-failed-deliveries.jsonl')
+export const FOLLOWUPS_SENT_FILE = path.join(DATA_DIR, 'first-steps-followups-sent.jsonl')
+export const CRON_LOG_FILE = path.join(DATA_DIR, 'cron.log')
 
 export type Subscriber = { email: string; lang: Lang; source: string; date: string; status: 'active' }
 export type Unsubscribed = { email: string; date: string }
 
-async function readJsonl<T>(file: string): Promise<T[]> {
+export async function readJsonl<T>(file: string): Promise<T[]> {
   let raw: string
   try {
     raw = await fs.readFile(file, 'utf-8')
@@ -49,7 +51,7 @@ async function readJsonl<T>(file: string): Promise<T[]> {
   return rows
 }
 
-async function appendJsonl(file: string, entry: Record<string, unknown>): Promise<void> {
+export async function appendJsonl(file: string, entry: Record<string, unknown>): Promise<void> {
   await fs.mkdir(path.dirname(file), { recursive: true })
   await fs.appendFile(file, JSON.stringify(entry) + '\n', 'utf-8')
 }

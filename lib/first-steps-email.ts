@@ -59,7 +59,7 @@ const COPY: Record<Lang, Copy> = {
     eyebrow: 'O Mesmo Problema Continua Te Encontrando',
     title: 'O seu treinamento está pronto.',
     intro:
-      'Obrigada por confiar neste trabalho. O seu treinamento de 30 dias está logo abaixo. Não é um PDF para ler: cada caixa pode ser preenchida, direto no celular.',
+      'Agradeço por confiar neste trabalho. O seu treinamento de 30 dias está logo abaixo. Não é um PDF para ler: cada caixa pode ser preenchida, direto no celular.',
     coverAlt: 'Capa do treinamento: O Mesmo Problema Continua Te Encontrando',
     button: 'Abrir o treinamento',
     beforeTitle: 'Antes de começar',
