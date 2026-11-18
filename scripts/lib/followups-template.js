@@ -124,7 +124,7 @@ function buildFollowup({ lang, kind, token, baseUrl = SITE_URL, subjectPrefix = 
   const downloadUrl = `${baseUrl}/api/first-steps/download/?l=${lang}&t=${token}`
   const unsubscribeUrl = `${baseUrl}/unsubscribe/?l=${lang}&t=${token}`
   const oneClickUrl = `${baseUrl}/api/first-steps/unsubscribe/?t=${token}`
-  const privacyUrl = `${baseUrl}/privacy-policy/`
+  const privacyUrl = `${baseUrl}${lang === 'pt' ? '/pt/politica-de-privacidade/' : '/privacy-policy/'}`
   const logoSrc = (imageSrc && imageSrc.logo) || `${baseUrl}/email/logo.png`
   const coverSrc = (imageSrc && imageSrc.cover) || `${baseUrl}/email/training-cover.jpg`
   const subject = `${subjectPrefix}${c.subject}`
