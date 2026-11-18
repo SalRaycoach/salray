@@ -13,7 +13,8 @@ import GoogleAnalytics from '@/components/GoogleAnalytics'
  * O Meta Pixel é outro componente e não é afetado por este.
  */
 const ALLOWED_EXACT = ['/first-steps', '/pt/primeiros-passos']
-const ARTICLE_PATH = /^\/resources\/[^/]+\/[^/]+\/?$/
+// Artigos: /resources/[categoria]/[artigo]/ (3 níveis) e os artigos em português, /pt/recursos/[artigo]/.
+const ARTICLE_PATH = /^\/(?:resources\/[^/]+\/[^/]+|pt\/recursos\/[^/]+)\/?$/
 
 export function isGaAllowed(pathname: string | null): boolean {
   if (!pathname) return false

@@ -2,6 +2,7 @@ import crypto from 'node:crypto'
 import fs from 'node:fs/promises'
 import path from 'node:path'
 import { NTFY_URL } from '@/lib/application-failsafe'
+import { parseTraining, type Training } from '@/lib/trainings'
 
 /**
  * Lista de e-mail do PDF 1 (treinamento interativo de 30 dias): cadastro,
@@ -28,7 +29,8 @@ export const FAILED_DELIVERIES_FILE = path.join(DATA_DIR, 'first-steps-failed-de
 export const FOLLOWUPS_SENT_FILE = path.join(DATA_DIR, 'first-steps-followups-sent.jsonl')
 export const CRON_LOG_FILE = path.join(DATA_DIR, 'cron.log')
 
-export type Subscriber = { email: string; lang: Lang; source: string; date: string; status: 'active' }
+/** `training` ausente nos cadastros antigos: vale como pdf1. */
+export type Subscriber = { email: string; lang: Lang; source: string; date: string; status: 'active'; training?: Training }
 /** Lista de bloqueio: guarda SOMENTE o e-mail (ver markUnsubscribed). */
 export type Unsubscribed = { email: string }
 
@@ -121,9 +123,10 @@ export async function isUnsubscribed(email: string): Promise<boolean> {
   return rows.some((r) => r.email === email)
 }
 
-export async function isSubscribed(email: string): Promise<boolean> {
+/** Inscrito em ESTE treinamento (a mesma pessoa pode ter pedido os dois). */
+export async function isSubscribed(email: string, training: Training = 'pdf1'): Promise<boolean> {
   const rows = await readJsonl<Subscriber>(SUBSCRIBERS_FILE)
-  return rows.some((r) => r.email === email)
+  return rows.some((r) => r.email === email && parseTraining(r.training) === training)
 }
 
 // Uma escrita por vez no arquivo de inscritos (o app é um processo Node único):
@@ -138,8 +141,8 @@ function withSubscribersLock<T>(fn: () => Promise<T>): Promise<T> {
   return run
 }
 
-export async function addSubscriber(email: string, lang: Lang, source: string): Promise<void> {
-  const row: Subscriber = { email, lang, source, date: new Date().toISOString(), status: 'active' }
+export async function addSubscriber(email: string, lang: Lang, source: string, training: Training = 'pdf1'): Promise<void> {
+  const row: Subscriber = { email, lang, source, date: new Date().toISOString(), status: 'active', training }
   await withSubscribersLock(() => appendJsonl(SUBSCRIBERS_FILE, row))
 }
 
@@ -183,7 +186,7 @@ export async function markUnsubscribed(email: string): Promise<void> {
 
 // ---------- Log de download (sem e-mail: só os 10 primeiros caracteres do token) ----------
 
-export async function logDownload(entry: { lang: Lang; tokenId: string; valid: boolean }): Promise<void> {
+export async function logDownload(entry: { lang: Lang; tokenId: string; valid: boolean; training?: Training }): Promise<void> {
   try {
     await appendJsonl(DOWNLOADS_FILE, { date: new Date().toISOString(), ...entry })
   } catch (err) {

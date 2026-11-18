@@ -1,5 +1,6 @@
 import { SITE_URL, contato, business } from '@/lib/config'
 import { makeToken, type Lang } from '@/lib/first-steps'
+import { TRAININGS, type Training } from '@/lib/trainings'
 
 /**
  * E-mail de entrega do PDF 1 ("The Same Problem Keeps Finding You" / "O Mesmo
@@ -89,6 +90,8 @@ export type FirstStepsEmailOptions = {
   /** Quem vai receber. O token (HMAC do e-mail) é gerado aqui, nunca vai o e-mail na URL. */
   email: string
   /** Só para testes locais; em produção é sempre SITE_URL. */
+  /** Qual treinamento está sendo entregue (padrão: pdf1). */
+  training?: Training
   baseUrl?: string
   /** Só para testes: troca as URLs das imagens (ex.: "cid:logo"). */
   imageSrc?: { logo: string; cover: string }
@@ -101,16 +104,23 @@ export type FirstStepsEmail = {
   headers: Record<string, string>
 }
 
-export function buildFirstStepsEmail({ lang, email, baseUrl = SITE_URL, imageSrc }: FirstStepsEmailOptions): FirstStepsEmail {
-  const c = COPY[lang]
+export function buildFirstStepsEmail({ lang, email, training = 'pdf1', baseUrl = SITE_URL, imageSrc }: FirstStepsEmailOptions): FirstStepsEmail {
+  // Título (e capa, PDF) mudam com o treinamento; o resto do texto é o mesmo.
+  const t = TRAININGS[training]
+  const c: Copy = {
+    ...COPY[lang],
+    eyebrow: t.title[lang],
+    coverAlt: `${lang === 'pt' ? 'Capa do treinamento' : 'Cover of the training'}: ${t.title[lang]}`,
+  }
   const token = makeToken(email)
 
-  const downloadUrl = `${baseUrl}/api/first-steps/download/?l=${lang}&t=${token}`
+  // O PDF 1 não leva o parâmetro p (links já enviados continuam valendo); o PDF 2 leva p=2.
+  const downloadUrl = `${baseUrl}/api/first-steps/download/?l=${lang}&t=${token}${training === 'pdf2' ? `&p=${t.downloadParam}` : ''}`
   const unsubscribeUrl = `${baseUrl}/unsubscribe/?l=${lang}&t=${token}`
   const oneClickUnsubscribeUrl = `${baseUrl}/api/first-steps/unsubscribe/?t=${token}`
   const privacyUrl = `${baseUrl}${lang === 'pt' ? '/pt/politica-de-privacidade/' : '/privacy-policy/'}`
   const logoSrc = imageSrc?.logo ?? `${baseUrl}/email/logo.png`
-  const coverSrc = imageSrc?.cover ?? `${baseUrl}/email/${lang === 'pt' ? 'training-cover-pt.jpg' : 'training-cover.jpg'}`
+  const coverSrc = imageSrc?.cover ?? `${baseUrl}${t.cover[lang]}`
 
   const bulletRows = c.bullets
     .map(
@@ -179,7 +189,7 @@ export const FIRST_STEPS_FROM = `${business.nome} <${contato.email}>`
  * Aviso interno para hello@ a cada novo cadastro. Assunto fixo por idioma e
  * sem o e-mail da pessoa (nem no assunto nem no corpo).
  */
-export function buildSignupNotification({ lang, source, date }: { lang: Lang; source: string; date: Date }) {
+export function buildSignupNotification({ lang, source, date, training = 'pdf1' }: { lang: Lang; source: string; date: Date; training?: Training }) {
   const label = lang === 'pt' ? 'PT' : 'EN'
   // Hora sempre em 12 horas com AM/PM (horário de Nova York).
   const when = date.toLocaleString('en-US', {
@@ -193,6 +203,7 @@ export function buildSignupNotification({ lang, source, date }: { lang: Lang; so
   })
   const rows: [string, string][] = [
     ['Idioma', label],
+    ['Treinamento', training === 'pdf2' ? 'PDF 2 (Você Resolve Tudo para Todo Mundo)' : 'PDF 1 (O Mesmo Problema Continua Te Encontrando)'],
     ['Origem', source],
     ['Data e hora', `${when} (horário de Nova York)`],
   ]

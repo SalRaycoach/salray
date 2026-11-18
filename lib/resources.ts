@@ -103,7 +103,7 @@ const seedArticles: Article[] = [
     datePublished: '2026-03-05T09:00:00-05:00',
     dateModified: '2026-10-11T14:30:00-05:00',
     needsProfessionalCareNote: true,
-    relatedArticles: ['overthinking-racing-thoughts', 'why-do-i-attract-toxic-people-pattern'],
+    relatedArticles: ['overthinking-racing-thoughts', 'why-do-i-attract-toxic-people-pattern', 'the-8-patterns'],
     ogImage: '/images/og/og-default.jpg',
     content: `If you notice yourself reacting the same way across very different situations (the same defensiveness, the same shutdown, the same overcommitting), it is rarely random. **Repeating emotional reactions usually trace back to a pattern that was useful once and never got updated.**
 

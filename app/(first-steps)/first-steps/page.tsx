@@ -1,11 +1,11 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import LeadMagnetCard from '@/components/LeadMagnetCard'
-import { SITE_URL } from '@/lib/config'
+import { contato, SITE_URL } from '@/lib/config'
 
 const title = 'First steps | SAL Ray'
 const description =
-  'A 30-day interactive training PDF to find the pattern running your life. Every box can be filled in, about 20 minutes a day.'
+  'Two 30-day interactive training PDFs. Pick the one that fits you today. Every box can be filled in, about 20 minutes a day.'
 const COVER_URL = `${SITE_URL}/email/training-cover.jpg`
 const COVER_ALT = 'Cover of the training: The Same Problem Keeps Finding You'
 
@@ -33,11 +33,12 @@ export const metadata: Metadata = {
 }
 
 const PATTERN_ARTICLE = '/resources/emotional-patterns-self-sabotage/why-do-i-keep-reacting-the-same-way/'
+const EIGHT_PATTERNS_ARTICLE = '/resources/emotional-patterns-self-sabotage/the-8-patterns/'
 
-// Itens 2 e 3 ficam sem link por decisão de SAL Ray: ainda não há artigo equivalente.
+// O item 3 continua sem link: ainda não há artigo que explique como funcionam os 30 dias.
 const steps: { title: string; note: string; href?: string }[] = [
   { title: 'Understand what a pattern is', note: 'The idea behind the whole training.', href: PATTERN_ARTICLE },
-  { title: 'Meet the 8 patterns', note: 'See which one sounds like you.' },
+  { title: 'Meet the 8 patterns', note: 'See which one sounds like you.', href: EIGHT_PATTERNS_ARTICLE },
   { title: 'See how the 30 days work', note: 'One short page a day, in four weeks.' },
   { title: 'Get your training above and begin with day 1', note: 'Open it in Adobe Acrobat Reader so every box works.' },
 ]
@@ -58,16 +59,24 @@ export default function FirstStepsPage() {
         <section className="max-w-content mx-auto px-6 pt-10 pb-8 md:pt-16 md:pb-10">
           <p className="font-body text-xs uppercase tracking-widest text-aqua mb-3">First steps</p>
           <h1 className="font-display text-3xl sm:text-4xl md:text-5xl leading-tight text-charcoal max-w-3xl mb-4">
-            Thirty days to find the pattern running your life
+            Choose the training that fits you today
           </h1>
           <p className="font-body text-base md:text-lg text-charcoal/80 leading-relaxed max-w-2xl">
-            An interactive training PDF. Every box can be filled in, right on your phone or computer. About 20 minutes a
-            day.
+            Each training is a way in to a different situation. Choose the one that looks most like you today. If you
+            are unsure,{' '}
+            <a
+              href={`mailto:${contato.email}?subject=${encodeURIComponent('Which training is right for me?')}`}
+              className="underline underline-offset-4 hover:text-orange"
+            >
+              send me a message
+            </a>{' '}
+            and I will guide you.
           </p>
         </section>
 
-        <section aria-label="Get the training" className="max-w-content mx-auto px-6 pb-14 md:pb-20">
-          <LeadMagnetCard variant="page" source="first-steps" priority />
+        <section aria-label="The trainings" className="max-w-content mx-auto px-6 pb-14 md:pb-20 space-y-6">
+          <LeadMagnetCard variant="page" source="first-steps" training="pdf1" showSituation priority />
+          <LeadMagnetCard variant="page" source="first-steps" training="pdf2" showSituation />
         </section>
 
         <section className="max-w-content mx-auto px-6 pb-14 md:pb-20">

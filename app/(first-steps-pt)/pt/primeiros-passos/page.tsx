@@ -2,10 +2,11 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import LeadMagnetCard from '@/components/LeadMagnetCard'
 import { SITE_URL } from '@/lib/config'
+import { buildWhatsAppUrl } from '@/lib/pt-reconstrucao'
 
 const title = 'Primeiros passos | SAL Ray'
 const description =
-  'Um PDF interativo de treinamento de 30 dias para encontrar o padrão que comanda a sua vida. Cada caixa pode ser preenchida, cerca de 20 minutos por dia.'
+  'Dois PDFs interativos de treinamento de 30 dias. Escolha o que mais se parece com você hoje. Cada caixa pode ser preenchida, cerca de 20 minutos por dia.'
 const COVER_URL = `${SITE_URL}/email/training-cover-pt.jpg`
 const COVER_ALT = 'Capa do treinamento: O Mesmo Problema Continua Te Encontrando'
 
@@ -32,10 +33,12 @@ export const metadata: Metadata = {
   twitter: { card: 'summary_large_image', images: [{ url: COVER_URL, alt: COVER_ALT }] },
 }
 
-// Ainda não existe artigo em português equivalente: os 3 primeiros itens ficam só como texto.
-const steps: { title: string; note: string }[] = [
+const OS_8_PADROES = '/pt/recursos/os-8-padroes/'
+
+// Só "Os 8 Padrões" tem artigo em português; os outros dois itens ficam só como texto.
+const steps: { title: string; note: string; href?: string }[] = [
   { title: 'Entenda o que é um padrão', note: 'A ideia por trás de todo o treinamento.' },
-  { title: 'Conheça os 8 padrões', note: 'Veja qual deles parece com você.' },
+  { title: 'Conheça os 8 padrões', note: 'Veja qual deles parece com você.', href: OS_8_PADROES },
   { title: 'Veja como funcionam os 30 dias', note: 'Uma página curta por dia, em quatro semanas.' },
   { title: 'Receba o treinamento acima e comece pelo dia 1', note: 'Abra no Adobe Acrobat Reader para que todas as caixas funcionem.' },
 ]
@@ -56,16 +59,26 @@ export default function PrimeirosPassosPage() {
         <section className="max-w-content mx-auto px-6 pt-10 pb-8 md:pt-16 md:pb-10">
           <p className="font-body text-xs uppercase tracking-widest text-aqua mb-3">Primeiros passos</p>
           <h1 className="font-display text-3xl sm:text-4xl md:text-5xl leading-tight text-charcoal max-w-3xl mb-4">
-            Trinta dias para encontrar o padrão que comanda a sua vida
+            Escolha o treinamento que mais se parece com você hoje
           </h1>
           <p className="font-body text-base md:text-lg text-charcoal/80 leading-relaxed max-w-2xl">
-            Um PDF interativo de treinamento. Cada caixa pode ser preenchida, direto no celular ou no computador. Cerca
-            de 20 minutos por dia.
+            Cada treinamento é uma porta de entrada para uma situação diferente. Escolha o que mais se parece com você
+            hoje. Se tiver dúvida,{' '}
+            <a
+              href={buildWhatsAppUrl('Olá, Sal Ray. Estou em dúvida sobre qual treinamento escolher e queria uma ajuda.')}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline underline-offset-4 hover:text-orange"
+            >
+              me mande uma mensagem
+            </a>{' '}
+            e eu te guio.
           </p>
         </section>
 
-        <section aria-label="Receber o treinamento" className="max-w-content mx-auto px-6 pb-14 md:pb-20">
-          <LeadMagnetCard variant="page" source="primeiros-passos" lang="pt" priority />
+        <section aria-label="Os treinamentos" className="max-w-content mx-auto px-6 pb-14 md:pb-20 space-y-6">
+          <LeadMagnetCard variant="page" source="primeiros-passos" lang="pt" training="pdf1" showSituation priority />
+          <LeadMagnetCard variant="page" source="primeiros-passos" lang="pt" training="pdf2" showSituation />
         </section>
 
         <section className="max-w-content mx-auto px-6 pb-14 md:pb-20">
@@ -80,7 +93,15 @@ export default function PrimeirosPassosPage() {
                 >
                   {i + 1}
                 </span>
-                <h3 className="font-display text-xl leading-snug text-charcoal">{step.title}</h3>
+                <h3 className="font-display text-xl leading-snug text-charcoal">
+                  {step.href ? (
+                    <Link href={step.href} className="underline underline-offset-4 decoration-charcoal/40 hover:text-orange">
+                      {step.title}
+                    </Link>
+                  ) : (
+                    step.title
+                  )}
+                </h3>
                 <p className="font-body text-sm text-charcoal/80 leading-relaxed">{step.note}</p>
               </li>
             ))}

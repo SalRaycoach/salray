@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import { useId, useState } from 'react'
 import { trackEvent } from '@/lib/analytics'
+import { TRAININGS, type Training } from '@/lib/trainings'
 
 /**
  * Cartão de captura do treinamento interativo de 30 dias (PDF 1). É o ÚNICO
@@ -15,6 +16,8 @@ import { trackEvent } from '@/lib/analytics'
  *  - variant "compact" / "article": cartão menor, com capa pequena, para o fim
  *    dos artigos ("article" usa o mesmo layout do "compact").
  *  - source: de onde veio o cadastro (first-steps, article, home, reflections...).
+ *  - training: qual PDF o cartão entrega (pdf1 por padrão; pdf2 = "Quem Conserta Você?").
+ *    Cartões sem essa prop continuam exatamente como eram (PDF 1).
  */
 
 export type LeadMagnetVariant = 'page' | 'article' | 'compact'
@@ -40,6 +43,14 @@ const COPY = {
     bodyPage:
       'Not a reading PDF. You write in it, day by day, and by day 30 the pattern has a name. Sent straight to your inbox.',
     bodyCompact: 'Every box can be filled in. About 20 minutes a day.',
+    pages: 'pages',
+    coverAltPrefix: 'Cover of the training',
+    situation: {
+      pdf1: 'For those who feel the same problem keeps coming back in different places in their life.',
+      pdf2: 'For those who fix everyone else’s life and forget their own.',
+    },
+    bodyPdf2:
+      'Not a reading PDF. You write in it, day by day, and by day 30 you can see when you rescue and what it costs you. Sent straight to your inbox.',
     successTitle: 'Check your inbox.',
     successBody:
       'Your training is on its way. If you do not see it in a few minutes, look in your Promotions or Spam folder.',
@@ -64,6 +75,14 @@ const COPY = {
     bodyPage:
       'Não é um PDF de leitura. Você escreve nele, dia após dia, e no dia 30 o padrão tem nome. Enviado direto para o seu email.',
     bodyCompact: 'Cada caixa pode ser preenchida. Cerca de 20 minutos por dia.',
+    pages: 'páginas',
+    coverAltPrefix: 'Capa do treinamento',
+    situation: {
+      pdf1: 'Para quem sente que o mesmo problema volta em lugares diferentes da vida.',
+      pdf2: 'Para quem resolve a vida de todo mundo e se esquece de si mesma.',
+    },
+    bodyPdf2:
+      'Não é um PDF de leitura. Você escreve nele, dia após dia, e no dia 30 enxerga quando resgata e o que isso custa a você. Enviado direto para o seu email.',
     successTitle: 'Confira sua caixa de entrada.',
     successBody:
       'Seu treinamento está a caminho. Se não aparecer em alguns minutos, olhe em Promoções ou Spam.',
@@ -84,11 +103,17 @@ export default function LeadMagnetCard({
   source,
   priority = false,
   lang = 'en',
+  training = 'pdf1',
+  showSituation = false,
 }: {
   variant?: LeadMagnetVariant
   source: string
   /** Idioma do cartão e do e-mail de entrega ("en" por padrão: os cartões em inglês não mudam). */
   lang?: LeadMagnetLang
+  /** Qual treinamento o cartão entrega. */
+  training?: Training
+  /** Mostra a frase "para quem é" (usada na página com os dois treinamentos). */
+  showSituation?: boolean
   /** Cartão na primeira dobra: carrega a capa já, sem lazy. */
   priority?: boolean
 }) {
@@ -119,13 +144,13 @@ export default function LeadMagnetCard({
       const response = await fetch('/api/first-steps-signup/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email: value, lang, source, website }),
+        body: JSON.stringify({ email: value, lang, source, website, training }),
       })
       const data = (await response.json().catch(() => ({}))) as { ok?: boolean }
 
       if (response.ok && data.ok) {
         // Nunca vai e-mail em parâmetro de evento.
-        trackEvent('lead_magnet_signup', { lang, source })
+        trackEvent('lead_magnet_signup', { lang, source, training })
         setStatus('success')
         setEmail('')
         return
@@ -141,9 +166,15 @@ export default function LeadMagnetCard({
     }
   }
 
-  const eyebrow = compact ? t.eyebrowCompact : t.eyebrowPage
-  const title = compact ? t.titleCompact : t.titlePage
-  const body = compact ? t.bodyCompact : t.bodyPage
+  const info = TRAININGS[training]
+  const isPdf2 = training === 'pdf2'
+  // PDF 1: textos de sempre. PDF 2: título e corpo próprios (o título do cartão compacto do
+  // PDF 1 é a chamada dele; o do PDF 2 é o próprio título).
+  const eyebrow = compact ? t.eyebrowCompact : `${t.eyebrowCompact} · ${info.pages[lang]} ${t.pages}`
+  const title = isPdf2 ? info.title[lang] : compact ? t.titleCompact : t.titlePage
+  const body = compact ? t.bodyCompact : isPdf2 ? t.bodyPdf2 : t.bodyPage
+  const coverSrc = info.cover[lang]
+  const coverAlt = `${t.coverAltPrefix}: ${info.title[lang]}`
 
   const emailId = `${uid}-email`
   const errorId = `${uid}-error`
@@ -156,10 +187,10 @@ export default function LeadMagnetCard({
     >
       <div className={`shrink-0 flex justify-center ${compact ? 'sm:w-[110px]' : 'md:w-[260px]'} py-2`}>
         <img
-          src={t.coverSrc}
+          src={coverSrc}
           width={COVER_WIDTH}
           height={COVER_HEIGHT}
-          alt={t.coverAlt}
+          alt={coverAlt}
           loading={priority ? 'eager' : 'lazy'}
           decoding="async"
           // fetchpriority é válido no DOM, mas o React 18.3 ainda não tipa o atributo.
@@ -176,6 +207,9 @@ export default function LeadMagnetCard({
         >
           {title}
         </h2>
+        {showSituation && (
+          <p className="font-body text-sm font-semibold text-orange mb-3 leading-relaxed">{t.situation[training]}</p>
+        )}
         <p className={`font-body text-charcoal/80 leading-relaxed ${compact ? 'mb-4' : 'mb-6'}`}>{body}</p>
 
         <div aria-live="polite">
@@ -221,6 +255,8 @@ export default function LeadMagnetCard({
                 <button
                   type="submit"
                   disabled={status === 'submitting'}
+                  // Com dois cartões na mesma página, o leitor de tela precisa saber qual treinamento cada botão pede.
+                  aria-label={showSituation ? `${t.button}: ${info.title[lang]}` : undefined}
                   className="whitespace-nowrap rounded-md bg-orange px-6 py-3.5 font-body text-sm font-semibold text-offwhite transition-colors hover:bg-charcoal focus:outline-none focus-visible:ring-2 focus-visible:ring-aqua focus-visible:ring-offset-2 focus-visible:ring-offset-[#171717] disabled:cursor-not-allowed disabled:opacity-60"
                 >
                   {status === 'submitting' ? t.sending : t.button}
