@@ -22,7 +22,7 @@ export const FAILED_APPLICATIONS_LOG = path.join(process.cwd(), 'data', 'failed-
 // ou no app ntfy (iOS/Android), e opcionalmente inscrever esse tópico lá
 // pra notificação push no celular.
 const NTFY_TOPIC = 'salray-4wk-alert-8c8bdbe0c113'
-const NTFY_URL = `https://ntfy.sh/${NTFY_TOPIC}`
+export const NTFY_URL = `https://ntfy.sh/${NTFY_TOPIC}`
 
 /**
  * Grava a candidatura completa em um arquivo JSON Lines local. Cada falha

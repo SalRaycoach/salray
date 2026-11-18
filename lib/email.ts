@@ -12,6 +12,12 @@ export type SendEmailInput = {
   replyTo?: string
   subject: string
   html: string
+  /** Versão text/plain (multipart/alternative). Opcional: os e-mails antigos só mandam HTML. */
+  text?: string
+  /** Cabeçalhos extras, ex.: List-Unsubscribe / List-Unsubscribe-Post. */
+  headers?: Record<string, string>
+  /** Anexos inline (cid:) usados só em testes de template. */
+  attachments?: { filename: string; path: string; cid?: string }[]
 }
 
 let cachedTransporter: ReturnType<typeof nodemailer.createTransport> | null = null
@@ -46,5 +52,8 @@ export async function sendEmail(input: SendEmailInput): Promise<void> {
     replyTo: input.replyTo,
     subject: input.subject,
     html: input.html,
+    text: input.text,
+    headers: input.headers,
+    attachments: input.attachments,
   })
 }

@@ -97,6 +97,8 @@ module.exports = {
     // nunca indexada, nunca listada (pedido 22 set 2026).
     '/assessment',
     '/assessment/thank-you',
+    // Descadastro da lista do PDF 1: página com token, nunca indexada.
+    '/unsubscribe',
   ],
   robotsTxtOptions: {
     policies: [
@@ -117,7 +119,7 @@ module.exports = {
         // a visually broken version of the page indexed even though the text
         // content is fine. Google's own guidance for Next.js sites is to
         // leave these paths crawlable.
-        disallow: ['/api/', '/thank-you-consultation/'],
+        disallow: ['/api/', '/downloads/', '/unsubscribe/', '/thank-you-consultation/'],
       },
     ],
   },

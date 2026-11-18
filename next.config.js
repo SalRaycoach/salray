@@ -148,6 +148,31 @@ const nextConfig = {
         headers: [{ key: 'Cache-Control', value: 'public, max-age=31536000, immutable' }],
       },
       {
+        // PDFs de entrega (lead magnet do PDF 1): nunca indexados e sempre
+        // baixados em vez de abertos no leitor do navegador (o treinamento
+        // tem caixas preenchíveis, que só funcionam bem no Acrobat Reader).
+        // Fica DEPOIS da regra geral: o último header de mesma chave vence.
+        source: '/downloads/:path*',
+        headers: [
+          { key: 'X-Robots-Tag', value: 'noindex, nofollow, noarchive' },
+          { key: 'Content-Disposition', value: 'attachment' },
+        ],
+      },
+      {
+        // Rotas de servidor do PDF 1 e página de descadastro: respostas por
+        // pessoa (token na URL), nunca podem ficar em cache de CDN. Depois da
+        // regra geral, então este Cache-Control substitui o s-maxage dela.
+        source: '/api/first-steps/:path*',
+        headers: [{ key: 'Cache-Control', value: 'no-store' }],
+      },
+      {
+        source: '/unsubscribe/:path*',
+        headers: [
+          { key: 'Cache-Control', value: 'no-store' },
+          { key: 'X-Robots-Tag', value: 'noindex, nofollow' },
+        ],
+      },
+      {
         // Build-hashed assets — Next.js sets this automatically for `next start`,
         // but the Hostinger reverse proxy in front of the Node process may strip
         // it, so it's set explicitly here too (brief item 1.4).
