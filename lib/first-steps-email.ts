@@ -54,7 +54,7 @@ const COPY: Record<Lang, Copy> = {
     htmlLang: 'en',
   },
   pt: {
-    subject: 'O seu treinamento está pronto',
+    subject: 'Seu treinamento está pronto',
     preheader: 'O seu treinamento interativo de 30 dias está pronto.',
     eyebrow: 'O Mesmo Problema Continua Te Encontrando',
     title: 'O seu treinamento está pronto.',
