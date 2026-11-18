@@ -9,15 +9,11 @@ const description =
 const COVER_URL = `${SITE_URL}/email/training-cover-pt.jpg`
 const COVER_ALT = 'Capa do treinamento: O Mesmo Problema Continua Te Encontrando'
 
-// Página ainda ESCONDIDA (Fase A): noindex, fora do sitemap (ver exclude em
-// next-sitemap.config.js) e sem nenhum link vindo de outras páginas.
-// hreflang: declarado só deste lado por enquanto (a página em inglês não foi
-// tocada). Na Fase B: robots index,follow, tirar '/pt/primeiros-passos' do exclude
-// e acrescentar a alternativa pt-BR em app/(first-steps)/first-steps/page.tsx.
+// Fase B: página pública, indexável, no sitemap e com hreflang ligado nas duas páginas.
 export const metadata: Metadata = {
   title: { absolute: title },
   description,
-  robots: { index: false, follow: false },
+  robots: { index: true, follow: true },
   alternates: {
     canonical: `${SITE_URL}/pt/primeiros-passos/`,
     languages: {

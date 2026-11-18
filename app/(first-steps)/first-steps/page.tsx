@@ -14,7 +14,13 @@ export const metadata: Metadata = {
   title: { absolute: title },
   description,
   robots: { index: true, follow: true },
-  alternates: { canonical: `${SITE_URL}/first-steps/` },
+  alternates: {
+    canonical: `${SITE_URL}/first-steps/`,
+    languages: {
+      'en-US': `${SITE_URL}/first-steps/`,
+      'pt-BR': `${SITE_URL}/pt/primeiros-passos/`,
+    },
+  },
   openGraph: {
     title,
     description,
