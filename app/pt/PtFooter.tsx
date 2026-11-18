@@ -5,7 +5,7 @@
  */
 export default function PtFooter() {
   const legalLinks = [
-    { href: '/privacy-policy/', label: 'Política de Privacidade' },
+    { href: '/pt/politica-de-privacidade/', label: 'Política de Privacidade' },
     { href: '/terms/', label: 'Termos de Uso' },
     { href: '/disclaimer/', label: 'Aviso Profissional' },
     { href: '/pt/politica-de-cancelamento/', label: 'Política de Cancelamento' },

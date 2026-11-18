@@ -108,7 +108,7 @@ export function buildFirstStepsEmail({ lang, email, baseUrl = SITE_URL, imageSrc
   const downloadUrl = `${baseUrl}/api/first-steps/download/?l=${lang}&t=${token}`
   const unsubscribeUrl = `${baseUrl}/unsubscribe/?l=${lang}&t=${token}`
   const oneClickUnsubscribeUrl = `${baseUrl}/api/first-steps/unsubscribe/?t=${token}`
-  const privacyUrl = `${baseUrl}/privacy-policy/`
+  const privacyUrl = `${baseUrl}${lang === 'pt' ? '/pt/politica-de-privacidade/' : '/privacy-policy/'}`
   const logoSrc = imageSrc?.logo ?? `${baseUrl}/email/logo.png`
   const coverSrc = imageSrc?.cover ?? `${baseUrl}/email/${lang === 'pt' ? 'training-cover-pt.jpg' : 'training-cover.jpg'}`
 

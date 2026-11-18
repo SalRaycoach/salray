@@ -29,7 +29,8 @@ export const FOLLOWUPS_SENT_FILE = path.join(DATA_DIR, 'first-steps-followups-se
 export const CRON_LOG_FILE = path.join(DATA_DIR, 'cron.log')
 
 export type Subscriber = { email: string; lang: Lang; source: string; date: string; status: 'active' }
-export type Unsubscribed = { email: string; date: string }
+/** Lista de bloqueio: guarda SOMENTE o e-mail (ver markUnsubscribed). */
+export type Unsubscribed = { email: string }
 
 export async function readJsonl<T>(file: string): Promise<T[]> {
   let raw: string
@@ -93,17 +94,22 @@ function tokensEqual(a: string, b: string): boolean {
 
 /**
  * O token não carrega o e-mail (não vai e-mail em URL). Para validar, recalcula
- * o HMAC de cada inscrito e compara em tempo constante. Retorna o e-mail dono
- * do token, ou null se nenhum bater.
+ * o HMAC de cada e-mail conhecido e compara em tempo constante. Procura entre os
+ * inscritos E na lista de bloqueio: ao cancelar, a linha do inscrito é apagada,
+ * mas o link de cancelamento (e os de e-mails antigos) continua reconhecido.
+ * Retorna o e-mail dono do token, ou null se nenhum bater.
  */
 export async function findEmailByToken(token: string): Promise<string | null> {
   if (!token || token.length > 100) return null
-  const subscribers = await readJsonl<Subscriber>(SUBSCRIBERS_FILE)
+  const [subscribers, blocked] = await Promise.all([
+    readJsonl<Subscriber>(SUBSCRIBERS_FILE),
+    readJsonl<Unsubscribed>(UNSUBSCRIBED_FILE),
+  ])
   const seen = new Set<string>()
-  for (const s of subscribers) {
-    if (!s.email || seen.has(s.email)) continue
-    seen.add(s.email)
-    if (tokensEqual(makeToken(s.email), token)) return s.email
+  for (const row of [...subscribers, ...blocked]) {
+    if (!row.email || seen.has(row.email)) continue
+    seen.add(row.email)
+    if (tokensEqual(makeToken(row.email), token)) return row.email
   }
   return null
 }
@@ -120,15 +126,59 @@ export async function isSubscribed(email: string): Promise<boolean> {
   return rows.some((r) => r.email === email)
 }
 
-export async function addSubscriber(email: string, lang: Lang, source: string): Promise<void> {
-  const row: Subscriber = { email, lang, source, date: new Date().toISOString(), status: 'active' }
-  await appendJsonl(SUBSCRIBERS_FILE, row)
+// Uma escrita por vez no arquivo de inscritos (o app é um processo Node único):
+// cadastrar e apagar linhas não podem se atropelar.
+let subscribersLock: Promise<void> = Promise.resolve()
+function withSubscribersLock<T>(fn: () => Promise<T>): Promise<T> {
+  const run = subscribersLock.then(fn, fn)
+  subscribersLock = run.then(
+    () => undefined,
+    () => undefined
+  )
+  return run
 }
 
-/** Idempotente: descadastrar duas vezes não cria linha duplicada. */
+export async function addSubscriber(email: string, lang: Lang, source: string): Promise<void> {
+  const row: Subscriber = { email, lang, source, date: new Date().toISOString(), status: 'active' }
+  await withSubscribersLock(() => appendJsonl(SUBSCRIBERS_FILE, row))
+}
+
+/** Apaga todas as linhas de um e-mail de um arquivo JSON Lines (grava em arquivo temporário e renomeia). */
+async function removeEmailFromJsonl(file: string, email: string): Promise<void> {
+  let raw: string
+  try {
+    raw = await fs.readFile(file, 'utf-8')
+  } catch (err) {
+    if ((err as NodeJS.ErrnoException).code === 'ENOENT') return
+    throw err
+  }
+  const lines = raw.split('\n')
+  const kept = lines.filter((line) => {
+    if (!line.trim()) return false
+    try {
+      return String((JSON.parse(line) as { email?: string }).email || '').toLowerCase() !== email
+    } catch {
+      return true // linha corrompida: não mexe
+    }
+  })
+  if (kept.length === lines.filter((l) => l.trim()).length) return // nada a apagar
+  const tmp = `${file}.tmp`
+  await fs.writeFile(tmp, kept.length ? kept.join('\n') + '\n' : '', 'utf-8')
+  await fs.rename(tmp, file)
+}
+
+/**
+ * Cancelamento: grava SOMENTE o e-mail na lista de bloqueio (para nunca mais enviar
+ * nada) e apaga a pessoa dos demais arquivos da lista (inscrito completo, registro de
+ * e-mails de apoio enviados e falhas de entrega). Primeiro bloqueia, depois apaga:
+ * se algo cair no meio, a pessoa continua bloqueada. Idempotente.
+ */
 export async function markUnsubscribed(email: string): Promise<void> {
-  if (await isUnsubscribed(email)) return
-  await appendJsonl(UNSUBSCRIBED_FILE, { email, date: new Date().toISOString() })
+  const e = normalizeEmail(email)
+  if (!(await isUnsubscribed(e))) await appendJsonl(UNSUBSCRIBED_FILE, { email: e })
+  await withSubscribersLock(() => removeEmailFromJsonl(SUBSCRIBERS_FILE, e))
+  await removeEmailFromJsonl(FOLLOWUPS_SENT_FILE, e)
+  await removeEmailFromJsonl(FAILED_DELIVERIES_FILE, e)
 }
 
 // ---------- Log de download (sem e-mail: só os 10 primeiros caracteres do token) ----------
@@ -158,7 +208,9 @@ export async function recordFailedDelivery(email: string, lang: Lang, reason: st
 
 export async function sendAlert(title: string, body: string): Promise<void> {
   try {
-    await fetch(NTFY_URL, { method: 'POST', headers: { Title: title, Priority: 'urgent', Tags: 'warning,email' }, body })
+    // Serviço público: nunca e-mails no alerta (mensagens de erro do SMTP às vezes trazem o endereço).
+    const safeBody = body.replace(/[^\s<>"',;]+@[^\s<>"',;]+/g, '[email]')
+    await fetch(NTFY_URL, { method: 'POST', headers: { Title: title, Priority: 'urgent', Tags: 'warning,email' }, body: safeBody })
   } catch (err) {
     console.error('Failed to send ntfy.sh alert:', err)
   }

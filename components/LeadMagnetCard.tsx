@@ -49,6 +49,7 @@ const COPY = {
     sending: 'Sending...',
     micro: 'Delivered to your inbox. You can unsubscribe at any time.',
     privacy: 'Privacy Policy',
+    privacyHref: '/privacy-policy/',
   },
   pt: {
     coverSrc: '/email/training-cover-pt.jpg',
@@ -72,6 +73,7 @@ const COPY = {
     sending: 'Enviando...',
     micro: 'Enviado para o seu email. Você pode cancelar quando quiser.',
     privacy: 'Política de Privacidade',
+    privacyHref: '/pt/politica-de-privacidade/',
   },
 } as const
 
@@ -233,7 +235,7 @@ export default function LeadMagnetCard({
 
               <p className="mt-3 font-body text-xs leading-relaxed text-charcoal/70">
                 {t.micro}{' '}
-                <Link href="/privacy-policy/" className="underline underline-offset-2 hover:text-orange">
+                <Link href={t.privacyHref} className="underline underline-offset-2 hover:text-orange">
                   {t.privacy}
                 </Link>
               </p>

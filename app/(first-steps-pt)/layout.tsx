@@ -36,7 +36,7 @@ export default function FirstStepsPtRootLayout({ children }: { children: React.R
             </p>
             <p className="font-body text-xs text-charcoal/60">
               © {new Date().getFullYear()} SAL Ray. Todos os direitos reservados.{' '}
-              <Link href="/privacy-policy/" className="underline underline-offset-2 hover:text-orange">
+              <Link href="/pt/politica-de-privacidade/" className="underline underline-offset-2 hover:text-orange">
                 Política de Privacidade
               </Link>
               {' · '}

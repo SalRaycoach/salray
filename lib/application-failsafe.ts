@@ -44,7 +44,9 @@ export async function persistFailedApplication(payload: Record<string, unknown>,
  * SMTP. Mensagem propositalmente sem PII do candidato (nome/e-mail/telefone
  * ficam só no log recuperável). Nunca lança.
  */
-export async function sendFailureAlert(firstName: string, reason: string): Promise<void> {
+// O alerta vai para um serviço público (ntfy.sh): sem nome da pessoa, e o motivo do erro do SMTP
+// pode trazer endereços, então eles são removidos. Os dados completos ficam só no log em disco.
+export async function sendFailureAlert(_firstName: string, reason: string): Promise<void> {
   try {
     await fetch(NTFY_URL, {
       method: 'POST',
@@ -53,7 +55,7 @@ export async function sendFailureAlert(firstName: string, reason: string): Promi
         Priority: 'urgent',
         Tags: 'warning,email',
       },
-      body: `A 4-Week Experience application email failed to send (${reason}). Applicant first name: ${firstName || 'unknown'}. The application was NOT lost. Full details were saved to the server recovery log (data/failed-4week-applications.jsonl).`,
+      body: `A 4-Week Experience application email failed to send (${reason.replace(/[^\s<>"',;]+@[^\s<>"',;]+/g, '[email]')}). The application was NOT lost. Full details were saved to the server recovery log (data/failed-4week-applications.jsonl).`,
     })
   } catch (err) {
     console.error('Failed to send ntfy.sh failure alert:', err)

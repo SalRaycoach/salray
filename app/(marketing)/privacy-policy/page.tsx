@@ -8,7 +8,13 @@ const description = 'How SAL Ray collects, uses, and protects your personal info
 export const metadata: Metadata = {
   title,
   description,
-  alternates: { canonical: `${SITE_URL}/privacy-policy/` },
+  alternates: {
+    canonical: `${SITE_URL}/privacy-policy/`,
+    languages: {
+      'en-US': `${SITE_URL}/privacy-policy/`,
+      'pt-BR': `${SITE_URL}/pt/politica-de-privacidade/`,
+    },
+  },
   twitter: TWITTER_CARD,
   openGraph: {
     title: `${title} | SAL Ray`,
