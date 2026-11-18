@@ -186,7 +186,7 @@ export async function markUnsubscribed(email: string): Promise<void> {
 
 // ---------- Log de download (sem e-mail: só os 10 primeiros caracteres do token) ----------
 
-export async function logDownload(entry: { lang: Lang; tokenId: string; valid: boolean; training?: Training }): Promise<void> {
+export async function logDownload(entry: { lang: Lang; tokenId: string; valid: boolean; training?: Training; ga4?: string }): Promise<void> {
   try {
     await appendJsonl(DOWNLOADS_FILE, { date: new Date().toISOString(), ...entry })
   } catch (err) {

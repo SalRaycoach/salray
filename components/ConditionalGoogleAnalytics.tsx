@@ -12,7 +12,8 @@ import GoogleAnalytics from '@/components/GoogleAnalytics'
  * (e a mentoria), /reflections*, /assessment*, avaliação, páginas de políticas etc.
  * O Meta Pixel é outro componente e não é afetado por este.
  */
-const ALLOWED_EXACT = ['/first-steps', '/pt/primeiros-passos']
+// Também as duas páginas de agradecimento (leves), para application_completed e book_session_completed chegarem ao GA4.
+const ALLOWED_EXACT = ['/first-steps', '/pt/primeiros-passos', '/book-a-session/thank-you', '/4-week-experience/thank-you']
 // Artigos: /resources/[categoria]/[artigo]/ (3 níveis) e os artigos em português, /pt/recursos/[artigo]/.
 const ARTICLE_PATH = /^\/(?:resources\/[^/]+\/[^/]+|pt\/recursos\/[^/]+)\/?$/
 

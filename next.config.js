@@ -174,6 +174,14 @@ const nextConfig = {
         ],
       },
       {
+        // Cópia de segurança semanal dos cadastros: privada, nunca em cache nem indexada.
+        source: '/api/first-steps-backup/:path*',
+        headers: [
+          { key: 'Cache-Control', value: 'no-store' },
+          { key: 'X-Robots-Tag', value: 'noindex, nofollow' },
+        ],
+      },
+      {
         source: '/unsubscribe/:path*',
         headers: [
           { key: 'Cache-Control', value: 'no-store' },

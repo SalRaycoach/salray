@@ -114,8 +114,8 @@ export function buildFirstStepsEmail({ lang, email, training = 'pdf1', baseUrl =
   }
   const token = makeToken(email)
 
-  // O PDF 1 não leva o parâmetro p (links já enviados continuam valendo); o PDF 2 leva p=2.
-  const downloadUrl = `${baseUrl}/api/first-steps/download/?l=${lang}&t=${token}${training === 'pdf2' ? `&p=${t.downloadParam}` : ''}`
+  // O PDF 1 não leva o parâmetro p (links já enviados continuam valendo); os demais levam p=<número>.
+  const downloadUrl = `${baseUrl}/api/first-steps/download/?l=${lang}&t=${token}${training !== 'pdf1' ? `&p=${t.downloadParam}` : ''}`
   const unsubscribeUrl = `${baseUrl}/unsubscribe/?l=${lang}&t=${token}`
   const oneClickUnsubscribeUrl = `${baseUrl}/api/first-steps/unsubscribe/?t=${token}`
   const privacyUrl = `${baseUrl}${lang === 'pt' ? '/pt/politica-de-privacidade/' : '/privacy-policy/'}`
@@ -203,7 +203,7 @@ export function buildSignupNotification({ lang, source, date, training = 'pdf1' 
   })
   const rows: [string, string][] = [
     ['Idioma', label],
-    ['Treinamento', training === 'pdf2' ? 'PDF 2 (Você Resolve Tudo para Todo Mundo)' : 'PDF 1 (O Mesmo Problema Continua Te Encontrando)'],
+    ['Treinamento', `PDF ${TRAININGS[training].downloadParam} (${TRAININGS[training].title.pt || TRAININGS[training].title.en})`],
     ['Origem', source],
     ['Data e hora', `${when} (horário de Nova York)`],
   ]

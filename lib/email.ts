@@ -17,7 +17,7 @@ export type SendEmailInput = {
   /** Cabeçalhos extras, ex.: List-Unsubscribe / List-Unsubscribe-Post. */
   headers?: Record<string, string>
   /** Anexos inline (cid:) usados só em testes de template. */
-  attachments?: { filename: string; path: string; cid?: string }[]
+  attachments?: { filename: string; path?: string; content?: string | Buffer; contentType?: string; cid?: string }[]
 }
 
 let cachedTransporter: ReturnType<typeof nodemailer.createTransport> | null = null
