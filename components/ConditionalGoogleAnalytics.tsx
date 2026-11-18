@@ -1,33 +1,37 @@
 'use client'
 
+import { useEffect } from 'react'
 import { usePathname } from 'next/navigation'
 import GoogleAnalytics from '@/components/GoogleAnalytics'
 
-const FOUR_WEEK_HREF = '/4-week-experience/'
-// Pedido 17 set 2026 — mesma exclusão de GA4 já aplicada ao 4-Week Experience,
-// agora também na seção isolada /pt/reconstrucao-emocional/ (inclui a
-// ferramenta de autoavaliação em /avaliacao/, sub-rota da mesma seção).
-const RECONSTRUCAO_PREFIX = '/pt/reconstrucao-emocional'
-// Requested alongside the English "S.T.A.B.L.E. Reflections" launch — same
-// lightweight-analytics treatment as the other free/content funnels above.
-const REFLECTIONS_PREFIX = '/reflections'
-// Private, link-only self-assessment tool (22 set 2026) — no analytics at
-// all is appropriate here, same reasoning as the other excluded funnels.
-const ASSESSMENT_PREFIX = '/assessment'
-
 /**
- * GA4 is excluded on /4-week-experience/, the whole /pt/reconstrucao-
- * emocional/ funnel, /reflections/, and /assessment/ — Meta Pixel stays on
- * the others, since that's what those campaigns are actually measured
- * against; /assessment/ is private and link-only, so it gets no analytics
- * of any kind (see MetaPixel usage — unaffected by this component either way).
- * Everywhere else, unchanged.
+ * GA4 só onde faz sentido medir (lista de PERMITIDAS, em vez da lista de exclusões antiga):
+ *  - /first-steps/ e /pt/primeiros-passos/ (páginas de captura do treinamento);
+ *  - os artigos: /resources/[categoria]/[artigo]/ (exatamente 3 níveis).
+ * Fica DESLIGADO em todo o resto: home, 4-Week Experience, /pt/reconstrucao-emocional*
+ * (e a mentoria), /reflections*, /assessment*, avaliação, páginas de políticas etc.
+ * O Meta Pixel é outro componente e não é afetado por este.
  */
+const ALLOWED_EXACT = ['/first-steps', '/pt/primeiros-passos']
+const ARTICLE_PATH = /^\/resources\/[^/]+\/[^/]+\/?$/
+
+export function isGaAllowed(pathname: string | null): boolean {
+  if (!pathname) return false
+  const clean = pathname.length > 1 ? pathname.replace(/\/$/, '') : pathname
+  return ALLOWED_EXACT.includes(clean) || ARTICLE_PATH.test(pathname)
+}
+
 export default function ConditionalGoogleAnalytics({ measurementId }: { measurementId: string }) {
   const pathname = usePathname()
-  if (pathname === FOUR_WEEK_HREF) return null
-  if (pathname?.startsWith(RECONSTRUCAO_PREFIX)) return null
-  if (pathname?.startsWith(REFLECTIONS_PREFIX)) return null
-  if (pathname?.startsWith(ASSESSMENT_PREFIX)) return null
+  const allowed = isGaAllowed(pathname)
+
+  // Na navegação interna a biblioteca do GA4 continua carregada depois que a pessoa sai de
+  // uma página permitida. O opt-out oficial (ga-disable-ID) impede que a home e as outras
+  // páginas desligadas sejam contadas nesse caso.
+  useEffect(() => {
+    ;(window as unknown as Record<string, unknown>)[`ga-disable-${measurementId}`] = !allowed
+  }, [allowed, measurementId])
+
+  if (!allowed) return null
   return <GoogleAnalytics measurementId={measurementId} />
 }
