@@ -174,3 +174,24 @@ export function buildFirstStepsEmail({ lang, email, baseUrl = SITE_URL, imageSrc
 }
 
 export const FIRST_STEPS_FROM = `${business.nome} <${contato.email}>`
+
+/**
+ * Aviso interno para hello@ a cada novo cadastro. Assunto fixo por idioma e
+ * sem o e-mail da pessoa (nem no assunto nem no corpo).
+ */
+export function buildSignupNotification({ lang, source, date }: { lang: Lang; source: string; date: Date }) {
+  const label = lang === 'pt' ? 'PT' : 'EN'
+  const when = date.toLocaleString('pt-BR', { timeZone: 'America/New_York', dateStyle: 'short', timeStyle: 'short' })
+  const rows: [string, string][] = [
+    ['Idioma', label],
+    ['Origem', source],
+    ['Data e hora', `${when} (horário de Nova York)`],
+  ]
+  return {
+    subject: `[${label}] Novo cadastro treinamento`,
+    text: rows.map(([k, v]) => `${k}: ${v}`).join('\n') + '\n',
+    html: `<div style="font-family:Arial,sans-serif;font-size:14px;color:#111;"><h2 style="margin-bottom:4px;">Novo cadastro do treinamento</h2><table cellpadding="0" cellspacing="0">${rows
+      .map(([k, v]) => `<tr><td style="padding:6px 12px 6px 0;color:#555;"><strong>${k}</strong></td><td style="padding:6px 0;">${escapeHtml(v)}</td></tr>`)
+      .join('')}</table></div>`,
+  }
+}

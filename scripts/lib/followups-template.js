@@ -1,0 +1,187 @@
+/**
+ * Template dos e-mails de apoio do PDF 1 (dia 3, 7 e 15), EN e PT.
+ * JavaScript puro (CommonJS) porque scripts/cron.js roda direto no Node do
+ * Cron Jobs da Hostinger, sem passar pelo build do Next.
+ *
+ * Mesmo design do e-mail de entrega (lib/first-steps-email.ts): tabelas, CSS
+ * inline, 560 px, preheader, tema escuro, logo e capa por URL absoluta. Os
+ * textos são os aprovados, sem alteração. Se mudar o visual de um, mude o outro.
+ */
+
+const SITE_URL = 'https://salraycoach.com'
+const CONTACT_EMAIL = 'hello@salrayofficial.com'
+
+const SHARED = {
+  en: {
+    htmlLang: 'en',
+    eyebrow: 'The Same Problem Keeps Finding You',
+    coverAlt: 'Cover of the training: The Same Problem Keeps Finding You',
+    button: 'Open your training',
+    reply: 'If you want to tell me how it is going, just reply to this email. I read what you send.',
+    role: 'Emotional & Life Rebuilding Coach',
+    receivingBecause: 'You are receiving this because you asked for the training at salraycoach.com.',
+    unsubscribe: 'Unsubscribe',
+    privacy: 'Privacy',
+  },
+  pt: {
+    htmlLang: 'pt-BR',
+    eyebrow: 'O Mesmo Problema Continua Te Encontrando',
+    coverAlt: 'Capa do treinamento: O Mesmo Problema Continua Te Encontrando',
+    button: 'Abrir o treinamento',
+    reply: 'Se quiser me contar como está sendo, é só responder este email. Eu leio o que você enviar.',
+    role: 'Coach de Reconstrução Emocional e de Vida',
+    receivingBecause: 'Você está recebendo este e-mail porque pediu o treinamento em salraycoach.com.',
+    unsubscribe: 'Cancelar inscrição',
+    privacy: 'Privacidade',
+  },
+}
+
+const EMAILS = {
+  en: {
+    day3: {
+      subject: 'How is day 3 going?',
+      preheader: 'By now you may be on day 3 of your training.',
+      paragraphs: [
+        'Hi,',
+        'By now you may be on day 3 of your training. Or you may not have started yet. Both are fine.',
+        'A pattern does not change in three days. What changes is how early you notice it. That is all this week asks of you.',
+        'If you missed a day, do not go back and do not make it up. Open the next page and keep going. The training waits for you.',
+        'One small thing for today: write one sentence about the last time the same reaction showed up. Just one.',
+      ],
+    },
+    day7: {
+      subject: 'Today is a reflection day',
+      preheader: 'Week one ends today. There is no new step.',
+      paragraphs: [
+        'Hi,',
+        'Week one ends today. There is no new step. Read your six pages first. Then write what you noticed.',
+        'Be generous when you tick the boxes. A tick means you did it even once.',
+        'If you are behind, that is fine. Reflect on what you did so far. This page is yours, not a test.',
+      ],
+    },
+    day15: {
+      subject: 'Halfway, and a new week',
+      preheader: 'You are halfway through. Week three starts today.',
+      paragraphs: [
+        'Hi,',
+        'You are halfway through. Week three starts today: hear your inner voice.',
+        'Under every pattern there is a voice. It sounds like you, so you rarely question it. This week you listen to what it says, where it comes from, and what happens when you answer it.',
+        'Before you start, read your week two reflection once. It takes two minutes.',
+      ],
+    },
+  },
+  pt: {
+    day3: {
+      subject: 'Como está o dia 3?',
+      preheader: 'A esta altura você pode estar no dia 3 do treinamento.',
+      paragraphs: [
+        'Olá,',
+        'A esta altura você pode estar no dia 3 do treinamento. Ou pode ainda não ter começado. As duas coisas estão certas.',
+        'Um padrão não muda em três dias. O que muda é o quanto antes você o percebe. É só isso que esta semana pede de você.',
+        'Se perdeu um dia, não volte e não compense. Abra a próxima página e siga em frente. O treinamento espera por você.',
+        'Uma coisa pequena para hoje: escreva uma frase sobre a última vez em que a mesma reação apareceu. Só uma.',
+      ],
+    },
+    day7: {
+      subject: 'Hoje é dia de reflexão',
+      preheader: 'A semana um termina hoje. Não há passo novo.',
+      paragraphs: [
+        'Olá,',
+        'A semana um termina hoje. Não há passo novo. Leia primeiro as suas seis páginas. Depois escreva o que você percebeu.',
+        'Seja generosa ao marcar as caixas. Um check significa que você fez, mesmo que uma vez.',
+        'Se estiver atrasada, tudo bem. Reflita sobre o que fez até agora. Esta página é sua, não é uma prova.',
+      ],
+    },
+    day15: {
+      subject: 'Metade do caminho, e uma semana nova',
+      preheader: 'Você está na metade. A semana três começa hoje.',
+      paragraphs: [
+        'Olá,',
+        'Você está na metade. A semana três começa hoje: ouvir a sua voz interior.',
+        'Por baixo de cada padrão existe uma voz. Ela soa como você, por isso você raramente a questiona. Nesta semana você escuta o que ela diz, de onde ela vem e o que acontece quando você responde a ela.',
+        'Antes de começar, leia uma vez a sua reflexão da semana dois. Leva dois minutos.',
+      ],
+    },
+  },
+}
+
+const KINDS = ['day3', 'day7', 'day15']
+
+function escapeHtml(value) {
+  return String(value).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;')
+}
+
+/**
+ * @param {{lang: 'en'|'pt', kind: 'day3'|'day7'|'day15', token: string, baseUrl?: string,
+ *          subjectPrefix?: string, imageSrc?: {logo: string, cover: string}}} opts
+ * @returns {{subject: string, html: string, text: string, headers: Record<string,string>}}
+ */
+function buildFollowup({ lang, kind, token, baseUrl = SITE_URL, subjectPrefix = '', imageSrc }) {
+  const s = SHARED[lang]
+  const c = EMAILS[lang][kind]
+  if (!s || !c) throw new Error(`Unknown follow-up: ${lang}/${kind}`)
+
+  const downloadUrl = `${baseUrl}/api/first-steps/download/?l=${lang}&t=${token}`
+  const unsubscribeUrl = `${baseUrl}/unsubscribe/?l=${lang}&t=${token}`
+  const oneClickUrl = `${baseUrl}/api/first-steps/unsubscribe/?t=${token}`
+  const privacyUrl = `${baseUrl}/privacy-policy/`
+  const logoSrc = (imageSrc && imageSrc.logo) || `${baseUrl}/email/logo.png`
+  const coverSrc = (imageSrc && imageSrc.cover) || `${baseUrl}/email/training-cover.jpg`
+  const subject = `${subjectPrefix}${c.subject}`
+
+  const paragraphRows = c.paragraphs
+    .map(
+      (p, i) =>
+        `<tr><td align="left" style="padding:${i === 0 ? 22 : 14}px 36px 0;font:16px/26px Arial,Helvetica,sans-serif;color:#D9D4CC">${escapeHtml(p)}</td></tr>`
+    )
+    .join('\n')
+
+  const html = `<!doctype html><html lang="${s.htmlLang}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${escapeHtml(subject)}</title></head>
+<body style="margin:0;background:#0F0F0F;">
+<div style="display:none;max-height:0;overflow:hidden;color:#0F0F0F">${escapeHtml(c.preheader)}</div>
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#0F0F0F"><tr><td align="center" style="padding:24px 12px">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:560px;background:#171717;border:1px solid #2E2E2E">
+<tr><td align="center" style="padding:36px 24px 8px"><img src="${escapeHtml(logoSrc)}" width="110" alt="SAL Ray" style="display:block"></td></tr>
+<tr><td align="center" style="padding:20px 32px 0;font:600 11px Arial,Helvetica,sans-serif;letter-spacing:2px;text-transform:uppercase;color:#F7941D">${escapeHtml(s.eyebrow)}</td></tr>
+<tr><td align="center" style="padding:14px 32px 0;font:400 36px/42px Georgia,'Times New Roman',serif;color:#F2EEE8">${escapeHtml(c.subject)}</td></tr>
+<tr><td align="center" style="padding:8px 0 0"><table role="presentation" width="46" cellpadding="0" cellspacing="0"><tr><td height="2" style="background:#F7941D;font-size:0;line-height:0">&nbsp;</td></tr></table></td></tr>
+${paragraphRows}
+<tr><td align="center" style="padding:28px 36px 0"><img src="${escapeHtml(coverSrc)}" width="200" alt="${escapeHtml(s.coverAlt)}" style="display:block;border:1px solid #2E2E2E"></td></tr>
+<tr><td align="center" style="padding:28px 36px 0"><a href="${escapeHtml(downloadUrl)}" style="display:block;background:#F7941D;color:#171717;font:600 16px Arial,Helvetica,sans-serif;text-decoration:none;padding:17px 24px;border-radius:4px">${escapeHtml(s.button)}</a></td></tr>
+<tr><td style="padding:34px 36px 0;font:italic 18px/28px Georgia,'Times New Roman',serif;color:#F2EEE8">${escapeHtml(s.reply)}</td></tr>
+<tr><td style="padding:26px 36px 0;font:400 22px Georgia,serif;color:#F2EEE8">SAL Ray<br><span style="font:12px Arial,sans-serif;letter-spacing:1px;color:#A8A39B">${escapeHtml(s.role)}</span></td></tr>
+<tr><td style="padding:36px 36px 30px"><table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-top:1px solid #2E2E2E"><tr><td style="padding-top:18px;font:12px/19px Arial,sans-serif;color:#8A857D">${escapeHtml(s.receivingBecause)}<br><a href="${escapeHtml(unsubscribeUrl)}" style="color:#A8A39B">${escapeHtml(s.unsubscribe)}</a> &nbsp;&middot;&nbsp; <a href="${escapeHtml(privacyUrl)}" style="color:#A8A39B">${escapeHtml(s.privacy)}</a></td></tr></table></td></tr>
+</table></td></tr></table></body></html>`
+
+  const text = [
+    s.eyebrow.toUpperCase(),
+    '',
+    c.subject,
+    '',
+    ...c.paragraphs.flatMap((p) => [p, '']),
+    `${s.button}: ${downloadUrl}`,
+    '',
+    s.reply,
+    '',
+    'SAL Ray',
+    s.role,
+    '',
+    '--',
+    s.receivingBecause,
+    `${s.unsubscribe}: ${unsubscribeUrl}`,
+    `${s.privacy}: ${privacyUrl}`,
+    '',
+  ].join('\n')
+
+  return {
+    subject,
+    html,
+    text,
+    headers: {
+      'List-Unsubscribe': `<${oneClickUrl}>, <mailto:${CONTACT_EMAIL}?subject=unsubscribe>`,
+      'List-Unsubscribe-Post': 'List-Unsubscribe=One-Click',
+    },
+  }
+}
+
+module.exports = { buildFollowup, KINDS, EMAILS, SITE_URL, CONTACT_EMAIL }

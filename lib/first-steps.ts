@@ -154,14 +154,17 @@ export async function recordFailedDelivery(email: string, lang: Lang, reason: st
   }
 }
 
-export async function sendDeliveryFailureAlert(reason: string): Promise<void> {
+export async function sendAlert(title: string, body: string): Promise<void> {
   try {
-    await fetch(NTFY_URL, {
-      method: 'POST',
-      headers: { Title: 'SAL Ray site: PDF 1 email failed', Priority: 'urgent', Tags: 'warning,email' },
-      body: `A first-steps training delivery email failed (${reason}). The signup was NOT lost: it is in the subscribers file and listed in data/first-steps-failed-deliveries.jsonl for manual resend.`,
-    })
+    await fetch(NTFY_URL, { method: 'POST', headers: { Title: title, Priority: 'urgent', Tags: 'warning,email' }, body })
   } catch (err) {
-    console.error('Failed to send ntfy.sh failure alert:', err)
+    console.error('Failed to send ntfy.sh alert:', err)
   }
+}
+
+export async function sendDeliveryFailureAlert(reason: string): Promise<void> {
+  await sendAlert(
+    'SAL Ray site: PDF 1 email failed',
+    `A first-steps training delivery email failed (${reason}). The signup was NOT lost: it is in the subscribers file and listed in data/first-steps-failed-deliveries.jsonl for manual resend.`
+  )
 }
