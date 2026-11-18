@@ -166,6 +166,14 @@ const nextConfig = {
         headers: [{ key: 'Cache-Control', value: 'no-store' }],
       },
       {
+        // Rota do cron dos e-mails de apoio: privada, nunca em cache nem indexada.
+        source: '/api/first-steps-cron/:path*',
+        headers: [
+          { key: 'Cache-Control', value: 'no-store' },
+          { key: 'X-Robots-Tag', value: 'noindex, nofollow' },
+        ],
+      },
+      {
         source: '/unsubscribe/:path*',
         headers: [
           { key: 'Cache-Control', value: 'no-store' },

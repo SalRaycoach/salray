@@ -32,13 +32,13 @@ const fs = require('node:fs')
 const path = require('node:path')
 const crypto = require('node:crypto')
 const { buildFollowup, KINDS, CONTACT_EMAIL } = require('./lib/followups-template')
+// Regras de quem recebe o quê (janela de dias, duplicados, descadastro): módulo
+// compartilhado com a rota /api/first-steps-cron, para as duas nunca divergirem.
+const { plan, nyDay } = require('./lib/followups-core')
 
 const ROOT = path.join(__dirname, '..')
 const MAX_PER_RUN = 40
 const PAUSE_MS = Number(process.env.FOLLOWUPS_PAUSE_MS || 3000)
-const DAYS = { day3: 3, day7: 7, day15: 15 }
-const WINDOW_AFTER_DAYS = 2
-const TZ = 'America/New_York'
 // Mesmo tópico ntfy do restante do site (lib/application-failsafe.ts).
 const NTFY_URL = 'https://ntfy.sh/salray-4wk-alert-8c8bdbe0c113'
 
@@ -124,16 +124,6 @@ function makeToken(email) {
   return crypto.createHmac('sha256', process.env.UNSUBSCRIBE_SECRET).update(email.trim().toLowerCase()).digest('base64url')
 }
 
-const nyFormatter = new Intl.DateTimeFormat('en-CA', { timeZone: TZ, year: 'numeric', month: '2-digit', day: '2-digit' })
-function nyDay(date) {
-  return nyFormatter.format(date) // YYYY-MM-DD no calendário de Nova York
-}
-function daysBetween(fromDate, toDate) {
-  const [y1, m1, d1] = nyDay(fromDate).split('-').map(Number)
-  const [y2, m2, d2] = nyDay(toDate).split('-').map(Number)
-  return Math.round((Date.UTC(y2, m2 - 1, d2) - Date.UTC(y1, m1 - 1, d1)) / 86400000)
-}
-
 async function sendAlert(title, body) {
   try {
     await fetch(NTFY_URL, { method: 'POST', headers: { Title: title, Priority: 'urgent', Tags: 'warning,email' }, body })
@@ -166,55 +156,6 @@ async function deliver(to, message) {
     text: message.text,
     headers: message.headers,
   })
-}
-
-// ---------- planejamento (puro, sem envio) ----------
-
-/**
- * Para cada inscrito único decide o que fazer. Retorna { decisions, due }.
- * decisions: uma linha por pessoa (para o --dry-run); due: quem recebe agora.
- */
-function plan(now, subscribers, unsubscribedRows, sentRows) {
-  const unsub = new Set(unsubscribedRows.map((r) => String(r.email).toLowerCase()))
-  const sent = new Set(sentRows.map((r) => `${String(r.email).toLowerCase()}|${r.day}`))
-  const seen = new Set()
-  const decisions = []
-  const due = []
-
-  for (const row of subscribers) {
-    const email = String(row.email || '').trim().toLowerCase()
-    if (!email || seen.has(email)) continue // duplicado: vale só a primeira linha
-    seen.add(email)
-    const lang = row.lang === 'pt' ? 'pt' : 'en'
-    const signedUp = new Date(row.date)
-    const base = { email, lang }
-
-    if (unsub.has(email)) {
-      decisions.push({ ...base, result: 'skip (unsubscribed)' })
-      continue
-    }
-    if (Number.isNaN(signedUp.getTime())) {
-      decisions.push({ ...base, result: 'skip (invalid signup date)' })
-      continue
-    }
-    const age = daysBetween(signedUp, now)
-    if (age <= 0) {
-      decisions.push({ ...base, age, result: 'skip (signed up today)' })
-      continue
-    }
-    const kind = KINDS.find((k) => age >= DAYS[k] && age <= DAYS[k] + WINDOW_AFTER_DAYS)
-    if (!kind) {
-      decisions.push({ ...base, age, result: age < DAYS.day3 ? 'skip (too early)' : 'skip (no email due)' })
-      continue
-    }
-    if (sent.has(`${email}|${kind}`)) {
-      decisions.push({ ...base, age, kind, result: `skip (${kind} already sent)` })
-      continue
-    }
-    decisions.push({ ...base, age, kind, result: `SEND ${kind}` })
-    due.push({ ...base, age, kind })
-  }
-  return { decisions, due }
 }
 
 // ---------- modos ----------
@@ -314,4 +255,4 @@ if (require.main === module) {
   })
 }
 
-module.exports = { plan, daysBetween, nyDay }
+module.exports = { plan, nyDay }
