@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { sendEmail } from '@/lib/email'
-import { buildFirstStepsEmail, FIRST_STEPS_FROM } from '@/lib/first-steps-email'
+import { buildFirstStepsEmail, buildSignupNotification, FIRST_STEPS_FROM } from '@/lib/first-steps-email'
+import { contato } from '@/lib/config'
 import {
   addSubscriber,
   isSubscribed,
@@ -10,6 +11,7 @@ import {
   parseLang,
   parseSource,
   recordFailedDelivery,
+  sendAlert,
   sendDeliveryFailureAlert,
   type Lang,
 } from '@/lib/first-steps'
@@ -108,7 +110,8 @@ export async function POST(request: NextRequest) {
     }
 
     // Já inscrito e ativo: reenvia o e-mail, mas não cria linha nova.
-    if (!(await isSubscribed(email))) {
+    const isNewSubscriber = !(await isSubscribed(email))
+    if (isNewSubscriber) {
       await addSubscriber(email, lang, source)
     }
 
@@ -141,6 +144,27 @@ export async function POST(request: NextRequest) {
       await recordFailedDelivery(email, lang, reason)
       await sendDeliveryFailureAlert(reason)
       return NextResponse.json({ ok: false, error: msg.failed }, { status: 502 })
+    }
+
+    // Aviso interno só para cadastro NOVO e já entregue. Nunca pode derrubar
+    // o cadastro nem a entrega: se falhar, só log (sem e-mail) e alerta ntfy.
+    if (isNewSubscriber) {
+      try {
+        const note = buildSignupNotification({ lang, source, date: new Date() })
+        await sendEmail({
+          from: `"SAL Ray site" <${contato.email}>`,
+          to: contato.email,
+          subject: note.subject,
+          html: note.html,
+          text: note.text,
+        })
+      } catch (err) {
+        console.error('first-steps signup notification failed:', err instanceof Error ? err.message : err)
+        await sendAlert(
+          'SAL Ray site: signup notice failed',
+          'A new first-steps signup was saved and the training email was delivered, but the internal notice to hello@ failed to send.'
+        )
+      }
     }
   } catch (err) {
     // Erro de configuração (ex.: UNSUBSCRIBE_SECRET ausente) ou de disco.
