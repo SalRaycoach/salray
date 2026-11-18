@@ -9,13 +9,11 @@ const description =
 const COVER_URL = `${SITE_URL}/email/training-cover.jpg`
 const COVER_ALT = 'Cover of the training: The Same Problem Keeps Finding You'
 
-// Página ainda ESCONDIDA (Fase A): noindex, fora do sitemap (ver exclude em
-// next-sitemap.config.js) e sem nenhum link vindo de outras páginas.
-// Na Fase B: trocar robots para index,follow e tirar '/first-steps' do exclude.
+// Fase B: página pública, indexável e listada no sitemap.
 export const metadata: Metadata = {
   title: { absolute: title },
   description,
-  robots: { index: false, follow: false },
+  robots: { index: true, follow: true },
   alternates: { canonical: `${SITE_URL}/first-steps/` },
   openGraph: {
     title,

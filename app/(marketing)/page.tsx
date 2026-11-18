@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { OG_IMAGES, TWITTER_CARD } from '@/lib/og'
 import Link from 'next/link'
 import Hero from '@/components/Hero'
+import StartHere from '@/components/StartHere'
 import ProblemRecognition from '@/components/ProblemRecognition'
 import Transformation from '@/components/Transformation'
 import AboutPreview from '@/components/AboutPreview'
@@ -41,6 +42,7 @@ export default function HomePage() {
       <SchemaOrg data={schema} />
       <main>
         <Hero />
+        <StartHere />
         <ProblemRecognition />
         <Transformation />
         <AboutPreview />
