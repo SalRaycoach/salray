@@ -1,11 +1,13 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import LeadMagnetCard from '@/components/LeadMagnetCard'
-import { contato, SITE_URL } from '@/lib/config'
+import TrainingQuiz from '@/components/TrainingQuiz'
+import { SITE_URL } from '@/lib/config'
+import { PUBLISHED_TRAININGS } from '@/lib/trainings'
 
 const title = 'First steps | SAL Ray'
 const description =
-  'Two 30-day interactive training PDFs. Pick the one that fits you today. Every box can be filled in, about 20 minutes a day.'
+  'Interactive 30-day training PDFs. Pick the one that sounds most like you today. Every box can be filled in, about 20 minutes a day.'
 const COVER_URL = `${SITE_URL}/email/training-cover.jpg`
 const COVER_ALT = 'Cover of the training: The Same Problem Keeps Finding You'
 
@@ -59,24 +61,26 @@ export default function FirstStepsPage() {
         <section className="max-w-content mx-auto px-6 pt-10 pb-8 md:pt-16 md:pb-10">
           <p className="font-body text-xs uppercase tracking-widest text-aqua mb-3">First steps</p>
           <h1 className="font-display text-3xl sm:text-4xl md:text-5xl leading-tight text-charcoal max-w-3xl mb-4">
-            Choose the training that fits you today
+            Choose the training that sounds most like you today
           </h1>
           <p className="font-body text-base md:text-lg text-charcoal/80 leading-relaxed max-w-2xl">
-            Each training is a way in to a different situation. Choose the one that looks most like you today. If you
-            are unsure,{' '}
-            <a
-              href={`mailto:${contato.email}?subject=${encodeURIComponent('Which training is right for me?')}`}
-              className="underline underline-offset-4 hover:text-orange"
-            >
+            Each training is a door into a different situation. Pick the one that sounds most like you today. If you
+            are not sure, answer three short questions below, or{' '}
+            <Link href="/contact/" className="underline underline-offset-4 hover:text-orange">
               send me a message
-            </a>{' '}
+            </Link>{' '}
             and I will guide you.
           </p>
         </section>
 
+        {/* "Qual treinamento é para mim": some sozinho se houver menos de 2 treinamentos publicados. */}
+        <TrainingQuiz />
+
+        {/* Um cartão por treinamento publicado (lib/trainings.ts): publicar mais um já o inclui aqui. */}
         <section aria-label="The trainings" className="max-w-content mx-auto px-6 pb-14 md:pb-20 space-y-6">
-          <LeadMagnetCard variant="page" source="first-steps" training="pdf1" showSituation priority />
-          <LeadMagnetCard variant="page" source="first-steps" training="pdf2" showSituation />
+          {PUBLISHED_TRAININGS.map((id, i) => (
+            <LeadMagnetCard key={id} variant="page" source="first-steps" training={id} showSituation track priority={i === 0} />
+          ))}
         </section>
 
         <section className="max-w-content mx-auto px-6 pb-14 md:pb-20">

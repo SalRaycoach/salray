@@ -53,8 +53,13 @@ export type AnalyticsEvent =
   | 'product_cta_click'
   | 'reflections_signup_submit' // /reflections/ — captura de e-mail "Receive New Audio Reflections"
   // PDF 1 (treinamento interativo de 30 dias). Params: lang, source (nunca e-mail).
-  | 'lead_magnet_signup' // cadastro concluído com sucesso (resposta ok da API)
-  | 'lead_magnet_download' // params: lang. O clique do e-mail passa por rota de servidor (/api/first-steps/download/), que só registra log; este evento é para uma página de agradecimento futura
+  | 'lead_magnet_signup' // cadastro concluído com sucesso (resposta ok da API). Params: lang, source, training
+  | 'lead_magnet_download' // DISPARA NO SERVIDOR (lib/ga4-mp.ts, via Measurement Protocol) quando /api/first-steps/download/ entrega o PDF. Params: training, lang, source. Não passa por trackEvent
+  | 'lead_magnet_view' // o cartão de um treinamento apareceu na tela (uma vez por visita). Params: training, source, lang
+  | 'lead_magnet_select' // clicou no campo de e-mail ou no botão do cartão. Params: training, source, lang
+  | 'quiz_start' // clicou em "Answer 3 questions". Params: source
+  | 'quiz_complete' // respondeu as 3 perguntas. Params: training (o indicado), source
+  | 'quiz_result_signup' // cadastro feito pelo cartão do resultado do seletor. Params: training, source, lang
 
 export function trackEvent(event: AnalyticsEvent, payload: Record<string, unknown> = {}) {
   if (typeof window === 'undefined') return

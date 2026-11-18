@@ -6,7 +6,7 @@ import SchemaOrg from '@/components/SchemaOrg'
 import { articles, clusters, getChildArticles } from '@/lib/resources'
 import { getArticleSchema } from '@/lib/schema'
 import { markdownToHtml } from '@/lib/mdx'
-import LeadMagnetCard from '@/components/LeadMagnetCard'
+import ChooseTrainingCard from '@/components/ChooseTrainingCard'
 import { crisisResource, SITE_URL } from '@/lib/config'
 
 export function generateStaticParams() {
@@ -110,7 +110,7 @@ export default function ArticlePage({ params }: { params: { cluster: string; slu
           <p className="font-body text-xs uppercase tracking-widest text-aqua mb-3">
             End of the article · what to do next
           </p>
-          <LeadMagnetCard variant="compact" source="article" />
+          <ChooseTrainingCard />
           <p className="mt-5 text-center font-body text-sm text-charcoal/70">
             Prefer to talk it through?{' '}
             <Link

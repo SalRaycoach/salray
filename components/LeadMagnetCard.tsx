@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { useId, useState } from 'react'
+import { useEffect, useId, useRef, useState } from 'react'
 import { trackEvent } from '@/lib/analytics'
 import { TRAININGS, type Training } from '@/lib/trainings'
 
@@ -16,8 +16,11 @@ import { TRAININGS, type Training } from '@/lib/trainings'
  *  - variant "compact" / "article": cartão menor, com capa pequena, para o fim
  *    dos artigos ("article" usa o mesmo layout do "compact").
  *  - source: de onde veio o cadastro (first-steps, article, home, reflections...).
- *  - training: qual PDF o cartão entrega (pdf1 por padrão; pdf2 = "Quem Conserta Você?").
- *    Cartões sem essa prop continuam exatamente como eram (PDF 1).
+ *  - training: qual PDF o cartão entrega (pdf1 por padrão). Título, capa, páginas e a frase de
+ *    "para qual situação" vêm de lib/trainings.ts. Cartões sem essa prop continuam como eram (PDF 1).
+ *  - track: liga os eventos de engajamento (lead_magnet_view e lead_magnet_select). Desligado por
+ *    padrão: só a página em inglês /first-steps/ e o seletor ligam. Sem e-mail em nenhum parâmetro.
+ *  - onSignup: chamado depois de um cadastro com sucesso (o seletor usa para quiz_result_signup).
  */
 
 export type LeadMagnetVariant = 'page' | 'article' | 'compact'
@@ -45,10 +48,7 @@ const COPY = {
     bodyCompact: 'Every box can be filled in. About 20 minutes a day.',
     pages: 'pages',
     coverAltPrefix: 'Cover of the training',
-    situation: {
-      pdf1: 'For those who feel the same problem keeps coming back in different places in their life.',
-      pdf2: 'For those who fix everyone else’s life and forget their own.',
-    },
+    bodyGeneric: 'Not a reading PDF. You write in it, day by day, for 30 days. Sent straight to your inbox.',
     bodyPdf2:
       'Not a reading PDF. You write in it, day by day, and by day 30 you can see when you rescue and what it costs you. Sent straight to your inbox.',
     successTitle: 'Check your inbox.',
@@ -77,10 +77,7 @@ const COPY = {
     bodyCompact: 'Cada caixa pode ser preenchida. Cerca de 20 minutos por dia.',
     pages: 'páginas',
     coverAltPrefix: 'Capa do treinamento',
-    situation: {
-      pdf1: 'Para quem sente que o mesmo problema volta em lugares diferentes da vida.',
-      pdf2: 'Para quem resolve a vida de todo mundo e se esquece de si mesma.',
-    },
+    bodyGeneric: 'Não é um PDF de leitura. Você escreve nele, dia após dia, durante 30 dias. Enviado direto para o seu email.',
     bodyPdf2:
       'Não é um PDF de leitura. Você escreve nele, dia após dia, e no dia 30 enxerga quando resgata e o que isso custa a você. Enviado direto para o seu email.',
     successTitle: 'Confira sua caixa de entrada.',
@@ -105,6 +102,8 @@ export default function LeadMagnetCard({
   lang = 'en',
   training = 'pdf1',
   showSituation = false,
+  track = false,
+  onSignup,
 }: {
   variant?: LeadMagnetVariant
   source: string
@@ -116,15 +115,53 @@ export default function LeadMagnetCard({
   showSituation?: boolean
   /** Cartão na primeira dobra: carrega a capa já, sem lazy. */
   priority?: boolean
+  /** Liga os eventos lead_magnet_view e lead_magnet_select (ver o comentário do topo). */
+  track?: boolean
+  /** Chamado depois de um cadastro com sucesso. */
+  onSignup?: () => void
 }) {
   const uid = useId()
   const [email, setEmail] = useState('')
   const [website, setWebsite] = useState('') // honeypot
   const [status, setStatus] = useState<Status>('idle')
   const [errorMessage, setErrorMessage] = useState('')
+  const cardRef = useRef<HTMLDivElement>(null)
+  const viewedRef = useRef(false)
+  const selectedRef = useRef(false)
 
   const compact = variant !== 'page'
   const t = COPY[lang]
+
+  // lead_magnet_view: o cartão apareceu na tela (uma vez por visita). Só com track ligado.
+  useEffect(() => {
+    if (!track || viewedRef.current) return
+    const el = cardRef.current
+    if (!el) return
+    if (typeof IntersectionObserver === 'undefined') {
+      viewedRef.current = true
+      trackEvent('lead_magnet_view', { lang, source, training })
+      return
+    }
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((e) => e.isIntersecting) && !viewedRef.current) {
+          viewedRef.current = true
+          trackEvent('lead_magnet_view', { lang, source, training })
+          observer.disconnect()
+        }
+      },
+      { threshold: 0.4 }
+    )
+    observer.observe(el)
+    return () => observer.disconnect()
+  }, [track, lang, source, training])
+
+  // lead_magnet_select: clicou no campo de e-mail ou no botão (uma vez por cartão e visita).
+  function markSelected() {
+    if (!track || selectedRef.current) return
+    selectedRef.current = true
+    trackEvent('lead_magnet_select', { lang, source, training })
+  }
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
@@ -151,6 +188,7 @@ export default function LeadMagnetCard({
       if (response.ok && data.ok) {
         // Nunca vai e-mail em parâmetro de evento.
         trackEvent('lead_magnet_signup', { lang, source, training })
+        onSignup?.()
         setStatus('success')
         setEmail('')
         return
@@ -167,12 +205,13 @@ export default function LeadMagnetCard({
   }
 
   const info = TRAININGS[training]
-  const isPdf2 = training === 'pdf2'
-  // PDF 1: textos de sempre. PDF 2: título e corpo próprios (o título do cartão compacto do
-  // PDF 1 é a chamada dele; o do PDF 2 é o próprio título).
-  const eyebrow = compact ? t.eyebrowCompact : `${t.eyebrowCompact} · ${info.pages[lang]} ${t.pages}`
-  const title = isPdf2 ? info.title[lang] : compact ? t.titleCompact : t.titlePage
-  const body = compact ? t.bodyCompact : isPdf2 ? t.bodyPdf2 : t.bodyPage
+  const isPdf1 = training === 'pdf1'
+  // PDF 1 e PDF 2: textos de sempre. Os demais: título vem de lib/trainings.ts e o corpo é genérico.
+  // (O título do cartão compacto do PDF 1 é a chamada dele; nos outros é o próprio título.)
+  const eyebrow =
+    compact || info.pages[lang] <= 0 ? t.eyebrowCompact : `${t.eyebrowCompact} · ${info.pages[lang]} ${t.pages}`
+  const title = !isPdf1 ? info.title[lang] : compact ? t.titleCompact : t.titlePage
+  const body = compact ? t.bodyCompact : isPdf1 ? t.bodyPage : training === 'pdf2' ? t.bodyPdf2 : t.bodyGeneric
   const coverSrc = info.cover[lang]
   const coverAlt = `${t.coverAltPrefix}: ${info.title[lang]}`
 
@@ -181,6 +220,7 @@ export default function LeadMagnetCard({
 
   return (
     <div
+      ref={cardRef}
       className={`rounded-2xl border border-charcoal/15 bg-[#171717] ${
         compact ? 'p-5 sm:p-6' : 'p-6 sm:p-8 md:p-10'
       } ${compact ? 'flex flex-col sm:flex-row items-center sm:items-center gap-6' : 'flex flex-col md:flex-row items-center gap-8 md:gap-12'}`}
@@ -208,7 +248,7 @@ export default function LeadMagnetCard({
           {title}
         </h2>
         {showSituation && (
-          <p className="font-body text-sm font-semibold text-orange mb-3 leading-relaxed">{t.situation[training]}</p>
+          <p className="font-body text-sm font-semibold text-orange mb-3 leading-relaxed">{info.situation[lang]}</p>
         )}
         <p className={`font-body text-charcoal/80 leading-relaxed ${compact ? 'mb-4' : 'mb-6'}`}>{body}</p>
 
@@ -248,6 +288,7 @@ export default function LeadMagnetCard({
                   placeholder={t.emailPlaceholder}
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
+                  onFocus={markSelected}
                   aria-invalid={status === 'error' ? true : undefined}
                   aria-describedby={status === 'error' ? errorId : undefined}
                   className="min-w-0 flex-1 rounded-md border border-charcoal/30 bg-offwhite px-4 py-3.5 font-body text-charcoal placeholder:text-charcoal/60 focus:outline-none focus-visible:ring-2 focus-visible:ring-aqua focus-visible:ring-offset-2 focus-visible:ring-offset-[#171717]"
@@ -255,6 +296,7 @@ export default function LeadMagnetCard({
                 <button
                   type="submit"
                   disabled={status === 'submitting'}
+                  onClick={markSelected}
                   // Com dois cartões na mesma página, o leitor de tela precisa saber qual treinamento cada botão pede.
                   aria-label={showSituation ? `${t.button}: ${info.title[lang]}` : undefined}
                   className="whitespace-nowrap rounded-md bg-orange px-6 py-3.5 font-body text-sm font-semibold text-offwhite transition-colors hover:bg-charcoal focus:outline-none focus-visible:ring-2 focus-visible:ring-aqua focus-visible:ring-offset-2 focus-visible:ring-offset-[#171717] disabled:cursor-not-allowed disabled:opacity-60"

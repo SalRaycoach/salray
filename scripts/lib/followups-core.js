@@ -47,7 +47,8 @@ function plan(now, subscribers, unsubscribedRows, sentRows) {
 
   for (const row of subscribers) {
     const email = String(row.email || '').trim().toLowerCase()
-    const training = row.training === 'pdf2' ? 'pdf2' : 'pdf1'
+    // Cadastro sem o campo training = pdf1 (cadastros antigos). Qualquer outro id vale ele mesmo.
+    const training = row.training ? String(row.training) : 'pdf1'
     const key = `${email}|${training}`
     if (!email || seen.has(key)) continue
     seen.add(key)
@@ -69,6 +70,11 @@ function plan(now, subscribers, unsubscribedRows, sentRows) {
       continue
     }
     const kinds = KINDS_BY_TRAINING[training]
+    if (!kinds) {
+      // Treinamento sem sequência de e-mails definida (ex.: pdf3 a pdf5 por enquanto): não recebe acompanhamento.
+      decisions.push({ ...base, result: 'skip (no follow-up sequence for this training)' })
+      continue
+    }
     const kind = kinds.find((k) => age >= DAYS[k] && age <= DAYS[k] + WINDOW_AFTER_DAYS)
     if (!kind) {
       decisions.push({ ...base, age, result: age < DAYS[kinds[0]] ? 'skip (too early)' : 'skip (no email due)' })

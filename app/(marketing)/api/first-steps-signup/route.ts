@@ -15,7 +15,7 @@ import {
   sendDeliveryFailureAlert,
   type Lang,
 } from '@/lib/first-steps'
-import { parseTraining } from '@/lib/trainings'
+import { resolvePublishedTraining } from '@/lib/trainings'
 
 /**
  * Cadastro do treinamento do PDF 1 (envio do e-mail com o link de download).
@@ -102,7 +102,11 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ ok: false, error: msg.invalidEmail }, { status: 400 })
   }
   const source = parseSource(body.source)
-  const training = parseTraining(body.training)
+  // Só treinamentos publicados (ausente = pdf1, como nos formulários antigos). Outro valor é recusado.
+  const training = resolvePublishedTraining(body.training)
+  if (!training) {
+    return NextResponse.json({ ok: false, error: 'Invalid request.' }, { status: 400 })
+  }
 
   try {
     // Quem se descadastrou nunca recebe nada. Resposta idêntica à de sucesso
