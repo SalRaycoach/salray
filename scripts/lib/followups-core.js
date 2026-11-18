@@ -1,16 +1,24 @@
 /**
- * Regras de planejamento dos e-mails de apoio do PDF 1 (dia 3, 7 e 15).
+ * Regras de planejamento dos e-mails de apoio dos treinamentos (dia 3, 7 e 15).
  * Módulo puro (sem disco, sem envio), compartilhado por scripts/cron.js e pela
  * rota POST /api/first-steps-cron (lib/first-steps-cron.ts). Fonte única das regras.
  *
  *  - Dias desde o cadastro = diferença de dias de calendário em Nova York.
  *  - O e-mail do dia N sai quando a pessoa está entre N e N+2 dias.
  *  - Nunca no dia do cadastro, nunca a descadastrados, nunca duas vezes.
- *  - Duplicados na lista valem só pela primeira linha.
+ *  - Cada cadastro tem um treinamento (campo `training`, ausente = pdf1) e só recebe
+ *    os e-mails DELE: pdf1 → day3/day7/day15; pdf2 → pdf2-day3/pdf2-day7/pdf2-day15.
+ *    Quem pediu os dois treinamentos tem duas linhas e recebe as duas sequências.
+ *  - Duplicados (mesmo e-mail e mesmo treinamento) valem só pela primeira linha.
  */
 
+// KINDS continua sendo a sequência do PDF 1 (o modo de teste da rota usa só ela).
 const KINDS = ['day3', 'day7', 'day15']
-const DAYS = { day3: 3, day7: 7, day15: 15 }
+const KINDS_BY_TRAINING = {
+  pdf1: ['day3', 'day7', 'day15'],
+  pdf2: ['pdf2-day3', 'pdf2-day7', 'pdf2-day15'],
+}
+const DAYS = { day3: 3, day7: 7, day15: 15, 'pdf2-day3': 3, 'pdf2-day7': 7, 'pdf2-day15': 15 }
 const WINDOW_AFTER_DAYS = 2
 const TZ = 'America/New_York'
 
@@ -28,7 +36,7 @@ function daysBetween(fromDate, toDate) {
 
 /**
  * Para cada inscrito único decide o que fazer. Retorna { decisions, due }.
- * decisions: uma linha por pessoa; due: quem recebe agora.
+ * decisions: uma linha por pessoa e treinamento; due: quem recebe agora.
  */
 function plan(now, subscribers, unsubscribedRows, sentRows) {
   const unsub = new Set(unsubscribedRows.map((r) => String(r.email).toLowerCase()))
@@ -39,11 +47,13 @@ function plan(now, subscribers, unsubscribedRows, sentRows) {
 
   for (const row of subscribers) {
     const email = String(row.email || '').trim().toLowerCase()
-    if (!email || seen.has(email)) continue
-    seen.add(email)
+    const training = row.training === 'pdf2' ? 'pdf2' : 'pdf1'
+    const key = `${email}|${training}`
+    if (!email || seen.has(key)) continue
+    seen.add(key)
     const lang = row.lang === 'pt' ? 'pt' : 'en'
     const signedUp = new Date(row.date)
-    const base = { email, lang }
+    const base = { email, lang, training }
 
     if (unsub.has(email)) {
       decisions.push({ ...base, result: 'skip (unsubscribed)' })
@@ -58,9 +68,10 @@ function plan(now, subscribers, unsubscribedRows, sentRows) {
       decisions.push({ ...base, age, result: 'skip (signed up today)' })
       continue
     }
-    const kind = KINDS.find((k) => age >= DAYS[k] && age <= DAYS[k] + WINDOW_AFTER_DAYS)
+    const kinds = KINDS_BY_TRAINING[training]
+    const kind = kinds.find((k) => age >= DAYS[k] && age <= DAYS[k] + WINDOW_AFTER_DAYS)
     if (!kind) {
-      decisions.push({ ...base, age, result: age < DAYS.day3 ? 'skip (too early)' : 'skip (no email due)' })
+      decisions.push({ ...base, age, result: age < DAYS[kinds[0]] ? 'skip (too early)' : 'skip (no email due)' })
       continue
     }
     if (sent.has(`${email}|${kind}`)) {
@@ -73,4 +84,4 @@ function plan(now, subscribers, unsubscribedRows, sentRows) {
   return { decisions, due }
 }
 
-module.exports = { KINDS, DAYS, WINDOW_AFTER_DAYS, TZ, nyDay, daysBetween, plan }
+module.exports = { KINDS, KINDS_BY_TRAINING, DAYS, WINDOW_AFTER_DAYS, TZ, nyDay, daysBetween, plan }

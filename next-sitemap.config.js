@@ -183,6 +183,11 @@ module.exports = {
     } else if (p === '/sitemap') {
       priority = 0.2
       changefreq = 'weekly'
+    } else if (p.startsWith('/pt/recursos/')) {
+      // Artigos em português (mesma prioridade dos artigos em inglês)
+      priority = 0.7
+      changefreq = 'monthly'
+      lastmod = '2026-11-18T12:00:00-05:00'
     } else if (p === '/pt/reflexoes') {
       // hub — biblioteca de áudios em português, conteúdo indexável e gratuito
       priority = 0.8

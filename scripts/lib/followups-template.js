@@ -69,6 +69,39 @@ const EMAILS = {
         'Before you start, read your week two reflection once. It takes two minutes.',
       ],
     },
+
+    'pdf2-day3': {
+      subject: 'The first rescue you noticed',
+      preheader: 'By now you may be on day 3 of your training.',
+      paragraphs: [
+        'Hi,',
+        'By now you may be on day 3 of your training. Or you may not have started yet. Both are fine.',
+        'The first days ask for something small: notice. Notice a rescue from this week, that moment when someone needed something and you were already on your feet before anyone called.',
+        'You do not have to change anything yet. Only see that it happened, and how you felt right after.',
+        'One small thing for today: write one sentence about the first rescue you noticed. Who needed what, what you did, and how you felt afterwards. Just one.',
+      ],
+    },
+    'pdf2-day7': {
+      subject: 'What would you do if you did not rescue?',
+      preheader: 'Week one ends today. There is no new step.',
+      paragraphs: [
+        'Hi,',
+        'Week one ends today. There is no new step. Read your six pages first and count how many rescues you wrote down.',
+        'Then answer one question: what would you do if you did not rescue?',
+        'It might be rest. It might be fear. It might be guilt. Any answer is fine, and it does not have to become a decision today.',
+        'If you are behind, that is fine. Reflect on what you did so far. This page is yours, not a test.',
+      ],
+    },
+    'pdf2-day15': {
+      subject: 'Halfway, and your inner voice',
+      preheader: 'You are halfway through. Week three starts today.',
+      paragraphs: [
+        'Hi,',
+        'You are halfway through. Week three starts today: hear your inner voice.',
+        'Under every rescue there is a voice. It often sounds like this: if I do not fix it, who will? This week you listen to what it says, where it comes from, and what happens when you answer it calmly.',
+        'Before you start, read your week two reflection once. It takes two minutes.',
+      ],
+    },
   },
   pt: {
     day3: {
@@ -102,10 +135,57 @@ const EMAILS = {
         'Antes de começar, leia uma vez a sua reflexão da semana dois. Leva dois minutos.',
       ],
     },
+
+    'pdf2-day3': {
+      subject: 'O primeiro resgate que você notou',
+      preheader: 'A esta altura você pode estar no dia 3 do treinamento.',
+      paragraphs: [
+        'Olá,',
+        'A esta altura você pode estar no dia 3 do treinamento. Ou pode ainda não ter começado. As duas coisas estão certas.',
+        'Os primeiros dias pedem algo pequeno: notar. Notar um resgate desta semana, aquele momento em que alguém precisou de algo e você já estava de pé antes de ser chamada.',
+        'Você não precisa mudar nada ainda. Só perceber que aconteceu e como você se sentiu logo depois.',
+        'Uma coisa pequena para hoje: escreva uma frase sobre o primeiro resgate que você notou. Quem precisou de quê, o que você fez e como se sentiu depois. Só uma.',
+      ],
+    },
+    'pdf2-day7': {
+      subject: 'O que você faria se não resgatasse?',
+      preheader: 'A semana um termina hoje. Não há passo novo.',
+      paragraphs: [
+        'Olá,',
+        'A semana um termina hoje. Não há passo novo. Leia primeiro as suas seis páginas e conte quantos resgates você anotou.',
+        'Depois responda a uma pergunta só: o que você faria se não resgatasse?',
+        'Pode ser descanso. Pode ser medo. Pode ser culpa. Qualquer resposta serve, e ela não precisa virar decisão hoje.',
+        'Se estiver atrasada, tudo bem. Reflita sobre o que fez até agora. Esta página é sua, não é uma prova.',
+      ],
+    },
+    'pdf2-day15': {
+      subject: 'Metade do caminho, e a sua voz interior',
+      preheader: 'Você está na metade. A semana três começa hoje.',
+      paragraphs: [
+        'Olá,',
+        'Você está na metade. A semana três começa hoje: ouvir a sua voz interior.',
+        'Por baixo de cada resgate existe uma voz. Ela costuma dizer algo assim: se eu não resolver, quem vai resolver? Nesta semana você escuta o que ela diz, de onde ela vem e o que acontece quando você responde a ela com calma.',
+        'Antes de começar, leia uma vez a sua reflexão da semana dois. Leva dois minutos.',
+      ],
+    },
   },
 }
 
 const KINDS = ['day3', 'day7', 'day15']
+
+// Dados do PDF 2 (título e capa). Os e-mails 'pdf2-*' usam estes no lugar dos do PDF 1.
+const PDF2 = {
+  en: {
+    eyebrow: 'You Fix Everything for Everyone. Who Fixes You?',
+    coverAlt: 'Cover of the training: You Fix Everything for Everyone. Who Fixes You?',
+    cover: '/email/training-2-cover.jpg',
+  },
+  pt: {
+    eyebrow: 'Você Resolve Tudo para Todo Mundo. Quem Conserta Você?',
+    coverAlt: 'Capa do treinamento: Você Resolve Tudo para Todo Mundo. Quem Conserta Você?',
+    cover: '/email/training-2-cover-pt.jpg',
+  },
+}
 
 function escapeHtml(value) {
   return String(value).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;')
@@ -121,12 +201,16 @@ function buildFollowup({ lang, kind, token, baseUrl = SITE_URL, subjectPrefix = 
   const c = EMAILS[lang][kind]
   if (!s || !c) throw new Error(`Unknown follow-up: ${lang}/${kind}`)
 
-  const downloadUrl = `${baseUrl}/api/first-steps/download/?l=${lang}&t=${token}`
+  const isPdf2 = String(kind).startsWith('pdf2-')
+  // O link do PDF 1 não leva o parâmetro p (como sempre); o do PDF 2 leva p=2.
+  const downloadUrl = `${baseUrl}/api/first-steps/download/?l=${lang}&t=${token}${isPdf2 ? '&p=2' : ''}`
   const unsubscribeUrl = `${baseUrl}/unsubscribe/?l=${lang}&t=${token}`
   const oneClickUrl = `${baseUrl}/api/first-steps/unsubscribe/?t=${token}`
   const privacyUrl = `${baseUrl}${lang === 'pt' ? '/pt/politica-de-privacidade/' : '/privacy-policy/'}`
   const logoSrc = (imageSrc && imageSrc.logo) || `${baseUrl}/email/logo.png`
-  const coverSrc = (imageSrc && imageSrc.cover) || `${baseUrl}/email/training-cover.jpg`
+  const coverSrc = (imageSrc && imageSrc.cover) || `${baseUrl}${isPdf2 ? PDF2[lang].cover : '/email/training-cover.jpg'}`
+  const eyebrow = isPdf2 ? PDF2[lang].eyebrow : s.eyebrow
+  const coverAlt = isPdf2 ? PDF2[lang].coverAlt : s.coverAlt
   const subject = `${subjectPrefix}${c.subject}`
 
   const paragraphRows = c.paragraphs
@@ -142,11 +226,11 @@ function buildFollowup({ lang, kind, token, baseUrl = SITE_URL, subjectPrefix = 
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#0F0F0F"><tr><td align="center" style="padding:24px 12px">
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:560px;background:#171717;border:1px solid #2E2E2E">
 <tr><td align="center" style="padding:36px 24px 8px"><img src="${escapeHtml(logoSrc)}" width="110" alt="SAL Ray" style="display:block"></td></tr>
-<tr><td align="center" style="padding:20px 32px 0;font:600 11px Arial,Helvetica,sans-serif;letter-spacing:2px;text-transform:uppercase;color:#F7941D">${escapeHtml(s.eyebrow)}</td></tr>
+<tr><td align="center" style="padding:20px 32px 0;font:600 11px Arial,Helvetica,sans-serif;letter-spacing:2px;text-transform:uppercase;color:#F7941D">${escapeHtml(eyebrow)}</td></tr>
 <tr><td align="center" style="padding:14px 32px 0;font:400 36px/42px Georgia,'Times New Roman',serif;color:#F2EEE8">${escapeHtml(c.subject)}</td></tr>
 <tr><td align="center" style="padding:8px 0 0"><table role="presentation" width="46" cellpadding="0" cellspacing="0"><tr><td height="2" style="background:#F7941D;font-size:0;line-height:0">&nbsp;</td></tr></table></td></tr>
 ${paragraphRows}
-<tr><td align="center" style="padding:28px 36px 0"><img src="${escapeHtml(coverSrc)}" width="200" alt="${escapeHtml(s.coverAlt)}" style="display:block;border:1px solid #2E2E2E"></td></tr>
+<tr><td align="center" style="padding:28px 36px 0"><img src="${escapeHtml(coverSrc)}" width="200" alt="${escapeHtml(coverAlt)}" style="display:block;border:1px solid #2E2E2E"></td></tr>
 <tr><td align="center" style="padding:28px 36px 0"><a href="${escapeHtml(downloadUrl)}" style="display:block;background:#F7941D;color:#171717;font:600 16px Arial,Helvetica,sans-serif;text-decoration:none;padding:17px 24px;border-radius:4px">${escapeHtml(s.button)}</a></td></tr>
 <tr><td style="padding:34px 36px 0;font:italic 18px/28px Georgia,'Times New Roman',serif;color:#F2EEE8">${escapeHtml(s.reply)}</td></tr>
 <tr><td style="padding:26px 36px 0;font:400 22px Georgia,serif;color:#F2EEE8">SAL Ray<br><span style="font:12px Arial,sans-serif;letter-spacing:1px;color:#A8A39B">${escapeHtml(s.role)}</span></td></tr>
@@ -154,7 +238,7 @@ ${paragraphRows}
 </table></td></tr></table></body></html>`
 
   const text = [
-    s.eyebrow.toUpperCase(),
+    eyebrow.toUpperCase(),
     '',
     c.subject,
     '',

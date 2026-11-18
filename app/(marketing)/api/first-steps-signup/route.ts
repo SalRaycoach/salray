@@ -15,6 +15,7 @@ import {
   sendDeliveryFailureAlert,
   type Lang,
 } from '@/lib/first-steps'
+import { parseTraining } from '@/lib/trainings'
 
 /**
  * Cadastro do treinamento do PDF 1 (envio do e-mail com o link de download).
@@ -101,6 +102,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ ok: false, error: msg.invalidEmail }, { status: 400 })
   }
   const source = parseSource(body.source)
+  const training = parseTraining(body.training)
 
   try {
     // Quem se descadastrou nunca recebe nada. Resposta idêntica à de sucesso
@@ -109,10 +111,11 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ ok: true })
     }
 
-    // Já inscrito e ativo: reenvia o e-mail, mas não cria linha nova.
-    const isNewSubscriber = !(await isSubscribed(email))
+    // Já inscrito neste treinamento: reenvia o e-mail, mas não cria linha nova. Quem pede o
+    // outro treinamento ganha uma linha própria (recebe os e-mails de apoio de cada um).
+    const isNewSubscriber = !(await isSubscribed(email, training))
     if (isNewSubscriber) {
-      await addSubscriber(email, lang, source)
+      await addSubscriber(email, lang, source, training)
     }
 
     // Cota por destinatário esgotada: não envia de novo, mas responde como sucesso.
@@ -128,7 +131,7 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ ok: false, error: msg.failed }, { status: 500 })
     }
 
-    const message = buildFirstStepsEmail({ lang, email })
+    const message = buildFirstStepsEmail({ lang, email, training })
     try {
       await sendEmail({
         from: FIRST_STEPS_FROM,
@@ -150,7 +153,7 @@ export async function POST(request: NextRequest) {
     // o cadastro nem a entrega: se falhar, só log (sem e-mail) e alerta ntfy.
     if (isNewSubscriber) {
       try {
-        const note = buildSignupNotification({ lang, source, date: new Date() })
+        const note = buildSignupNotification({ lang, source, date: new Date(), training })
         await sendEmail({
           from: `"SAL Ray site" <${contato.email}>`,
           to: contato.email,
