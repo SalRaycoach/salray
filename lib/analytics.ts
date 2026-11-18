@@ -52,6 +52,9 @@ export type AnalyticsEvent =
   | 'related_audio_click'
   | 'product_cta_click'
   | 'reflections_signup_submit' // /reflections/ — captura de e-mail "Receive New Audio Reflections"
+  // PDF 1 (treinamento interativo de 30 dias). Params: lang, source (nunca e-mail).
+  | 'lead_magnet_signup' // cadastro concluído com sucesso (resposta ok da API)
+  | 'lead_magnet_download' // params: lang. O clique do e-mail passa por rota de servidor (/api/first-steps/download/), que só registra log; este evento é para uma página de agradecimento futura
 
 export function trackEvent(event: AnalyticsEvent, payload: Record<string, unknown> = {}) {
   if (typeof window === 'undefined') return

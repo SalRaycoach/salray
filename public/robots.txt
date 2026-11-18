@@ -34,6 +34,8 @@ Allow: /
 User-agent: *
 Allow: /
 Disallow: /api/
+Disallow: /downloads/
+Disallow: /unsubscribe/
 Disallow: /thank-you-consultation/
 
 # Host
