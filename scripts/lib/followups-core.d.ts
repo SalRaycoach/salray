@@ -9,6 +9,9 @@ export type FollowupKind =
   | 'pdf3-day3'
   | 'pdf3-day7'
   | 'pdf3-day15'
+  | 'pdf4-day3'
+  | 'pdf4-day7'
+  | 'pdf4-day15'
 export type PlanDecision = { email: string; lang: 'en' | 'pt'; training: Training; age?: number; kind?: FollowupKind; result: string }
 export type DueItem = { email: string; lang: 'en' | 'pt'; training: Training; age: number; kind: FollowupKind }
 export const KINDS: FollowupKind[]

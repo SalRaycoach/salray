@@ -7,7 +7,7 @@ import { buildWhatsAppUrl } from '@/lib/pt-reconstrucao'
 
 const title = 'Primeiros passos | SAL Ray'
 const description =
-  'Três PDFs interativos de treinamento de 30 dias. Escolha o que mais se parece com você hoje. Cada caixa pode ser preenchida, cerca de 20 minutos por dia.'
+  'PDFs interativos de treinamento de 30 dias. Escolha o que mais se parece com você hoje. Cada caixa pode ser preenchida, cerca de 20 minutos por dia.'
 const COVER_URL = `${SITE_URL}/email/training-cover-pt.jpg`
 const COVER_ALT = 'Capa do treinamento: O Mesmo Problema Continua Te Encontrando'
 
