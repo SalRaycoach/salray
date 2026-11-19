@@ -1,9 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import LeadMagnetCard from '@/components/LeadMagnetCard'
-import TrainingQuiz from '@/components/TrainingQuiz'
+import TrainingsHub from '@/components/TrainingsHub'
 import { SITE_URL } from '@/lib/config'
-import { PUBLISHED_TRAININGS } from '@/lib/trainings'
 
 const title = 'First steps | SAL Ray'
 const description =
@@ -58,30 +56,9 @@ export default function FirstStepsPage() {
       </header>
 
       <main>
-        <section className="max-w-content mx-auto px-6 pt-10 pb-8 md:pt-16 md:pb-10">
-          <p className="font-body text-xs uppercase tracking-widest text-aqua mb-3">First steps</p>
-          <h1 className="font-display text-3xl sm:text-4xl md:text-5xl leading-tight text-charcoal max-w-3xl mb-4">
-            Choose the training that sounds most like you today
-          </h1>
-          <p className="font-body text-base md:text-lg text-charcoal/80 leading-relaxed max-w-2xl">
-            Each training is a door into a different situation. Pick the one that sounds most like you today. If you
-            are not sure, answer three short questions below, or{' '}
-            <Link href="/contact/" className="underline underline-offset-4 hover:text-orange">
-              send me a message
-            </Link>{' '}
-            and I will guide you.
-          </p>
-        </section>
-
-        {/* "Qual treinamento é para mim": some sozinho se houver menos de 2 treinamentos publicados. */}
-        <TrainingQuiz />
-
-        {/* Um cartão por treinamento publicado (lib/trainings.ts): publicar mais um já o inclui aqui. */}
-        <section aria-label="The trainings" className="max-w-content mx-auto px-6 pb-14 md:pb-20 space-y-6">
-          {PUBLISHED_TRAININGS.map((id, i) => (
-            <LeadMagnetCard key={id} variant="page" source="first-steps" training={id} showSituation track priority={i === 0} />
-          ))}
-        </section>
+        {/* Título com a quantidade de treinamentos publicados, estante de capas, UM formulário e o seletor
+            de 3 perguntas (lib/trainings.ts manda: publicar mais um já o inclui). */}
+        <TrainingsHub lang="en" source="first-steps" track messageHref="/contact/" withQuiz />
 
         <section className="max-w-content mx-auto px-6 pb-14 md:pb-20">
           <p className="font-body text-xs uppercase tracking-widest text-aqua mb-2">Before you start</p>

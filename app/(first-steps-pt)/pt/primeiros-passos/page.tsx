@@ -1,8 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import LeadMagnetCard from '@/components/LeadMagnetCard'
+import TrainingsHub from '@/components/TrainingsHub'
 import { SITE_URL } from '@/lib/config'
-import { PUBLISHED_TRAININGS } from '@/lib/trainings'
 import { buildWhatsAppUrl } from '@/lib/pt-reconstrucao'
 
 const title = 'Primeiros passos | SAL Ray'
@@ -57,39 +56,14 @@ export default function PrimeirosPassosPage() {
       </header>
 
       <main>
-        <section className="max-w-content mx-auto px-6 pt-10 pb-8 md:pt-16 md:pb-10">
-          <p className="font-body text-xs uppercase tracking-widest text-aqua mb-3">Primeiros passos</p>
-          <h1 className="font-display text-3xl sm:text-4xl md:text-5xl leading-tight text-charcoal max-w-3xl mb-4">
-            Escolha o treinamento que mais se parece com você hoje
-          </h1>
-          <p className="font-body text-base md:text-lg text-charcoal/80 leading-relaxed max-w-2xl">
-            Cada treinamento é uma porta de entrada para uma situação diferente. Escolha o que mais se parece com você
-            hoje. Se tiver dúvida,{' '}
-            <a
-              href={buildWhatsAppUrl('Olá, Sal Ray. Estou em dúvida sobre qual treinamento escolher e queria uma ajuda.')}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="underline underline-offset-4 hover:text-orange"
-            >
-              me mande uma mensagem
-            </a>{' '}
-            e eu te guio.
-          </p>
-        </section>
-
-        <section aria-label="Os treinamentos" className="max-w-content mx-auto px-6 pb-14 md:pb-20 space-y-6">
-          {PUBLISHED_TRAININGS.map((id, i) => (
-            <LeadMagnetCard
-              key={id}
-              variant="page"
-              source="primeiros-passos"
-              lang="pt"
-              training={id}
-              showSituation
-              priority={i === 0}
-            />
-          ))}
-        </section>
+        {/* Título com a quantidade de treinamentos publicados, estante de capas e UM formulário
+            (lib/trainings.ts manda: publicar mais um já o inclui). Não há seletor em português. */}
+        <TrainingsHub
+          lang="pt"
+          source="primeiros-passos"
+          messageHref={buildWhatsAppUrl('Olá, Sal Ray. Estou em dúvida sobre qual treinamento escolher e queria uma ajuda.')}
+          messageExternal
+        />
 
         <section className="max-w-content mx-auto px-6 pb-14 md:pb-20">
           <p className="font-body text-xs uppercase tracking-widest text-aqua mb-2">Antes de começar</p>

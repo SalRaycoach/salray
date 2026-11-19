@@ -5,7 +5,8 @@
  * cadastro, o e-mail de entrega e a rota de download leem DESTE arquivo.
  *
  * Para publicar um treinamento novo (próximo número, ex.: pdf6; hoje pdf1 a pdf5 estão publicados):
- *   1. copie a capa e os PDFs para os caminhos de `cover` e `pdf` abaixo;
+ *   1. copie a capa e os PDFs para os caminhos de `cover` e `pdf` abaixo, e gere a miniatura da
+ *      capa em /email/thumbs/ (ver coverThumb);
  *   2. preencha `pages` e `situation`;
  *   3. troque `published` para true.
  * A página, o seletor "qual treinamento é para mim" e o rastreio se ajustam sozinhos.
@@ -125,6 +126,16 @@ export const TRAININGS: Record<Training, TrainingInfo> = {
     },
     pages: { en: 117, pt: 117 },
   },
+}
+
+/**
+ * Miniatura da capa (400 px de largura, uns 25 KB) usada na estante de /first-steps/ e
+ * /pt/primeiros-passos/. Mora em /email/thumbs/ com o MESMO nome do arquivo da capa. Ao publicar um
+ * treinamento novo, gere a miniatura junto (ex.: ffmpeg -i capa.jpg -vf scale=400:711 miniatura.jpg).
+ * Sem a miniatura a estante cai sozinha na capa grande (só fica mais pesada).
+ */
+export function coverThumb(id: Training, lang: TrainingLang): string {
+  return TRAININGS[id].cover[lang].replace('/email/', '/email/thumbs/')
 }
 
 /** Treinamentos publicados, na ordem pdf1, pdf2, pdf3... */
