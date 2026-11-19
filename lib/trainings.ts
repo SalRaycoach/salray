@@ -4,7 +4,7 @@
  * situação" e se já está publicado. A página /first-steps/, o seletor, os cartões, o
  * cadastro, o e-mail de entrega e a rota de download leem DESTE arquivo.
  *
- * Para publicar um treinamento novo (pdf3, pdf4, pdf5):
+ * Para publicar um treinamento novo (próximo número, ex.: pdf6; hoje pdf1 a pdf5 estão publicados):
  *   1. copie a capa e os PDFs para os caminhos de `cover` e `pdf` abaixo;
  *   2. preencha `pages` e `situation`;
  *   3. troque `published` para true.
@@ -15,7 +15,7 @@
  * Cadastros antigos não têm o campo `training`: valem como pdf1.
  *
  * Os e-mails de acompanhamento (dias 3, 7 e 15) são outra coisa: só existem para
- * pdf1, pdf2, pdf3 e pdf4 (scripts/lib/followups-core.js). Treinamento sem sequência definida
+ * pdf1, pdf2, pdf3, pdf4 e pdf5 (scripts/lib/followups-core.js). Treinamento sem sequência definida
  * simplesmente não recebe e-mail de acompanhamento.
  */
 
@@ -107,15 +107,23 @@ export const TRAININGS: Record<Training, TrainingInfo> = {
     },
     pages: { en: 116, pt: 118 },
   },
-  // pdf5: pronto para o futuro (published=false), não aparece em lugar nenhum.
   pdf5: {
     downloadParam: '5',
-    published: false,
-    title: { en: 'You Are the Strong One. And You Are Exhausted.', pt: '' },
-    situation: { en: '', pt: '' },
-    cover: { en: '/email/training-5-cover.jpg', pt: '' },
-    pdf: { en: '/downloads/you-are-the-strong-one-and-you-are-exhausted.pdf', pt: '' },
-    pages: { en: 0, pt: 0 },
+    published: true,
+    title: {
+      en: 'You Say You’re Fine. You Know You Haven’t Been in Years.',
+      pt: 'Você Diz Que Está Bem. Faz Anos Que Você Sabe Que Não Está.',
+    },
+    situation: {
+      en: 'For the woman who answers “I’m fine” to everyone, and has known for years that it is not true.',
+      pt: 'Para a mulher que responde “estou bem” para todo mundo, e sabe há anos que não é verdade.',
+    },
+    cover: { en: '/email/training-5-cover.jpg', pt: '/email/training-5-cover-pt.jpg' },
+    pdf: {
+      en: '/downloads/you-say-youre-fine-you-know-you-havent-been-in-years.pdf',
+      pt: '/downloads/voce-diz-que-esta-bem-faz-anos-que-voce-sabe-que-nao-esta.pdf',
+    },
+    pages: { en: 117, pt: 117 },
   },
 }
 

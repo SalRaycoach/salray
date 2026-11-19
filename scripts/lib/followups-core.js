@@ -8,7 +8,8 @@
  *  - Nunca no dia do cadastro, nunca a descadastrados, nunca duas vezes.
  *  - Cada cadastro tem um treinamento (campo `training`, ausente = pdf1) e só recebe
  *    os e-mails DELE: pdf1 → day3/day7/day15; pdf2 → pdf2-day3/pdf2-day7/pdf2-day15;
- *    pdf3 → pdf3-day3/pdf3-day7/pdf3-day15; pdf4 → pdf4-day3/pdf4-day7/pdf4-day15.
+ *    pdf3 → pdf3-day3/pdf3-day7/pdf3-day15; pdf4 → pdf4-day3/pdf4-day7/pdf4-day15;
+ *    pdf5 → pdf5-day3/pdf5-day7/pdf5-day15.
  *    Quem pediu os dois treinamentos tem duas linhas e recebe as duas sequências.
  *  - Duplicados (mesmo e-mail e mesmo treinamento) valem só pela primeira linha.
  */
@@ -20,6 +21,7 @@ const KINDS_BY_TRAINING = {
   pdf2: ['pdf2-day3', 'pdf2-day7', 'pdf2-day15'],
   pdf3: ['pdf3-day3', 'pdf3-day7', 'pdf3-day15'],
   pdf4: ['pdf4-day3', 'pdf4-day7', 'pdf4-day15'],
+  pdf5: ['pdf5-day3', 'pdf5-day7', 'pdf5-day15'],
 }
 const DAYS = {
   day3: 3,
@@ -34,6 +36,9 @@ const DAYS = {
   'pdf4-day3': 3,
   'pdf4-day7': 7,
   'pdf4-day15': 15,
+  'pdf5-day3': 3,
+  'pdf5-day7': 7,
+  'pdf5-day15': 15,
 }
 const WINDOW_AFTER_DAYS = 2
 const TZ = 'America/New_York'
@@ -87,7 +92,7 @@ function plan(now, subscribers, unsubscribedRows, sentRows) {
     }
     const kinds = KINDS_BY_TRAINING[training]
     if (!kinds) {
-      // Treinamento sem sequência de e-mails definida (ex.: pdf5 por enquanto): não recebe acompanhamento.
+      // Treinamento sem sequência de e-mails definida (ex.: um pdf6 futuro): não recebe acompanhamento.
       decisions.push({ ...base, result: 'skip (no follow-up sequence for this training)' })
       continue
     }

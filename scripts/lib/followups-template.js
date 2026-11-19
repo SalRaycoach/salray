@@ -1,5 +1,5 @@
 /**
- * Template dos e-mails de apoio dos treinamentos PDF 1, 2, 3 e 4 (dia 3, 7 e 15), EN e PT.
+ * Template dos e-mails de apoio dos treinamentos PDF 1, 2, 3, 4 e 5 (dia 3, 7 e 15), EN e PT.
  * JavaScript puro (CommonJS) porque scripts/cron.js roda direto no Node do
  * Cron Jobs da Hostinger, sem passar pelo build do Next.
  *
@@ -168,6 +168,37 @@ const EMAILS = {
         'Before you start, read your week two reflection once. It takes two minutes.',
       ],
     },
+
+    'pdf5-day3': {
+      subject: 'The first time you caught yourself saying “I’m fine”',
+      preheader: 'By now you have probably heard yourself say it.',
+      paragraphs: [
+        'Hi,',
+        'By now you have probably heard yourself say it. At the store. On the phone. To someone who asked how you were and did not wait for the answer.',
+        'That is all the first days ask of you. Just notice it. You do not have to change anything yet. Notice who you say it to, and who you never say it to.',
+        'If you missed a day, open today’s page and start there. Nothing is lost.',
+      ],
+    },
+    'pdf5-day7': {
+      subject: 'A week of noticing',
+      preheader: 'You have been listening to your “I’m fine” for a week.',
+      paragraphs: [
+        'Hi,',
+        'You have been listening to your “I’m fine” for a week. Maybe it comes out faster than you thought. Maybe you found one place where it was not true.',
+        'This week we look back, gently. Nobody wakes up one day and decides to hide what they feel. You learned it somewhere, from someone, for a reason.',
+        'Understanding that is not blaming anyone, and it is not blaming you. Go slowly.',
+      ],
+    },
+    'pdf5-day15': {
+      subject: 'Halfway, and saying it out loud',
+      preheader: 'Halfway. Two weeks of looking at something you have avoided for years.',
+      paragraphs: [
+        'Hi,',
+        'Halfway. Two weeks of looking at something you have avoided for years.',
+        'The next stretch asks for one small thing: say one true sentence out loud, to one safe person or to yourself. “Today was hard” counts.',
+        'If it feels too big, make it smaller. There is no rush.',
+      ],
+    },
   },
   pt: {
     day3: {
@@ -300,6 +331,37 @@ const EMAILS = {
         'Antes de começar, leia uma vez a sua reflexão da semana dois. Leva dois minutos.',
       ],
     },
+
+    'pdf5-day3': {
+      subject: 'A primeira vez que você percebeu o “estou bem”',
+      preheader: 'A esta altura você provavelmente já se ouviu dizendo.',
+      paragraphs: [
+        'Olá,',
+        'A esta altura você provavelmente já se ouviu dizendo. No mercado. No telefone. Para alguém que perguntou como você estava e nem esperou a resposta.',
+        'É só isso que os primeiros dias pedem. Apenas perceber. Você não precisa mudar nada ainda. Repare para quem você diz, e para quem nunca diz.',
+        'Se perdeu um dia, abra a página de hoje e comece por ela. Nada se perde.',
+      ],
+    },
+    'pdf5-day7': {
+      subject: 'Uma semana de percepção',
+      preheader: 'Faz uma semana que você escuta o seu “estou bem”.',
+      paragraphs: [
+        'Olá,',
+        'Faz uma semana que você escuta o seu “estou bem”. Talvez ele saia mais rápido do que você imaginava. Talvez você tenha achado um lugar onde ele não era verdade.',
+        'Nesta semana olhamos para trás, com suavidade. Ninguém acorda um dia e decide esconder o que sente. Você aprendeu isso em algum lugar, com alguém, por algum motivo.',
+        'Entender não é culpar ninguém, e não é culpar você. Vá devagar.',
+      ],
+    },
+    'pdf5-day15': {
+      subject: 'Na metade, e dizer em voz alta',
+      preheader: 'Na metade. Duas semanas olhando para algo que você evitou por anos.',
+      paragraphs: [
+        'Olá,',
+        'Na metade. Duas semanas olhando para algo que você evitou por anos.',
+        'A próxima parte pede uma coisa pequena: dizer uma frase verdadeira em voz alta, para uma pessoa segura ou para você mesma. “Hoje foi difícil” já conta.',
+        'Se parecer grande demais, faça menor. Não existe pressa.',
+      ],
+    },
   },
 }
 
@@ -347,10 +409,24 @@ const PDF4 = {
   },
 }
 
+// Dados do PDF 5. Os e-mails 'pdf5-*' usam estes no lugar dos do PDF 1.
+const PDF5 = {
+  en: {
+    eyebrow: 'You Say You’re Fine. You Know You Haven’t Been in Years.',
+    coverAlt: 'Cover of the training: You Say You’re Fine. You Know You Haven’t Been in Years.',
+    cover: '/email/training-5-cover.jpg',
+  },
+  pt: {
+    eyebrow: 'Você Diz Que Está Bem. Faz Anos Que Você Sabe Que Não Está.',
+    coverAlt: 'Capa do treinamento: Você Diz Que Está Bem. Faz Anos Que Você Sabe Que Não Está.',
+    cover: '/email/training-5-cover-pt.jpg',
+  },
+}
+
 // Treinamentos com e-mails próprios: o prefixo do tipo ('pdf2-day3' → 'pdf2') dá o número do
 // treinamento, que vira o parâmetro &p= do link de download. O PDF 1 (day3...) não leva parâmetro.
 // Para acrescentar um treinamento: um objeto de dados como o PDF4 e uma linha aqui.
-const TRAINING_DATA = { pdf2: PDF2, pdf3: PDF3, pdf4: PDF4 }
+const TRAINING_DATA = { pdf2: PDF2, pdf3: PDF3, pdf4: PDF4, pdf5: PDF5 }
 
 function trainingOfKind(kind) {
   const m = /^(pdf\d+)-/.exec(String(kind))
@@ -371,7 +447,7 @@ function buildFollowup({ lang, kind, token, baseUrl = SITE_URL, subjectPrefix = 
   const c = EMAILS[lang][kind]
   if (!s || !c) throw new Error(`Unknown follow-up: ${lang}/${kind}`)
 
-  const trainingKey = trainingOfKind(kind) // 'pdf2', 'pdf3', 'pdf4' ou null (PDF 1)
+  const trainingKey = trainingOfKind(kind) // 'pdf2' a 'pdf5' ou null (PDF 1)
   const td = trainingKey ? TRAINING_DATA[trainingKey][lang] : null
   // O link do PDF 1 não leva o parâmetro p (como sempre); os demais levam p=<número do treinamento>.
   const downloadUrl = `${baseUrl}/api/first-steps/download/?l=${lang}&t=${token}${trainingKey ? `&p=${trainingKey.slice(3)}` : ''}`
