@@ -2,7 +2,6 @@
 
 import Link from 'next/link'
 import { useEffect, useRef, useState } from 'react'
-import LeadMagnetCard from '@/components/LeadMagnetCard'
 import { trackEvent } from '@/lib/analytics'
 import { PUBLISHED_TRAININGS, QUIZ_QUESTIONS, QUIZ_VIDEO_URL, TRAININGS, pickQuizResult, type Training } from '@/lib/trainings'
 
@@ -12,12 +11,14 @@ import { PUBLISHED_TRAININGS, QUIZ_QUESTIONS, QUIZ_VIDEO_URL, TRAININGS, pickQui
  * treinamentos PUBLICADOS (lib/trainings.ts). Empate: vale a resposta da última pergunta.
  * Com menos de 2 treinamentos publicados o bloco inteiro some.
  *
- * Eventos (sem e-mail): quiz_start, quiz_complete (training = o indicado) e quiz_result_signup
- * (cadastro feito pelo cartão do resultado).
+ * O resultado NÃO tem formulário próprio: ao terminar, chama `onResult` e a página (TrainingsHub)
+ * seleciona a capa indicada na estante e leva a pessoa até lá; o cadastro é feito no cartão único da
+ * estante (origem "first-steps-quiz", com o evento quiz_result_signup).
+ *
+ * Eventos (sem e-mail): quiz_start e quiz_complete (training = o indicado).
  */
 
 const SOURCE = 'first-steps'
-const RESULT_SOURCE = 'first-steps-quiz'
 
 type Step = 'intro' | number | 'result'
 
@@ -43,7 +44,15 @@ function VideoBlock({ url }: { url: string }) {
   )
 }
 
-export default function TrainingQuiz() {
+export default function TrainingQuiz({
+  anchorId,
+  onResult,
+}: {
+  /** id da seção (destino do link "answer 3 questions" do cartão da estante). */
+  anchorId?: string
+  /** Chamado ao terminar, com o treinamento indicado. */
+  onResult?: (id: Training) => void
+}) {
   const [step, setStep] = useState<Step>('intro')
   const [answers, setAnswers] = useState<Training[]>([])
   const headingRef = useRef<HTMLHeadingElement>(null)
@@ -52,7 +61,8 @@ export default function TrainingQuiz() {
   // Depois de trocar de pergunta, leva o foco ao título dela (leitores de tela e teclado).
   useEffect(() => {
     if (!movedRef.current) return
-    headingRef.current?.focus()
+    // No resultado a página rola até a estante; o foco não pode puxar a rolagem de volta para cá.
+    headingRef.current?.focus({ preventScroll: step === 'result' })
   }, [step])
 
   if (PUBLISHED_TRAININGS.length < 2) return null
@@ -73,6 +83,7 @@ export default function TrainingQuiz() {
       const result = pickQuizResult(next)
       trackEvent('quiz_complete', { training: result ?? 'pdf1', source: SOURCE })
       setStep('result')
+      if (result) onResult?.(result)
     } else {
       setStep(index + 1)
     }
@@ -81,7 +92,7 @@ export default function TrainingQuiz() {
   const result = step === 'result' ? pickQuizResult(answers) : null
 
   return (
-    <section aria-label="Find your training" className="max-w-content mx-auto px-6 pb-10 md:pb-14">
+    <section id={anchorId} aria-label="Find your training" className="max-w-content mx-auto scroll-mt-4 px-6 pb-10 md:pb-14">
       <div className="rounded-2xl border border-aqua/40 bg-[#171717] p-6 sm:p-8">
         {step === 'intro' && (
           <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
@@ -150,14 +161,15 @@ export default function TrainingQuiz() {
             >
               {TRAININGS[result].title.en}
             </h2>
-            <LeadMagnetCard
-              variant="page"
-              source={RESULT_SOURCE}
-              training={result}
-              showSituation
-              track
-              onSignup={() => trackEvent('quiz_result_signup', { training: result, source: RESULT_SOURCE, lang: 'en' })}
-            />
+            <p className="mb-4 font-body text-sm font-semibold leading-relaxed text-orange">
+              {TRAININGS[result].situation.en}
+            </p>
+            <a
+              href="#trainings"
+              className="inline-block rounded-md bg-orange px-6 py-3.5 font-body text-sm font-semibold text-offwhite transition-colors hover:bg-charcoal focus:outline-none focus-visible:ring-2 focus-visible:ring-aqua focus-visible:ring-offset-2 focus-visible:ring-offset-[#171717]"
+            >
+              See it above
+            </a>
             <p className="mt-5 font-body text-sm text-charcoal/80">
               Not sure?{' '}
               <Link href="/contact/" className="underline underline-offset-4 hover:text-orange">
