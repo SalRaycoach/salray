@@ -15,7 +15,7 @@
  * Cadastros antigos não têm o campo `training`: valem como pdf1.
  *
  * Os e-mails de acompanhamento (dias 3, 7 e 15) são outra coisa: só existem para
- * pdf1 e pdf2 (scripts/lib/followups-core.js). Treinamento sem sequência definida
+ * pdf1, pdf2 e pdf4 (scripts/lib/followups-core.js). Treinamento sem sequência definida
  * simplesmente não recebe e-mail de acompanhamento.
  */
 
@@ -86,12 +86,21 @@ export const TRAININGS: Record<Training, TrainingInfo> = {
   },
   pdf4: {
     downloadParam: '4',
-    published: false,
-    title: { en: 'You Say Yes to Everyone. Then Wonder Where Your Life Went.', pt: '' },
-    situation: { en: '', pt: '' },
-    cover: { en: '/email/training-4-cover.jpg', pt: '' },
-    pdf: { en: '/downloads/you-say-yes-to-everyone-then-wonder-where-your-life-went.pdf', pt: '' },
-    pages: { en: 0, pt: 0 },
+    published: true,
+    title: {
+      en: 'You Say Yes to Everyone. Then Wonder Where Your Life Went.',
+      pt: 'Você Diz Sim a Todo Mundo. Depois Se Pergunta para Onde Foi a Sua Vida.',
+    },
+    situation: {
+      en: 'For those who say yes to everyone and wonder where their own life went.',
+      pt: 'Para quem diz sim a todo mundo e se pergunta para onde foi a própria vida.',
+    },
+    cover: { en: '/email/training-4-cover.jpg', pt: '/email/training-4-cover-pt.jpg' },
+    pdf: {
+      en: '/downloads/you-say-yes-to-everyone-then-wonder-where-your-life-went.pdf',
+      pt: '/downloads/voce-diz-sim-a-todo-mundo-depois-se-pergunta-para-onde-foi-a-sua-vida.pdf',
+    },
+    pages: { en: 116, pt: 118 },
   },
   pdf5: {
     downloadParam: '5',

@@ -1,5 +1,5 @@
 /**
- * Template dos e-mails de apoio do PDF 1 (dia 3, 7 e 15), EN e PT.
+ * Template dos e-mails de apoio dos treinamentos PDF 1, 2 e 4 (dia 3, 7 e 15), EN e PT.
  * JavaScript puro (CommonJS) porque scripts/cron.js roda direto no Node do
  * Cron Jobs da Hostinger, sem passar pelo build do Next.
  *
@@ -102,6 +102,39 @@ const EMAILS = {
         'Before you start, read your week two reflection once. It takes two minutes.',
       ],
     },
+
+    'pdf4-day3': {
+      subject: 'The first yes you noticed',
+      preheader: 'By now you may be on day 3 of your training.',
+      paragraphs: [
+        'Hi,',
+        'By now you may be on day 3 of your training. Or you may not have started yet. Both are fine.',
+        'The first days ask for something small: notice. Notice a yes from this week, that moment when someone asked and the word was out before you had decided.',
+        'You do not have to change anything yet. Only see that it happened, and how your body felt right before you answered.',
+        'One small thing for today: write one sentence about the first yes you noticed. Who asked, what you said, and how you felt afterwards. Just one.',
+      ],
+    },
+    'pdf4-day7': {
+      subject: 'What would you say if nobody were upset?',
+      preheader: 'Week one ends today. There is no new step.',
+      paragraphs: [
+        'Hi,',
+        'Week one ends today. There is no new step. Read your six pages first and count how many yeses you wrote down.',
+        'Then answer one question: what would you have said if nobody were going to be upset?',
+        'It might be no. It might be yes, with a condition. Any answer is fine, and it does not have to become a decision today.',
+        'If you are behind, that is fine. Reflect on what you did so far. This page is yours, not a test.',
+      ],
+    },
+    'pdf4-day15': {
+      subject: 'Halfway, and your first kind no',
+      preheader: 'You are halfway through. Week three starts today.',
+      paragraphs: [
+        'Hi,',
+        'You are halfway through. Week three starts today: say no, kindly.',
+        'Behind every fast yes there is a rule, often an old one, like good people always help. This week you practice a no that is short, warm and clear.',
+        'Before you start, read your week two reflection once. It takes two minutes.',
+      ],
+    },
   },
   pt: {
     day3: {
@@ -168,6 +201,39 @@ const EMAILS = {
         'Antes de começar, leia uma vez a sua reflexão da semana dois. Leva dois minutos.',
       ],
     },
+
+    'pdf4-day3': {
+      subject: 'O primeiro sim que você notou',
+      preheader: 'A esta altura você pode estar no dia 3 do treinamento.',
+      paragraphs: [
+        'Olá,',
+        'A esta altura você pode estar no dia 3 do treinamento. Ou pode ainda não ter começado. As duas coisas estão certas.',
+        'Os primeiros dias pedem algo pequeno: notar. Notar um sim desta semana, aquele momento em que alguém pediu e a palavra saiu antes de você decidir.',
+        'Você não precisa mudar nada ainda. Só perceber que aconteceu e como o seu corpo se sentiu logo antes de responder.',
+        'Uma coisa pequena para hoje: escreva uma frase sobre o primeiro sim que você notou. Quem pediu, o que você disse e como se sentiu depois. Só uma.',
+      ],
+    },
+    'pdf4-day7': {
+      subject: 'O que você diria se ninguém ficasse chateado?',
+      preheader: 'A semana um termina hoje. Não há passo novo.',
+      paragraphs: [
+        'Olá,',
+        'A semana um termina hoje. Não há passo novo. Leia primeiro as suas seis páginas e conte quantos sins você anotou.',
+        'Depois responda a uma pergunta só: o que você teria dito se ninguém fosse ficar chateado?',
+        'Pode ser não. Pode ser sim, com uma condição. Qualquer resposta serve, e ela não precisa virar decisão hoje.',
+        'Se estiver atrasada, tudo bem. Reflita sobre o que fez até agora. Esta página é sua, não é uma prova.',
+      ],
+    },
+    'pdf4-day15': {
+      subject: 'Metade do caminho, e o seu primeiro não gentil',
+      preheader: 'Você está na metade. A semana três começa hoje.',
+      paragraphs: [
+        'Olá,',
+        'Você está na metade. A semana três começa hoje: dizer não, com gentileza.',
+        'Por trás de todo sim rápido existe uma regra, muitas vezes antiga, como gente boa sempre ajuda. Nesta semana você pratica um não que é curto, caloroso e claro.',
+        'Antes de começar, leia uma vez a sua reflexão da semana dois. Leva dois minutos.',
+      ],
+    },
   },
 }
 
@@ -187,6 +253,30 @@ const PDF2 = {
   },
 }
 
+// Dados do PDF 4. Os e-mails 'pdf4-*' usam estes no lugar dos do PDF 1.
+const PDF4 = {
+  en: {
+    eyebrow: 'You Say Yes to Everyone. Then Wonder Where Your Life Went.',
+    coverAlt: 'Cover of the training: You Say Yes to Everyone. Then Wonder Where Your Life Went.',
+    cover: '/email/training-4-cover.jpg',
+  },
+  pt: {
+    eyebrow: 'Você Diz Sim a Todo Mundo. Depois Se Pergunta para Onde Foi a Sua Vida.',
+    coverAlt: 'Capa do treinamento: Você Diz Sim a Todo Mundo. Depois Se Pergunta para Onde Foi a Sua Vida.',
+    cover: '/email/training-4-cover-pt.jpg',
+  },
+}
+
+// Treinamentos com e-mails próprios: o prefixo do tipo ('pdf4-day3' → 'pdf4') dá o número do
+// treinamento, que vira o parâmetro &p= do link de download. O PDF 1 (day3...) não leva parâmetro.
+// Para acrescentar um treinamento: um objeto de dados como o PDF4 e uma linha aqui.
+const TRAINING_DATA = { pdf2: PDF2, pdf4: PDF4 }
+
+function trainingOfKind(kind) {
+  const m = /^(pdf\d+)-/.exec(String(kind))
+  return m && TRAINING_DATA[m[1]] ? m[1] : null
+}
+
 function escapeHtml(value) {
   return String(value).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;')
 }
@@ -201,16 +291,17 @@ function buildFollowup({ lang, kind, token, baseUrl = SITE_URL, subjectPrefix = 
   const c = EMAILS[lang][kind]
   if (!s || !c) throw new Error(`Unknown follow-up: ${lang}/${kind}`)
 
-  const isPdf2 = String(kind).startsWith('pdf2-')
-  // O link do PDF 1 não leva o parâmetro p (como sempre); o do PDF 2 leva p=2.
-  const downloadUrl = `${baseUrl}/api/first-steps/download/?l=${lang}&t=${token}${isPdf2 ? '&p=2' : ''}`
+  const trainingKey = trainingOfKind(kind) // 'pdf2', 'pdf4' ou null (PDF 1)
+  const td = trainingKey ? TRAINING_DATA[trainingKey][lang] : null
+  // O link do PDF 1 não leva o parâmetro p (como sempre); os demais levam p=<número do treinamento>.
+  const downloadUrl = `${baseUrl}/api/first-steps/download/?l=${lang}&t=${token}${trainingKey ? `&p=${trainingKey.slice(3)}` : ''}`
   const unsubscribeUrl = `${baseUrl}/unsubscribe/?l=${lang}&t=${token}`
   const oneClickUrl = `${baseUrl}/api/first-steps/unsubscribe/?t=${token}`
   const privacyUrl = `${baseUrl}${lang === 'pt' ? '/pt/politica-de-privacidade/' : '/privacy-policy/'}`
   const logoSrc = (imageSrc && imageSrc.logo) || `${baseUrl}/email/logo.png`
-  const coverSrc = (imageSrc && imageSrc.cover) || `${baseUrl}${isPdf2 ? PDF2[lang].cover : '/email/training-cover.jpg'}`
-  const eyebrow = isPdf2 ? PDF2[lang].eyebrow : s.eyebrow
-  const coverAlt = isPdf2 ? PDF2[lang].coverAlt : s.coverAlt
+  const coverSrc = (imageSrc && imageSrc.cover) || `${baseUrl}${td ? td.cover : '/email/training-cover.jpg'}`
+  const eyebrow = td ? td.eyebrow : s.eyebrow
+  const coverAlt = td ? td.coverAlt : s.coverAlt
   const subject = `${subjectPrefix}${c.subject}`
 
   const paragraphRows = c.paragraphs

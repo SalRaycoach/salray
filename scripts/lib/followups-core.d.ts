@@ -1,5 +1,14 @@
 export type Training = 'pdf1' | 'pdf2' | 'pdf3' | 'pdf4' | 'pdf5'
-export type FollowupKind = 'day3' | 'day7' | 'day15' | 'pdf2-day3' | 'pdf2-day7' | 'pdf2-day15'
+export type FollowupKind =
+  | 'day3'
+  | 'day7'
+  | 'day15'
+  | 'pdf2-day3'
+  | 'pdf2-day7'
+  | 'pdf2-day15'
+  | 'pdf4-day3'
+  | 'pdf4-day7'
+  | 'pdf4-day15'
 export type PlanDecision = { email: string; lang: 'en' | 'pt'; training: Training; age?: number; kind?: FollowupKind; result: string }
 export type DueItem = { email: string; lang: 'en' | 'pt'; training: Training; age: number; kind: FollowupKind }
 export const KINDS: FollowupKind[]

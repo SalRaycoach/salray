@@ -2,11 +2,12 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import LeadMagnetCard from '@/components/LeadMagnetCard'
 import { SITE_URL } from '@/lib/config'
+import { PUBLISHED_TRAININGS } from '@/lib/trainings'
 import { buildWhatsAppUrl } from '@/lib/pt-reconstrucao'
 
 const title = 'Primeiros passos | SAL Ray'
 const description =
-  'Dois PDFs interativos de treinamento de 30 dias. Escolha o que mais se parece com você hoje. Cada caixa pode ser preenchida, cerca de 20 minutos por dia.'
+  'PDFs interativos de treinamento de 30 dias. Escolha o que mais se parece com você hoje. Cada caixa pode ser preenchida, cerca de 20 minutos por dia.'
 const COVER_URL = `${SITE_URL}/email/training-cover-pt.jpg`
 const COVER_ALT = 'Capa do treinamento: O Mesmo Problema Continua Te Encontrando'
 
@@ -77,8 +78,17 @@ export default function PrimeirosPassosPage() {
         </section>
 
         <section aria-label="Os treinamentos" className="max-w-content mx-auto px-6 pb-14 md:pb-20 space-y-6">
-          <LeadMagnetCard variant="page" source="primeiros-passos" lang="pt" training="pdf1" showSituation priority />
-          <LeadMagnetCard variant="page" source="primeiros-passos" lang="pt" training="pdf2" showSituation />
+          {PUBLISHED_TRAININGS.map((id, i) => (
+            <LeadMagnetCard
+              key={id}
+              variant="page"
+              source="primeiros-passos"
+              lang="pt"
+              training={id}
+              showSituation
+              priority={i === 0}
+            />
+          ))}
         </section>
 
         <section className="max-w-content mx-auto px-6 pb-14 md:pb-20">

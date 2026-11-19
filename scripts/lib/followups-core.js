@@ -7,7 +7,8 @@
  *  - O e-mail do dia N sai quando a pessoa está entre N e N+2 dias.
  *  - Nunca no dia do cadastro, nunca a descadastrados, nunca duas vezes.
  *  - Cada cadastro tem um treinamento (campo `training`, ausente = pdf1) e só recebe
- *    os e-mails DELE: pdf1 → day3/day7/day15; pdf2 → pdf2-day3/pdf2-day7/pdf2-day15.
+ *    os e-mails DELE: pdf1 → day3/day7/day15; pdf2 → pdf2-day3/pdf2-day7/pdf2-day15;
+ *    pdf4 → pdf4-day3/pdf4-day7/pdf4-day15. O pdf3 ganha a dele em outra entrega.
  *    Quem pediu os dois treinamentos tem duas linhas e recebe as duas sequências.
  *  - Duplicados (mesmo e-mail e mesmo treinamento) valem só pela primeira linha.
  */
@@ -17,8 +18,19 @@ const KINDS = ['day3', 'day7', 'day15']
 const KINDS_BY_TRAINING = {
   pdf1: ['day3', 'day7', 'day15'],
   pdf2: ['pdf2-day3', 'pdf2-day7', 'pdf2-day15'],
+  pdf4: ['pdf4-day3', 'pdf4-day7', 'pdf4-day15'],
 }
-const DAYS = { day3: 3, day7: 7, day15: 15, 'pdf2-day3': 3, 'pdf2-day7': 7, 'pdf2-day15': 15 }
+const DAYS = {
+  day3: 3,
+  day7: 7,
+  day15: 15,
+  'pdf2-day3': 3,
+  'pdf2-day7': 7,
+  'pdf2-day15': 15,
+  'pdf4-day3': 3,
+  'pdf4-day7': 7,
+  'pdf4-day15': 15,
+}
 const WINDOW_AFTER_DAYS = 2
 const TZ = 'America/New_York'
 
@@ -71,7 +83,7 @@ function plan(now, subscribers, unsubscribedRows, sentRows) {
     }
     const kinds = KINDS_BY_TRAINING[training]
     if (!kinds) {
-      // Treinamento sem sequência de e-mails definida (ex.: pdf3 a pdf5 por enquanto): não recebe acompanhamento.
+      // Treinamento sem sequência de e-mails definida (ex.: pdf3 e pdf5 por enquanto): não recebe acompanhamento.
       decisions.push({ ...base, result: 'skip (no follow-up sequence for this training)' })
       continue
     }
