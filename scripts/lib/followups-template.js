@@ -17,6 +17,8 @@ const SHARED = {
     eyebrow: 'The Same Problem Keeps Finding You',
     coverAlt: 'Cover of the training: The Same Problem Keeps Finding You',
     button: 'Open your training',
+    backButton: 'Back to your trainings',
+    backPath: '/first-steps/',
     reply: 'If you want to tell me how it is going, just reply to this email. I read what you send.',
     role: 'Emotional & Life Rebuilding Coach',
     receivingBecause: 'You are receiving this because you asked for the training at salraycoach.com.',
@@ -28,6 +30,8 @@ const SHARED = {
     eyebrow: 'O Mesmo Problema Continua Te Encontrando',
     coverAlt: 'Capa do treinamento: O Mesmo Problema Continua Te Encontrando',
     button: 'Abrir o treinamento',
+    backButton: 'Voltar aos seus treinamentos',
+    backPath: '/pt/primeiros-passos/',
     reply: 'Se quiser me contar como está sendo, é só responder este email. Eu leio o que você enviar.',
     role: 'Coach de Reconstrução Emocional e de Vida',
     receivingBecause: 'Você está recebendo este e-mail porque pediu o treinamento em salraycoach.com.',
@@ -375,6 +379,10 @@ function buildFollowup({ lang, kind, token, baseUrl = SITE_URL, subjectPrefix = 
   const td = trainingKey ? TRAINING_DATA[trainingKey][lang] : null
   // O link do PDF 1 não leva o parâmetro p (como sempre); os demais levam p=<número do treinamento>.
   const downloadUrl = `${baseUrl}/api/first-steps/download/?l=${lang}&t=${token}${trainingKey ? `&p=${trainingKey.slice(3)}` : ''}`
+  // Botão final "Voltar aos seus treinamentos" (igual em TODOS os e-mails de acompanhamento, de qualquer
+  // treinamento): leva à página dos treinamentos no idioma do e-mail. Os outros links do e-mail não
+  // têm parâmetros de rastreamento (só l, t e p), então este também não leva.
+  const backUrl = `${baseUrl}${s.backPath}`
   const unsubscribeUrl = `${baseUrl}/unsubscribe/?l=${lang}&t=${token}`
   const oneClickUrl = `${baseUrl}/api/first-steps/unsubscribe/?t=${token}`
   const privacyUrl = `${baseUrl}${lang === 'pt' ? '/pt/politica-de-privacidade/' : '/privacy-policy/'}`
@@ -405,6 +413,7 @@ ${paragraphRows}
 <tr><td align="center" style="padding:28px 36px 0"><a href="${escapeHtml(downloadUrl)}" style="display:block;background:#F7941D;color:#171717;font:600 16px Arial,Helvetica,sans-serif;text-decoration:none;padding:17px 24px;border-radius:4px">${escapeHtml(s.button)}</a></td></tr>
 <tr><td style="padding:34px 36px 0;font:italic 18px/28px Georgia,'Times New Roman',serif;color:#F2EEE8">${escapeHtml(s.reply)}</td></tr>
 <tr><td style="padding:26px 36px 0;font:400 22px Georgia,serif;color:#F2EEE8">SAL Ray<br><span style="font:12px Arial,sans-serif;letter-spacing:1px;color:#A8A39B">${escapeHtml(s.role)}</span></td></tr>
+<tr><td align="center" style="padding:30px 36px 0"><a href="${escapeHtml(backUrl)}" style="display:block;background:#F7941D;color:#FFFFFF;font:600 16px Arial,Helvetica,sans-serif;text-decoration:none;padding:17px 24px;border-radius:4px"><span style="color:#FFFFFF">${escapeHtml(s.backButton)}</span></a></td></tr>
 <tr><td style="padding:36px 36px 30px"><table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-top:1px solid #2E2E2E"><tr><td style="padding-top:18px;font:12px/19px Arial,sans-serif;color:#8A857D">${escapeHtml(s.receivingBecause)}<br><a href="${escapeHtml(unsubscribeUrl)}" style="color:#A8A39B">${escapeHtml(s.unsubscribe)}</a> &nbsp;&middot;&nbsp; <a href="${escapeHtml(privacyUrl)}" style="color:#A8A39B">${escapeHtml(s.privacy)}</a></td></tr></table></td></tr>
 </table></td></tr></table></body></html>`
 
@@ -420,6 +429,8 @@ ${paragraphRows}
     '',
     'SAL Ray',
     s.role,
+    '',
+    `${s.backButton}: ${backUrl}`,
     '',
     '--',
     s.receivingBecause,
