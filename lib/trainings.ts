@@ -15,7 +15,7 @@
  * Cadastros antigos não têm o campo `training`: valem como pdf1.
  *
  * Os e-mails de acompanhamento (dias 3, 7 e 15) são outra coisa: só existem para
- * pdf1 e pdf2 (scripts/lib/followups-core.js). Treinamento sem sequência definida
+ * pdf1, pdf2 e pdf3 (scripts/lib/followups-core.js). Treinamento sem sequência definida
  * simplesmente não recebe e-mail de acompanhamento.
  */
 
@@ -74,16 +74,22 @@ export const TRAININGS: Record<Training, TrainingInfo> = {
     },
     pages: { en: 121, pt: 123 },
   },
-  // ---- Prontos para o futuro: published=false, não aparecem em lugar nenhum. ----
   pdf3: {
     downloadParam: '3',
-    published: false,
-    title: { en: 'You Start Strong. Then You Disappear.', pt: '' },
-    situation: { en: '', pt: '' },
-    cover: { en: '/email/training-3-cover.jpg', pt: '' },
-    pdf: { en: '/downloads/you-start-strong-then-you-disappear.pdf', pt: '' },
-    pages: { en: 0, pt: 0 },
+    published: true,
+    title: { en: 'You Start Strong. Then You Disappear.', pt: 'Você Começa Forte. Depois Você Some.' },
+    situation: {
+      en: 'For those who start with energy and fade away when it becomes ordinary.',
+      pt: 'Para quem começa com energia e some quando fica comum.',
+    },
+    cover: { en: '/email/training-3-cover.jpg', pt: '/email/training-3-cover-pt.jpg' },
+    pdf: {
+      en: '/downloads/you-start-strong-then-you-disappear.pdf',
+      pt: '/downloads/voce-comeca-forte-depois-voce-some.pdf',
+    },
+    pages: { en: 116, pt: 116 },
   },
+  // pdf4 e pdf5: prontos para o futuro (published=false), não aparecem em lugar nenhum.
   pdf4: {
     downloadParam: '4',
     published: false,
