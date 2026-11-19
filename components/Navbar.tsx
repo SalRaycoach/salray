@@ -22,6 +22,10 @@ const RESOURCES_ITEMS: NavDropdownItem[] = [
 ]
 
 const FOUR_WEEK_HREF = '/4-week-experience/'
+// "30-Day Trainings" (pedido 18 nov 2026): link simples entre os itens de conteúdo e a 4-Week
+// Experience. Destaca em laranja quando a pessoa está em /first-steps/, como a 4-Week faz na página dela.
+const TRAININGS_HREF = '/first-steps/'
+const TRAININGS_LABEL = '30-Day Trainings'
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
@@ -31,6 +35,7 @@ export default function Navbar() {
   const [mobileSection, setMobileSection] = useState<'about' | 'resources' | null>(null)
   const pathname = usePathname()
   const isFourWeekPage = pathname === FOUR_WEEK_HREF
+  const isTrainingsPage = pathname === TRAININGS_HREF || pathname === '/first-steps'
   const showFourWeekLink = fourWeekExperience.status === 'open'
 
   useEffect(() => {
@@ -66,6 +71,15 @@ export default function Navbar() {
           </li>
           <li>
             <NavDropdown label="Resources" items={RESOURCES_ITEMS} />
+          </li>
+          <li>
+            <Link
+              href={TRAININGS_HREF}
+              aria-current={isTrainingsPage ? 'page' : undefined}
+              className={`hover:text-aqua transition-colors ${isTrainingsPage ? 'text-orange' : ''}`}
+            >
+              {TRAININGS_LABEL}
+            </Link>
           </li>
           {showFourWeekLink && (
             <li>
@@ -134,6 +148,16 @@ export default function Navbar() {
             onToggle={() => setMobileSection((v) => (v === 'resources' ? null : 'resources'))}
             onNavigate={closeMobileMenu}
           />
+          <li>
+            <Link
+              href={TRAININGS_HREF}
+              aria-current={isTrainingsPage ? 'page' : undefined}
+              className={`block py-2 ${isTrainingsPage ? 'text-orange' : ''}`}
+              onClick={closeMobileMenu}
+            >
+              {TRAININGS_LABEL}
+            </Link>
+          </li>
           {showFourWeekLink && (
             <li>
               <Link

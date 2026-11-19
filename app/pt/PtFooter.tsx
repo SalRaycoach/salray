@@ -5,6 +5,7 @@
  */
 export default function PtFooter() {
   const legalLinks = [
+    { href: '/pt/primeiros-passos/', label: 'Treinamentos de 30 dias' },
     { href: '/pt/politica-de-privacidade/', label: 'Política de Privacidade' },
     { href: '/terms/', label: 'Termos de Uso' },
     { href: '/disclaimer/', label: 'Aviso Profissional' },
