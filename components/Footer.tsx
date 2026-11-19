@@ -7,6 +7,7 @@ const navLinks = [
   { href: '/stable-method/', label: 'The S.T.A.B.L.E. Method' },
   { href: '/resources/', label: 'Resources' },
   { href: '/reflections/', label: 'S.T.A.B.L.E. Reflections' },
+  { href: '/first-steps/', label: '30-Day Trainings' },
   { href: '/faq/', label: 'FAQ' },
   { href: '/contact/', label: 'Contact' },
 ]
