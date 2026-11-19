@@ -58,7 +58,7 @@ export default function ContactForm() {
         type="button"
         onClick={handleSend}
         disabled={!canSubmit}
-        className="font-body text-sm font-medium bg-orange text-charcoal px-6 py-3.5 rounded-md hover:bg-charcoal hover:text-offwhite transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
+        className="font-body text-sm font-medium bg-orange text-[#FFFFFF] px-6 py-3.5 rounded-md transition-colors enabled:hover:bg-[#CC6E00] focus:outline-none focus-visible:ring-2 focus-visible:ring-aqua focus-visible:ring-offset-2 focus-visible:ring-offset-offwhite disabled:bg-[#E57C00] disabled:text-[#FFFFFF] disabled:cursor-not-allowed"
       >
         Send Message
       </button>
